@@ -25,7 +25,7 @@ namespace MFlow.Core
 
         public bool Is(bool condition)
         {
-            return _conditions.All(c => c.Condition == condition && c.Type == ConditionType.And) || 
+            return _conditions.All(c => c.Condition == condition && c.Type == ConditionType.And) ||
                 _conditions.Any(c => c.Condition == condition && c.Type == ConditionType.Or);
         }
 
@@ -33,6 +33,13 @@ namespace MFlow.Core
         {
             var fluentCondition = new FluentCondition(condition, ConditionType.Or);
             _conditions.Add(fluentCondition);
+            return this;
+        }
+
+        public IFluentConditions Then(Action execute)
+        {
+            if (Is(true))
+                execute();
             return this;
         }
     }

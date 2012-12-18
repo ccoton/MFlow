@@ -51,5 +51,33 @@ namespace MFlow.Core.Tests
             var chain = fluentConditions.And(1 == 2).Or(2 == 4).Is(false);
             Assert.IsTrue(chain);
         }
+
+        [TestMethod]
+        public void Test_Fluent_Chain_Of_Conditions_Executes()
+        {
+            var output = false;
+            IFluentConditions fluentConditions = new MFlow.Core.FluentConditions();
+            fluentConditions.And(1 == 1).And(true == true).And(false == false).Then(
+                    () =>
+                    {
+                        output = true;
+                    }
+                );
+            Assert.IsTrue(output);
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Chain_Of_Conditions_Doesnt_Execute()
+        {
+            var output = false;
+            IFluentConditions fluentConditions = new MFlow.Core.FluentConditions();
+            fluentConditions.And(1 == 1).And(true == true).And(false == true).Then(
+                    () =>
+                    {
+                        output = true;
+                    }
+                );
+            Assert.IsFalse(output);
+        }
     }
 }
