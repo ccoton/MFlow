@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MFlow.Core
+namespace MFlow.Core.Conditions
 {
     public class FluentConditions : IFluentConditions
     {
@@ -40,6 +40,7 @@ namespace MFlow.Core
         {
             if (Is(true))
                 execute();
+            _conditions.Clear();
             return this;
         }
     }
