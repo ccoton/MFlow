@@ -11,7 +11,7 @@ namespace MFlow.Core.Conditions
         IFluentConditions And(bool condition);
         IFluentConditions Or(bool condition);
         bool Is(bool condition);
-        IFluentConditions Then(Action execute);
+        void Then(Action execute);
     }
 
     internal interface IFluentCondition

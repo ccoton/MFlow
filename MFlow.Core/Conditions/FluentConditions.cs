@@ -36,12 +36,10 @@ namespace MFlow.Core.Conditions
             return this;
         }
 
-        public IFluentConditions Then(Action execute)
+        public void Then(Action execute)
         {
             if (Is(true))
                 execute();
-            _conditions.Clear();
-            return this;
         }
     }
 

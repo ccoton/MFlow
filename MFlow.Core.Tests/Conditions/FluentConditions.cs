@@ -2,7 +2,7 @@
 using MFlow.Core.Conditions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MFlow.Core.Tests
+namespace MFlow.Core.Tests.Conditions
 {
     [TestClass]
     public class FluentConditions
