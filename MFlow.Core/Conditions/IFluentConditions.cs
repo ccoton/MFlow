@@ -8,9 +8,11 @@ namespace MFlow.Core.Conditions
 {
     public interface IFluentConditions
     {
+        IFluentConditions If(bool condition);
         IFluentConditions And(bool condition);
         IFluentConditions Or(bool condition);
-        bool Is(bool condition);
+        IFluentConditions Clear();
+        bool Satisfied();
         void Then(Action execute);
     }
 

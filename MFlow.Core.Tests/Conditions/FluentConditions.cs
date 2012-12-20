@@ -11,21 +11,21 @@ namespace MFlow.Core.Tests.Conditions
         public void Test_Simple_Fluent_Condition_Returns_True()
         {
             IFluentConditions fluentConditions = new MFlow.Core.Conditions.FluentConditions();
-            Assert.IsTrue(fluentConditions.And(1 == 1).Is(true));
+            Assert.IsTrue(fluentConditions.If(1 == 1).Satisfied());
         }
 
         [TestMethod]
         public void Test_Simple_Fluent_Condition_Returns_False()
         {
             IFluentConditions fluentConditions = new MFlow.Core.Conditions.FluentConditions();
-            Assert.IsTrue(fluentConditions.And(1 == 2).Is(false));
+            Assert.IsFalse(fluentConditions.If(1 == 2).Satisfied());
         }
 
         [TestMethod]
         public void Test_Fluent_Chain_Of_True_Conditions()
         {
             IFluentConditions fluentConditions = new MFlow.Core.Conditions.FluentConditions();
-            var chain = fluentConditions.And(1 == 1).And(true == true).And(false == false).Is(true);
+            var chain = fluentConditions.If(1 == 1).And(true == true).And(false == false).Satisfied();
             Assert.IsTrue(chain);
         }
 
@@ -33,15 +33,15 @@ namespace MFlow.Core.Tests.Conditions
         public void Test_Fluent_Chain_Of_False_Conditions()
         {
             IFluentConditions fluentConditions = new MFlow.Core.Conditions.FluentConditions();
-            var chain = fluentConditions.And(1 == 2).And(true == false).And(false == true).Is(false);
-            Assert.IsTrue(chain);
+            var chain = fluentConditions.If(1 == 2).And(true == false).And(false == true).Satisfied();
+            Assert.IsFalse(chain);
         }
 
         [TestMethod]
         public void Test_Fluent_Chain_Containing_True_Or()
         {
             IFluentConditions fluentConditions = new MFlow.Core.Conditions.FluentConditions();
-            var chain = fluentConditions.And(1 == 2).Or(2 == 2).Is(true);
+            var chain = fluentConditions.If(1 == 2).Or(2 == 2).Satisfied();
             Assert.IsTrue(chain);
         }
 
@@ -49,8 +49,8 @@ namespace MFlow.Core.Tests.Conditions
         public void Test_Fluent_Chain_Containing_False_Or()
         {
             IFluentConditions fluentConditions = new MFlow.Core.Conditions.FluentConditions();
-            var chain = fluentConditions.And(1 == 2).Or(2 == 4).Is(false);
-            Assert.IsTrue(chain);
+            var chain = fluentConditions.If(1 == 2).Or(2 == 4).Satisfied();
+            Assert.IsFalse(chain);
         }
 
         [TestMethod]
@@ -79,6 +79,20 @@ namespace MFlow.Core.Tests.Conditions
                     }
                 );
             Assert.IsFalse(output);
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Conditions_Clear()
+        {
+            IFluentConditions fluentConditions = new MFlow.Core.Conditions.FluentConditions();
+            var output = fluentConditions.If(true).Satisfied();
+
+            fluentConditions.Clear();
+
+            output = fluentConditions.If(false).Satisfied();
+
+            Assert.IsFalse(output);
+
         }
     }
 }

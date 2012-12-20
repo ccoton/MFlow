@@ -1,45 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using MFlow.Core.Conditions;
 
 namespace MFlow.Core.Validation
 {
-    public class FluentValidation : FluentConditions, IFluentValidation
+    public class FluentValidation<T> : FluentConditions, IFluentValidation<T>
     {
+        private readonly T _target;
 
-        public void Throw<T>(T exception) where T : Exception
+
+        public FluentValidation(T validate)
         {
-            if (Is(true))
+            this.If(validate == null).Throw(new ArgumentException("validate"));
+            _target = validate;
+            base.Clear();
+        }
+
+        public void Throw<E>(E exception) where E : Exception
+        {
+            if (Satisfied())
+            {
+                base.Clear();
                 throw exception;
+            }
+            base.Clear();
         }
 
-        public IFluentValidation If(bool condition)
+        public new IFluentValidation<T> If(bool condition)
+        {
+            base.If(condition);
+            return this;
+        }
+
+        public IFluentValidation<T> If(Expression<Func<T, bool>> expression)
+        {
+            Func<T, bool> compiled = expression.Compile();
+            return If(compiled.Invoke(_target));
+        }
+
+        public new IFluentValidation<T> And(bool condition)
         {
             base.And(condition);
             return this;
         }
 
-        public new IFluentValidation And(bool condition)
+        public IFluentValidation<T> And(Expression<Func<T, bool>> expression)
         {
-            base.And(condition);
-            return this;
+            Func<T, bool> compiled = expression.Compile();
+            return And(compiled.Invoke(_target));
         }
 
-        public new IFluentValidation Or(bool condition)
+        public new IFluentValidation<T> Or(bool condition)
         {
             base.Or(condition);
             return this;
         }
 
-        public new bool Is(bool condition)
+        public IFluentValidation<T> Or(Expression<Func<T, bool>> expression)
         {
-            return base.Is(condition);
+            Func<T, bool> compiled = expression.Compile();
+            return Or(compiled.Invoke(_target));
         }
 
-        public new IFluentValidation Then(Action execute)
+        public new bool Satisfied()
+        {
+            return base.Satisfied();
+        }
+
+        public new IFluentValidation<T> Then(Action execute)
         {
             base.Then(execute);
             return this;
