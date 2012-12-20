@@ -76,5 +76,20 @@ namespace MFlow.Core.Tests.Validation
                 .Or(u => u.Username == "test").Satisfied());
         }
 
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_With_Valid_Expression_Executes()
+        {
+            var user = new User() { Password = "password123", Username = "testing" };
+            var fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            fluentValidation
+                .If(u => u.Username == "testing")
+                .And(u => u.Password == "password123")
+                .Then(() => {
+                    user.Username = "valid";
+                });
+
+            Assert.IsTrue(user.Username == "valid");
+        }
+
     }
 }
