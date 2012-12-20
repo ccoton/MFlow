@@ -31,6 +31,7 @@ Or....
 
             var user = new User() { Password = "password123", Username = "testing" };
             var fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+			
             fluentValidation
                 .If(u => String.IsNullOrEmpty(u.Password))
                 .Throw(new ArgumentException("Password");
