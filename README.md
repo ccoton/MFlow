@@ -9,6 +9,7 @@ Example...
 
             var user = new User() { Password = "password123", Username = "testingx" };
             var fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-            Assert.IsFalse(fluentValidation
+            
+			fluentValidation
                 .If(u => u.Username == "testing")
-                .And(u => u.Password == "password123").Satisfied());
+                .And(u => u.Password == "password123").Satisfied();
