@@ -78,7 +78,7 @@ namespace MFlow.Core.Validation
             return this;
         }
 
-        public IFluentValidation<T> Raise(IEvent<T> eventToRaise)
+        public IFluentValidation<T> Raise<E>(E eventToRaise) where E : IEvent<T>
         {
             var events = new EventsFactory().GetEventStore();
             events.Raise(eventToRaise);

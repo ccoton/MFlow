@@ -13,7 +13,7 @@ namespace MFlow.Core.Tests.Supporting
         public string Password { get; set; }
     }
 
-    public class UserCreatedEvent : Event<User>, IEvent<User>
+    public class UserCreatedEvent : Event<User>
     {
         public UserCreatedEvent(User source)
             : base(source, true)

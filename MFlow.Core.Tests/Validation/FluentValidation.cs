@@ -113,8 +113,8 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
 
-            var subscriber = new EventsFactory().GetEventStore();
-            subscriber.Register<UserCreatedEvent>(s =>
+            var events = new EventsFactory().GetEventStore();
+            events.Register<UserCreatedEvent>(s =>
                 {
                     s.Source.Username = "caught event";
                     user = s.Source;
