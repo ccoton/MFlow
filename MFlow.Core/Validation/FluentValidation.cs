@@ -71,9 +71,15 @@ namespace MFlow.Core.Validation
             return base.Satisfied();
         }
 
-        public new IFluentValidation<T> Then(Action execute)
+        public IFluentValidation<T> Then(Action execute)
         {
             base.Then(execute);
+            return this;
+        }
+
+        public IFluentValidation<T> Else(Action execute)
+        {
+            base.Else(execute);
             return this;
         }
     }

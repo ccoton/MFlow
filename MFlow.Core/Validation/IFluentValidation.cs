@@ -17,7 +17,8 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> Or(bool condition);
         IFluentValidation<T> Or(Expression<Func<T, bool>> expression);
         bool Satisfied();
-        void Then(Action execute);
-        void Throw<T>(T exception) where T : Exception;
+        IFluentValidation<T> Then(Action execute);
+        IFluentValidation<T> Else(Action execute);
+        void Throw<E>(E exception) where E : Exception;
     }
 }

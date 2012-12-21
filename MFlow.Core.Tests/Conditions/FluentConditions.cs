@@ -82,6 +82,23 @@ namespace MFlow.Core.Tests.Conditions
         }
 
         [TestMethod]
+        public void Test_Fluent_Chain_Of_Conditions_Executes_Else()
+        {
+            var output = 1;
+            IFluentConditions fluentConditions = new MFlow.Core.Conditions.FluentConditions();
+            fluentConditions.And(1 == 1).And(true == true).And(true == false).Then(
+                    () =>
+                    {
+                        output = 2;
+                    })
+                .Else(() =>
+                    {
+                        output = 3;
+                    });
+            Assert.IsTrue(output==3);
+        }
+
+        [TestMethod]
         public void Test_Fluent_Conditions_Clear()
         {
             IFluentConditions fluentConditions = new MFlow.Core.Conditions.FluentConditions();

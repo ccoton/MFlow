@@ -48,10 +48,20 @@ namespace MFlow.Core.Conditions
             return this;
         }
 
-        public void Then(Action execute)
+        public IFluentConditions Then(Action execute)
         {
+            _conditions.Clear();
             if (Satisfied())
                 execute();
+            return this;
+        }
+
+        public IFluentConditions Else(Action execute)
+        {
+            _conditions.Clear();
+            if (!Satisfied())
+                execute();
+            return this;
         }
     }
 
