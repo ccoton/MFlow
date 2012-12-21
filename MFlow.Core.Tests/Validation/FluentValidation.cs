@@ -106,5 +106,26 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsTrue(user.Username == "invalid");
         }
 
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Raises_Event()
+        {
+            var user = new User() { Password = "password123", Username = "testing" };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+
+            var subscriber = new MFlow.Core.Events.Events();
+            subscriber.Register<UserCreatedEvent>(s =>
+                {
+                    s.Source.Username = "caught event";
+                    user = s.Source;
+                });
+
+            fluentValidation
+                .If(u => u.Username == "testing")
+                .And(u => u.Password == "password123")
+                .Raise(new UserCreatedEvent(user));
+
+            Assert.IsTrue(user.Username == "caught event");
+        }
+
     }
 }

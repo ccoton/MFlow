@@ -12,9 +12,9 @@ namespace MFlow.Core.Conditions
         IFluentConditions And(bool condition);
         IFluentConditions Or(bool condition);
         IFluentConditions Clear();
-        bool Satisfied();
         IFluentConditions Then(Action execute);
         IFluentConditions Else(Action execute);
+        bool Satisfied();
     }
 
     internal interface IFluentCondition

@@ -29,12 +29,6 @@ namespace MFlow.Core.Conditions
             return this;
         }
 
-        public bool Satisfied()
-        {
-            return _conditions.All(c => c.Condition == true && c.Type == ConditionType.And) ||
-                _conditions.Any(c => c.Condition == true && c.Type == ConditionType.Or);
-        }
-
         public IFluentConditions Or(bool condition)
         {
             var fluentCondition = new FluentCondition(condition, ConditionType.Or);
@@ -50,7 +44,6 @@ namespace MFlow.Core.Conditions
 
         public IFluentConditions Then(Action execute)
         {
-            _conditions.Clear();
             if (Satisfied())
                 execute();
             return this;
@@ -58,10 +51,15 @@ namespace MFlow.Core.Conditions
 
         public IFluentConditions Else(Action execute)
         {
-            _conditions.Clear();
             if (!Satisfied())
                 execute();
             return this;
+        }
+
+        public bool Satisfied()
+        {
+            return _conditions.All(c => c.Condition == true && c.Type == ConditionType.And) ||
+                _conditions.Any(c => c.Condition == true && c.Type == ConditionType.Or);
         }
     }
 

@@ -5,13 +5,13 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using MFlow.Core.Conditions;
+using MFlow.Core.Events;
 
 namespace MFlow.Core.Validation
 {
     public class FluentValidation<T> : FluentConditions, IFluentValidation<T>
     {
         private readonly T _target;
-
 
         public FluentValidation(T validate)
         {
@@ -66,21 +66,28 @@ namespace MFlow.Core.Validation
             return Or(compiled.Invoke(_target));
         }
 
-        public new bool Satisfied()
-        {
-            return base.Satisfied();
-        }
-
-        public IFluentValidation<T> Then(Action execute)
+        public new IFluentValidation<T> Then(Action execute)
         {
             base.Then(execute);
             return this;
         }
 
-        public IFluentValidation<T> Else(Action execute)
+        public new IFluentValidation<T> Else(Action execute)
         {
             base.Else(execute);
             return this;
+        }
+
+        public IFluentValidation<T> Raise(IEvent<T> eventToRaise)
+        {
+            var events = new Events.Events();
+            events.Raise(eventToRaise);
+            return this;
+        }
+
+        public new bool Satisfied()
+        {
+            return base.Satisfied();
         }
     }
 }

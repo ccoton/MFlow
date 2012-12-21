@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using MFlow.Core.Conditions;
+using MFlow.Core.Events;
 
 namespace MFlow.Core.Validation
 {
@@ -16,9 +17,10 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> And(Expression<Func<T, bool>> expression);
         IFluentValidation<T> Or(bool condition);
         IFluentValidation<T> Or(Expression<Func<T, bool>> expression);
-        bool Satisfied();
         IFluentValidation<T> Then(Action execute);
         IFluentValidation<T> Else(Action execute);
+        IFluentValidation<T> Raise(IEvent<T> eventToRaise);
         void Throw<E>(E exception) where E : Exception;
+        bool Satisfied();
     }
 }
