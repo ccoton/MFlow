@@ -36,4 +36,21 @@ Or....
                 .If(u => String.IsNullOrEmpty(u.Password))
                 .Throw(new ArgumentException("Password");
 				
+Maybe even raise an event, and subscribe to it....
+
+            var user = new User() { Password = "password123", Username = "testing" };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+
+            var events = new EventsFactory().GetEventStore();
+            events.Register<UserCreatedEvent>(s =>
+                {
+                    s.Source.Username = "caught event";
+                    user = s.Source;
+                });
+
+            fluentValidation
+                .If(u => u.Username == "testing")
+                .And(u => u.Password == "password123")
+                .Raise(new UserCreatedEvent(user));
+				
 				
