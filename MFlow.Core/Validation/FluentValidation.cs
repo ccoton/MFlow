@@ -80,7 +80,7 @@ namespace MFlow.Core.Validation
 
         public IFluentValidation<T> Raise(IEvent<T> eventToRaise)
         {
-            var events = new Events.Events();
+            var events = new EventsFactory().GetEventStore();
             events.Raise(eventToRaise);
             return this;
         }

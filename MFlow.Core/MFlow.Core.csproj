@@ -43,8 +43,10 @@
     <Compile Include="Conditions\IFluentConditions.cs" />
     <Compile Include="Events\Event.cs" />
     <Compile Include="Events\Events.cs" />
+    <Compile Include="Events\EventsFactory.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\IEvents.cs" />
+    <Compile Include="Events\IEventsFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\FluentValidation.cs" />
     <Compile Include="Validation\IFluentValidation.cs" />

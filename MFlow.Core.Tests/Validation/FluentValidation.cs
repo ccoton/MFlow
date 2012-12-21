@@ -1,5 +1,6 @@
 ﻿using System;
 using MFlow.Core.Conditions;
+using MFlow.Core.Events;
 using MFlow.Core.Tests.Supporting;
 using MFlow.Core.Validation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -112,7 +113,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
 
-            var subscriber = new MFlow.Core.Events.Events();
+            var subscriber = new EventsFactory().GetEventStore();
             subscriber.Register<UserCreatedEvent>(s =>
                 {
                     s.Source.Username = "caught event";
