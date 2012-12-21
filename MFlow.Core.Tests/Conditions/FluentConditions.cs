@@ -78,7 +78,7 @@ namespace MFlow.Core.Tests.Conditions
                     () =>
                     {
                         Assert.IsTrue(thread != System.Threading.Thread.CurrentThread.ManagedThreadId);
-                    }, ExecuteOptions.NewThread
+                    }, ExecuteThread.New
                 );
         }
 
@@ -123,12 +123,12 @@ namespace MFlow.Core.Tests.Conditions
                     () =>
                     {
                         Assert.IsTrue(false);
-                    }, ExecuteOptions.NewThread
+                    }, ExecuteThread.New
                 )
                 .Else(() =>
                             {
                                 Assert.IsTrue(thread != System.Threading.Thread.CurrentThread.ManagedThreadId);
-                            }, ExecuteOptions.NewThread
+                            }, ExecuteThread.New
                 );
         }
 

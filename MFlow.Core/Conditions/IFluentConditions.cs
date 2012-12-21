@@ -12,8 +12,8 @@ namespace MFlow.Core.Conditions
         IFluentConditions And(bool condition);
         IFluentConditions Or(bool condition);
         IFluentConditions Clear();
-        IFluentConditions Then(Action execute, ExecuteOptions options = ExecuteOptions.SameThread);
-        IFluentConditions Else(Action execute, ExecuteOptions options = ExecuteOptions.SameThread);
+        IFluentConditions Then(Action execute, ExecuteThread options = ExecuteThread.Current);
+        IFluentConditions Else(Action execute, ExecuteThread options = ExecuteThread.Current);
         bool Satisfied();
     }
 
@@ -29,9 +29,9 @@ namespace MFlow.Core.Conditions
         Or
     }
 
-    public enum ExecuteOptions
+    public enum ExecuteThread
     {
-        SameThread,
-        NewThread
+        Current,
+        New
     }
 }

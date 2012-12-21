@@ -42,11 +42,11 @@ namespace MFlow.Core.Conditions
             return this;
         }
 
-        public IFluentConditions Then(Action execute, ExecuteOptions options = ExecuteOptions.SameThread)
+        public IFluentConditions Then(Action execute, ExecuteThread options = ExecuteThread.Current)
         {
             if (Satisfied())
             {
-                if (options == ExecuteOptions.SameThread)
+                if (options == ExecuteThread.Current)
                 {
                     execute();
                 }
@@ -61,11 +61,11 @@ namespace MFlow.Core.Conditions
             return this;
         }
 
-        public IFluentConditions Else(Action execute, ExecuteOptions options = ExecuteOptions.SameThread)
+        public IFluentConditions Else(Action execute, ExecuteThread options = ExecuteThread.Current)
         {
             if (!Satisfied())
             {
-                if (options == ExecuteOptions.SameThread)
+                if (options == ExecuteThread.Current)
                 {
                     execute();
                 }
