@@ -42,17 +42,41 @@ namespace MFlow.Core.Conditions
             return this;
         }
 
-        public IFluentConditions Then(Action execute)
+        public IFluentConditions Then(Action execute, ExecuteOptions options = ExecuteOptions.SameThread)
         {
             if (Satisfied())
-                execute();
+            {
+                if (options == ExecuteOptions.SameThread)
+                {
+                    execute();
+                }
+                else
+                {
+                    System.Threading.ThreadPool.QueueUserWorkItem(delegate
+                    {
+                        execute();
+                    });
+                }
+            }
             return this;
         }
 
-        public IFluentConditions Else(Action execute)
+        public IFluentConditions Else(Action execute, ExecuteOptions options = ExecuteOptions.SameThread)
         {
             if (!Satisfied())
-                execute();
+            {
+                if (options == ExecuteOptions.SameThread)
+                {
+                    execute();
+                }
+                else
+                {
+                    System.Threading.ThreadPool.QueueUserWorkItem(delegate
+                    {
+                        execute();
+                    });
+                }
+            }
             return this;
         }
 

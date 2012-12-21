@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using MFlow.Core.Conditions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -68,6 +69,20 @@ namespace MFlow.Core.Tests.Conditions
         }
 
         [TestMethod]
+        public void Test_Fluent_Chain_Of_Conditions_Executes_On_Thread()
+        {
+            var thread = System.Threading.Thread.CurrentThread.ManagedThreadId;
+            IFluentConditions fluentConditions = new MFlow.Core.Conditions.FluentConditions();
+
+            fluentConditions.And(1 == 1).And(true == true).And(false == false).Then(
+                    () =>
+                    {
+                        Assert.IsTrue(thread != System.Threading.Thread.CurrentThread.ManagedThreadId);
+                    }, ExecuteOptions.NewThread
+                );
+        }
+
+        [TestMethod]
         public void Test_Fluent_Chain_Of_Conditions_Doesnt_Execute()
         {
             var output = false;
@@ -95,7 +110,26 @@ namespace MFlow.Core.Tests.Conditions
                     {
                         output = 3;
                     });
-            Assert.IsTrue(output==3);
+            Assert.IsTrue(output == 3);
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Chain_Of_Conditions_Executes_Else_On_Thread()
+        {
+            var thread = System.Threading.Thread.CurrentThread.ManagedThreadId;
+            IFluentConditions fluentConditions = new MFlow.Core.Conditions.FluentConditions();
+
+            fluentConditions.And(1 == 1).And(true == true).And(false == false).Then(
+                    () =>
+                    {
+                        Assert.IsTrue(false);
+                    }, ExecuteOptions.NewThread
+                )
+                .Else(() =>
+                            {
+                                Assert.IsTrue(thread != System.Threading.Thread.CurrentThread.ManagedThreadId);
+                            }, ExecuteOptions.NewThread
+                );
         }
 
         [TestMethod]

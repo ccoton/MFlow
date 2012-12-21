@@ -66,15 +66,15 @@ namespace MFlow.Core.Validation
             return Or(compiled.Invoke(_target));
         }
 
-        public new IFluentValidation<T> Then(Action execute)
+        public new IFluentValidation<T> Then(Action execute, ExecuteOptions options = ExecuteOptions.SameThread)
         {
-            base.Then(execute);
+            base.Then(execute, options);
             return this;
         }
 
-        public new IFluentValidation<T> Else(Action execute)
+        public new IFluentValidation<T> Else(Action execute, ExecuteOptions options = ExecuteOptions.SameThread)
         {
-            base.Else(execute);
+            base.Else(execute, options);
             return this;
         }
 
