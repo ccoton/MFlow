@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MFlow.Core.Internal
 {
-    public interface IPropertyNameResolver
+    internal interface IPropertyNameResolver
     {
         string Resolve<T, O>(Expression<Func<T, O>> expression);
     }
