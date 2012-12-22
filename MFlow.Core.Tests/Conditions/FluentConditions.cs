@@ -74,8 +74,8 @@ namespace MFlow.Core.Tests.Conditions
             var thread = System.Threading.Thread.CurrentThread.ManagedThreadId;
             IFluentConditions fluentConditions = new MFlow.Core.Conditions.FluentConditions();
 
-            fluentConditions.And(1 == 1).And(true == true).And(false == false).Then(
-                    () =>
+            fluentConditions.And(1 == 1).And(true == true).And(false == false)
+                .Then(() =>
                     {
                         Assert.IsTrue(thread != System.Threading.Thread.CurrentThread.ManagedThreadId);
                     }, ExecuteThread.New

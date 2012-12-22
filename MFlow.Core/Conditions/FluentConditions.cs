@@ -16,22 +16,22 @@ namespace MFlow.Core.Conditions
             _conditions = new List<IFluentCondition>();
         }
 
-        public IFluentConditions If(bool condition)
+        public IFluentConditions If(bool condition, string key = "", string message = "")
         {
-            And(condition);
+            And(condition, key, message);
             return this;
         }
 
-        public IFluentConditions And(bool condition)
+        public IFluentConditions And(bool condition, string key = "", string message = "")
         {
-            var fluentCondition = new FluentCondition(condition, ConditionType.And);
+            var fluentCondition = new FluentCondition(condition, ConditionType.And, key, message);
             _conditions.Add(fluentCondition);
             return this;
         }
 
-        public IFluentConditions Or(bool condition)
+        public IFluentConditions Or(bool condition, string key = "", string message = "")
         {
-            var fluentCondition = new FluentCondition(condition, ConditionType.Or);
+            var fluentCondition = new FluentCondition(condition, ConditionType.Or, key, message);
             _conditions.Add(fluentCondition);
             return this;
         }
@@ -85,17 +85,29 @@ namespace MFlow.Core.Conditions
             return _conditions.All(c => c.Condition == true && c.Type == ConditionType.And) ||
                 _conditions.Any(c => c.Condition == true && c.Type == ConditionType.Or);
         }
+
+        public IEnumerable<IFluentCondition> Conditions
+        {
+            get
+            {
+                return _conditions;
+            }
+        }
     }
 
     internal class FluentCondition : IFluentCondition
     {
-        public FluentCondition(bool condition, ConditionType type)
+        public FluentCondition(bool condition, ConditionType type, string key, string message)
         {
             Condition = condition;
             Type = type;
+            Key = key;
+            Message = message;
         }
 
         public bool Condition { get; private set; }
         public ConditionType Type { get; private set; }
+        public string Key { get; private set; }
+        public string Message { get; private set; }
     }
 }

@@ -4,6 +4,8 @@ using MFlow.Core.Events;
 using MFlow.Core.Tests.Supporting;
 using MFlow.Core.Validation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
+using System.Threading;
 
 namespace MFlow.Core.Tests.Validation
 {
@@ -125,8 +127,98 @@ namespace MFlow.Core.Tests.Validation
                 .And(u => u.Password == "password123")
                 .Raise(new UserCreatedEvent(user));
 
-            Assert.IsTrue(user.Username == "caught event");
+            Assert.AreEqual(user.Username, "caught event");
         }
 
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Results()
+        {
+            var user = new User() { Password = "password123", Username = "testingx" };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            var results = fluentValidation
+                .If(u => u.Username == "testing")
+                .And(u => u.Password == "password123").Validate();
+
+            Assert.AreEqual(1, results.ToList().Count());
+
+        }
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Returns_Correct_Key()
+        {
+            var user = new User() { Password = "password123", Username = "testingx" };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            var results = fluentValidation
+                .If(u => u.Username == "testing")
+                .And(u => u.Password == "password123").Validate();
+
+            Assert.AreEqual("Username", results.First().Condition.Key);
+
+        }
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Returns_Correct_Message()
+        {
+            var user = new User() { Password = "password123", Username = "testingx" };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            var results = fluentValidation
+                .If(u => u.Username == "testing", message:"Username is not valid")
+                .And(u => u.Password == "password123").Validate();
+
+            Assert.AreEqual("Username is not valid", results.First().Condition.Message);
+
+        }
+
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Multipe_Results()
+        {
+            var user = new User() { Password = "password1234", Username = "testingx" };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            var results = fluentValidation
+                .If(u => u.Username == "testing")
+                .And(u => u.Password == "password123").Validate();
+
+            Assert.AreEqual(2, results.ToList().Count());
+
+        }
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Returns_Correct_Keys()
+        {
+            var user = new User() { Password = "password123", Username = "testingx" };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            var results = fluentValidation
+                .If(u => u.Username == "testing")
+                .And(u => u.Password == "password1234").Validate();
+
+            Assert.AreEqual("Username", results.First().Condition.Key);
+            Assert.AreEqual("Password", results.Skip(1).Take(1).First().Condition.Key);
+        }
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Returns_Correct_Messages()
+        {
+            var user = new User() { Password = "password1234", Username = "testingx" };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            var results = fluentValidation
+                .If(u => u.Username == "testing", message: "Username is not valid")
+                .And(u => u.Password == "password123", message:"Password is now valid").Validate();
+
+            Assert.AreEqual("Username is not valid", results.First().Condition.Message);
+            Assert.AreEqual("Password is now valid", results.Skip(1).Take(1).First().Condition.Message);
+        }
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Returns_Correct_Complex_Keys()
+        {
+            IFluentValidation<Thread> fluentValidation = new MFlow.Core.Validation.FluentValidation<Thread>(Thread.CurrentThread);
+            var results = fluentValidation
+                .If(u => u.CurrentCulture.DisplayName == "")
+                .And(u => u.CurrentCulture.EnglishName == "").Validate();
+
+            Assert.AreEqual("CurrentCulture.DisplayName", results.First().Condition.Key);
+            Assert.AreEqual("CurrentCulture.EnglishName", results.Skip(1).Take(1).First().Condition.Key);
+        }
     }
 }

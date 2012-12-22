@@ -11,15 +11,16 @@ namespace MFlow.Core.Validation
 {
     public interface IFluentValidation<T>
     {
-        IFluentValidation<T> If(bool condition);
-        IFluentValidation<T> If(Expression<Func<T, bool>> expression);
-        IFluentValidation<T> And(bool condition);
-        IFluentValidation<T> And(Expression<Func<T, bool>> expression);
-        IFluentValidation<T> Or(bool condition);
-        IFluentValidation<T> Or(Expression<Func<T, bool>> expression);
+        IFluentValidation<T> If(bool condition, string key = "", string message = "");
+        IFluentValidation<T> If(Expression<Func<T, bool>> expression, string message = "");
+        IFluentValidation<T> And(bool condition, string key = "", string message = "");
+        IFluentValidation<T> And(Expression<Func<T, bool>> expression, string message = "");
+        IFluentValidation<T> Or(bool condition, string key = "", string message = "");
+        IFluentValidation<T> Or(Expression<Func<T, bool>> expression, string message = "");
         IFluentValidation<T> Then(Action execute, ExecuteThread options = ExecuteThread.Current);
         IFluentValidation<T> Else(Action execute, ExecuteThread options = ExecuteThread.Current);
         IFluentValidation<T> Raise<E>(E eventToRaise) where E : IEvent<T>;
+        IEnumerable<IValidationResult<T>> Validate();
         void Throw<E>(E exception) where E : Exception;
         bool Satisfied();
     }
