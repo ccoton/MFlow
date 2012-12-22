@@ -20,6 +20,8 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> Then(Action execute, ExecuteThread options = ExecuteThread.Current);
         IFluentValidation<T> Else(Action execute, ExecuteThread options = ExecuteThread.Current);
         IFluentValidation<T> Raise<E>(E eventToRaise) where E : IEvent<T>;
+
+        IFluentValidation<T> NotNullOrEmpty(Expression<Func<T, string>> expression, string message = "");
         IEnumerable<IValidationResult<T>> Validate();
         void Throw<E>(E exception) where E : Exception;
         bool Satisfied();

@@ -220,5 +220,30 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("CurrentCulture.DisplayName", results.First().Condition.Key);
             Assert.AreEqual("CurrentCulture.EnglishName", results.Skip(1).Take(1).First().Condition.Key);
         }
+
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_NotNullOrEmpty_With_Valid_Value()
+        {
+            var user = new User() { Password = "password1234", Username = "testingx" };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            var results = fluentValidation
+                .NotNullOrEmpty(u => u.Username, message: "Username is not valid")
+                .Validate();
+
+            Assert.AreEqual(0, results.Count());
+        }
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_NotNullOrEmpty_With_InValid_Value()
+        {
+            var user = new User() { Password = "password1234", Username = "" };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            var results = fluentValidation
+                .NotNullOrEmpty(u => u.Username, message: "Username is not valid")
+                .Validate();
+
+            Assert.AreEqual("Username", results.First().Condition.Key);
+        }
     }
 }

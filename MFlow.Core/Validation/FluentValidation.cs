@@ -80,6 +80,13 @@ namespace MFlow.Core.Validation
             return this;
         }
 
+        public IFluentValidation<T> NotNullOrEmpty(Expression<Func<T, string>> expression, string message = "")
+        {
+            Func<T, string> compiled = expression.Compile();
+            base.If(!string.IsNullOrEmpty(compiled.Invoke(_target)), _resolver.Resolve<T, string>(expression), message);
+            return this;
+        }
+
         public IFluentValidation<T> Raise<E>(E eventToRaise) where E : IEvent<T>
         {
             var events = new EventsFactory().GetEventStore();

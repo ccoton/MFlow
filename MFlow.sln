@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Core", "MFlow.Core\MF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Core.Tests", "MFlow.Core.Tests\MFlow.Core.Tests.csproj", "{50E56BCB-0CBD-4330-8C55-541808529B8A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{2BDAF41F-B47C-449A-BD0A-52F02F427B15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Samples.Mvc", "MFlow.Samples.Mvc\MFlow.Samples.Mvc.csproj", "{CEEB7990-2250-4F6C-BDB4-0507596AF4C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,8 +23,15 @@ Global
 		{64DD43B3-3A13-4325-B074-E26FD285CC7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64DD43B3-3A13-4325-B074-E26FD285CC7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64DD43B3-3A13-4325-B074-E26FD285CC7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEEB7990-2250-4F6C-BDB4-0507596AF4C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEEB7990-2250-4F6C-BDB4-0507596AF4C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEEB7990-2250-4F6C-BDB4-0507596AF4C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEEB7990-2250-4F6C-BDB4-0507596AF4C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CEEB7990-2250-4F6C-BDB4-0507596AF4C9} = {2BDAF41F-B47C-449A-BD0A-52F02F427B15}
 	EndGlobalSection
 EndGlobal
