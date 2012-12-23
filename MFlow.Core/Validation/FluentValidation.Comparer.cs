@@ -19,10 +19,17 @@ namespace MFlow.Core.Validation
             return this;
         }
 
-        public IFluentValidation<T> Equals<C>(Expression<Func<T, C>> expression, C value, string message = "")
+        public IFluentValidation<T> Equals<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, C> compiled = expression.Compile();
-            base.If(compiled.Invoke(_target).Equals(value), _resolver.Resolve<T, C>(expression), message);
+            if (conditionType == ConditionType.And)
+            {
+                base.And(compiled.Invoke(_target).Equals(value), _resolver.Resolve<T, C>(expression), message);
+            }
+            else
+            {
+                base.Or(compiled.Invoke(_target).Equals(value), _resolver.Resolve<T, C>(expression), message);
+            }
             return this;
         }
 

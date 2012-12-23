@@ -22,8 +22,7 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> Raise<E>(E eventToRaise) where E : IEvent<T>;
 
         IFluentValidation<T> NotNullOrEmpty(Expression<Func<T, string>> expression, string message = "");
-        IFluentValidation<T> Equals<C>(Expression<Func<T, C>> expression, C value, string message = "");
-        IFluentValidation<T> OrEquals<C>(Expression<Func<T, C>> expression, C value, string message = "");
+        IFluentValidation<T> Equals<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And);
 
         IEnumerable<IValidationResult<T>> Validate();
         void Throw<E>(E exception) where E : Exception;
