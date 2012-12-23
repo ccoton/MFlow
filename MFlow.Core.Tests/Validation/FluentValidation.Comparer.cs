@@ -64,5 +64,14 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsFalse(fluentValidation
                 .GreaterThan(u => u.LoginCount, 11).DependsOn(dependency).Satisfied());
         }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_RegEx()
+        {
+            var user = new User() { Password = "password123", Username = "ausername@somedomain.com", LoginCount = 12 };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            Assert.IsTrue(fluentValidation
+                .RegEx(u => u.Username, regEx:@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*").Satisfied());
+        }
     }
 }

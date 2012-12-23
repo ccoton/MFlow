@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MFlow.Core.Conditions;
 using MFlow.Core.Events;
@@ -64,6 +65,13 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> DependsOn<D>(IFluentValidation<D> validator)
         {
             base.And(validator.Satisfied());
+            return this;
+        }
+
+        public IFluentValidation<T> RegEx(Expression<Func<T, string>> expression, string regEx, string message = "", ConditionType conditionType = ConditionType.And)
+        {
+            Func<T, string> compiled = expression.Compile();
+            base.And(new Regex(regEx).IsMatch(compiled.Invoke(_target)));
             return this;
         }
     }

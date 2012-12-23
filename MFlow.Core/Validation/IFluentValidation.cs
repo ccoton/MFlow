@@ -27,6 +27,8 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> GreaterThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And);
         IFluentValidation<T> DependsOn<D>(IFluentValidation<D> validator);
 
+        IFluentValidation<T> RegEx(Expression<Func<T, string>> expression, string regEx, string message = "", ConditionType conditionType = ConditionType.And);
+
         IEnumerable<IValidationResult<T>> Validate();
         void Throw<E>(E exception) where E : Exception;
         bool Satisfied();
