@@ -24,6 +24,7 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> NotNullOrEmpty(Expression<Func<T, string>> expression, string message = "");
         IFluentValidation<T> Equals<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And);
         IFluentValidation<T> LessThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> GreaterThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And);
 
         IEnumerable<IValidationResult<T>> Validate();
         void Throw<E>(E exception) where E : Exception;

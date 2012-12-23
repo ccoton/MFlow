@@ -46,5 +46,19 @@ namespace MFlow.Core.Validation
             }
             return this;
         }
+
+        public IFluentValidation<T> GreaterThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And)
+        {
+            Func<T, int> compiled = expression.Compile();
+            if (conditionType == ConditionType.And)
+            {
+                base.And(compiled.Invoke(_target) > value, _resolver.Resolve<T, int>(expression), message);
+            }
+            else
+            {
+                base.Or(compiled.Invoke(_target) > value, _resolver.Resolve<T, int>(expression), message);
+            }
+            return this;
+        }
     }
 }
