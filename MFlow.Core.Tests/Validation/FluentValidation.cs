@@ -25,7 +25,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .If(u => u.Username == "testing").Satisfied());
+                .Equals(u => u.Username, "testing").Satisfied());
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .If(u => u.Username == "xxx").Satisfied());
+                .Equals(u => u.Username, "xxx").Satisfied());
         }
 
         [TestMethod]
@@ -43,8 +43,8 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .If(u => u.Username == "testing")
-                .And(u => u.Password == "password123").Satisfied());
+                .Equals(u => u.Username, "testing")
+                .Equals(u => u.Password, "password123").Satisfied());
         }
 
         [TestMethod]
@@ -53,8 +53,8 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testingx" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .If(u => u.Username == "testing")
-                .And(u => u.Password == "password123").Satisfied());
+                .Equals(u => u.Username, "testing")
+                .Equals(u => u.Password, "password123").Satisfied());
         }
 
         [TestMethod]
@@ -63,9 +63,9 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password1213", Username = "testingx" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .If(u => u.Username == "testing")
-                .And(u => u.Password == "password123")
-                .Or(u => u.Username == "testingx").Satisfied());
+                .Equals(u => u.Username, "testing")
+                .Equals(u => u.Password, "password123")
+                .OrEquals(u => u.Username, "testingx").Satisfied());
         }
 
         [TestMethod]
@@ -74,9 +74,9 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password1234", Username = "testingx" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .If(u => u.Username == "testing")
-                .And(u => u.Password == "password123")
-                .Or(u => u.Username == "test").Satisfied());
+                .Equals(u => u.Username, "testing")
+                .Equals(u => u.Password, "password123")
+                .OrEquals(u => u.Username, "test").Satisfied());
         }
 
         [TestMethod]
@@ -85,8 +85,8 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             fluentValidation
-                .If(u => u.Username == "testing")
-                .And(u => u.Password == "password123")
+                .Equals(u => u.Username, "testing")
+                .Equals(u => u.Password, "password123")
                 .Then(() =>
                 {
                     user.Username = "valid";
@@ -101,8 +101,8 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing2" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             fluentValidation
-                .If(u => u.Username == "testing")
-                .And(u => u.Password == "password123")
+                .Equals(u => u.Username, "testing")
+                .Equals(u => u.Password, "password123")
                 .Then(() => { user.Username = "valid"; })
                 .Else(() => { user.Username = "invalid"; });
 
@@ -123,8 +123,8 @@ namespace MFlow.Core.Tests.Validation
                 });
 
             fluentValidation
-                .If(u => u.Username == "testing")
-                .And(u => u.Password == "password123")
+                .Equals(u => u.Username, "testing")
+                .Equals(u => u.Password, "password123")
                 .Raise(new UserCreatedEvent(user));
 
             Assert.AreEqual(user.Username, "caught event");
@@ -136,8 +136,8 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testingx" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             var results = fluentValidation
-                .If(u => u.Username == "testing")
-                .And(u => u.Password == "password123").Validate();
+                .Equals(u => u.Username, "testing")
+                .Equals(u => u.Password, "password123").Validate();
 
             Assert.AreEqual(1, results.ToList().Count());
 
@@ -149,8 +149,8 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testingx" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             var results = fluentValidation
-                .If(u => u.Username == "testing")
-                .And(u => u.Password == "password123").Validate();
+                .Equals(u => u.Username, "testing")
+                .Equals(u => u.Password, "password123").Validate();
 
             Assert.AreEqual("Username", results.First().Condition.Key);
 
@@ -162,8 +162,8 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testingx" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             var results = fluentValidation
-                .If(u => u.Username == "testing", message:"Username is not valid")
-                .And(u => u.Password == "password123").Validate();
+                .Equals(u => u.Username, "testing", message: "Username is not valid")
+                .Equals(u => u.Password, "password123").Validate();
 
             Assert.AreEqual("Username is not valid", results.First().Condition.Message);
 
@@ -176,8 +176,8 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password1234", Username = "testingx" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             var results = fluentValidation
-                .If(u => u.Username == "testing")
-                .And(u => u.Password == "password123").Validate();
+                .Equals(u => u.Username, "testing")
+                .Equals(u => u.Password, "password123").Validate();
 
             Assert.AreEqual(2, results.ToList().Count());
 
@@ -189,8 +189,8 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testingx" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             var results = fluentValidation
-                .If(u => u.Username == "testing")
-                .And(u => u.Password == "password1234").Validate();
+                .Equals(u => u.Username, "testing")
+                .Equals(u => u.Password, "password1234").Validate();
 
             Assert.AreEqual("Username", results.First().Condition.Key);
             Assert.AreEqual("Password", results.Skip(1).Take(1).First().Condition.Key);
@@ -202,8 +202,8 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password1234", Username = "testingx" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             var results = fluentValidation
-                .If(u => u.Username == "testing", message: "Username is not valid")
-                .And(u => u.Password == "password123", message:"Password is now valid").Validate();
+                .Equals(u => u.Username, "testing", message: "Username is not valid")
+                .Equals(u => u.Password, "password123", message:"Password is now valid").Validate();
 
             Assert.AreEqual("Username is not valid", results.First().Condition.Message);
             Assert.AreEqual("Password is now valid", results.Skip(1).Take(1).First().Condition.Message);
@@ -214,8 +214,8 @@ namespace MFlow.Core.Tests.Validation
         {
             IFluentValidation<Thread> fluentValidation = new MFlow.Core.Validation.FluentValidation<Thread>(Thread.CurrentThread);
             var results = fluentValidation
-                .If(u => u.CurrentCulture.DisplayName == "")
-                .And(u => u.CurrentCulture.EnglishName == "").Validate();
+                .Equals(u => u.CurrentCulture.DisplayName, "")
+                .Equals(u => u.CurrentCulture.EnglishName, "").Validate();
 
             Assert.AreEqual("CurrentCulture.DisplayName", results.First().Condition.Key);
             Assert.AreEqual("CurrentCulture.EnglishName", results.Skip(1).Take(1).First().Condition.Key);

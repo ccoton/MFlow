@@ -16,17 +16,6 @@ namespace MFlow.Core.Internal
 
             if (lambdaExpression.Body is UnaryExpression)
                 memberExpression = (MemberExpression)((UnaryExpression)lambdaExpression.Body).Operand;
-            else if (lambdaExpression.Body is MethodCallExpression)
-                return ((MethodCallExpression)lambdaExpression.Body).Method.Name.Replace("(", "").Replace(")", "");
-            else if (lambdaExpression.Body is BinaryExpression)
-            {
-                var binaryExpression = ((BinaryExpression)lambdaExpression.Body);
-
-                if (binaryExpression.Left.NodeType == ExpressionType.MemberAccess)
-                    memberExpression = (MemberExpression)binaryExpression.Left;
-                else
-                    memberExpression = (MemberExpression)binaryExpression.Right;
-            }
             else
                 memberExpression = (MemberExpression)lambdaExpression.Body;
 

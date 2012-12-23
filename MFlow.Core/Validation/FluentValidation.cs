@@ -10,7 +10,7 @@ using MFlow.Core.Internal;
 
 namespace MFlow.Core.Validation
 {
-    public class FluentValidation<T> : FluentConditions, IFluentValidation<T>
+    public partial class FluentValidation<T> : FluentConditions, IFluentValidation<T>
     {
         private readonly T _target;
         private readonly IPropertyNameResolver _resolver;
@@ -77,13 +77,6 @@ namespace MFlow.Core.Validation
         public new IFluentValidation<T> Else(Action execute, ExecuteThread options = ExecuteThread.Current)
         {
             base.Else(execute, options);
-            return this;
-        }
-
-        public IFluentValidation<T> NotNullOrEmpty(Expression<Func<T, string>> expression, string message = "")
-        {
-            Func<T, string> compiled = expression.Compile();
-            base.If(!string.IsNullOrEmpty(compiled.Invoke(_target)), _resolver.Resolve<T, string>(expression), message);
             return this;
         }
 
