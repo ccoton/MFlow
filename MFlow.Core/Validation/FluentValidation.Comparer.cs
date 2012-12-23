@@ -60,5 +60,11 @@ namespace MFlow.Core.Validation
             }
             return this;
         }
+
+        public IFluentValidation<T> DependsOn<D>(IFluentValidation<D> validator)
+        {
+            base.And(validator.Satisfied());
+            return this;
+        }
     }
 }
