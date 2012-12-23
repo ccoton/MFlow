@@ -10,7 +10,7 @@ using System.Threading;
 namespace MFlow.Core.Tests.Validation
 {
     [TestClass]
-    public class FluentValidation
+    public partial class FluentValidation
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
