@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Web.Security;
-using MFlow.Samples.Mvc.Validators;
+using MFlow.Core.Validation;
+using MFlow.Mvc;
 
 namespace MFlow.Samples.Mvc.Models
 {
@@ -27,8 +28,16 @@ namespace MFlow.Samples.Mvc.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class LoginModel : LoginModelValidator
+    public class LoginModel : ValidatedModel<LoginModel>
     {
+        public LoginModel()
+        {
+            SetTarget(this);
+            Validator.NotNullOrEmpty(m => m.UserName, message: "Username cannot be empty")
+                .NotNullOrEmpty(m => m.Password, message: "Password cannot be empty")
+                .RegEx(m => m.UserName, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", message: "Username should be an email address");
+        }
+
         [Display(Name = "User name")]
         public string UserName { get; set; }
 

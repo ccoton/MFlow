@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MFlow.Core.Conditions
 {
-    public interface IFluentConditions
+    public interface IFluentConditions<T>
     {
-        IFluentConditions If(bool condition, string key = "", string message = "");
-        IFluentConditions And(bool condition, string key = "", string message = "");
-        IFluentConditions Or(bool condition, string key = "", string message = "");
-        IFluentConditions Clear();
-        IFluentConditions Then(Action execute, ExecuteThread options = ExecuteThread.Current);
-        IFluentConditions Else(Action execute, ExecuteThread options = ExecuteThread.Current);
-        IEnumerable<IFluentCondition> Conditions { get; }
+        IFluentConditions<T> If(bool condition, string key = "", string message = "");
+        IFluentConditions<T> And(bool condition, string key = "", string message = "");
+        IFluentConditions<T> Or(bool condition, string key = "", string message = "");
+        IFluentConditions<T> Clear();
+        IFluentConditions<T> Then(Action execute, ExecuteThread options = ExecuteThread.Current);
+        IFluentConditions<T> Else(Action execute, ExecuteThread options = ExecuteThread.Current);
+        IEnumerable<IFluentCondition<T>> Conditions { get; }
         bool Satisfied();
     }
 
-    public interface IFluentCondition
+    public interface IFluentCondition<T>
     {
-        bool Condition { get; }
+        Expression<Func<T, bool>> Condition { get; }
         ConditionType Type { get; }
         string Key { get; }
         string Message { get; }

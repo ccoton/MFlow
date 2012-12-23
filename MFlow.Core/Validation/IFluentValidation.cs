@@ -11,6 +11,8 @@ namespace MFlow.Core.Validation
 {
     public interface IFluentValidation<T>
     {
+        void SetTarget(T target);
+
         IFluentValidation<T> If(bool condition, string key = "", string message = "");
         IFluentValidation<T> If(Expression<Func<T, bool>> expression, string message = "");
         IFluentValidation<T> And(bool condition, string key = "", string message = "");

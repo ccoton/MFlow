@@ -12,7 +12,7 @@ namespace MFlow.Core.Validation
 {
     public partial class FluentValidation<T> : FluentConditions, IFluentValidation<T>
     {
-        private readonly T _target;
+        private T _target;
         private readonly IPropertyNameResolver _resolver;
         public FluentValidation(T validate)
         {
@@ -20,6 +20,11 @@ namespace MFlow.Core.Validation
             _target = validate;
             _resolver = new PropertyNameResolver();
             base.Clear();
+        }
+
+        public void SetTarget(T target)
+        {
+            _target = target;
         }
 
         public void Throw<E>(E exception) where E : Exception
@@ -90,7 +95,7 @@ namespace MFlow.Core.Validation
         public IEnumerable<IValidationResult<T>> Validate()
         {
             var results = new List<IValidationResult<T>>();
-            foreach (var condition in base.Conditions.Where(c=>!c.Condition))
+            foreach (var condition in base.Conditions.Where(c => !c.Condition))
                 results.Add(new ValidationResult<T>(condition));
             return results;
         }

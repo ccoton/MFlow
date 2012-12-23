@@ -9,12 +9,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{2BDA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Samples.Mvc", "MFlow.Samples.Mvc\MFlow.Samples.Mvc.csproj", "{CEEB7990-2250-4F6C-BDB4-0507596AF4C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Mvc", "MFlow.Mvc\MFlow.Mvc.csproj", "{446759FA-5274-472A-87F2-1B1CCACB6919}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{446759FA-5274-472A-87F2-1B1CCACB6919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{446759FA-5274-472A-87F2-1B1CCACB6919}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{446759FA-5274-472A-87F2-1B1CCACB6919}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{446759FA-5274-472A-87F2-1B1CCACB6919}.Release|Any CPU.Build.0 = Release|Any CPU
 		{50E56BCB-0CBD-4330-8C55-541808529B8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{50E56BCB-0CBD-4330-8C55-541808529B8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50E56BCB-0CBD-4330-8C55-541808529B8A}.Release|Any CPU.ActiveCfg = Release|Any CPU

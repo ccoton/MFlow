@@ -71,7 +71,12 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> RegEx(Expression<Func<T, string>> expression, string regEx, string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, string> compiled = expression.Compile();
-            base.And(new Regex(regEx).IsMatch(compiled.Invoke(_target)));
+            var internalValidator = new FluentValidation<T>(_target);
+
+            if (internalValidator.NotNullOrEmpty(expression).Satisfied())
+                base.And(new Regex(regEx).IsMatch(compiled.Invoke(_target)), _resolver.Resolve<T, string>(expression), message);
+            else
+                base.And(false);
             return this;
         }
     }

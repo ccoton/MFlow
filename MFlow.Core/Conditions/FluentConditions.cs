@@ -1,28 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MFlow.Core.Conditions
 {
-    public class FluentConditions : IFluentConditions
+    public class FluentConditions<T> : IFluentConditions<T>
     {
 
-        private readonly IList<IFluentCondition> _conditions;
+        private readonly IList<IFluentCondition<T>> _conditions;
 
         public FluentConditions()
         {
-            _conditions = new List<IFluentCondition>();
+            _conditions = new List<IFluentCondition<T>>();
         }
 
-        public IFluentConditions If(bool condition, string key = "", string message = "")
+        public IFluentConditions<T> If(bool condition, string key = "", string message = "")
         {
             And(condition, key, message);
             return this;
         }
 
-        public IFluentConditions And(bool condition, string key = "", string message = "")
+        public IFluentConditions<T> And(bool condition, string key = "", string message = "")
         {
             var fluentCondition = new FluentCondition(condition, ConditionType.And, key, message);
             _conditions.Add(fluentCondition);
@@ -82,7 +83,7 @@ namespace MFlow.Core.Conditions
 
         public bool Satisfied()
         {
-            return _conditions.All(c => c.Condition == true && c.Type == ConditionType.And) ||
+            return _conditions.All(c => c.Condition .Compile().Invoke(== true && c.Type == ConditionType.And) ||
                 _conditions.Any(c => c.Condition == true && c.Type == ConditionType.Or);
         }
 
@@ -95,9 +96,9 @@ namespace MFlow.Core.Conditions
         }
     }
 
-    internal class FluentCondition : IFluentCondition
+    internal class FluentCondition<T> : IFluentCondition<T>
     {
-        public FluentCondition(bool condition, ConditionType type, string key, string message)
+        public FluentCondition(Expression<Func<T, bool>> condition, ConditionType type, string key, string message)
         {
             Condition = condition;
             Type = type;
@@ -105,7 +106,7 @@ namespace MFlow.Core.Conditions
             Message = message;
         }
 
-        public bool Condition { get; private set; }
+        public Expression<Func<T, bool>> Condition { get; private set; }
         public ConditionType Type { get; private set; }
         public string Key { get; private set; }
         public string Message { get; private set; }
