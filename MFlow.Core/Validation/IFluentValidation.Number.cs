@@ -15,13 +15,23 @@ namespace MFlow.Core.Validation
     public partial interface IFluentValidation<T>
     {
         /// <summary>
-        ///     Checks if the expression evaluates to an int that is less that the value 
+        ///     Checks if the expression evaluates to an int that is less than the value 
         /// </summary>
         IFluentValidation<T> LessThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And);
 
         /// <summary>
-        ///     Checks if the expression evaluates to an int that is greater that the value 
+        ///     Checks if the expression evaluates to an int that is greater than the value 
         /// </summary>
         IFluentValidation<T> GreaterThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Checks if the expression evaluates to an int that is less than or equal to the value 
+        /// </summary>
+        IFluentValidation<T> LessThanOrEqualTo(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Checks if the expression evaluates to an int that is greater than or equal to the value 
+        /// </summary>
+        IFluentValidation<T> GreaterThanOrEqualTo(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And);
     }
 }
