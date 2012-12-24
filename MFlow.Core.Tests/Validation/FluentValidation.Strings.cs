@@ -55,5 +55,32 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsFalse(fluentValidation
                 .IsEmail(u => u.Username).Satisfied());
         }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_Contains_With_Valid_Value()
+        {
+            var user = new User() { Password = "password123", Username = "ausername@somedomain.com", LoginCount = 12 };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            Assert.IsTrue(fluentValidation
+                .Contains(u => u.Username, "username").Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_Contains_With_InValid_Value()
+        {
+            var user = new User() { Password = "password123", Username = "ausername", LoginCount = 12 };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                .Contains(u => u.Username, "testing").Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_Contains_When_Null()
+        {
+            var user = new User() { Password = "password123", Username = null, LoginCount = 12 };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                .Contains(u => u.Username, "test").Satisfied());
+        }
     }
 }

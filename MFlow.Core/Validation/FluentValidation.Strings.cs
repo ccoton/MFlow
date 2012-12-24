@@ -46,5 +46,16 @@ namespace MFlow.Core.Validation
             RegEx(expression, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", message: message, conditionType: conditionType);
             return this;
         }
+
+        /// <summary>
+        ///     Checks if the expressions evaluates to a string that contains value
+        /// </summary>
+        public IFluentValidation<T> Contains(Expression<Func<T, string>> expression, string value, string message = "")
+        {
+            Func<T, string> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && compiled.Invoke(_target).Contains(value);
+            base.If(derived, _resolver.Resolve<T, string>(expression), message);
+            return this;
+        }
     }
 }

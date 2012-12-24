@@ -14,7 +14,6 @@ namespace MFlow.Core.Validation
     /// </summary>
     public partial interface IFluentValidation<T>
     {
-
         /// <summary>
         ///     Checks if the expressions evaluates to a string that is empty
         /// </summary>
@@ -29,6 +28,11 @@ namespace MFlow.Core.Validation
         ///     Checks if the expression evaluates to a string that is an email address 
         /// </summary>
         IFluentValidation<T> IsEmail(Expression<Func<T, string>> expression, string message = "", ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Checks if the expressions evaluates to a string that contains value
+        /// </summary>
+        IFluentValidation<T> Contains(Expression<Func<T, string>> expression, string value, string message = "");
 
     }
 }
