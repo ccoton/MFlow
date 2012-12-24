@@ -21,7 +21,7 @@ namespace MFlow.Core.Validation
             return this;
         }
 
-        public IFluentValidation<T> Equals<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> Equal<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, C> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Equals(value);

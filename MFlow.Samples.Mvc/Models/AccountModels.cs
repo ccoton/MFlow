@@ -14,9 +14,11 @@ namespace MFlow.Samples.Mvc.Models
         public LoginModel()
         {
             SetTarget(this);
-            Validator.NotNullOrEmpty(m => m.UserName, message: "Username cannot be empty")
+            Validator
+                .NotNullOrEmpty(m => m.UserName, message: "Username cannot be empty")
                 .NotNullOrEmpty(m => m.Password, message: "Password cannot be empty")
-                .RegEx(m => m.UserName, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", message: "Username should be an email address");
+                .RegEx(m => m.UserName, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", message: "Username should be an email address")
+                .Equal(m => m.UserName, "admin@domain.com", message: "What are you doing?");
         }
 
         [Display(Name = "User name")]
