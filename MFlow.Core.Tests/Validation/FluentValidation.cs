@@ -9,18 +9,11 @@ using System.Threading;
 
 namespace MFlow.Core.Tests.Validation
 {
-    [TestClass]
     public partial class FluentValidation
     {
+      
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void Test_Fluent_Validation_Constructor_Exception()
-        {
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(null);
-        }
-
-        [TestMethod]
-        public void Test_Chained_Fluent_Validation_With_Valid_Expression()
+        public void Test_Fluent_Validation_Equal()
         {
             var user = new User() { Password = "password123", Username = "testing" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
@@ -29,221 +22,110 @@ namespace MFlow.Core.Tests.Validation
         }
 
         [TestMethod]
-        public void Test_Chained_Fluent_Validation_With_InValid_Expression()
+        public void Test_Fluent_Validation_Not_Equal()
         {
             var user = new User() { Password = "password123", Username = "testing" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Equal(u => u.Username, "xxx").Satisfied());
+                .NotEqual(u => u.Username, "testing").Satisfied());
         }
 
         [TestMethod]
-        public void Test_Chained_Fluent_Validation_With_Valid_Expression_Chain()
+        public void Test_Fluent_Validation_Not_Equal_When_Null()
         {
-            var user = new User() { Password = "password123", Username = "testing" };
+            var user = new User() { Password = "password123", Username = null };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                .NotEqual(u => u.Username, "testing").Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_LessThan()
+        {
+            var user = new User() { Password = "password123", Username = "testing", LoginCount = 10 };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Equal(u => u.Username, "testing")
-                .Equal(u => u.Password, "password123").Satisfied());
+                .LessThan(u => u.LoginCount, 11).Satisfied());
         }
 
         [TestMethod]
-        public void Test_Chained_Fluent_Validation_With_InValid_Expression_Chain()
+        public void Test_Fluent_Validation_GreaterThan()
         {
-            var user = new User() { Password = "password123", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-            Assert.IsFalse(fluentValidation
-                .Equal(u => u.Username, "testing")
-                .Equal(u => u.Password, "password123").Satisfied());
-        }
-
-        [TestMethod]
-        public void Test_Chained_Fluent_Validation_With_Valid_Or_Expression_Chain()
-        {
-            var user = new User() { Password = "password1213", Username = "testingx" };
+            var user = new User() { Password = "password123", Username = "testing", LoginCount = 12 };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Equal(u => u.Username, "testing")
-                .Equal(u => u.Password, "password123")
-                .Equal(u => u.Username, "testingx", conditionType:ConditionType.Or).Satisfied());
+                .GreaterThan(u => u.LoginCount, 11).Satisfied());
         }
 
         [TestMethod]
-        public void Test_Chained_Fluent_Validation_With_InValid_Or_Expression_Chain()
+        public void Test_Fluent_Validation_DependsOn_Satisfied_Dependency()
         {
-            var user = new User() { Password = "password1234", Username = "testingx" };
+            var user = new User() { Password = "password123", Username = "testing", LoginCount = 12 };
+
+            IFluentValidation<User> dependency = new MFlow.Core.Validation.FluentValidation<User>(user);
+            dependency.If(true);
+
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            Assert.IsTrue(fluentValidation
+                .GreaterThan(u => u.LoginCount, 11).DependsOn(dependency).Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_DependsOn_Unsatisfied_Dependency()
+        {
+            var user = new User() { Password = "password123", Username = "testing", LoginCount = 12 };
+
+            IFluentValidation<User> dependency = new MFlow.Core.Validation.FluentValidation<User>(user);
+            dependency.If(false);
+
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Equal(u => u.Username, "testing")
-                .Equal(u => u.Password, "password123")
-                .Equal(u => u.Username, "test", conditionType:ConditionType.Or).Satisfied());
+                .GreaterThan(u => u.LoginCount, 11).DependsOn(dependency).Satisfied());
         }
 
         [TestMethod]
-        public void Test_Chained_Fluent_Validation_With_Valid_Expression_Executes()
+        public void Test_Fluent_Validation_RegEx()
         {
-            var user = new User() { Password = "password123", Username = "testing" };
+            var user = new User() { Password = "password123", Username = "ausername@somedomain.com", LoginCount = 12 };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-            fluentValidation
-                .Equal(u => u.Username, "testing")
-                .Equal(u => u.Password, "password123")
-                .Then(() =>
-                {
-                    user.Username = "valid";
-                });
-
-            Assert.IsTrue(user.Username == "valid");
+            Assert.IsTrue(fluentValidation
+                .RegEx(u => u.Username, regEx:@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*").Satisfied());
         }
 
         [TestMethod]
-        public void Test_Chained_Fluent_Validation_With_Valid_Expression_Executes_Else()
+        public void Test_Fluent_Validation_RegEx_When_Null()
         {
-            var user = new User() { Password = "password123", Username = "testing2" };
+            var user = new User() { Password = "password123", Username = null, LoginCount = 12 };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-            fluentValidation
-                .Equal(u => u.Username, "testing")
-                .Equal(u => u.Password, "password123")
-                .Then(() => { user.Username = "valid"; })
-                .Else(() => { user.Username = "invalid"; });
-
-            Assert.IsTrue(user.Username == "invalid");
+            Assert.IsFalse(fluentValidation
+                .RegEx(u => u.Username, regEx: @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*").Satisfied());
         }
 
         [TestMethod]
-        public void Test_Chained_Fluent_Validation_Raises_Event()
+        public void Test_Fluent_Validation_IsEmail_With_Valid_Value()
         {
-            var user = new User() { Password = "password123", Username = "testing" };
+            var user = new User() { Password = "password123", Username = "ausername@somedomain.com", LoginCount = 12 };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-
-            var events = new EventsFactory().GetEventStore();
-            events.Register<UserCreatedEvent>(s =>
-                {
-                    s.Source.Username = "caught event";
-                    user = s.Source;
-                });
-
-            fluentValidation
-                .Equal(u => u.Username, "testing")
-                .Equal(u => u.Password, "password123")
-                .Raise(new UserCreatedEvent(user));
-
-            Assert.AreEqual(user.Username, "caught event");
+            Assert.IsTrue(fluentValidation
+                .IsEmail(u => u.Username).Satisfied());
         }
 
         [TestMethod]
-        public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Results()
+        public void Test_Fluent_Validation_IsEmail_With_InValid_Value()
         {
-            var user = new User() { Password = "password123", Username = "testingx" };
+            var user = new User() { Password = "password123", Username = "ausername", LoginCount = 12 };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-            var results = fluentValidation
-                .Equal(u => u.Username, "testing")
-                .Equal(u => u.Password, "password123").Validate();
-
-            Assert.AreEqual(1, results.ToList().Count());
-
+            Assert.IsFalse(fluentValidation
+                .IsEmail(u => u.Username).Satisfied());
         }
 
         [TestMethod]
-        public void Test_Chained_Fluent_Validation_Returns_Correct_Key()
+        public void Test_Fluent_Validation_IsEmail_When_Null()
         {
-            var user = new User() { Password = "password123", Username = "testingx" };
+            var user = new User() { Password = "password123", Username = null, LoginCount = 12 };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-            var results = fluentValidation
-                .Equal(u => u.Username, "testing")
-                .Equal(u => u.Password, "password123").Validate();
-
-            Assert.AreEqual("Username", results.First().Condition.Key);
-
-        }
-
-        [TestMethod]
-        public void Test_Chained_Fluent_Validation_Returns_Correct_Message()
-        {
-            var user = new User() { Password = "password123", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-            var results = fluentValidation
-                .Equal(u => u.Username, "testing", message: "Username is not valid")
-                .Equal(u => u.Password, "password123").Validate();
-
-            Assert.AreEqual("Username is not valid", results.First().Condition.Message);
-
-        }
-
-
-        [TestMethod]
-        public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Multipe_Results()
-        {
-            var user = new User() { Password = "password1234", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-            var results = fluentValidation
-                .Equal(u => u.Username, "testing")
-                .Equal(u => u.Password, "password123").Validate();
-
-            Assert.AreEqual(2, results.ToList().Count());
-
-        }
-
-        [TestMethod]
-        public void Test_Chained_Fluent_Validation_Returns_Correct_Keys()
-        {
-            var user = new User() { Password = "password123", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-            var results = fluentValidation
-                .Equal(u => u.Username, "testing")
-                .Equal(u => u.Password, "password1234").Validate();
-
-            Assert.AreEqual("Username", results.First().Condition.Key);
-            Assert.AreEqual("Password", results.Skip(1).Take(1).First().Condition.Key);
-        }
-
-        [TestMethod]
-        public void Test_Chained_Fluent_Validation_Returns_Correct_Messages()
-        {
-            var user = new User() { Password = "password1234", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-            var results = fluentValidation
-                .Equal(u => u.Username, "testing", message: "Username is not valid")
-                .Equal(u => u.Password, "password123", message:"Password is now valid").Validate();
-
-            Assert.AreEqual("Username is not valid", results.First().Condition.Message);
-            Assert.AreEqual("Password is now valid", results.Skip(1).Take(1).First().Condition.Message);
-        }
-
-        [TestMethod]
-        public void Test_Chained_Fluent_Validation_Returns_Correct_Complex_Keys()
-        {
-            IFluentValidation<Thread> fluentValidation = new MFlow.Core.Validation.FluentValidation<Thread>(Thread.CurrentThread);
-            var results = fluentValidation
-                .Equal(u => u.CurrentCulture.DisplayName, "")
-                .Equal(u => u.CurrentCulture.EnglishName, "").Validate();
-
-            Assert.AreEqual("CurrentCulture.DisplayName", results.First().Condition.Key);
-            Assert.AreEqual("CurrentCulture.EnglishName", results.Skip(1).Take(1).First().Condition.Key);
-        }
-
-
-        [TestMethod]
-        public void Test_Chained_Fluent_Validation_NotNullOrEmpty_With_Valid_Value()
-        {
-            var user = new User() { Password = "password1234", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-            var results = fluentValidation
-                .NotEmpty(u => u.Username, message: "Username is not valid")
-                .Validate();
-
-            Assert.AreEqual(0, results.Count());
-        }
-
-        [TestMethod]
-        public void Test_Chained_Fluent_Validation_NotNullOrEmpty_With_InValid_Value()
-        {
-            var user = new User() { Password = "password1234", Username = "" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
-            var results = fluentValidation
-                .NotEmpty(u => u.Username, message: "Username is not valid")
-                .Validate();
-
-            Assert.AreEqual("Username", results.First().Condition.Key);
+            Assert.IsFalse(fluentValidation
+                .IsEmail(u => u.Username).Satisfied());
         }
     }
 }

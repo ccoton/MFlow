@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MFlow.Core.Conditions;
 using MFlow.Core.Events;
@@ -12,95 +13,64 @@ namespace MFlow.Core.Validation
 {
     public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>
     {
-        private readonly IPropertyNameResolver _resolver;
-        public FluentValidation(T validate) : base(validate)
+        public IFluentValidation<T> NotEmpty(Expression<Func<T, string>> expression, string message = "")
         {
-            this.If(validate == null).Throw(new ArgumentException("validate"));
-            _resolver = new PropertyNameResolver();
-            base.Clear();
-        }
-
-        public void SetTarget(T target)
-        {
-            _target = target;
-        }
-
-        public void Throw<E>(E exception) where E : Exception
-        {
-            if (Satisfied())
-            {
-                base.Clear();
-                throw exception;
-            }
-            base.Clear();
-        }
-
-        public new IFluentValidation<T> If(bool condition, string key = "", string message = "")
-        {
-            base.If(condition, key, message);
+            Func<T, string> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target));
+            base.If(derived, _resolver.Resolve<T, string>(expression), message);
             return this;
         }
 
-        public IFluentValidation<T> If(Expression<Func<T, bool>> expression, string message = "")
+        public IFluentValidation<T> Equal<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And)
         {
-            Func<T, bool> compiled = expression.Compile();
-            return If(compiled.Invoke(_target), _resolver.Resolve<T, bool>(expression), message);
-        }
-
-        public new IFluentValidation<T> And(bool condition, string key = "", string message = "")
-        {
-            base.And(condition, key, message);
+            Func<T, C> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) != null && compiled.Invoke(_target).Equals(value);
+            If(derived, _resolver.Resolve<T, C>(expression), message, conditionType);
             return this;
         }
 
-        public IFluentValidation<T> And(Expression<Func<T, bool>> expression, string message = "")
+        public IFluentValidation<T> NotEqual<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And)
         {
-            Func<T, bool> compiled = expression.Compile();
-            return And(compiled.Invoke(_target), _resolver.Resolve<T, bool>(expression), message);
-        }
-
-        public new IFluentValidation<T> Or(bool condition, string key = "", string message = "")
-        {
-            base.Or(condition, key, message);
+            Func<T, C> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) != null && !compiled.Invoke(_target).Equals(value);
+            If(derived, _resolver.Resolve<T, C>(expression), message, conditionType);
             return this;
         }
 
-        public IFluentValidation<T> Or(Expression<Func<T, bool>> expression, string message = "")
+        public IFluentValidation<T> LessThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And)
         {
-            Func<T, bool> compiled = expression.Compile();
-            return Or(compiled.Invoke(_target), _resolver.Resolve<T, bool>(expression), message);
-        }
-
-        public new IFluentValidation<T> Then(Action execute, ExecuteThread options = ExecuteThread.Current)
-        {
-            base.Then(execute, options);
+            Func<T, int> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) < value;
+            If(derived, _resolver.Resolve<T, int>(expression), message, conditionType);
             return this;
         }
 
-        public new IFluentValidation<T> Else(Action execute, ExecuteThread options = ExecuteThread.Current)
+        public IFluentValidation<T> GreaterThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And)
         {
-            base.Else(execute, options);
+            Func<T, int> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) > value;
+            If(derived, _resolver.Resolve<T, int>(expression), message, conditionType);
             return this;
         }
 
-        public IFluentValidation<T> Raise<E>(E eventToRaise) where E : IEvent<T>
+        public IFluentValidation<T> DependsOn<D>(IFluentValidation<D> validator)
         {
-            var events = new EventsFactory().GetEventStore();
-            events.Raise(eventToRaise);
+            base.And(validator.Satisfied());
             return this;
         }
 
-        public IEnumerable<IValidationResult<T>> Validate()
+        public IFluentValidation<T> RegEx(Expression<Func<T, string>> expression, string regEx, string message = "", ConditionType conditionType = ConditionType.And)
         {
-            var results = new List<IValidationResult<T>>();
-            foreach (var condition in base.Conditions.Where(c => !c.Condition.Compile().Invoke(_target)))
-                results.Add(new ValidationResult<T>(condition));
-            return results;
+            Func<T, string> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && new Regex(regEx).IsMatch(compiled.Invoke(_target));
+            base.And(derived, _resolver.Resolve<T, string>(expression), message);
+            return this;
         }
 
-        public new bool Satisfied()
+        public IFluentValidation<T> IsEmail(Expression<Func<T, string>> expression, string message = "", ConditionType conditionType = ConditionType.And)
         {
-            return base.Satisfied();
+            RegEx(expression, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", message: message, conditionType: conditionType);
+            return this;
         }
     }
 }

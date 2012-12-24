@@ -80,7 +80,7 @@ namespace MFlow.Samples.Mvc.Controllers
 
         public static bool SuggestUsernames()
         {
-            return false;
+            return true;
         }
 
         public static string SuggestUsername(string username)
