@@ -228,7 +228,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password1234", Username = "testingx" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             var results = fluentValidation
-                .NotNullOrEmpty(u => u.Username, message: "Username is not valid")
+                .NotEmpty(u => u.Username, message: "Username is not valid")
                 .Validate();
 
             Assert.AreEqual(0, results.Count());
@@ -240,7 +240,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password1234", Username = "" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             var results = fluentValidation
-                .NotNullOrEmpty(u => u.Username, message: "Username is not valid")
+                .NotEmpty(u => u.Username, message: "Username is not valid")
                 .Validate();
 
             Assert.AreEqual("Username", results.First().Condition.Key);

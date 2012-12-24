@@ -9,6 +9,7 @@ using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using MFlow.Samples.Mvc.Models;
+using MFlow.Core.Validation;
 
 namespace MFlow.Samples.Mvc.Controllers
 {
@@ -33,9 +34,20 @@ namespace MFlow.Samples.Mvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (ModelState.IsValid)
             {
-                return RedirectToLocal(returnUrl);
+
+                var validation = new FluentValidation<LoginModel>(model);
+
+                validation
+                    .If(UsernameService.CheckUsernameExists(model.UserName))
+                    .Then(() => { ModelState.AddModelError("", "The user name is already in use"); })
+                    .If(UsernameService.SuggestUsernames())
+                    .Then(() => { ModelState.AddModelError("", string.Format("Try {0}", UsernameService.SuggestUsername(model.UserName))); });
+
+                if (ModelState.IsValid)
+                    return RedirectToLocal(returnUrl);
+                return View(model);
             }
 
             // If we got this far, something failed, redisplay form
@@ -57,4 +69,25 @@ namespace MFlow.Samples.Mvc.Controllers
         }
         #endregion
     }
+
+    class UsernameService
+    {
+
+        public static bool CheckUsernameExists(string username)
+        {
+            return true;
+        }
+
+        public static bool SuggestUsernames()
+        {
+            return false;
+        }
+
+        public static string SuggestUsername(string username)
+        {
+            return string.Format("{0}.blah", username);
+        }
+
+    }
+
 }

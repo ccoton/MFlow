@@ -13,7 +13,7 @@ namespace MFlow.Core.Validation
 {
     public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>
     {
-        public IFluentValidation<T> NotNullOrEmpty(Expression<Func<T, string>> expression, string message = "")
+        public IFluentValidation<T> NotEmpty(Expression<Func<T, string>> expression, string message = "")
         {
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target));
@@ -24,7 +24,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> Equal<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, C> compiled = expression.Compile();
-            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Equals(value);
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) != null && compiled.Invoke(_target).Equals(value);
             if (conditionType == ConditionType.And)
             {
                 base.And(derived, _resolver.Resolve<T, C>(expression), message);
@@ -39,7 +39,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> NotEqual<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, C> compiled = expression.Compile();
-            Expression<Func<T, bool>> derived = f => !compiled.Invoke(_target).Equals(value);
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) != null && !compiled.Invoke(_target).Equals(value);
             if (conditionType == ConditionType.And)
             {
                 base.And(derived, _resolver.Resolve<T, C>(expression), message);
