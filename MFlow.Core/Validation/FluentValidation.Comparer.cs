@@ -36,6 +36,21 @@ namespace MFlow.Core.Validation
             return this;
         }
 
+        public IFluentValidation<T> NotEqual<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And)
+        {
+            Func<T, C> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => !compiled.Invoke(_target).Equals(value);
+            if (conditionType == ConditionType.And)
+            {
+                base.And(derived, _resolver.Resolve<T, C>(expression), message);
+            }
+            else
+            {
+                base.Or(derived, _resolver.Resolve<T, C>(expression), message);
+            }
+            return this;
+        }
+
         public IFluentValidation<T> LessThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, int> compiled = expression.Compile();

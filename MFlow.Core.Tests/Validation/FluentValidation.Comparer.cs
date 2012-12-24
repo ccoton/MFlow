@@ -13,12 +13,21 @@ namespace MFlow.Core.Tests.Validation
     {
       
         [TestMethod]
-        public void Test_Fluent_Validation_Equals()
+        public void Test_Fluent_Validation_Equal()
         {
             var user = new User() { Password = "password123", Username = "testing" };
             IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
                 .Equal(u => u.Username, "testing").Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_Not_Equal()
+        {
+            var user = new User() { Password = "password123", Username = "testing" };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                .NotEqual(u => u.Username, "testing").Satisfied());
         }
 
         [TestMethod]
