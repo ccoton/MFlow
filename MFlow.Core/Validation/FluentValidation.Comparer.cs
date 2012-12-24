@@ -96,5 +96,11 @@ namespace MFlow.Core.Validation
 
             return this;
         }
+
+        public IFluentValidation<T> IsEmail(Expression<Func<T, string>> expression, string message = "", ConditionType conditionType = ConditionType.And)
+        {
+            RegEx(expression, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", message: message, conditionType: conditionType);
+            return this;
+        }
     }
 }

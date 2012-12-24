@@ -31,6 +31,8 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> DependsOn<D>(IFluentValidation<D> validator);
 
         IFluentValidation<T> RegEx(Expression<Func<T, string>> expression, string regEx, string message = "", ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsEmail(Expression<Func<T, string>> expression, string message = "", ConditionType conditionType = ConditionType.And);
+
 
         IEnumerable<IValidationResult<T>> Validate();
         void Throw<E>(E exception) where E : Exception;

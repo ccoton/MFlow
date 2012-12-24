@@ -82,5 +82,23 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsTrue(fluentValidation
                 .RegEx(u => u.Username, regEx:@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*").Satisfied());
         }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsEmail_With_Valid_Value()
+        {
+            var user = new User() { Password = "password123", Username = "ausername@somedomain.com", LoginCount = 12 };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            Assert.IsTrue(fluentValidation
+                .IsEmail(u => u.Username).Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsEmail_With_InValid_Value()
+        {
+            var user = new User() { Password = "password123", Username = "ausername", LoginCount = 12 };
+            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                .IsEmail(u => u.Username).Satisfied());
+        }
     }
 }
