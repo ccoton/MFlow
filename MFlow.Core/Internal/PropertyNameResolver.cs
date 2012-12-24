@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace MFlow.Core.Internal
 {
+    /// <summary>
+    ///     A class for resolving property names using expressions
+    /// </summary>
     internal class PropertyNameResolver : IPropertyNameResolver
     {
+        /// <summary>
+        ///     Resolve a property name using an expression
+        /// </summary>
         public string Resolve<T, O>(Expression<Func<T, O>> expression)
         {
             LambdaExpression lambdaExpression = expression;

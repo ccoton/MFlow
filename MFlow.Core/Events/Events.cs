@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MFlow.Core.Events
 {
+    /// <summary>
+    ///     A class to raise and subscribe to events created by the validator
+    /// </summary>
     public class Events : IEvents
     {
         private List<Delegate> _actions;
@@ -15,16 +18,18 @@ namespace MFlow.Core.Events
             get { return _actions ?? (_actions = new List<Delegate>()); }
         }
 
-        public Events()
-        {
-        }
-
+        /// <summary>
+        ///     Register a callback to an event
+        /// </summary>
         public IDisposable Register<T>(Action<T> callback)
         {
             Actions.Add(callback);
             return new EventRegistrationRemover(() => Actions.Remove(callback));
         }
 
+        /// <summary>
+        ///     Raise an event
+        /// </summary>
         public void Raise<T>(T eventArgs)
         {
             foreach (var theAction in Actions.Where(action => action.GetType() == typeof(Action<T>)).Cast<Action<T>>())

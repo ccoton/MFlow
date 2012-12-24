@@ -11,8 +11,14 @@ using MFlow.Core.Internal;
 
 namespace MFlow.Core.Validation
 {
+    /// <summary>
+    ///     A fluent validation implementation
+    /// </summary>
     public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>
     {
+        /// <summary>
+        ///     Checks if the expression evaluates to an int that is less that the value 
+        /// </summary>
         public IFluentValidation<T> LessThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, int> compiled = expression.Compile();
@@ -21,6 +27,9 @@ namespace MFlow.Core.Validation
             return this;
         }
 
+        /// <summary>
+        ///     Checks if the expression evaluates to an int that is greater that the value 
+        /// </summary>
         public IFluentValidation<T> GreaterThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, int> compiled = expression.Compile();

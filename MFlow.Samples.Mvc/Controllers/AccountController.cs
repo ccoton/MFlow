@@ -36,10 +36,7 @@ namespace MFlow.Samples.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                var validation = new FluentValidation<LoginModel>(model);
-
-                validation
+                new FluentValidation<LoginModel>(model)
                     .If(UsernameService.CheckUsernameExists(model.UserName))
                     .Then(() => { ModelState.AddModelError("", "The user name is already in use"); })
                     .If(UsernameService.SuggestUsernames())
@@ -70,9 +67,11 @@ namespace MFlow.Samples.Mvc.Controllers
         #endregion
     }
 
+    /// <summary>
+    ///     Just a dummy class as an example
+    /// </summary>
     class UsernameService
     {
-
         public static bool CheckUsernameExists(string username)
         {
             return true;
@@ -87,7 +86,6 @@ namespace MFlow.Samples.Mvc.Controllers
         {
             return string.Format("{0}.blah", username);
         }
-
     }
 
 }

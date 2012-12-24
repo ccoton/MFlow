@@ -11,8 +11,14 @@ using MFlow.Core.Internal;
 
 namespace MFlow.Core.Validation
 {
+    /// <summary>
+    ///     A fluent validation implementation
+    /// </summary>
     public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>
     {
+        /// <summary>
+        ///     Checks if the expressions evaluates to a string that is empty
+        /// </summary>
         public IFluentValidation<T> NotEmpty(Expression<Func<T, string>> expression, string message = "")
         {
             Func<T, string> compiled = expression.Compile();
@@ -21,6 +27,9 @@ namespace MFlow.Core.Validation
             return this;
         }
 
+        /// <summary>
+        ///     Checks if the expression evaluates to a string that matches the regEx 
+        /// </summary>
         public IFluentValidation<T> RegEx(Expression<Func<T, string>> expression, string regEx, string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, string> compiled = expression.Compile();
@@ -29,6 +38,9 @@ namespace MFlow.Core.Validation
             return this;
         }
 
+        /// <summary>
+        ///     Checks if the expression evaluates to a string that is an email address 
+        /// </summary>
         public IFluentValidation<T> IsEmail(Expression<Func<T, string>> expression, string message = "", ConditionType conditionType = ConditionType.And)
         {
             RegEx(expression, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", message: message, conditionType: conditionType);
