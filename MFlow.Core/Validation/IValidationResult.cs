@@ -10,6 +10,6 @@ namespace MFlow.Core.Validation
 {
     public interface IValidationResult<T>
     {
-        IFluentCondition Condition { get; }
+        IFluentCondition<T> Condition { get; }
     }
 }

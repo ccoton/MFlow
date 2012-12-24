@@ -11,11 +11,11 @@ namespace MFlow.Core.Validation
     public class ValidationResult<T> : IValidationResult<T>
     {
 
-        public ValidationResult(IFluentCondition condition)
+        public ValidationResult(IFluentCondition<T> condition)
         {
             Condition = condition;
         }
 
-        public IFluentCondition Condition { get; private set; }
+        public IFluentCondition<T> Condition { get; private set; }
     }
 }

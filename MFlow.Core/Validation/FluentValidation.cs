@@ -10,14 +10,12 @@ using MFlow.Core.Internal;
 
 namespace MFlow.Core.Validation
 {
-    public partial class FluentValidation<T> : FluentConditions, IFluentValidation<T>
+    public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>
     {
-        private T _target;
         private readonly IPropertyNameResolver _resolver;
-        public FluentValidation(T validate)
+        public FluentValidation(T validate) : base(validate)
         {
             this.If(validate == null).Throw(new ArgumentException("validate"));
-            _target = validate;
             _resolver = new PropertyNameResolver();
             base.Clear();
         }
@@ -37,7 +35,7 @@ namespace MFlow.Core.Validation
             base.Clear();
         }
 
-        public IFluentValidation<T> If(bool condition, string key = "", string message = "")
+        public new IFluentValidation<T> If(bool condition, string key = "", string message = "")
         {
             base.If(condition, key, message);
             return this;
@@ -49,7 +47,7 @@ namespace MFlow.Core.Validation
             return If(compiled.Invoke(_target), _resolver.Resolve<T, bool>(expression), message);
         }
 
-        public IFluentValidation<T> And(bool condition, string key = "", string message = "")
+        public new IFluentValidation<T> And(bool condition, string key = "", string message = "")
         {
             base.And(condition, key, message);
             return this;
@@ -61,7 +59,7 @@ namespace MFlow.Core.Validation
             return And(compiled.Invoke(_target), _resolver.Resolve<T, bool>(expression), message);
         }
 
-        public IFluentValidation<T> Or(bool condition, string key = "", string message = "")
+        public new IFluentValidation<T> Or(bool condition, string key = "", string message = "")
         {
             base.Or(condition, key, message);
             return this;
@@ -95,7 +93,7 @@ namespace MFlow.Core.Validation
         public IEnumerable<IValidationResult<T>> Validate()
         {
             var results = new List<IValidationResult<T>>();
-            foreach (var condition in base.Conditions.Where(c => !c.Condition))
+            foreach (var condition in base.Conditions.Where(c => !c.Condition.Compile().Invoke(_target)))
                 results.Add(new ValidationResult<T>(condition));
             return results;
         }

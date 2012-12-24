@@ -11,25 +11,27 @@ using MFlow.Core.Internal;
 
 namespace MFlow.Core.Validation
 {
-    public partial class FluentValidation<T> : FluentConditions, IFluentValidation<T>
+    public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>
     {
         public IFluentValidation<T> NotNullOrEmpty(Expression<Func<T, string>> expression, string message = "")
         {
             Func<T, string> compiled = expression.Compile();
-            base.If(!string.IsNullOrEmpty(compiled.Invoke(_target)), _resolver.Resolve<T, string>(expression), message);
+            Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target));
+            base.If(derived, _resolver.Resolve<T, string>(expression), message);
             return this;
         }
 
         public IFluentValidation<T> Equals<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, C> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Equals(value);
             if (conditionType == ConditionType.And)
             {
-                base.And(compiled.Invoke(_target).Equals(value), _resolver.Resolve<T, C>(expression), message);
+                base.And(derived, _resolver.Resolve<T, C>(expression), message);
             }
             else
             {
-                base.Or(compiled.Invoke(_target).Equals(value), _resolver.Resolve<T, C>(expression), message);
+                base.Or(derived, _resolver.Resolve<T, C>(expression), message);
             }
             return this;
         }
@@ -37,13 +39,14 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> LessThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, int> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) < value;
             if (conditionType == ConditionType.And)
             {
-                base.And(compiled.Invoke(_target) < value, _resolver.Resolve<T, int>(expression), message);
+                base.And(derived, _resolver.Resolve<T, int>(expression), message);
             }
             else
             {
-                base.Or(compiled.Invoke(_target) < value, _resolver.Resolve<T, int>(expression), message);
+                base.Or(derived, _resolver.Resolve<T, int>(expression), message);
             }
             return this;
         }
@@ -51,13 +54,14 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> GreaterThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, int> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) > value;
             if (conditionType == ConditionType.And)
             {
-                base.And(compiled.Invoke(_target) > value, _resolver.Resolve<T, int>(expression), message);
+                base.And(derived, _resolver.Resolve<T, int>(expression), message);
             }
             else
             {
-                base.Or(compiled.Invoke(_target) > value, _resolver.Resolve<T, int>(expression), message);
+                base.Or(derived, _resolver.Resolve<T, int>(expression), message);
             }
             return this;
         }
@@ -70,13 +74,11 @@ namespace MFlow.Core.Validation
 
         public IFluentValidation<T> RegEx(Expression<Func<T, string>> expression, string regEx, string message = "", ConditionType conditionType = ConditionType.And)
         {
-            Func<T, string> compiled = expression.Compile();
-            var internalValidator = new FluentValidation<T>(_target);
 
-            if (internalValidator.NotNullOrEmpty(expression).Satisfied())
-                base.And(new Regex(regEx).IsMatch(compiled.Invoke(_target)), _resolver.Resolve<T, string>(expression), message);
-            else
-                base.And(false);
+            Func<T, string> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && new Regex(regEx).IsMatch(compiled.Invoke(_target));
+            base.And(derived, _resolver.Resolve<T, string>(expression), message);
+
             return this;
         }
     }

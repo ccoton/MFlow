@@ -10,8 +10,11 @@ namespace MFlow.Core.Conditions
     public interface IFluentConditions<T>
     {
         IFluentConditions<T> If(bool condition, string key = "", string message = "");
+        IFluentConditions<T> If(Expression<Func<T, bool>> expression, string key="", string message = "");
         IFluentConditions<T> And(bool condition, string key = "", string message = "");
+        IFluentConditions<T> And(Expression<Func<T, bool>> expression, string key = "", string message = "");
         IFluentConditions<T> Or(bool condition, string key = "", string message = "");
+        IFluentConditions<T> Or(Expression<Func<T, bool>> expression, string key = "", string message = "");
         IFluentConditions<T> Clear();
         IFluentConditions<T> Then(Action execute, ExecuteThread options = ExecuteThread.Current);
         IFluentConditions<T> Else(Action execute, ExecuteThread options = ExecuteThread.Current);

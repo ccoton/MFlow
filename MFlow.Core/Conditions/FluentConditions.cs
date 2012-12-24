@@ -11,10 +11,11 @@ namespace MFlow.Core.Conditions
     {
 
         private readonly IList<IFluentCondition<T>> _conditions;
-
-        public FluentConditions()
+        protected T _target;
+        public FluentConditions(T Target)
         {
             _conditions = new List<IFluentCondition<T>>();
+            _target = Target;
         }
 
         public IFluentConditions<T> If(bool condition, string key = "", string message = "")
@@ -23,27 +24,47 @@ namespace MFlow.Core.Conditions
             return this;
         }
 
+        public IFluentConditions<T> If(Expression<Func<T, bool>> expression, string key = "", string message = "")
+        {
+            And(expression, key, message);
+            return this;
+        }
+
         public IFluentConditions<T> And(bool condition, string key = "", string message = "")
         {
-            var fluentCondition = new FluentCondition(condition, ConditionType.And, key, message);
+            var fluentCondition = new FluentCondition<T>(c => condition, ConditionType.And, key, message);
             _conditions.Add(fluentCondition);
             return this;
         }
 
-        public IFluentConditions Or(bool condition, string key = "", string message = "")
+        public IFluentConditions<T> And(Expression<Func<T, bool>> expression, string key = "", string message = "")
         {
-            var fluentCondition = new FluentCondition(condition, ConditionType.Or, key, message);
+            var fluentCondition = new FluentCondition<T>(expression, ConditionType.And, key, message);
             _conditions.Add(fluentCondition);
             return this;
         }
 
-        public IFluentConditions Clear()
+        public IFluentConditions<T> Or(bool condition, string key = "", string message = "")
+        {
+            var fluentCondition = new FluentCondition<T>(c => condition, ConditionType.Or, key, message);
+            _conditions.Add(fluentCondition);
+            return this;
+        }
+
+        public IFluentConditions<T> Or(Expression<Func<T, bool>> expression, string key = "", string message = "")
+        {
+            var fluentCondition = new FluentCondition<T>(expression, ConditionType.Or, key, message);
+            _conditions.Add(fluentCondition);
+            return this;
+        }
+
+        public IFluentConditions<T> Clear()
         {
             _conditions.Clear();
             return this;
         }
 
-        public IFluentConditions Then(Action execute, ExecuteThread options = ExecuteThread.Current)
+        public IFluentConditions<T> Then(Action execute, ExecuteThread options = ExecuteThread.Current)
         {
             if (Satisfied())
             {
@@ -62,7 +83,7 @@ namespace MFlow.Core.Conditions
             return this;
         }
 
-        public IFluentConditions Else(Action execute, ExecuteThread options = ExecuteThread.Current)
+        public IFluentConditions<T> Else(Action execute, ExecuteThread options = ExecuteThread.Current)
         {
             if (!Satisfied())
             {
@@ -83,11 +104,11 @@ namespace MFlow.Core.Conditions
 
         public bool Satisfied()
         {
-            return _conditions.All(c => c.Condition .Compile().Invoke(== true && c.Type == ConditionType.And) ||
-                _conditions.Any(c => c.Condition == true && c.Type == ConditionType.Or);
+            return _conditions.All(c => c.Condition.Compile().Invoke(_target) == true && c.Type == ConditionType.And) ||
+                _conditions.Any(c => c.Condition.Compile().Invoke(_target) && c.Type == ConditionType.Or);
         }
 
-        public IEnumerable<IFluentCondition> Conditions
+        public IEnumerable<IFluentCondition<T>> Conditions
         {
             get
             {
