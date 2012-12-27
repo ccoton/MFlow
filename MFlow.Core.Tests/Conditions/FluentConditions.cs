@@ -119,7 +119,7 @@ namespace MFlow.Core.Tests.Conditions
             var thread = System.Threading.Thread.CurrentThread.ManagedThreadId;
             IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
 
-            fluentConditions.And(1 == 1).And(true == true).And(false == false).Then(
+            fluentConditions.And(1 == 1).And(true == true).And(true == false).Then(
                     () =>
                     {
                         Assert.IsTrue(false);

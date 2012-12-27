@@ -2,7 +2,7 @@
 <FluentValidation>
   <Validator>
     <Rules>
-      <UserCustomRule location="MFlow.Core.Tests"/>
+      <UserCustomRule location="MFlow.Core.Tests" message=""/>
     </Rules>
   </Validator>
 </FluentValidation>

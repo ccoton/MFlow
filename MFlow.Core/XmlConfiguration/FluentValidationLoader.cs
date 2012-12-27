@@ -47,11 +47,13 @@ namespace MFlow.Core.XmlConfiguration
             {
                 validator = (IFluentValidation<T>)_validators.Single(v => v.Key == derivedName).Value;
                 validator.SetTarget(target);
+                validator = ParseCustomRules(validator, derivedName);
             }
             else
             {
                 validator = new FluentValidation<T>(target);
                 validator = ParseXml(validator, derivedName);
+                validator = ParseCustomRules(validator, derivedName);
                 _validators.Add(derivedName, validator);
             }
 
@@ -73,24 +75,28 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseRegEx(validator, document);
             validator = ParseIsEmail(validator, document);
             validator = ParseContains(validator, document);
-            validator = ParseCustomRules(validator, document);
 
             return validator;
         }
 
-        private IFluentValidation<T> ParseCustomRules<T>(IFluentValidation<T> validator, XDocument document)
+        private IFluentValidation<T> ParseCustomRules<T>(IFluentValidation<T> validator, string fileName)
         {
+
+            var path = string.Format(@"{0}\XmlConfiguration\{1}", Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath), fileName);
+            var document = XDocument.Load(path);
 
             var nodes = document.Root.Descendants(XName.Get(string.Format("{0}CustomRule", typeof(T).Name)));
 
             foreach (var item in nodes)
             {
                 var location = item.Attribute(XName.Get("location")).Value;
+                var message = item.Attribute(XName.Get("message")).Value;
+
                 Assembly.Load(location).GetTypes().Where(t => t.IsClass && typeof(IFluentValidationCustomRule<T>).IsAssignableFrom(t)).ToList()
                 .ForEach(f =>
                 {
                     var customRule = (IFluentValidationCustomRule<T>)Activator.CreateInstance(f);
-                    validator = customRule.Execute(validator);
+                    validator = validator.Custom((c) => {return customRule.Execute(c); }, message:message);
                 });
             }
 

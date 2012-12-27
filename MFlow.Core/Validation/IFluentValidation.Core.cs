@@ -63,6 +63,11 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> Else(Action execute, ExecuteThread options = ExecuteThread.Current);
 
         /// <summary>
+        ///     Takes an Expression and invokes it as a boolean condition, then evaluates it
+        /// </summary>
+        IFluentValidation<T> Custom(Func<T, bool> function, string key="", string message = "", ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
         ///     Raises an event
         /// </summary>
         IFluentValidation<T> Raise<E>(E eventToRaise) where E : IEvent<T>;

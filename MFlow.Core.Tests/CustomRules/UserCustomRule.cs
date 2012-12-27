@@ -10,16 +10,19 @@ namespace MFlow.Core.Tests.CustomRules
 {
     public class UserCustomRule : IFluentValidationCustomRule<User>
     {
+        private readonly IFluentValidationFactory _factory;
+
         public UserCustomRule()
         {
+            _factory = new FluentValidationFactory();
         }
 
-        public IFluentValidation<User> Execute(IFluentValidation<User> validator)
+        public bool Execute(User target)
         {
-            var target = validator.GetTarget();
-            var someCrazyCustomConditional = validator.GetTarget().LoginCount == 999;
-            return validator
-                .If(someCrazyCustomConditional, "UserName", "The crazy conditional");
+            var someCrazyCustomConditional = target.LoginCount == 999;
+            return _factory.GetFluentValidation<User>(target)
+                .If(someCrazyCustomConditional, "UserName", "The crazy conditional")
+                .Satisfied();
         }
     }
 }

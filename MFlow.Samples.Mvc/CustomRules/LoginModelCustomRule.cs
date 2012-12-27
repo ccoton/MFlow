@@ -9,18 +9,18 @@ namespace MFlow.Samples.Mvc.CustomRules
 {
     public class LoginModelCustomRule :  IFluentValidationCustomRule<LoginModel>
     {
+        private readonly IFluentValidationFactory _factory;
+
         public LoginModelCustomRule()
         {
+            _factory = new FluentValidationFactory();
         }
 
-        public IFluentValidation<LoginModel> Execute(IFluentValidation<LoginModel> validator)
+        public bool Execute(LoginModel target)
         {
-            var target = validator.GetTarget();
-            validator
-                .If(UsernameService.CheckUsernameExists(target.UserName), "UserName", "The username is already in use")
-                .If(UsernameService.SuggestUsernames(), "UserName", string.Format("Try {0}", UsernameService.SuggestUsername(target.UserName)));
-
-            return validator;
+            return _factory.GetFluentValidation<LoginModel>(target)
+                .If(UsernameService.UsernameAvailable(target.UserName))
+                .Satisfied();
         }
     }
 
@@ -30,19 +30,9 @@ namespace MFlow.Samples.Mvc.CustomRules
     /// </summary>
     class UsernameService
     {
-        public static bool CheckUsernameExists(string username)
+        public static bool UsernameAvailable(string username)
         {
-            return true;
-        }
-
-        public static bool SuggestUsernames()
-        {
-            return true;
-        }
-
-        public static string SuggestUsername(string username)
-        {
-            return string.Format("{0}.blah", username);
+            return false;
         }
     }
 }

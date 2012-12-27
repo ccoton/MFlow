@@ -126,6 +126,16 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
+        ///     Takes an Expression and invokes it as a boolean condition, then evaluates it
+        /// </summary>
+        public IFluentValidation<T> Custom(Func<T, bool> function, string key = "", string message = "", ConditionType conditionType = ConditionType.And)
+        {
+            Expression<Func<T, bool>> derived = f => function.Invoke(_target);
+            If(derived, key, message, conditionType);
+            return this;
+        }
+
+        /// <summary>
         ///     Clears the validator
         /// </summary>
         public new IFluentValidation<T> Clear()

@@ -5,7 +5,7 @@
       <NotEmpty property="Username" message="Username cannot be empty" />
       <NotEmpty property="Password" message="Password cannot be empty" />
       <IsEmail property="Username" message="Username should be an email address" />
-      <LoginModelCustomRule location="MFlow.Samples.Mvc" />
+      <LoginModelCustomRule location="MFlow.Samples.Mvc" message="That username already exists, try something else." />
     </Rules>
   </Validator>
 </FluentValidation>

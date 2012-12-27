@@ -8,6 +8,6 @@ namespace MFlow.Core.Validation
 {
     public interface IFluentValidationCustomRule<T> 
     {
-        IFluentValidation<T> Execute(IFluentValidation<T> validator);
+        bool Execute(T target);
     }
 }

@@ -36,13 +36,9 @@ namespace MFlow.Samples.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                    return RedirectToLocal(returnUrl);
-                return View(model);
+                return RedirectToLocal(returnUrl);
             }
 
-            // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
         }
 
