@@ -46,6 +46,14 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
+        ///     Gets the target of this validation instance
+        /// </summary>
+        public T GetTarget()
+        {
+            return _target;
+        }
+
+        /// <summary>
         ///     Takes a boolean IF condition and evaluates it
         /// </summary>
         public new IFluentValidation<T> If(bool condition, string key = "", string message = "")

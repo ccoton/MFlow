@@ -64,6 +64,7 @@
     <Compile Include="Validation\IFluentValidation.Core.cs" />
     <Compile Include="Validation\IFluentValidation.Strings.cs" />
     <Compile Include="Validation\GenericValidator.cs" />
+    <Compile Include="Validation\IFluentValidationCustomRule.cs" />
     <Compile Include="Validation\IFluentValidationFactory.cs" />
     <Compile Include="Validation\IValidationResult.cs" />
     <Compile Include="Validation\ValidationResult.cs" />

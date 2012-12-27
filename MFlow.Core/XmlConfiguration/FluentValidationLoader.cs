@@ -16,7 +16,8 @@ namespace MFlow.Core.XmlConfiguration
     /// </summary>
     internal class FluentValidationLoader : IFluentValidationLoader
     {
-        private static IDictionary<string, object> _validators; 
+        private static IDictionary<string, object> _validators;
+        private static IDictionary<string, object> _customRules;
 
         /// <summary>
         ///     Static constructor
@@ -24,12 +25,20 @@ namespace MFlow.Core.XmlConfiguration
         static FluentValidationLoader()
         {
             _validators = new Dictionary<string, object>();
+            _customRules = new Dictionary<string, object>();
         }
 
         /// <summary>
         ///     Load the configuration
         /// </summary>
         public IFluentValidation<T> Load<T>(T target, string fileName = "")
+        {
+            var validator = LoadAndCache(target, fileName);
+
+            return validator;
+        }
+
+        private IFluentValidation<T> LoadAndCache<T>(T target, string fileName = "")
         {
             var derivedName = string.IsNullOrEmpty(fileName) ? string.Format("{0}.validation.xml", typeof(T).Name) : fileName;
             IFluentValidation<T> validator = null;
@@ -42,7 +51,7 @@ namespace MFlow.Core.XmlConfiguration
             else
             {
                 validator = new FluentValidation<T>(target);
-                ParseXml(validator, derivedName);
+                validator = ParseXml(validator, derivedName);
                 _validators.Add(derivedName, validator);
             }
 
@@ -64,6 +73,26 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseRegEx(validator, document);
             validator = ParseIsEmail(validator, document);
             validator = ParseContains(validator, document);
+            validator = ParseCustomRules(validator, document);
+
+            return validator;
+        }
+
+        private IFluentValidation<T> ParseCustomRules<T>(IFluentValidation<T> validator, XDocument document)
+        {
+
+            var nodes = document.Root.Descendants(XName.Get(string.Format("{0}CustomRule", typeof(T).Name)));
+
+            foreach (var item in nodes)
+            {
+                var location = item.Attribute(XName.Get("location")).Value;
+                Assembly.Load(location).GetTypes().Where(t => t.IsClass && typeof(IFluentValidationCustomRule<T>).IsAssignableFrom(t)).ToList()
+                .ForEach(f =>
+                {
+                    var customRule = (IFluentValidationCustomRule<T>)Activator.CreateInstance(f);
+                    validator = customRule.Execute(validator);
+                });
+            }
 
             return validator;
         }

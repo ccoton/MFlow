@@ -171,5 +171,22 @@ namespace MFlow.Core.Tests.XmlConfiguration
             IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "GreaterThanOrEqualTo.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_CustomRule_False_Loaded_From_Xml()
+        {
+            var user = new User() { LoginCount = 1 };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "CustomRule.validation.xml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+
+        [TestMethod]
+        public void Test_Fluent_Validation_CustomRule_True_Loaded_From_Xml()
+        {
+            var user = new User() { LoginCount = 999 };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "CustomRule.validation.xml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
     }
 }

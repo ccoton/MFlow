@@ -36,12 +36,6 @@ namespace MFlow.Samples.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                new FluentValidationFactory().GetFluentValidation<LoginModel>(model)
-                    .If(UsernameService.CheckUsernameExists(model.UserName))
-                    .Then(() => { ModelState.AddModelError("", "The user name is already in use"); })
-                    .If(UsernameService.SuggestUsernames())
-                    .Then(() => { ModelState.AddModelError("", string.Format("Try {0}", UsernameService.SuggestUsername(model.UserName))); });
-
                 if (ModelState.IsValid)
                     return RedirectToLocal(returnUrl);
                 return View(model);
@@ -65,27 +59,6 @@ namespace MFlow.Samples.Mvc.Controllers
             }
         }
         #endregion
-    }
-
-    /// <summary>
-    ///     Just a dummy class as an example
-    /// </summary>
-    class UsernameService
-    {
-        public static bool CheckUsernameExists(string username)
-        {
-            return true;
-        }
-
-        public static bool SuggestUsernames()
-        {
-            return true;
-        }
-
-        public static string SuggestUsername(string username)
-        {
-            return string.Format("{0}.blah", username);
-        }
     }
 
 }
