@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FluentValidation>
+  <Validator>
+    <Rules>
+      <RegEx property="Username" value="\w+([-+.&#39;]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" message="Username should be an email" />
+    </Rules>
+  </Validator>
+</FluentValidation>

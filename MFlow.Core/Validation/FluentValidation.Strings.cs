@@ -30,7 +30,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to a string that matches the regEx 
         /// </summary>
-        public IFluentValidation<T> RegEx(Expression<Func<T, string>> expression, string regEx, string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> RegEx(Expression<Func<T, string>> expression, string regEx,  string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && new Regex(regEx).IsMatch(compiled.Invoke(_target));

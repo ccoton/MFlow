@@ -32,7 +32,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expressions evaluates to a string that contains value
         /// </summary>
-        IFluentValidation<T> Contains(Expression<Func<T, string>> expression, string value, string message = "");
+        IFluentValidation<T> Contains(Expression<Func<T, string>> expression, string value,  string message = "");
 
     }
 }

@@ -14,13 +14,15 @@ namespace MFlow.Mvc
     public class ValidatedModel<T> : IValidatedModel<T>, IValidatableObject
     {
         private IFluentValidation<T> _validator;
+        private IFluentValidationFactory _factory;
 
         /// <summary>
         ///     Set the target for validation
         /// </summary>
-        public void SetTarget(T target)
+        public void SetTarget(T target, bool loadXmlRuleset = false)
         {
-            _validator = new FluentValidation<T>(target);
+            _factory = new FluentValidationFactory();
+            _validator = _factory.GetFluentValidation<T>(target, loadXmlRuleset);
         }
 
         /// <summary>

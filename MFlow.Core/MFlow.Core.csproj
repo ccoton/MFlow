@@ -54,6 +54,7 @@
     <Compile Include="Internal\IPropertyNameResolver.cs" />
     <Compile Include="Internal\PropertyNameResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\FluentValidationFactory.cs" />
     <Compile Include="Validation\IFluentValidation.Number.cs" />
     <Compile Include="Validation\IFluentValidation.Generic.cs" />
     <Compile Include="Validation\FluentValidation.Numbers.cs" />
@@ -63,8 +64,11 @@
     <Compile Include="Validation\IFluentValidation.Core.cs" />
     <Compile Include="Validation\IFluentValidation.Strings.cs" />
     <Compile Include="Validation\GenericValidator.cs" />
+    <Compile Include="Validation\IFluentValidationFactory.cs" />
     <Compile Include="Validation\IValidationResult.cs" />
     <Compile Include="Validation\ValidationResult.cs" />
+    <Compile Include="XmlConfiguration\FluentValidationLoader.cs" />
+    <Compile Include="XmlConfiguration\IFluentValidationLoader.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

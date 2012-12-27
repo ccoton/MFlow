@@ -58,12 +58,45 @@
     <Compile Include="Validation\FluentValidation.Generic.cs" />
     <Compile Include="Validation\GenericValidator.cs" />
     <Compile Include="Validation\FluentValidation.Core.cs" />
+    <Compile Include="XmlConfiguration\XmlConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MFlow.Core\MFlow.Core.csproj">
       <Project>{64dd43b3-3a13-4325-b074-e26fd285cc7d}</Project>
       <Name>MFlow.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="XmlConfiguration\Contains.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\IsEmail.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\RegEx.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\GreaterThanOrEqualTo.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\LessThanOrEqualTo.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\GreaterThan.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\LessThan.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\NotEqual.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\Equal.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\NotEmpty.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

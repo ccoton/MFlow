@@ -30,7 +30,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an object that is not equal to the value 
         /// </summary>
-        public IFluentValidation<T> NotEqual<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> NotEqual<C>(Expression<Func<T, C>> expression, C value,  string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, C> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) != null && !compiled.Invoke(_target).Equals(value);

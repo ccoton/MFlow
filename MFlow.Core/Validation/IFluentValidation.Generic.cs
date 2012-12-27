@@ -22,7 +22,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an object that is not equal to the value 
         /// </summary>
-        IFluentValidation<T> NotEqual<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> NotEqual<C>(Expression<Func<T, C>> expression, C value,  string message = "", ConditionType conditionType = ConditionType.And);
 
         /// <summary>
         ///     Evaluates another validation instance that this one depends on

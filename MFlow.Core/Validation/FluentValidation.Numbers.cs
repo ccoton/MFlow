@@ -19,7 +19,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an int that is less that the value 
         /// </summary>
-        public IFluentValidation<T> LessThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> LessThan(Expression<Func<T, int>> expression, int value,string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, int> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) < value;
@@ -41,7 +41,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an int that is less than or equal to the value 
         /// </summary>
-        public IFluentValidation<T> LessThanOrEqualTo(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> LessThanOrEqualTo(Expression<Func<T, int>> expression, int value,  string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, int> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) <= value;
@@ -52,7 +52,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an int that is greater than or equal to the value 
         /// </summary>
-        public IFluentValidation<T> GreaterThanOrEqualTo(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> GreaterThanOrEqualTo(Expression<Func<T, int>> expression, int value,  string message = "", ConditionType conditionType = ConditionType.And)
         {
             Func<T, int> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) >= value;

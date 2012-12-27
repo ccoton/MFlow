@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FluentValidation>
+  <Validator>
+    <Rules>
+      <Contains property="Username" message="Username should contain admin" value="admin" />
+    </Rules>
+  </Validator>
+</FluentValidation>

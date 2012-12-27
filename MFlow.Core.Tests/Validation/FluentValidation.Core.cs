@@ -12,18 +12,21 @@ namespace MFlow.Core.Tests.Validation
     [TestClass]
     public partial class FluentValidation
     {
+
+        private readonly IFluentValidationFactory _factory = new FluentValidationFactory();
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Test_Fluent_Validation_Constructor_Exception()
         {
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(null);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(null);
         }
 
         [TestMethod]
         public void Test_Chained_Fluent_Validation_With_Valid_Expression()
         {
             var user = new User() { Password = "password123", Username = "testing" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
                 .Equal(u => u.Username, "testing").Satisfied());
         }
@@ -32,7 +35,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_With_InValid_Expression()
         {
             var user = new User() { Password = "password123", Username = "testing" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
                 .Equal(u => u.Username, "xxx").Satisfied());
         }
@@ -41,7 +44,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_With_Valid_Expression_Chain()
         {
             var user = new User() { Password = "password123", Username = "testing" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
                 .Equal(u => u.Username, "testing")
                 .Equal(u => u.Password, "password123").Satisfied());
@@ -51,7 +54,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_With_InValid_Expression_Chain()
         {
             var user = new User() { Password = "password123", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user); 
             Assert.IsFalse(fluentValidation
                 .Equal(u => u.Username, "testing")
                 .Equal(u => u.Password, "password123").Satisfied());
@@ -61,7 +64,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_With_Valid_Or_Expression_Chain()
         {
             var user = new User() { Password = "password1213", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
                 .Equal(u => u.Username, "testing")
                 .Equal(u => u.Password, "password123")
@@ -72,7 +75,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_With_InValid_Or_Expression_Chain()
         {
             var user = new User() { Password = "password1234", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
                 .Equal(u => u.Username, "testing")
                 .Equal(u => u.Password, "password123")
@@ -83,7 +86,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_With_Valid_Expression_Executes()
         {
             var user = new User() { Password = "password123", Username = "testing" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             fluentValidation
                 .Equal(u => u.Username, "testing")
                 .Equal(u => u.Password, "password123")
@@ -99,7 +102,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_With_Valid_Expression_Executes_Else()
         {
             var user = new User() { Password = "password123", Username = "testing2" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             fluentValidation
                 .Equal(u => u.Username, "testing")
                 .Equal(u => u.Password, "password123")
@@ -113,7 +116,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_Raises_Event()
         {
             var user = new User() { Password = "password123", Username = "testing" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
 
             var events = new EventsFactory().GetEventStore();
             events.Register<UserCreatedEvent>(s =>
@@ -134,7 +137,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Results()
         {
             var user = new User() { Password = "password123", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
                 .Equal(u => u.Username, "testing")
                 .Equal(u => u.Password, "password123").Validate();
@@ -147,7 +150,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_Returns_Correct_Key()
         {
             var user = new User() { Password = "password123", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
                 .Equal(u => u.Username, "testing")
                 .Equal(u => u.Password, "password123").Validate();
@@ -160,7 +163,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_Returns_Correct_Message()
         {
             var user = new User() { Password = "password123", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user); 
             var results = fluentValidation
                 .Equal(u => u.Username, "testing", message: "Username is not valid")
                 .Equal(u => u.Password, "password123").Validate();
@@ -174,7 +177,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Multipe_Results()
         {
             var user = new User() { Password = "password1234", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
                 .Equal(u => u.Username, "testing")
                 .Equal(u => u.Password, "password123").Validate();
@@ -187,7 +190,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_Returns_Correct_Keys()
         {
             var user = new User() { Password = "password123", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
                 .Equal(u => u.Username, "testing")
                 .Equal(u => u.Password, "password1234").Validate();
@@ -200,7 +203,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_Returns_Correct_Messages()
         {
             var user = new User() { Password = "password1234", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
                 .Equal(u => u.Username, "testing", message: "Username is not valid")
                 .Equal(u => u.Password, "password123", message:"Password is now valid").Validate();
@@ -212,7 +215,7 @@ namespace MFlow.Core.Tests.Validation
         [TestMethod]
         public void Test_Chained_Fluent_Validation_Returns_Correct_Complex_Keys()
         {
-            IFluentValidation<Thread> fluentValidation = new MFlow.Core.Validation.FluentValidation<Thread>(Thread.CurrentThread);
+            IFluentValidation<Thread> fluentValidation = _factory.GetFluentValidation<Thread>(Thread.CurrentThread);
             var results = fluentValidation
                 .Equal(u => u.CurrentCulture.DisplayName, "")
                 .Equal(u => u.CurrentCulture.EnglishName, "").Validate();
@@ -226,7 +229,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_NotNullOrEmpty_With_Valid_Value()
         {
             var user = new User() { Password = "password1234", Username = "testingx" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
                 .NotEmpty(u => u.Username, message: "Username is not valid")
                 .Validate();
@@ -238,7 +241,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Chained_Fluent_Validation_NotNullOrEmpty_With_InValid_Value()
         {
             var user = new User() { Password = "password1234", Username = "" };
-            IFluentValidation<User> fluentValidation = new MFlow.Core.Validation.FluentValidation<User>(user);
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
                 .NotEmpty(u => u.Username, message: "Username is not valid")
                 .Validate();

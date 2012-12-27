@@ -20,7 +20,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Constructor
         /// </summary>
-        public FluentValidation(T validate)
+        internal FluentValidation(T validate)
             : base(validate)
         {
             this.If(validate == null).Throw(new ArgumentException("validate"));
@@ -114,6 +114,15 @@ namespace MFlow.Core.Validation
         public new IFluentValidation<T> Else(Action execute, ExecuteThread options = ExecuteThread.Current)
         {
             base.Else(execute, options);
+            return this;
+        }
+
+        /// <summary>
+        ///     Clears the validator
+        /// </summary>
+        public new IFluentValidation<T> Clear()
+        {
+            base.Clear();
             return this;
         }
 

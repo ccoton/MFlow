@@ -62,6 +62,12 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> Raise<E>(E eventToRaise) where E : IEvent<T>;
 
         /// <summary>
+        ///     Clears the validation conditions
+        /// </summary>
+        /// <returns></returns>
+        IFluentValidation<T> Clear();
+
+        /// <summary>
         ///     Validate this instance
         /// </summary>
         IEnumerable<IValidationResult<T>> Validate();

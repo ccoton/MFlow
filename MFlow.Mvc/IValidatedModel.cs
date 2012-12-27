@@ -16,7 +16,7 @@ namespace MFlow.Mvc
         /// <summary>
         ///     Sets the target for validation
         /// </summary>
-        void SetTarget(T target);
+        void SetTarget(T target, bool loadXmlRuleset = false);
 
         /// <summary>
         ///     The validation instance

@@ -36,7 +36,7 @@ namespace MFlow.Samples.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                new FluentValidation<LoginModel>(model)
+                new FluentValidationFactory().GetFluentValidation<LoginModel>(model)
                     .If(UsernameService.CheckUsernameExists(model.UserName))
                     .Then(() => { ModelState.AddModelError("", "The user name is already in use"); })
                     .If(UsernameService.SuggestUsernames())
