@@ -59,6 +59,7 @@
     <Compile Include="Validation\FluentValidation.Generic.cs" />
     <Compile Include="Validation\GenericValidator.cs" />
     <Compile Include="Validation\FluentValidation.Core.cs" />
+    <Compile Include="VmlConfiguration\VmlConfiguration.cs" />
     <Compile Include="XmlConfiguration\XmlConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +69,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="VmlConfiguration\NotEqual.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\Equal.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\NotEmpty.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="XmlConfiguration\Contains.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -108,6 +118,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

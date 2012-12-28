@@ -14,7 +14,7 @@ namespace MFlow.Core.XmlConfiguration
     /// <summary>
     ///     Load a fluentvalidation configuration
     /// </summary>
-    internal class FluentValidationLoader : IFluentValidationLoader
+    internal class XmlValidationLoader : IFluentValidationLoader
     {
         private static IDictionary<string, object> _validators;
         private static IDictionary<string, object> _customRules;
@@ -22,7 +22,7 @@ namespace MFlow.Core.XmlConfiguration
         /// <summary>
         ///     Static constructor
         /// </summary>
-        static FluentValidationLoader()
+        static XmlValidationLoader()
         {
             _validators = new Dictionary<string, object>();
             _customRules = new Dictionary<string, object>();

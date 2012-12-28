@@ -1,0 +1,7 @@
+﻿Fluent Validation
+Validator
+Rules
+[Display] Username must not be Fred [When] Username [Is] Equal [To] fred
+Rules
+Validator
+Fluent Validation

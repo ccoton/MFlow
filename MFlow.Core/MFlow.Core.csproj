@@ -45,6 +45,7 @@
     <Compile Include="Conditions\FluentConditions.cs" />
     <Compile Include="Conditions\IFluentCondition.cs" />
     <Compile Include="Conditions\IFluentConditions.cs" />
+    <Compile Include="VmlConfiguration\VmlValidationLoader.cs" />
     <Compile Include="Events\Event.cs" />
     <Compile Include="Events\Events.cs" />
     <Compile Include="Events\EventsFactory.cs" />
@@ -68,8 +69,8 @@
     <Compile Include="Validation\IFluentValidationFactory.cs" />
     <Compile Include="Validation\IValidationResult.cs" />
     <Compile Include="Validation\ValidationResult.cs" />
-    <Compile Include="XmlConfiguration\FluentValidationLoader.cs" />
-    <Compile Include="XmlConfiguration\IFluentValidationLoader.cs" />
+    <Compile Include="XmlConfiguration\XmlValidationLoader.cs" />
+    <Compile Include="Validation\IFluentValidationLoader.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

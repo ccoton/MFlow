@@ -233,6 +233,7 @@
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="XmlConfiguration\LoginModel.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="XmlConfiguration\RegisterModel.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

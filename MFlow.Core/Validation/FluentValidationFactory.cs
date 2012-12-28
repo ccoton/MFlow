@@ -19,7 +19,11 @@ namespace MFlow.Core.Validation
         {
             if(!loadXmlRuleset)
                 return new FluentValidation<T>(target);
-            var loader = new FluentValidationLoader();
+            IFluentValidationLoader loader = null; 
+            if(fileName.EndsWith(".vml"))
+                loader = new VmlValidationLoader();
+            else 
+                loader = new XmlValidationLoader();
 
             return string.IsNullOrEmpty(fileName) ? loader.Load<T>(target) : loader.Load<T>(target, fileName);
         }
