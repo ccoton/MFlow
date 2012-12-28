@@ -21,12 +21,19 @@ namespace MFlow.Core.Internal
             MemberExpression memberExpression;
 
             if (lambdaExpression.Body is UnaryExpression)
+            {
                 memberExpression = (MemberExpression)((UnaryExpression)lambdaExpression.Body).Operand;
-            else
+            }
+            else if (lambdaExpression.Body is MemberExpression)
+            {
                 memberExpression = (MemberExpression)lambdaExpression.Body;
+            }
+            else
+            {
+                throw new Exception("Can only resolve a MemberExpression");
+            }
 
             var expressionString = memberExpression.ToString();
-
             return expressionString.Substring(expressionString.IndexOf(".") + 1);
         }
     }
