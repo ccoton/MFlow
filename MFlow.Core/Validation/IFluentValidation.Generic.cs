@@ -15,9 +15,19 @@ namespace MFlow.Core.Validation
     public partial interface IFluentValidation<T>
     {
         /// <summary>
+        ///     Checks if the expression evaluates to an object that is equal to the value expression 
+        /// </summary>
+        IFluentValidation<T> Equal<C>(Expression<Func<T, C>> expression, Expression<Func<T, C>> valueExpression, string message = "", ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
         ///     Checks if the expression evaluates to an object that is equal to the value 
         /// </summary>
         IFluentValidation<T> Equal<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Checks if the expression evaluates to an object that is not equal to the value expression 
+        /// </summary>
+        IFluentValidation<T> NotEqual<C>(Expression<Func<T, C>> expression, Expression<Func<T, C>> valueExpression, string message = "", ConditionType conditionType = ConditionType.And);
 
         /// <summary>
         ///     Checks if the expression evaluates to an object that is not equal to the value 
@@ -28,5 +38,10 @@ namespace MFlow.Core.Validation
         ///     Evaluates another validation instance that this one depends on
         /// </summary>
         IFluentValidation<T> DependsOn<D>(IFluentValidation<D> validator);
+
+        /// <summary>
+        ///     Evaluates another validation instance that this one depends on
+        /// </summary>
+        IFluentValidation<T> DependsOn<D>(Expression<Func<T, D>> validator, string message= "") where D : IFluentValidation<T>;
     }
 }

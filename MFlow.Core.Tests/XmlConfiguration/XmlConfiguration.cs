@@ -85,6 +85,38 @@ namespace MFlow.Core.Tests.XmlConfiguration
         }
 
         [TestMethod]
+        public void Test_Fluent_Validation_EqualExpression_False_Loaded_From_Xml()
+        {
+            var user = new User() { Password="123", ConfirmPassword="456" };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "EqualExpression.validation.xml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_EqualExpression_True_Loaded_From_Xml()
+        {
+            var user = new User() { Password = "123", ConfirmPassword = "123" };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "EqualExpression.validation.xml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_NotEqualExpression_False_Loaded_From_Xml()
+        {
+            var user = new User() { Password = "123", ConfirmPassword = "123" };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEqualExpression.validation.xml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_NotEqualExpression_True_Loaded_From_Xml()
+        {
+            var user = new User() { Password = "123", ConfirmPassword = "456" };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEqualExpression.validation.xml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
         public void Test_Fluent_Validation_Equal_True_Loaded_From_Xml()
         {
             var user = new User() { Username = "fred" };

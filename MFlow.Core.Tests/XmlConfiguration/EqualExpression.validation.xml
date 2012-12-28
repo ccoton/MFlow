@@ -2,9 +2,7 @@
 <FluentValidation>
   <Validator>
     <Rules>
-      <Custom>
-        <CheckCustomCondition location="MFlow.Core.Tests" message=""/>
-      </Custom>
+      <EqualTo property="Password" toProperty="ConfirmPassword" message="Passwords cannot match" />
     </Rules>
   </Validator>
 </FluentValidation>

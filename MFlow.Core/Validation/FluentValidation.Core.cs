@@ -126,16 +126,6 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
-        ///     Takes an Expression and invokes it as a boolean condition, then evaluates it
-        /// </summary>
-        public IFluentValidation<T> Custom(Func<T, bool> function, string key = "", string message = "", ConditionType conditionType = ConditionType.And)
-        {
-            Expression<Func<T, bool>> derived = f => function.Invoke(_target);
-            If(derived, key, message, conditionType);
-            return this;
-        }
-
-        /// <summary>
         ///     Clears the validator
         /// </summary>
         public new IFluentValidation<T> Clear()
@@ -160,8 +150,13 @@ namespace MFlow.Core.Validation
         public IEnumerable<IValidationResult<T>> Validate()
         {
             var results = new List<IValidationResult<T>>();
+
             foreach (var condition in base._conditions.Where(c => !c.Condition.Compile().Invoke(_target)))
                 results.Add(new ValidationResult<T>(condition));
+
+            foreach (var dependency in _dependencies)
+                results.AddRange(dependency.Invoke().Validate());
+
             return results;
         }
 

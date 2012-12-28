@@ -17,6 +17,31 @@ namespace MFlow.Samples.Mvc.Controllers
     public class AccountController : Controller
     {
         //
+        // GET: /Account/Register
+
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/Register
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(RegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Login");
+            }
+
+            return View(model);
+        }
+
+        //
         // GET: /Account/Login
 
         [AllowAnonymous]

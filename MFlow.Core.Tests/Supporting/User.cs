@@ -11,6 +11,7 @@ namespace MFlow.Core.Tests.Supporting
     {
         public string Username { get; set; }
         public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
         public int LoginCount { get; set; }
     }
 

@@ -8,21 +8,21 @@ using MFlow.Core.Validation;
 
 namespace MFlow.Core.Tests.CustomRules
 {
-    public class UserCustomRule : IFluentValidationCustomRule<User>
+    public class CheckCustomCondition : IFluentValidationCustomRule<User>
     {
         private readonly IFluentValidationFactory _factory;
-
-        public UserCustomRule()
+        public CheckCustomCondition()
         {
             _factory = new FluentValidationFactory();
         }
 
-        public bool Execute(User target)
+        public IFluentValidation<User> Execute(Func<User> targetFunc)
         {
+            var target = targetFunc();
             var someCrazyCustomConditional = target.LoginCount == 999;
             return _factory.GetFluentValidation<User>(target)
-                .If(someCrazyCustomConditional, "UserName", "The crazy conditional")
-                .Satisfied();
+                .If(someCrazyCustomConditional, "UserName", "The crazy conditional");
+               // .Satisfied();
         }
     }
 }

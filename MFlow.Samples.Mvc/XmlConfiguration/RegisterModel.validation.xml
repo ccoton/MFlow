@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FluentValidation>
+  <Validator>
+    <Rules>
+      <NotEmpty property="Forenames" message="Forenames cannot be empty" />
+      <NotEmpty property="Surname" message="Surname cannot be empty" />
+      <NotEmpty property="Username" message="Username cannot be empty" />
+      <NotEmpty property="Password" message="Password cannot be empty" />
+      <NotEmpty property="ConfirmPassword" message="Confirm Password cannot be empty" />
+      <IsEmail property="Email" message="Enter a valid email address" />
+      <EqualTo property="Password" toProperty="ConfirmPassword" message="Passwords must match" />
+      <EqualTo property="ConfirmPassword" toProperty="Password" message="Passwords must match" />
+      <RegEx property="Username" value="[A-Za-z][A-Za-z0-9._]{5,14}" message="Username should be 6-15 characters." />
+      <Custom>
+        <CheckUsernameAvailability location="MFlow.Samples.Mvc" message="The username is not available" />
+      </Custom>
+    </Rules>
+  </Validator>
+</FluentValidation>
