@@ -19,10 +19,10 @@ namespace MFlow.Mvc
         /// <summary>
         ///     Set the target for validation
         /// </summary>
-        public void SetTarget(T target, bool loadXmlRuleset = false)
+        public void SetTarget(T target, bool loadRuleset = false, string rulesetFile = "")
         {
             _factory = new FluentValidationFactory();
-            _validator = _factory.GetFluentValidation<T>(target, loadXmlRuleset);
+            _validator = _factory.GetFluentValidation<T>(target, loadRuleset, rulesetFile);
         }
 
         /// <summary>

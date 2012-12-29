@@ -15,7 +15,7 @@ namespace MFlow.Samples.Mvc.Models
         {
             // Use the base ValidatedModel class to define rules
             // Pass in true to load the validation rules from xml
-            SetTarget(this, loadXmlRuleset:true);
+            SetTarget(this, loadRuleset:true, rulesetFile:"LoginModel.validation.vml");
 
             //Validator
             //    .NotEmpty(m => m.UserName, message: "Username cannot be empty")
