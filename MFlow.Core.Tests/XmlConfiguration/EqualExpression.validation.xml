@@ -2,7 +2,7 @@
 <FluentValidation>
   <Validator>
     <Rules>
-      <EqualTo property="Password" toProperty="ConfirmPassword" message="Passwords cannot match" />
+      <EqualTo property="Password" toProperty="ConfirmPassword" message="Passwords should match" />
     </Rules>
   </Validator>
 </FluentValidation>

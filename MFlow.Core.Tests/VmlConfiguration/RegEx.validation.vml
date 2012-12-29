@@ -1,0 +1,7 @@
+﻿Fluent Validation
+Validator
+Rules
+[Display] Username should be an email address [When] Username [Is] NotStringPattern [RegEx] \w+([-+.&#39;]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*
+Rules
+Validator
+Fluent Validation

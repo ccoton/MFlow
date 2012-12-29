@@ -69,6 +69,36 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="VmlConfiguration\Contains.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\CustomRule.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\NotEqualExpression.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\EqualExpression.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\RegEx.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\IsEmail.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\LessThan.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\LessThanOrEqualTo.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\GreaterThanOrEqualTo.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\GreaterThan.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="VmlConfiguration\NotEqual.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

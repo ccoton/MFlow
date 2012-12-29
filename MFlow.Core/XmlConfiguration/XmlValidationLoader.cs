@@ -94,10 +94,11 @@ namespace MFlow.Core.XmlConfiguration
 
             foreach (var item in nodes)
             {
+                var condition = item.Name.ToString();
                 var location = item.Attribute(XName.Get("location")).Value;
                 var message = item.Attribute(XName.Get("message")).Value;
 
-                Assembly.Load(location).GetTypes().Where(t => t.IsClass && typeof(IFluentValidationCustomRule<T>).IsAssignableFrom(t)).ToList()
+                Assembly.Load(location).GetTypes().Where(t => t.IsClass && t.Name.ToLower() == condition.ToLower() && typeof(IFluentValidationCustomRule<T>).IsAssignableFrom(t)).ToList()
                 .ForEach(f =>
                 {
                     var customRule = (IFluentValidationCustomRule<T>)Activator.CreateInstance(f);

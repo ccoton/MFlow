@@ -20,7 +20,7 @@ namespace MFlow.Core.Validation
             if(!loadXmlRuleset)
                 return new FluentValidation<T>(target);
             IFluentValidationLoader loader = null; 
-            if(fileName.EndsWith(".vml"))
+            if(fileName.ToLower().EndsWith(".vml"))
                 loader = new VmlValidationLoader();
             else 
                 loader = new XmlValidationLoader();

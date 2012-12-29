@@ -1,0 +1,7 @@
+﻿Fluent Validation
+Validator
+Rules
+[Display] Password must not be the same as confirm password [When] Password [Is] EqualToExpression [Exp] ConfirmPassword
+Rules
+Validator
+Fluent Validation

@@ -1,0 +1,7 @@
+﻿Fluent Validation
+Validator
+Rules
+[Display] Username must contain admin [When] Username [Does] NotContain [Value] admin
+Rules
+Validator
+Fluent Validation
