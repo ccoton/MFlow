@@ -63,7 +63,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing", LoginCount = 12 };
 
             IFluentValidation<User> dependency = _factory.GetFluentValidation<User>(user);
-            dependency.If(true);
+            dependency.Check(true);
 
             IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
@@ -76,7 +76,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing", LoginCount = 12 };
 
             IFluentValidation<User> dependency = _factory.GetFluentValidation<User>(user);
-            dependency.If(false);
+            dependency.Check(false);
 
             IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation

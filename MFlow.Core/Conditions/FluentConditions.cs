@@ -33,24 +33,6 @@ namespace MFlow.Core.Conditions
         }
 
         /// <summary>
-        ///     Takes a boolean IF condition and evaluates it
-        /// </summary>
-        public IFluentConditions<T> If(bool condition, string key = "", string message = "")
-        {
-            And(condition, key, message);
-            return this;
-        }
-
-        /// <summary>
-        ///     Takes an Expression and invokes it as a boolean IF condition, then evaluates it
-        /// </summary>
-        public IFluentConditions<T> If(Expression<Func<T, bool>> expression, string key = "", string message = "")
-        {
-            And(expression, key, message);
-            return this;
-        }
-
-        /// <summary>
         ///     Takes a boolean AND condition and evaluates it
         /// </summary>
         public IFluentConditions<T> And(bool condition, string key = "", string message = "")

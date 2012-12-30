@@ -23,7 +23,7 @@ namespace MFlow.Core.Validation
         {
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target));
-            base.If(derived, _resolver.Resolve<T, string>(expression), message);
+            base.And(derived, _resolver.Resolve<T, string>(expression), message);
             return this;
         }
 
@@ -54,7 +54,7 @@ namespace MFlow.Core.Validation
         {
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && compiled.Invoke(_target).Contains(value);
-            base.If(derived, _resolver.Resolve<T, string>(expression), message);
+            base.And(derived, _resolver.Resolve<T, string>(expression), message);
             return this;
         }
     }

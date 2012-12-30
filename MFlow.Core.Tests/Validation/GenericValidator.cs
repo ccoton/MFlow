@@ -16,7 +16,7 @@ namespace MFlow.Core.Tests.Validation
         {
             var fluentValidation = new MFlow.Core.Validation.GenericValidator();
             var username = "";
-            fluentValidation.If(string.IsNullOrEmpty(username)).Throw(new ArgumentException("Username"));
+            fluentValidation.Check(string.IsNullOrEmpty(username)).Throw(new ArgumentException("Username"));
         }
 
         [TestMethod]
@@ -24,7 +24,7 @@ namespace MFlow.Core.Tests.Validation
         {
             var fluentValidation = new MFlow.Core.Validation.GenericValidator();
             var username = "username";
-            fluentValidation.If(string.IsNullOrEmpty(username)).Throw(new ArgumentException("Username"));
+            fluentValidation.Check(string.IsNullOrEmpty(username)).Throw(new ArgumentException("Username"));
         }
 
         [TestMethod]
@@ -34,8 +34,8 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = new MFlow.Core.Validation.GenericValidator();
             var username = ""; var password = "";
             fluentValidation
-                .If(string.IsNullOrEmpty(username))
-                .And(string.IsNullOrEmpty(password))
+                .Check(string.IsNullOrEmpty(username))
+                .Check(string.IsNullOrEmpty(password))
                 .Throw(new ArgumentException("Username and Password"));
         }
 
@@ -45,8 +45,8 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = new MFlow.Core.Validation.GenericValidator();
             var username = "username"; var password = "password";
             fluentValidation
-                .If(string.IsNullOrEmpty(username))
-                .And(string.IsNullOrEmpty(password))
+                .Check(string.IsNullOrEmpty(username))
+                .Check(string.IsNullOrEmpty(password))
                 .Throw(new ArgumentException("Username and Password"));
         }
 
@@ -57,7 +57,7 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = new MFlow.Core.Validation.GenericValidator();
             var username = "username"; var password = "";
             fluentValidation
-                .If(string.IsNullOrEmpty(username))
+                .Check(string.IsNullOrEmpty(username))
                 .Or(string.IsNullOrEmpty(password))
                 .Throw(new ArgumentException("Username or Password"));
         }
@@ -68,7 +68,7 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = new MFlow.Core.Validation.GenericValidator();
             var username = "test"; var password = "test";
             fluentValidation
-                .If(string.IsNullOrEmpty(username))
+                .Check(string.IsNullOrEmpty(username))
                 .Or(string.IsNullOrEmpty(password))
                 .Throw(new ArgumentException("Username or Password"));
         }
