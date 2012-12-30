@@ -82,6 +82,9 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseContains(validator, document);
             validator = ParseEqualExpression(validator, document);
             validator = ParseNotEqualExpression(validator, document);
+            validator = ParseAfter(validator, document);
+            validator = ParseBefore(validator, document);
+            validator = ParseOn(validator, document);
 
             return validator;
         }
@@ -169,6 +172,21 @@ namespace MFlow.Core.XmlConfiguration
             return CreateExpressions<T, int, int>(validator, document, "GreaterThanOrEqualTo", (e, ev, m, v) => { return validator.GreaterThanOrEqualTo(e, v, m); });
         }
 
+        private IFluentValidation<T> ParseAfter<T>(IFluentValidation<T> validator, XDocument document)
+        {
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "After", (e, ev, m, v) => { return validator.After(e, v, m); });
+        }
+
+        private IFluentValidation<T> ParseBefore<T>(IFluentValidation<T> validator, XDocument document)
+        {
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "Before", (e, ev, m, v) => { return validator.Before(e, v, m); });
+        }
+
+        private IFluentValidation<T> ParseOn<T>(IFluentValidation<T> validator, XDocument document)
+        {
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "On", (e, ev, m, v) => { return validator.On(e, v, m); });
+        }
+
         private IFluentValidation<T> CreateExpressions<T, O, C>(IFluentValidation<T> validator, XDocument document, string nodeName, Func<Expression<Func<T, O>>, Expression<Func<T, O>>, string, C, IFluentValidation<T>> function)
         {
             var nodes = document.Root.Descendants(XName.Get(nodeName));
@@ -203,6 +221,10 @@ namespace MFlow.Core.XmlConfiguration
                     if (type is int)
                     {
                         validator = function(expression, toExpression, message, (C)(object)int.Parse(valueAttribute.Value));
+                    }
+                    else if (type is DateTime)
+                    {
+                        validator = function(expression, toExpression, message, (C)(object)DateTime.Parse(valueAttribute.Value));
                     }
                     else
                     {

@@ -141,6 +141,54 @@ namespace MFlow.Core.Tests.VmlConfiguration
         }
 
         [TestMethod]
+        public void Test_Fluent_Validation_After_False_Loaded_From_Xml()
+        {
+            var user = new User() { LastLogin = DateTime.Parse("01/02/2010") };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "After.validation.vml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_After_True_Loaded_From_Xml()
+        {
+            var user = new User() { LastLogin = DateTime.Parse("01/02/2020") };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "After.validation.vml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_Before_False_Loaded_From_Xml()
+        {
+            var user = new User() { LastLogin = DateTime.Parse("01/02/2020") };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "Before.validation.vml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_Before_True_Loaded_From_Xml()
+        {
+            var user = new User() { LastLogin = DateTime.Parse("01/02/2010") };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "Before.validation.vml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_On_False_Loaded_From_Xml()
+        {
+            var user = new User() { LastLogin = DateTime.Parse("01/02/2015") };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "On.validation.vml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_On_True_Loaded_From_Xml()
+        {
+            var user = new User() { LastLogin = DateTime.Parse("01/01/2015") };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "On.validation.vml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
         public void Test_Fluent_Validation_LessThan_False_Loaded_From_Vml()
         {
             var user = new User() { LoginCount = 12 };

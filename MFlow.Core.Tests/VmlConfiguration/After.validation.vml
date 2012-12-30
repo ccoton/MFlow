@@ -1,0 +1,7 @@
+﻿Fluent Validation
+Validator
+Rules
+[Display] Login date must be after 01/01/2015 [When] LastLogin [Is] Before [Value] 01/01/2015
+Rules
+Validator
+Fluent Validation

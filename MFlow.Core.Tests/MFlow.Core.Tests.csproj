@@ -54,6 +54,7 @@
     <Compile Include="CustomRules\CheckCustomCondition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Supporting\User.cs" />
+    <Compile Include="Validation\FluentValidation.Dates.cs" />
     <Compile Include="Validation\FluentValidation.Numbers.cs" />
     <Compile Include="Validation\FluentValidation.Strings.cs" />
     <Compile Include="Validation\FluentValidation.Generic.cs" />
@@ -70,6 +71,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="VmlConfiguration\Contains.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\Before.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\After.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\On.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="VmlConfiguration\CustomRule.validation.vml">
@@ -109,6 +119,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Content Include="XmlConfiguration\Contains.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\After.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\Before.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\On.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XmlConfiguration\NotEqualExpression.validation.xml">

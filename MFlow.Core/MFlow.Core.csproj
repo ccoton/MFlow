@@ -45,6 +45,8 @@
     <Compile Include="Conditions\FluentConditions.cs" />
     <Compile Include="Conditions\IFluentCondition.cs" />
     <Compile Include="Conditions\IFluentConditions.cs" />
+    <Compile Include="Validation\FluentValidationDates.cs" />
+    <Compile Include="Validation\IFluentValidation.Dates.cs" />
     <Compile Include="VmlConfiguration\VmlValidationLoader.cs" />
     <Compile Include="Events\Event.cs" />
     <Compile Include="Events\Events.cs" />
