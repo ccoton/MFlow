@@ -10,12 +10,19 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using MFlow.Samples.Mvc.Models;
 using MFlow.Core.Validation;
+using System.Threading;
 
 namespace MFlow.Samples.Mvc.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+
+        public AccountController()
+        {
+            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR");
+        }
+
         //
         // GET: /Account/Register
 

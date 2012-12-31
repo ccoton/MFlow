@@ -80,9 +80,6 @@
     <Compile Include="Validation\IFluentValidationLoader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Xml\Custom.Messages.en.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Xml\Messages.fr-FR.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

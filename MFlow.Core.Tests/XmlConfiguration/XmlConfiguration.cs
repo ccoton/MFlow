@@ -269,17 +269,5 @@ namespace MFlow.Core.Tests.XmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
-        public void Test_Chained_Fluent_Validation_Custom_Message_Lookup()
-        {
-            var user = new User() { Username = "testing" };
-            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsEmail.validation.xml");
-            Assert.IsFalse(fluentValidation.Satisfied());
-
-            var results = fluentValidation
-                .Validate();
-
-            Assert.AreEqual("The username entered should be an email address", results.First().Condition.Message);
-        }
     }
 }

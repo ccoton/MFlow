@@ -7,7 +7,7 @@
       <NotEmpty property="Username" message="Username cannot be empty" />
       <NotEmpty property="Password" message="Password cannot be empty" />
       <NotEmpty property="ConfirmPassword" message="Confirm Password cannot be empty" />
-      <IsEmail property="Email" message="Enter a valid email address" />
+      <IsEmail property="Email" message="$EmailAddressShouldBeValid$" />
       <EqualTo property="Password" toProperty="ConfirmPassword" message="Passwords must match" />
       <EqualTo property="ConfirmPassword" toProperty="Password" message="Passwords must match" />
       <RegEx property="Username" value="[A-Za-z][A-Za-z0-9._]{5,14}" message="Username should be 6-15 characters." />

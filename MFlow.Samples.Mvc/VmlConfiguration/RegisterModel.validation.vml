@@ -6,7 +6,7 @@ Rules
 [Display] Username cannot be empty [When] Username [Is] Empty
 [Display] Password cannot be empty [When] Password [Is] Empty
 [Display] Confirm password cannot be empty [When] ConfirmPassword [Is] Empty
-[Display] Enter a valid email address [When] Email [Is] NotAnEmail
+[Display] $EmailAddressShouldBeValid$ [When] Email [Is] NotAnEmail
 [Display] Password must be the same as confirm password [When] Password [Is] NotEqualToExpression [Exp] ConfirmPassword
 [Display] Confirmed password must be the same as password [When] ConfirmPassword [Is] NotEqualToExpression [Exp] Password
 [Display] Username should be between 6 and 15 characters [When] Username [Is] NotStringPattern [RegEx] [A-Za-z][A-Za-z0-9._]{5,14}

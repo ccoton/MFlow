@@ -1,7 +1,7 @@
 ﻿Fluent Validation
 Validator
 Rules
-[Display] $UsernameShouldBeEmail$ [When] Username [Is] NotAnEmail
+[Display] Username should be an email [When] Username [Is] NotAnEmail
 Rules
 Validator
 Fluent Validation
