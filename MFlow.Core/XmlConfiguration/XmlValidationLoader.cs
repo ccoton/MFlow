@@ -99,7 +99,12 @@ namespace MFlow.Core.XmlConfiguration
             {
                 var condition = item.Name.ToString();
                 var location = item.Attribute(XName.Get("location")).Value;
-                var message = item.Attribute(XName.Get("message")).Value;
+
+                var message = string.Empty;
+                var messageAttribute = item.Attribute(XName.Get("message"));
+
+                if(messageAttribute!= null)
+                    message = messageAttribute.Value;
 
                 Assembly.Load(location).GetTypes().Where(t => t.IsClass && t.Name.ToLower() == condition.ToLower() && typeof(IFluentValidationCustomRule<T>).IsAssignableFrom(t)).ToList()
                 .ForEach(f =>
@@ -194,9 +199,14 @@ namespace MFlow.Core.XmlConfiguration
             foreach (var item in nodes)
             {
                 var propertyName = item.Attribute(XName.Get("property")).Value;
-                var message = item.Attribute(XName.Get("message")).Value;
+                var messageAttribute = item.Attribute(XName.Get("message"));
                 var valueAttribute = item.Attribute(XName.Get("value"));
                 var toPropertyName = item.Attribute(XName.Get("toProperty"));
+
+                var message = string.Empty;
+
+                if (messageAttribute != null)
+                    message = messageAttribute.Value;
 
                 var parameter = Expression.Parameter(typeof(T));
                 var property = Expression.Property(parameter, propertyName);

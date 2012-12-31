@@ -1,7 +1,1 @@
-﻿Fluent Validation
-Validator
-Rules
-[Display] Username must be Fred [When] Username [Is] NotEqual [To] fred
-Rules
-Validator
-Fluent Validation
+﻿[Display] Username must be Fred [When] Username [Is] NotEqual [To] fred

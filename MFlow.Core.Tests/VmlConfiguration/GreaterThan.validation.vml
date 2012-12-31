@@ -1,7 +1,1 @@
-﻿Fluent Validation
-Validator
-Rules
-[Display] Login count must be greater than 10 [When] LoginCount [Is] LessThanOrEqualTo [Value] 10
-Rules
-Validator
-Fluent Validation
+﻿[Display] Login count must be greater than 10 [When] LoginCount [Is] LessThanOrEqualTo [Value] 10

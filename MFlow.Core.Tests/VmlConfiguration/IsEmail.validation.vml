@@ -1,7 +1,1 @@
-﻿Fluent Validation
-Validator
-Rules
-[Display] Username should be an email [When] Username [Is] NotAnEmail
-Rules
-Validator
-Fluent Validation
+﻿[Display] Username should be an email [When] Username [Is] NotAnEmail

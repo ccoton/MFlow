@@ -94,7 +94,8 @@ namespace MFlow.Core.Internal
 
         private bool ShouldResolve(string message)
         {
-            if (!string.IsNullOrEmpty(message) && !(message.StartsWith("$") && message.EndsWith("$")))
+            if (!string.IsNullOrEmpty(message) && !string.IsNullOrWhiteSpace(message) 
+                && !(message.StartsWith("$") && message.EndsWith("$")))
             {
                 return false;
             }
