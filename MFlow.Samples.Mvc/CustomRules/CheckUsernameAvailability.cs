@@ -20,7 +20,7 @@ namespace MFlow.Samples.Mvc.CustomRules
         {
             var target = targetFunc();
             return _factory.GetFluentValidation<RegisterModel>(target)
-                .Check(UsernameService.UsernameAvailable(target.UserName), 
+                .If(UsernameService.UsernameAvailable(target.UserName), 
                     key:"UserName", 
                     message:string.Format("Try {0}", UsernameService.SuggestedUsername(target.UserName))
                 );

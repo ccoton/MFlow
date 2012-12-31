@@ -13,6 +13,16 @@ namespace MFlow.Core.Conditions
     public interface IFluentConditions<T>
     {
         /// <summary>
+        ///     Takes a boolean IF condition and evaluates it
+        /// </summary>
+        IFluentConditions<T> If(bool condition, string key = "", string message = "");
+
+        /// <summary>
+        ///     Takes an Expression and invokes it as a boolean IF condition, then evaluates it
+        /// </summary>
+        IFluentConditions<T> If(Expression<Func<T, bool>> expression, string key="", string message = "");
+
+        /// <summary>
         ///     Takes a boolean AND condition and evaluates it
         /// </summary>
         IFluentConditions<T> And(bool condition, string key = "", string message = "");

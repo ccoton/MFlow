@@ -23,14 +23,24 @@ namespace MFlow.Core.Validation
         T GetTarget();
 
         /// <summary>
+        ///     Takes a boolean IF condition and evaluates it
+        /// </summary>
+        IFluentValidation<T> If(bool condition, string key = "", string message = "");
+
+        /// <summary>
+        ///     Takes an Expression and invokes it as a boolean IF condition, then evaluates it
+        /// </summary>
+        IFluentValidation<T> If(Expression<Func<T, bool>> expression, string message = "");
+
+        /// <summary>
         ///     Takes a boolean AND condition and evaluates it
         /// </summary>
-        IFluentValidation<T> Check(bool condition, string key = "", string message = "");
+        IFluentValidation<T> And(bool condition, string key = "", string message = "");
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean AND condition, then evaluates it
         /// </summary>
-        IFluentValidation<T> Check(Expression<Func<T, bool>> expression, string message = "");
+        IFluentValidation<T> And(Expression<Func<T, bool>> expression, string message = "");
 
         /// <summary>
         ///     Takes a boolean OR condition and evaluates it

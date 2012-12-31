@@ -23,7 +23,7 @@ namespace MFlow.Core.Validation
         internal FluentValidation(T validate)
             : base(validate)
         {
-            this.Check(validate == null).Throw(new ArgumentException("validate"));
+            this.If(validate == null).Throw(new ArgumentException("validate"));
             _resolver = new PropertyNameResolver();
             base.Clear();
         }
@@ -54,9 +54,27 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
+        ///     Takes a boolean IF condition and evaluates it
+        /// </summary>
+        public new IFluentValidation<T> If(bool condition, string key = "", string message = "")
+        {
+            base.If(condition, key, message);
+            return this;
+        }
+
+        /// <summary>
+        ///     Takes an Expression and invokes it as a boolean IF condition, then evaluates it
+        /// </summary>
+        public IFluentValidation<T> If(Expression<Func<T, bool>> expression, string message = "")
+        {
+            If(expression, _resolver.Resolve<T, bool>(expression), message);
+            return this;
+        }
+
+        /// <summary>
         ///     Takes a boolean AND condition and evaluates it
         /// </summary>
-        public new IFluentValidation<T> Check(bool condition, string key = "", string message = "")
+        public new IFluentValidation<T> And(bool condition, string key = "", string message = "")
         {
             base.And(condition, key, message);
             return this;
@@ -65,7 +83,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean AND condition, then evaluates it
         /// </summary>
-        public IFluentValidation<T> Check(Expression<Func<T, bool>> expression, string message = "")
+        public IFluentValidation<T> And(Expression<Func<T, bool>> expression, string message = "")
         {
             And(expression, _resolver.Resolve<T, bool>(expression), message);
             return this;
