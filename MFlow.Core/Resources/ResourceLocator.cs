@@ -54,11 +54,25 @@ namespace MFlow.Core.Resources
         private static void LoadAndCache(string fileName)
         {
             var path = string.Format(@"{0}\Resources\Xml\{1}", Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath), fileName);
-
+            var customPath = string.Format(@"{0}\Resources\Xml\Custom.{1}", Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath), fileName);
             if (!_resources.ContainsKey(path))
             {
                 if (File.Exists(path))
-                    _resources.Add(fileName, ParseDocument(LoadDocument(path)));
+                {
+                    var document = ParseDocument(LoadDocument(path));
+
+                    if(File.Exists(customPath))
+                    {
+                        var customDocument = ParseDocument(LoadDocument(customPath));
+
+                        foreach(var item in customDocument)
+                            document.Add(item.Key,item.Value);
+
+                    }
+
+                    _resources.Add(fileName, document);
+
+                }
             }
         }
 
