@@ -27,7 +27,7 @@ namespace MFlow.Core.Validation
             Func<T, C> compiledValue = valueExpression.Compile();
             Expression<Func<T, bool>> derived = f => (compiled.Invoke(_target) != null && compiledValue.Invoke(_target) != null)
                 && compiled.Invoke(_target).Equals(compiledValue.Invoke(_target));
-            If(derived, _resolver.Resolve<T, C>(expression), message, conditionType);
+            If(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, valueExpression, Enums.ValidationType.Equal, message), conditionType);
             return this;
         }
 
@@ -38,7 +38,7 @@ namespace MFlow.Core.Validation
         {
             Func<T, C> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) != null && compiled.Invoke(_target).Equals(value);
-            If(derived, _resolver.Resolve<T, C>(expression), message, conditionType);
+            If(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.Equal, message), conditionType);
             return this;
         }
 
@@ -51,7 +51,7 @@ namespace MFlow.Core.Validation
             Func<T, C> compiledValue = valueExpression.Compile();
             Expression<Func<T, bool>> derived = f => (compiled.Invoke(_target) != null && compiledValue.Invoke(_target) != null) 
                 && !compiled.Invoke(_target).Equals(compiledValue.Invoke(_target));
-            If(derived, _resolver.Resolve<T, C>(expression), message, conditionType);
+            If(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, valueExpression, Enums.ValidationType.NotEqual, message), conditionType);
             return this;
         }
 
@@ -62,7 +62,7 @@ namespace MFlow.Core.Validation
         {
             Func<T, C> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) != null && !compiled.Invoke(_target).Equals(value);
-            If(derived, _resolver.Resolve<T, C>(expression), message, conditionType);
+            If(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.NotEqual, message), conditionType);
             return this;
         }
 

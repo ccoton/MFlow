@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Resources;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+
+namespace MFlow.Core.Resources
+{
+    /// <summary>
+    ///     A resource locator implementation
+    /// </summary>
+    internal class ResourceLocator : IResourceLocator
+    {
+
+        private static readonly Dictionary<string, Dictionary<string, string>> _resources;
+
+        /// <summary>
+        ///     Static constructor that loads the default and current culture resources
+        /// </summary>
+        static ResourceLocator()
+        {
+            _resources = new Dictionary<string, Dictionary<string, string>>();
+
+            LoadAndCache(string.Format("Messages.{0}.xml", Thread.CurrentThread.CurrentUICulture.Name));
+            LoadAndCache("Messages.en.xml");
+        }
+
+        /// <summary>
+        ///     Gets a resource by key for the loaded cultures, will try to load the current culture again if it hasnt 
+        ///     already been loaded
+        /// </summary>
+        public string GetResource(string key)
+        {
+            var derivedName = string.Format("Messages.{0}.xml", Thread.CurrentThread.CurrentUICulture.Name);
+            var defaultName = string.Format("Messages.en.xml", Thread.CurrentThread.CurrentUICulture.Name);
+
+            if(!_resources.ContainsKey(derivedName))
+                LoadAndCache(string.Format("Messages.{0}.xml", Thread.CurrentThread.CurrentUICulture.Name));
+
+            Dictionary<string, string> dictionary;
+            if (_resources.ContainsKey(derivedName))
+                dictionary = _resources.Single(r => r.Key == derivedName).Value;
+            else
+                dictionary = _resources.Single(r => r.Key == defaultName).Value;
+
+            return dictionary.Single(i => i.Key == key).Value;
+        }
+
+        private static void LoadAndCache(string fileName)
+        {
+            var path = string.Format(@"{0}\Resources\Xml\{1}", Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath), fileName);
+
+            if (!_resources.ContainsKey(path))
+            {
+                if (File.Exists(path))
+                    _resources.Add(fileName, ParseDocument(LoadDocument(path)));
+            }
+        }
+
+        private static XDocument LoadDocument(string fileName)
+        {
+            var document = XDocument.Load(fileName);
+            return document;
+        }
+
+        private static Dictionary<string, string> ParseDocument(XDocument document)
+        {
+            var output = new Dictionary<string, string>();
+            var nodes = document.Descendants(XName.Get("Messages")).SingleOrDefault().Descendants();
+
+            foreach (var item in nodes)
+            {
+                output.Add(item.Name.LocalName, item.Value);
+            }
+
+            return output;
+        }
+    }
+}

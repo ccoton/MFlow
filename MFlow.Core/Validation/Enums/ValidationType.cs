@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MFlow.Core.Validation.Enums
+{
+    public enum ValidationType
+    {
+        NotEmpty = 0,
+        Equal = 1,
+        NotEqual = 2,
+        LessThan = 3,
+        GreaterThan = 4,
+        LessThanOrEqualTo = 5,
+        GreaterThanOrEqualTo = 6,
+        RegEx = 7,
+        IsEmail = 8,
+        Contains = 9,
+        Before = 10,
+        After = 11, 
+        On = 12
+    }
+}

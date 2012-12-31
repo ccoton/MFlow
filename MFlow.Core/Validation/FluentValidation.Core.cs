@@ -16,6 +16,7 @@ namespace MFlow.Core.Validation
     public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>
     {
         private readonly IPropertyNameResolver _resolver;
+        private readonly IMessageResolver _messageResolver;
 
         /// <summary>
         ///     Constructor
@@ -25,6 +26,7 @@ namespace MFlow.Core.Validation
         {
             this.If(validate == null).Throw(new ArgumentException("validate"));
             _resolver = new PropertyNameResolver();
+            _messageResolver = new MessageResolver();
             base.Clear();
         }
 

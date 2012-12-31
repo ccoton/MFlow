@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Messages>
+  <NotEmpty>{0} should not be empty</NotEmpty>
+  <Equal>{0} should be equal to {1}</Equal>
+  <NotEqual>{0} should not be equal to {1}</NotEqual>
+  <LessThan>{0} should be less than {1}</LessThan>
+  <LessThanOrEqualTo>{0} should be less than or equal to {1}</LessThanOrEqualTo>
+  <GreaterThan>{0} should be greater than {1}</GreaterThan>
+  <GreaterThanOrEqualTo>{0} should be greater than or equal to {1}</GreaterThanOrEqualTo>
+  <RegEx>{0} should validate expression {1}</RegEx>
+  <IsEmail>{0} should be an email</IsEmail>
+  <Contains>{0} should contain {1}</Contains>
+  <Before>{0} should be before {1}</Before>
+  <After>{0} should be after {1}</After>
+  <On>{0} should be on {1}</On>
+</Messages>

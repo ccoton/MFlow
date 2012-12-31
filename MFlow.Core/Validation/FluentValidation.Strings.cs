@@ -23,7 +23,8 @@ namespace MFlow.Core.Validation
         {
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target));
-            base.If(derived, _resolver.Resolve<T, string>(expression), message);
+
+            base.If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.NotEmpty, message));
             return this;
         }
 
@@ -34,7 +35,7 @@ namespace MFlow.Core.Validation
         {
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && new Regex(regEx).IsMatch(compiled.Invoke(_target));
-            base.And(derived, _resolver.Resolve<T, string>(expression), message);
+            base.And(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, regEx, Enums.ValidationType.RegEx, message));
             return this;
         }
 
@@ -43,7 +44,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsEmail(Expression<Func<T, string>> expression, string message = "", ConditionType conditionType = ConditionType.And)
         {
-            RegEx(expression, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", message: message, conditionType: conditionType);
+            RegEx(expression, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", message: _messageResolver.Resolve(expression, Enums.ValidationType.IsEmail, message), conditionType: conditionType);
             return this;
         }
 
@@ -54,7 +55,7 @@ namespace MFlow.Core.Validation
         {
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && compiled.Invoke(_target).Contains(value);
-            base.If(derived, _resolver.Resolve<T, string>(expression), message);
+            base.If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.Contains, message));
             return this;
         }
     }
