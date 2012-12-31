@@ -52,7 +52,7 @@ The validator will look for a resource xml file for the current culture and deri
       <On>{0} should be on {1}</On>
     </Messages>
 
-There is also, purely for example purposes a french resource file (Message.fr-FR.xml) that looks like this:
+There is also, purely for example purposes a french resource file (Messages.fr-FR.xml) that looks like this:
 
     <Messages>
       <NotEmpty>{0} ne doit pas être vide</NotEmpty>
@@ -72,7 +72,7 @@ There is also, purely for example purposes a french resource file (Message.fr-FR
 
 You can see from the quick example how easy it can be to setup some conditions and display the default validation messages in the correct culture for the user. 
     
-The above resource files can also be extended. Creating a resource file called Custom.Message.fr-FR for example like so:
+The above resource files can also be extended. Creating a resource file called Custom.Messages.fr-FR for example like so:
 
     <Messages>
       <EmailAddressShouldBeValid>La valeur entrée doit être une adresse e-mail</EmailAddressShouldBeValid>
