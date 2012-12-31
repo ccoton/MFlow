@@ -410,5 +410,13 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("Username should not be empty", results.First().Condition.Message);
         }
 
+        [TestMethod]
+        public void Test_Fluent_Validation_IsEmail_False_Loaded_From_Xml()
+        {
+            var user = new User() { Username = "testing" };
+            IFluentValidation<User> fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsEmail.validation.xml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
     }
 }

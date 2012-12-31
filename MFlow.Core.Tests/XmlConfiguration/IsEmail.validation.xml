@@ -2,7 +2,7 @@
 <FluentValidation>
   <Validator>
     <Rules>
-      <IsEmail property="Username" message="Username should be an email" />
+      <IsEmail property="Username" message="$UsernameShouldBeEmail$" />
     </Rules>
   </Validator>
 </FluentValidation>

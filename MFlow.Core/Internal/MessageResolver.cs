@@ -30,17 +30,21 @@ namespace MFlow.Core.Internal
         /// </summary>
         public string Resolve<T, O>(Expression<Func<T, O>> expression, ValidationType type, string message)
         {
-            if (!string.IsNullOrEmpty(message))
+            if (ShouldResolve(message))
             {
-                return message;
+                var customMessage = message.StartsWith("$") && message.EndsWith("$");
+                message = PrepareForResolve(message);
+                var key = customMessage ? message : type.ToString(); 
+
+                string outMessage = string.Empty;
+                var propertyName = _propertyNameResolver.Resolve(expression);
+
+                outMessage = string.Format(_resourceLocator.GetResource(key), propertyName);
+
+                return outMessage;
             }
 
-            string outMessage = string.Empty;
-            var propertyName = _propertyNameResolver.Resolve(expression);
-
-            outMessage = string.Format(_resourceLocator.GetResource(type.ToString()), propertyName);
-
-            return outMessage;
+            return message;
         }
 
         /// <summary>
@@ -48,17 +52,21 @@ namespace MFlow.Core.Internal
         /// </summary>
         public string Resolve<T, O>(Expression<Func<T, O>> expression, O value, ValidationType type, string message)
         {
-            if (!string.IsNullOrEmpty(message))
+            if (ShouldResolve(message))
             {
-                return message;
+                var customMessage = message.StartsWith("$") && message.EndsWith("$");
+                message = PrepareForResolve(message);
+                var key = customMessage ? message : type.ToString(); 
+
+                string outMessage = string.Empty;
+                var propertyName = _propertyNameResolver.Resolve(expression);
+
+                outMessage = string.Format(_resourceLocator.GetResource(key), propertyName, value.ToString());
+
+                return outMessage;
             }
 
-            string outMessage = string.Empty;
-            var propertyName = _propertyNameResolver.Resolve(expression);
-
-            outMessage = string.Format(_resourceLocator.GetResource(type.ToString()), propertyName, value.ToString());
-
-            return outMessage;
+            return message; 
         }
 
         /// <summary>
@@ -66,18 +74,43 @@ namespace MFlow.Core.Internal
         /// </summary>
         public string Resolve<T, O>(Expression<Func<T, O>> expression, Expression<Func<T, O>> toExpression, ValidationType type, string message)
         {
-            if (!string.IsNullOrEmpty(message))
+            if (ShouldResolve(message))
             {
-                return message;
+                var customMessage = message.StartsWith("$") && message.EndsWith("$");
+                message = PrepareForResolve(message);
+                var key = customMessage ? message : type.ToString(); 
+
+                string outMessage = string.Empty;
+                var propertyName = _propertyNameResolver.Resolve(expression);
+                var toPropertyName = _propertyNameResolver.Resolve(toExpression);
+
+                outMessage = string.Format(_resourceLocator.GetResource(key), propertyName, toPropertyName.ToString());
+
+                return outMessage;
             }
 
-            string outMessage = string.Empty;
-            var propertyName = _propertyNameResolver.Resolve(expression);
-            var toPropertyName = _propertyNameResolver.Resolve(toExpression);
+            return message;
+        }
 
-            outMessage = string.Format(_resourceLocator.GetResource(type.ToString()), propertyName, toPropertyName.ToString());
+        private bool ShouldResolve(string message)
+        {
+            if (!string.IsNullOrEmpty(message) && !(message.StartsWith("$") && message.EndsWith("$")))
+            {
+                return false;
+            }
 
-            return outMessage;
+            return true;
+        }
+
+        private string PrepareForResolve(string message)
+        {
+            if ((message.StartsWith("$") && message.EndsWith("$")))
+            {
+                message = message.Substring(1);
+                message = message.Substring(0, message.Length - 1);
+            }
+
+            return message;
         }
     }
 }
