@@ -128,6 +128,16 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
+        ///     Add a message to a validation expression
+        /// </summary>
+        public IFluentValidation<T> Message(string message)
+        {
+            if (_conditions.Any())
+                _conditions.Last().SetMessage(message);
+            return this;
+        }
+
+        /// <summary>
         ///     Clears the validator
         /// </summary>
         public new IFluentValidation<T> Clear()

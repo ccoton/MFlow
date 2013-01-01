@@ -43,5 +43,13 @@ namespace MFlow.Core.Conditions
         ///     The message used when the condition is not met
         /// </summary>
         public string Message { get; private set; }
+
+        /// <summary>
+        ///     Set the message
+        /// </summary>
+        public void SetMessage(string message)
+        {
+            Message = message;
+        }
     }
 }

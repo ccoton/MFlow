@@ -53,6 +53,11 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> Or(Expression<Func<T, bool>> expression, string message = "");
 
         /// <summary>
+        ///     Add a message to a validation expression
+        /// </summary>
+        IFluentValidation<T> Message(string message);
+
+        /// <summary>
         ///     Takes an action to execute if the validator is satisfied
         /// </summary>
         IFluentValidation<T> Then(Action execute, ExecuteThread options = ExecuteThread.Current);

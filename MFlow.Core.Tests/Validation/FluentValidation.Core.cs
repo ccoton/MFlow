@@ -418,5 +418,32 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Email_Fluent_Message()
+        {
+            var user = new User() { Username = "fred" };
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
+            var results = fluentValidation
+                .IsEmail(u => u.Username)
+                .Message("The username should be some kind of valid email address")
+                .Validate();
+
+            Assert.AreEqual("The username should be some kind of valid email address", results.First().Condition.Message);
+        }
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Email_Chained_Fluent_Message()
+        {
+            var user = new User() { Username = "fred" };
+            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
+            var results = fluentValidation
+                .IsEmail(u => u.Username)
+                .Message("The username should be some kind of valid email address")
+                .NotEmpty(u => u.Password)
+                .Message("The password should not be empty or null")
+                .Validate();
+
+            Assert.AreEqual("The password should not be empty or null", results.Skip(1).Take(1).First().Condition.Message);
+        }
     }
 }

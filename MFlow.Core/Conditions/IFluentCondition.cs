@@ -18,5 +18,7 @@ namespace MFlow.Core.Conditions
         ConditionType Type { get; }
         string Key { get; }
         string Message { get; }
+
+        void SetMessage(string message);
     }
 }
