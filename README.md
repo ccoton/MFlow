@@ -8,8 +8,8 @@ The idea is to improve and give a more fluent approach to conditional and valida
 Example:
 
     fluentValidation
-        .Check(u => u.Username).IsEqual("testing")
-        .Check(u => u.Password).IsEqual("password123")
+        .Check(u => u.Username).IsEqualTo("testing")
+        .Check(u => u.Password).IsEqualTo("password123")
         .Check(u => u.Email).IsEmail()
         .Satisfied();
 				
