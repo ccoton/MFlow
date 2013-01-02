@@ -70,28 +70,31 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="VmlConfiguration\Contains.validation.vml">
+    <None Include="VmlConfiguration\After.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="VmlConfiguration\Before.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="VmlConfiguration\After.validation.vml">
+    <None Include="VmlConfiguration\Contains.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="VmlConfiguration\On.validation.vml">
+    <None Include="VmlConfiguration\IsRequired.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="VmlConfiguration\CustomRule.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="VmlConfiguration\NotEqualExpression.validation.vml">
+    <None Include="VmlConfiguration\Equal.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="VmlConfiguration\EqualExpression.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="VmlConfiguration\RegEx.validation.vml">
+    <None Include="VmlConfiguration\GreaterThan.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VmlConfiguration\GreaterThanOrEqualTo.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="VmlConfiguration\IsEmail.validation.vml">
@@ -103,71 +106,75 @@
     <None Include="VmlConfiguration\LessThanOrEqualTo.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="VmlConfiguration\GreaterThanOrEqualTo.validation.vml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="VmlConfiguration\GreaterThan.validation.vml">
+    <None Include="VmlConfiguration\NotEmpty.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="VmlConfiguration\NotEqual.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="VmlConfiguration\Equal.validation.vml">
+    <None Include="VmlConfiguration\NotEqualExpression.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="VmlConfiguration\NotEmpty.validation.vml">
+    <None Include="VmlConfiguration\On.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="XmlConfiguration\Contains.validation.xml">
+    <None Include="VmlConfiguration\RegEx.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="XmlConfiguration\After.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XmlConfiguration\Before.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlConfiguration\On.validation.xml">
+    <Content Include="XmlConfiguration\Contains.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlConfiguration\NotEqualExpression.validation.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XmlConfiguration\EqualExpression.validation.xml">
+    <Content Include="XmlConfiguration\IsRequired.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XmlConfiguration\CustomRule.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlConfiguration\IsEmail.validation.xml">
+    <Content Include="XmlConfiguration\Equal.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlConfiguration\RegEx.validation.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XmlConfiguration\GreaterThanOrEqualTo.validation.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XmlConfiguration\LessThanOrEqualTo.validation.xml">
+    <Content Include="XmlConfiguration\EqualExpression.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XmlConfiguration\GreaterThan.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="XmlConfiguration\GreaterThanOrEqualTo.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\IsEmail.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="XmlConfiguration\LessThan.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XmlConfiguration\NotEqual.validation.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XmlConfiguration\Equal.validation.xml">
+    <Content Include="XmlConfiguration\LessThanOrEqualTo.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XmlConfiguration\NotEmpty.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="XmlConfiguration\NotEqual.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\NotEqualExpression.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\On.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\RegEx.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
-  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

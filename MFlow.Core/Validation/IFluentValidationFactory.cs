@@ -14,6 +14,6 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Gets a fluent validation implementation
         /// </summary>
-        IFluentCreator<T> GetFluentValidation<T>(T target, bool loadXmlRuleset = false, string fileName = "");
+        IFluentValidationBuilder<T> GetFluentValidation<T>(T target, bool loadXmlRuleset = false, string fileName = "");
     }
 }

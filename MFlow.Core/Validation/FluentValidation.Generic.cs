@@ -21,7 +21,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an object that is equal to the value expression 
         /// </summary>
-        public IFluentValidation<T> IsEqual<C>(Expression<Func<T, C>> valueExpression, ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> IsEqualTo<C>(Expression<Func<T, C>> valueExpression, ConditionType conditionType = ConditionType.And)
         {
             Expression<Func<T, C>> expression = (Expression<Func<T, C>>)_expressions.Last();
             Func<T, C> compiled = expression.Compile();
@@ -35,7 +35,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an object that is equal to the value 
         /// </summary>
-        public IFluentValidation<T> IsEqual<C>(C value, ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> IsEqualTo<C>(C value, ConditionType conditionType = ConditionType.And)
         {
             Expression<Func<T, C>> expression = (Expression<Func<T, C>>)_expressions.Last();
             Func<T, C> compiled = expression.Compile();
@@ -47,7 +47,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an object that is equal to the value expression 
         /// </summary>
-        public IFluentValidation<T> IsNotEqual<C>(Expression<Func<T, C>> valueExpression, ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> IsNotEqualTo<C>(Expression<Func<T, C>> valueExpression, ConditionType conditionType = ConditionType.And)
         {
             Expression<Func<T, C>> expression = (Expression<Func<T, C>>)_expressions.Last();
             Func<T, C> compiled = expression.Compile();
@@ -61,12 +61,24 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an object that is not equal to the value 
         /// </summary>
-        public IFluentValidation<T> IsNotEqual<C>(C value, ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> IsNotEqualTo<C>(C value, ConditionType conditionType = ConditionType.And)
         {
             Expression<Func<T, C>> expression = (Expression<Func<T, C>>)_expressions.Last();
             Func<T, C> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) != null && !compiled.Invoke(_target).Equals(value);
             If(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.NotEqual, string.Empty), conditionType);
+            return this;
+        }
+
+        /// <summary>
+        ///     Is the item required
+        /// </summary>
+        public IFluentValidation<T> IsRequired<C>(ConditionType conditionType = ConditionType.And)
+        {
+            Expression<Func<T, C>> expression = (Expression<Func<T, C>>)_expressions.Last();
+            Func<T, C> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) != null && !string.IsNullOrEmpty(compiled.Invoke(_target).ToString()) && !compiled.Invoke(_target).Equals(default(C));
+            If(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsRequired, string.Empty), conditionType);
             return this;
         }
 

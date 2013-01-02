@@ -18,7 +18,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing" };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Check(u => u.Username).IsEqual("testing").Satisfied());
+                .Check(u => u.Username).IsEqualTo("testing").Satisfied());
         }
 
         [TestMethod]
@@ -27,7 +27,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing", ConfirmPassword = "password123" };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Check(u => u.Password).IsEqual(u=>u.ConfirmPassword).Satisfied());
+                .Check(u => u.Password).IsEqualTo(u=>u.ConfirmPassword).Satisfied());
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing" };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Check(u => u.Username).IsNotEqual("testing").Satisfied());
+                .Check(u => u.Username).IsNotEqualTo("testing").Satisfied());
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = "testing", ConfirmPassword = "password1234" };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Check(u => u.Password).IsNotEqual(u => u.ConfirmPassword).Satisfied());
+                .Check(u => u.Password).IsNotEqualTo(u => u.ConfirmPassword).Satisfied());
         }
 
         [TestMethod]
@@ -54,7 +54,25 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Password = "password123", Username = null };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Check(u => u.Username).IsNotEqual("testing").Satisfied());
+                .Check(u => u.Username).IsNotEqualTo("testing").Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsRequired_When_Valid()
+        {
+            var user = new User() { Password = "password123", Username = "testing", ConfirmPassword = "password1234" };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsTrue(fluentValidation
+                .Check(u => u.Password).IsRequired<string>().Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsRequired_When_Empty()
+        {
+            var user = new User() { Password = "", Username = "testing", ConfirmPassword = "password1234" };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                .Check(u => u.Password).IsRequired<string>().Satisfied());
         }
 
         [TestMethod]

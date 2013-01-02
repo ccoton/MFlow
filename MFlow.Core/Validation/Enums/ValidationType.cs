@@ -20,6 +20,7 @@ namespace MFlow.Core.Validation.Enums
         Contains = 9,
         Before = 10,
         After = 11, 
-        On = 12
+        On = 12,
+        IsRequired = 13
     }
 }

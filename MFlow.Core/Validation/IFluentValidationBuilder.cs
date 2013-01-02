@@ -8,7 +8,7 @@ using MFlow.Core.Conditions;
 
 namespace MFlow.Core.Validation
 {
-    public interface IFluentCreator<T>
+    public interface IFluentValidationBuilder<T>
     {
         /// <summary>
         ///     Sets the target of this validation instance
@@ -21,6 +21,9 @@ namespace MFlow.Core.Validation
         /// <returns></returns>
         T GetTarget();
 
+        /// <summary>
+        ///     Sets up a condition
+        /// </summary>
         IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And);
 
         /// <summary>

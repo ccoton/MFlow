@@ -13,4 +13,5 @@
   <Before>{0} should be before {1}</Before>
   <After>{0} should be after {1}</After>
   <On>{0} should be on {1}</On>
+  <IsRequired>{0} is a required field</IsRequired>
 </Messages>

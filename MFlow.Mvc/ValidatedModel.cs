@@ -13,7 +13,7 @@ namespace MFlow.Mvc
     /// </summary>
     public class ValidatedModel<T> : IValidatedModel<T>, IValidatableObject
     {
-        private IFluentCreator<T> _validator;
+        private IFluentValidationBuilder<T> _validator;
         private IFluentValidationFactory _factory;
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace MFlow.Mvc
         /// <summary>
         ///     The validation instance
         /// </summary>
-        public IFluentCreator<T> Validator
+        public IFluentValidationBuilder<T> Validator
         {
             get
             {

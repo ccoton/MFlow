@@ -13,7 +13,7 @@ namespace MFlow.Core.Validation
     /// <summary>
     ///     A fluent validation implementation
     /// </summary>
-    public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>, IFluentCreator<T>
+    public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>, IFluentValidationBuilder<T>
     {
         private readonly IPropertyNameResolver _resolver;
         private readonly IMessageResolver _messageResolver;

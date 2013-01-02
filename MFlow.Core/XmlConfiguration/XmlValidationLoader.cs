@@ -85,6 +85,7 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseAfter(validator, document);
             validator = ParseBefore(validator, document);
             validator = ParseOn(validator, document);
+            validator = ParseIsRequired(validator, document);
 
             return validator;
         }
@@ -122,6 +123,11 @@ namespace MFlow.Core.XmlConfiguration
             return CreateExpressions<T, string, string>(validator, document, "NotEmpty", (e, ev, m, v) => { return validator.Check(e).IsNotEmpty().Message(m); });
         }
 
+        private IFluentValidation<T> ParseIsRequired<T>(IFluentValidation<T> validator, XDocument document)
+        {
+            return CreateExpressions<T, string, string>(validator, document, "IsRequired", (e, ev, m, v) => { return validator.Check(e).IsRequired<string>().Message(m); });
+        }
+
         private IFluentValidation<T> ParseContains<T>(IFluentValidation<T> validator, XDocument document)
         {
             return CreateExpressions<T, string, string>(validator, document, "Contains", (e, ev, m, v) => { return validator.Check(e).Contains(v).Message(m); });
@@ -139,22 +145,22 @@ namespace MFlow.Core.XmlConfiguration
 
         private IFluentValidation<T> ParseEqual<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "Equal", (e, ev, m, v) => { return validator.Check(e).IsEqual(v).Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "Equal", (e, ev, m, v) => { return validator.Check(e).IsEqualTo(v).Message(m); });
         }
 
         private IFluentValidation<T> ParseEqualExpression<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "EqualTo", (e, ev, m, v) => { return validator.Check(e).IsEqual(ev).Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "EqualTo", (e, ev, m, v) => { return validator.Check(e).IsEqualTo(ev).Message(m); });
         }
 
         private IFluentValidation<T> ParseNotEqual<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "NotEqual", (e, ev, m, v) => { return validator.Check(e).IsNotEqual(v).Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "NotEqual", (e, ev, m, v) => { return validator.Check(e).IsNotEqualTo(v).Message(m); });
         }
 
         private IFluentValidation<T> ParseNotEqualExpression<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "NotEqualTo", (e, ev, m, v) => { return validator.Check(e).IsNotEqual(ev).Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "NotEqualTo", (e, ev, m, v) => { return validator.Check(e).IsNotEqualTo(ev).Message(m); });
         }
 
         private IFluentValidation<T> ParseLessThan<T>(IFluentValidation<T> validator, XDocument document)
