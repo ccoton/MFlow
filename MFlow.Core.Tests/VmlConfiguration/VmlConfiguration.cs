@@ -157,7 +157,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
         }
 
         [TestMethod]
-        public void Test_Fluent_Validation_After_False_Loaded_From_Xml()
+        public void Test_Fluent_Validation_After_False_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/02/2010") };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "After.validation.vml");
@@ -165,7 +165,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
         }
 
         [TestMethod]
-        public void Test_Fluent_Validation_After_True_Loaded_From_Xml()
+        public void Test_Fluent_Validation_After_True_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/02/2020") };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "After.validation.vml");
@@ -173,7 +173,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
         }
 
         [TestMethod]
-        public void Test_Fluent_Validation_Before_False_Loaded_From_Xml()
+        public void Test_Fluent_Validation_Before_False_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/02/2020") };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "Before.validation.vml");
@@ -181,7 +181,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
         }
 
         [TestMethod]
-        public void Test_Fluent_Validation_Before_True_Loaded_From_Xml()
+        public void Test_Fluent_Validation_Before_True_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/02/2010") };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "Before.validation.vml");
@@ -189,7 +189,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
         }
 
         [TestMethod]
-        public void Test_Fluent_Validation_On_False_Loaded_From_Xml()
+        public void Test_Fluent_Validation_On_False_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/02/2015") };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "On.validation.vml");
@@ -197,7 +197,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
         }
 
         [TestMethod]
-        public void Test_Fluent_Validation_On_True_Loaded_From_Xml()
+        public void Test_Fluent_Validation_On_True_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/01/2015") };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "On.validation.vml");

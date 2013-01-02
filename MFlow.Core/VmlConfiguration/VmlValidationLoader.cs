@@ -105,6 +105,10 @@ namespace MFlow.Core.XmlConfiguration
         private IFluentValidation<T> ParseCustomRules<T>(IFluentValidation<T> validator, string fileName)
         {
             var document = LoadDocument(fileName);
+
+            if (!document.Contains("\r\n"))
+                document = document.Replace("\n", "\r\n");
+
             var nodes = document.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
             nodes = nodes.Where(n => n.ToLower().Contains("[location]") && n.ToLower().StartsWith("[display]")).ToList();
 
@@ -210,6 +214,9 @@ namespace MFlow.Core.XmlConfiguration
 
         private IFluentValidation<T> CreateExpressions<T, O, C>(IFluentValidation<T> validator, string document, string nodeName, Func<Expression<Func<T, O>>, Expression<Func<T, O>>, string, C, IFluentValidation<T>> function)
         {
+            if (!document.Contains("\r\n"))
+                document = document.Replace("\n", "\r\n");
+
             var nodes = document.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
             nodes = nodes.Where(n => !n.ToLower().Contains("[location]") && n.ToLower().StartsWith("[display]") && n.ToLower().Contains(nodeName.ToLower())).ToList();
 

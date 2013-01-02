@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MFlow.Core.Conditions;
 using MFlow.Core.Events;
 using MFlow.Core.Internal;
+using MFlow.Core.Validation.Enums;
 
 namespace MFlow.Core.Validation
 {

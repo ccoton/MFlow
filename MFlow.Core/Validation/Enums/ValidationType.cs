@@ -8,6 +8,7 @@ namespace MFlow.Core.Validation.Enums
 {
     public enum ValidationType
     {
+        Unknown = 999,
         NotEmpty = 0,
         Equal = 1,
         NotEqual = 2,
