@@ -23,34 +23,44 @@ namespace MFlow.Core.Validation
         T GetTarget();
 
         /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
         ///     Takes a boolean IF condition and evaluates it
         /// </summary>
-        IFluentValidation<T> If(bool condition, string key = "", string message = "");
+        IFluentValidation<T> If(bool condition);
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean IF condition, then evaluates it
         /// </summary>
-        IFluentValidation<T> If(Expression<Func<T, bool>> expression, string message = "");
+        IFluentValidation<T> If(Expression<Func<T, bool>> expression);
 
         /// <summary>
         ///     Takes a boolean AND condition and evaluates it
         /// </summary>
-        IFluentValidation<T> And(bool condition, string key = "", string message = "");
+        IFluentValidation<T> And(bool condition);
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean AND condition, then evaluates it
         /// </summary>
-        IFluentValidation<T> And(Expression<Func<T, bool>> expression, string message = "");
+        IFluentValidation<T> And(Expression<Func<T, bool>> expression);
 
         /// <summary>
         ///     Takes a boolean OR condition and evaluates it
         /// </summary>
-        IFluentValidation<T> Or(bool condition, string key = "", string message = "");
+        IFluentValidation<T> Or(bool condition);
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean OR condition, then evaluates it
         /// </summary>
-        IFluentValidation<T> Or(Expression<Func<T, bool>> expression, string message = "");
+        IFluentValidation<T> Or(Expression<Func<T, bool>> expression);
+
+        /// <summary>
+        ///     Add a key to a validation expression
+        /// </summary>
+        IFluentValidation<T> Key(string key);
 
         /// <summary>
         ///     Add a message to a validation expression

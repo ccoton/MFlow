@@ -51,5 +51,13 @@ namespace MFlow.Core.Conditions
         {
             Message = message;
         }
+
+        /// <summary>
+        ///     Set the key
+        /// </summary>
+        public void SetKey(string key)
+        {
+            Key = key;
+        }
     }
 }

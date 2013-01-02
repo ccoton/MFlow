@@ -15,54 +15,54 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Fluent_Validation_Before_Valid()
         {
             var user = new User() { LastLogin = DateTime.Now.AddDays(-10),  Password = "password123", Username = "testing", LoginCount = 10 };
-            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Before(u => u.LastLogin, DateTime.Now).Satisfied());
+                .Check(u => u.LastLogin).Before(DateTime.Now).Satisfied());
         }
 
         [TestMethod]
         public void Test_Fluent_Validation_Before_InValid()
         {
             var user = new User() { LastLogin = DateTime.Now.AddDays(10), Password = "password123", Username = "testing", LoginCount = 10 };
-            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Before(u => u.LastLogin, DateTime.Now).Satisfied());
+                .Check(u => u.LastLogin).Before(DateTime.Now).Satisfied());
         }
 
         [TestMethod]
         public void Test_Fluent_Validation_After_Valid()
         {
             var user = new User() { LastLogin = DateTime.Now.AddDays(10), Password = "password123", Username = "testing", LoginCount = 10 };
-            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .After(u => u.LastLogin, DateTime.Now).Satisfied());
+                .Check(u => u.LastLogin).After(DateTime.Now).Satisfied());
         }
 
         [TestMethod]
         public void Test_Fluent_Validation_After_InValid()
         {
             var user = new User() { LastLogin = DateTime.Now.AddDays(-10), Password = "password123", Username = "testing", LoginCount = 10 };
-            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .After(u => u.LastLogin, DateTime.Now).Satisfied());
+                .Check(u => u.LastLogin).After(DateTime.Now).Satisfied());
         }
 
         [TestMethod]
         public void Test_Fluent_Validation_On_Valid()
         {
             var user = new User() { LastLogin = DateTime.Now, Password = "password123", Username = "testing", LoginCount = 10 };
-            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .On(u => u.LastLogin, DateTime.Now).Satisfied());
+                .Check(u => u.LastLogin).On(DateTime.Now).Satisfied());
         }
 
         [TestMethod]
         public void Test_Fluent_Validation_On_InValid()
         {
             var user = new User() { LastLogin = DateTime.Now.AddDays(-10), Password = "password123", Username = "testing", LoginCount = 10 };
-            IFluentValidation<User> fluentValidation = _factory.GetFluentValidation<User>(user);
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .On(u => u.LastLogin, DateTime.Now).Satisfied());
+                .Check(u => u.LastLogin).On(DateTime.Now).Satisfied());
         }
     }
 }

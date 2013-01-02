@@ -19,33 +19,36 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to a date that is less that the value 
         /// </summary>
-        public IFluentValidation<T> Before(Expression<Func<T, DateTime>> expression, DateTime value, string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> Before(DateTime value, ConditionType conditionType = ConditionType.And)
         {
+            Expression<Func<T, DateTime>> expression = (Expression<Func<T, DateTime>> )_expressions.Last();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) < value;
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.Before, message), conditionType);
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.Before, string.Empty), conditionType);
             return this;
         }
 
         /// <summary>
         ///     Checks if the expression evaluates to a date that is greater than the value 
         /// </summary>
-        public IFluentValidation<T> After(Expression<Func<T, DateTime>> expression, DateTime value, string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> After(DateTime value, ConditionType conditionType = ConditionType.And)
         {
+            Expression<Func<T, DateTime>> expression = (Expression<Func<T, DateTime>>)_expressions.Last();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) > value;
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.After, message), conditionType);
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.After, string.Empty), conditionType);
             return this;
         }
 
         /// <summary>
         ///     Checks if the expression evaluates to a date that is less than or equal to the value 
         /// </summary>
-        public IFluentValidation<T> On(Expression<Func<T, DateTime>> expression, DateTime value, string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> On(DateTime value, ConditionType conditionType = ConditionType.And)
         {
+            Expression<Func<T, DateTime>> expression = (Expression<Func<T, DateTime>>)_expressions.Last();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Date == value.Date;
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.On, message), conditionType);
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.On, string.Empty), conditionType);
             return this;
         }
     }

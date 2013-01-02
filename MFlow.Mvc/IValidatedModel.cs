@@ -21,7 +21,7 @@ namespace MFlow.Mvc
         /// <summary>
         ///     The validation instance
         /// </summary>
-        IFluentValidation<T> Validator { get; }
+        IFluentCreator<T> Validator { get; }
 
         /// <summary>
         ///     Validtes the current object instance against the validator

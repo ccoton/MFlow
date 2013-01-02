@@ -51,6 +51,7 @@
     <Compile Include="Resources\ResourceLocator.cs" />
     <Compile Include="Validation\Enums\ValidationType.cs" />
     <Compile Include="Validation\FluentValidationDates.cs" />
+    <Compile Include="Validation\IFluentCreator.cs" />
     <Compile Include="Validation\IFluentValidation.Dates.cs" />
     <Compile Include="VmlConfiguration\VmlValidationLoader.cs" />
     <Compile Include="Events\Event.cs" />

@@ -19,44 +19,48 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an int that is less that the value 
         /// </summary>
-        public IFluentValidation<T> LessThan(Expression<Func<T, int>> expression, int value,string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> IsLessThan(int value, ConditionType conditionType = ConditionType.And)
         {
+            Expression<Func<T, int>> expression = (Expression<Func<T, int>>)_expressions.Last();
             Func<T, int> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) < value;
-            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.LessThan, message), conditionType);
+            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.LessThan, string.Empty), conditionType);
             return this;
         }
 
         /// <summary>
         ///     Checks if the expression evaluates to an int that is greater that the value 
         /// </summary>
-        public IFluentValidation<T> GreaterThan(Expression<Func<T, int>> expression, int value, string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> IsGreaterThan(int value, ConditionType conditionType = ConditionType.And)
         {
+            Expression<Func<T, int>> expression = (Expression<Func<T, int>>)_expressions.Last();
             Func<T, int> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) > value;
-            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.GreaterThan, message), conditionType);
+            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.GreaterThan, string.Empty), conditionType);
             return this;
         }
 
         /// <summary>
         ///     Checks if the expression evaluates to an int that is less than or equal to the value 
         /// </summary>
-        public IFluentValidation<T> LessThanOrEqualTo(Expression<Func<T, int>> expression, int value,  string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> IsLessThanOrEqualTo(int value, ConditionType conditionType = ConditionType.And)
         {
+            Expression<Func<T, int>> expression = (Expression<Func<T, int>>)_expressions.Last();
             Func<T, int> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) <= value;
-            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.LessThanOrEqualTo, message), conditionType);
+            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.LessThanOrEqualTo, string.Empty), conditionType);
             return this;
         }
 
         /// <summary>
         ///     Checks if the expression evaluates to an int that is greater than or equal to the value 
         /// </summary>
-        public IFluentValidation<T> GreaterThanOrEqualTo(Expression<Func<T, int>> expression, int value,  string message = "", ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> IsGreaterThanOrEqualTo(int value, ConditionType conditionType = ConditionType.And)
         {
+            Expression<Func<T, int>> expression = (Expression<Func<T, int>>)_expressions.Last();
             Func<T, int> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) >= value;
-            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.GreaterThanOrEqualTo, message), conditionType);
+            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.GreaterThanOrEqualTo, string.Empty), conditionType);
             return this;
         }
    

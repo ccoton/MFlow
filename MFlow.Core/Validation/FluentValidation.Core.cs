@@ -13,10 +13,11 @@ namespace MFlow.Core.Validation
     /// <summary>
     ///     A fluent validation implementation
     /// </summary>
-    public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>
+    public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>, IFluentCreator<T>
     {
         private readonly IPropertyNameResolver _resolver;
         private readonly IMessageResolver _messageResolver;
+        private IList<object> _expressions;
 
         /// <summary>
         ///     Constructor
@@ -27,6 +28,7 @@ namespace MFlow.Core.Validation
             this.If(validate == null).Throw(new ArgumentException("validate"));
             _resolver = new PropertyNameResolver();
             _messageResolver = new MessageResolver();
+            _expressions = new List<object>();
             base.Clear();
         }
 
@@ -55,57 +57,67 @@ namespace MFlow.Core.Validation
             return _target;
         }
 
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        public IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And)
+        {
+            _expressions.Add(expression);
+            return this;
+        }
+
         /// <summary>
         ///     Takes a boolean IF condition and evaluates it
         /// </summary>
-        public new IFluentValidation<T> If(bool condition, string key = "", string message = "")
+        public IFluentValidation<T> If(bool condition)
         {
-            base.If(condition, key, message);
+            base.If(condition);
             return this;
         }
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean IF condition, then evaluates it
         /// </summary>
-        public IFluentValidation<T> If(Expression<Func<T, bool>> expression, string message = "")
+        public IFluentValidation<T> If(Expression<Func<T, bool>> expression)
         {
-            If(expression, _resolver.Resolve<T, bool>(expression), message);
+            If(expression, _resolver.Resolve<T, bool>(expression));
             return this;
         }
 
         /// <summary>
         ///     Takes a boolean AND condition and evaluates it
         /// </summary>
-        public new IFluentValidation<T> And(bool condition, string key = "", string message = "")
+        public IFluentValidation<T> And(bool condition)
         {
-            base.And(condition, key, message);
+            base.And(condition);
             return this;
         }
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean AND condition, then evaluates it
         /// </summary>
-        public IFluentValidation<T> And(Expression<Func<T, bool>> expression, string message = "")
+        public IFluentValidation<T> And(Expression<Func<T, bool>> expression)
         {
-            And(expression, _resolver.Resolve<T, bool>(expression), message);
+            And(expression, _resolver.Resolve<T, bool>(expression));
             return this;
         }
 
         /// <summary>
         ///     Takes a boolean OR condition and evaluates it
         /// </summary>
-        public new IFluentValidation<T> Or(bool condition, string key = "", string message = "")
+        public IFluentValidation<T> Or(bool condition)
         {
-            base.Or(condition, key, message);
+            base.Or(condition);
             return this;
         }
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean OR condition, then evaluates it
         /// </summary>
-        public IFluentValidation<T> Or(Expression<Func<T, bool>> expression, string message = "")
+        public IFluentValidation<T> Or(Expression<Func<T, bool>> expression)
         {
-            Or(expression, _resolver.Resolve<T, bool>(expression), message);
+            Or(expression, _resolver.Resolve<T, bool>(expression));
             return this;
         }
 
@@ -133,7 +145,19 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> Message(string message)
         {
             if (_conditions.Any())
+            {
                 _conditions.Last().SetMessage(message);
+            }
+            return this;
+        }
+
+        /// <summary>
+        ///     Add a key to a validation expression
+        /// </summary>
+        public IFluentValidation<T> Key(string key)
+        {
+            if (_conditions.Any())
+                _conditions.Last().SetKey(key);
             return this;
         }
 

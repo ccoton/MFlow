@@ -34,7 +34,7 @@ namespace MFlow.Core.Internal
             {
                 var customMessage = message.StartsWith("$") && message.EndsWith("$");
                 message = PrepareForResolve(message);
-                var key = customMessage ? message : type.ToString(); 
+                var key = customMessage ? message : type.ToString();
 
                 string outMessage = string.Empty;
                 var propertyName = _propertyNameResolver.Resolve(expression);
@@ -56,17 +56,17 @@ namespace MFlow.Core.Internal
             {
                 var customMessage = message.StartsWith("$") && message.EndsWith("$");
                 message = PrepareForResolve(message);
-                var key = customMessage ? message : type.ToString(); 
+                var key = customMessage ? message : type.ToString();
 
                 string outMessage = string.Empty;
                 var propertyName = _propertyNameResolver.Resolve(expression);
 
-                outMessage = string.Format(_resourceLocator.GetResource(key), propertyName, value.ToString());
+                outMessage = string.Format(_resourceLocator.GetResource(key), propertyName, value != null ? value.ToString() : "null");
 
                 return outMessage;
             }
 
-            return message; 
+            return message;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace MFlow.Core.Internal
             {
                 var customMessage = message.StartsWith("$") && message.EndsWith("$");
                 message = PrepareForResolve(message);
-                var key = customMessage ? message : type.ToString(); 
+                var key = customMessage ? message : type.ToString();
 
                 string outMessage = string.Empty;
                 var propertyName = _propertyNameResolver.Resolve(expression);
@@ -94,7 +94,7 @@ namespace MFlow.Core.Internal
 
         private bool ShouldResolve(string message)
         {
-            if (!string.IsNullOrEmpty(message) && !string.IsNullOrWhiteSpace(message) 
+            if (!string.IsNullOrEmpty(message) && !string.IsNullOrWhiteSpace(message)
                 && !(message.StartsWith("$") && message.EndsWith("$")))
             {
                 return false;

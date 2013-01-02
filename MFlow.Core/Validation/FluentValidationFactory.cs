@@ -15,7 +15,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Gets a fluent validation implementation
         /// </summary>
-        public IFluentValidation<T> GetFluentValidation<T>(T target, bool loadXmlRuleset = false, string fileName = "")
+        public IFluentCreator<T> GetFluentValidation<T>(T target, bool loadXmlRuleset = false, string fileName = "")
         {
             if(!loadXmlRuleset)
                 return new FluentValidation<T>(target);
@@ -25,7 +25,7 @@ namespace MFlow.Core.Validation
             else 
                 loader = new XmlValidationLoader();
 
-            return string.IsNullOrEmpty(fileName) ? loader.Load<T>(target) : loader.Load<T>(target, fileName);
+            return (IFluentCreator<T>)(string.IsNullOrEmpty(fileName) ? loader.Load<T>(target) : loader.Load<T>(target, fileName));
         }
     }
 }

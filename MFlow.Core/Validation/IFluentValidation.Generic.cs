@@ -17,22 +17,22 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an object that is equal to the value expression 
         /// </summary>
-        IFluentValidation<T> Equal<C>(Expression<Func<T, C>> expression, Expression<Func<T, C>> valueExpression, string message = "", ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsEqual<C>(Expression<Func<T, C>> valueExpression, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
         ///     Checks if the expression evaluates to an object that is equal to the value 
         /// </summary>
-        IFluentValidation<T> Equal<C>(Expression<Func<T, C>> expression, C value, string message = "", ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsEqual<C>(C value, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
         ///     Checks if the expression evaluates to an object that is not equal to the value expression 
         /// </summary>
-        IFluentValidation<T> NotEqual<C>(Expression<Func<T, C>> expression, Expression<Func<T, C>> valueExpression, string message = "", ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsNotEqual<C>(Expression<Func<T, C>> valueExpression, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
         ///     Checks if the expression evaluates to an object that is not equal to the value 
         /// </summary>
-        IFluentValidation<T> NotEqual<C>(Expression<Func<T, C>> expression, C value,  string message = "", ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsNotEqual<C>(C value, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
         ///     Evaluates another validation instance that this one depends on
@@ -42,6 +42,6 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Evaluates another validation instance that this one depends on
         /// </summary>
-        IFluentValidation<T> DependsOn<D>(Expression<Func<T, D>> validator, string message= "") where D : IFluentValidation<T>;
+        IFluentValidation<T> DependsOn<D>(Expression<Func<T, D>> validator) where D : IFluentValidation<T>;
     }
 }
