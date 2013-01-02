@@ -8,9 +8,9 @@ The idea is to improve and give a more fluent approach to conditional and valida
 Example:
 
     fluentValidation
-        .Equal(u => u.Username, "testing")
-        .Equal(u => u.Password, "password123")
-        .IsEmail(u => u.Email)
+        .Check(u => u.Username).IsEqual("testing")
+        .Check(u => u.Password).IsEqual("password123")
+        .Check(u => u.Email).IsEmail()
         .Satisfied();
 				
 A simple example like the one above can also be configured using XML:
@@ -83,7 +83,7 @@ You can then reference this custom error message in either the fluent interface,
 Fluent Interface:
 
     fluentValidation
-        .IsEmail(u => u.Username, message:"$EmailAddressShouldBeValid$")
+        .Check(u => u.Username).IsEmail().Message("$EmailAddressShouldBeValid$")
 
 XML:
 
