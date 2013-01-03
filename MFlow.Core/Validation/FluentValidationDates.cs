@@ -19,7 +19,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to a date that is less that the value 
         /// </summary>
-        public IFluentValidation<T> Before(DateTime value, ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> IsBefore(DateTime value, ConditionType conditionType = ConditionType.And)
         {
             Expression<Func<T, DateTime>> expression = (Expression<Func<T, DateTime>> )_expressions.Last();
             Func<T, DateTime> compiled = expression.Compile();
@@ -31,7 +31,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to a date that is greater than the value 
         /// </summary>
-        public IFluentValidation<T> After(DateTime value, ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> IsAfter(DateTime value, ConditionType conditionType = ConditionType.And)
         {
             Expression<Func<T, DateTime>> expression = (Expression<Func<T, DateTime>>)_expressions.Last();
             Func<T, DateTime> compiled = expression.Compile();
@@ -43,7 +43,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to a date that is less than or equal to the value 
         /// </summary>
-        public IFluentValidation<T> On(DateTime value, ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> IsOn(DateTime value, ConditionType conditionType = ConditionType.And)
         {
             Expression<Func<T, DateTime>> expression = (Expression<Func<T, DateTime>>)_expressions.Last();
             Func<T, DateTime> compiled = expression.Compile();

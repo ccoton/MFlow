@@ -17,7 +17,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { LastLogin = DateTime.Now.AddDays(-10),  Password = "password123", Username = "testing", LoginCount = 10 };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Check(u => u.LastLogin).Before(DateTime.Now).Satisfied());
+                .Check(u => u.LastLogin).IsBefore(DateTime.Now).Satisfied());
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { LastLogin = DateTime.Now.AddDays(10), Password = "password123", Username = "testing", LoginCount = 10 };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Check(u => u.LastLogin).Before(DateTime.Now).Satisfied());
+                .Check(u => u.LastLogin).IsBefore(DateTime.Now).Satisfied());
         }
 
         [TestMethod]
@@ -35,7 +35,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { LastLogin = DateTime.Now.AddDays(10), Password = "password123", Username = "testing", LoginCount = 10 };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Check(u => u.LastLogin).After(DateTime.Now).Satisfied());
+                .Check(u => u.LastLogin).IsAfter(DateTime.Now).Satisfied());
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { LastLogin = DateTime.Now.AddDays(-10), Password = "password123", Username = "testing", LoginCount = 10 };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Check(u => u.LastLogin).After(DateTime.Now).Satisfied());
+                .Check(u => u.LastLogin).IsAfter(DateTime.Now).Satisfied());
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { LastLogin = DateTime.Now, Password = "password123", Username = "testing", LoginCount = 10 };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Check(u => u.LastLogin).On(DateTime.Now).Satisfied());
+                .Check(u => u.LastLogin).IsOn(DateTime.Now).Satisfied());
         }
 
         [TestMethod]
@@ -62,7 +62,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { LastLogin = DateTime.Now.AddDays(-10), Password = "password123", Username = "testing", LoginCount = 10 };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Check(u => u.LastLogin).On(DateTime.Now).Satisfied());
+                .Check(u => u.LastLogin).IsOn(DateTime.Now).Satisfied());
         }
     }
 }

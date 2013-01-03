@@ -17,17 +17,17 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to a date that is less than the value 
         /// </summary>
-        IFluentValidation<T> Before(DateTime value, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsBefore(DateTime value, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
         ///     Checks if the expression evaluates to a date that is greater than the value 
         /// </summary>
-        IFluentValidation<T> After(DateTime value, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsAfter(DateTime value, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
         ///     Checks if the expression evaluates to a date that is equal to the value 
         /// </summary>
-        IFluentValidation<T> On(DateTime value, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsOn(DateTime value, ConditionType conditionType = ConditionType.And);
 
     }
 }

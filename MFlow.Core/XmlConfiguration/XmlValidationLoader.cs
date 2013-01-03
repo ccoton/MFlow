@@ -197,17 +197,17 @@ namespace MFlow.Core.XmlConfiguration
 
         private IFluentValidation<T> ParseAfter<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, DateTime, DateTime>(validator, document, "After", (e, ev, m, v) => { return validator.Check(e).After(v).Message(m); });
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "After", (e, ev, m, v) => { return validator.Check(e).IsAfter(v).Message(m); });
         }
 
         private IFluentValidation<T> ParseBefore<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, DateTime, DateTime>(validator, document, "Before", (e, ev, m, v) => { return validator.Check(e).Before(v).Message(m); });
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "Before", (e, ev, m, v) => { return validator.Check(e).IsBefore(v).Message(m); });
         }
 
         private IFluentValidation<T> ParseOn<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, DateTime, DateTime>(validator, document, "On", (e, ev, m, v) => { return validator.Check(e).On(v).Message(m); });
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "On", (e, ev, m, v) => { return validator.Check(e).IsOn(v).Message(m); });
         }
 
         private IFluentValidation<T> CreateExpressions<T, O, C>(IFluentValidation<T> validator, XDocument document, string nodeName, Func<Expression<Func<T, O>>, Expression<Func<T, O>>, string, C, IFluentValidation<T>> function)

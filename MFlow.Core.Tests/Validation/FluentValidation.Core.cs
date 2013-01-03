@@ -375,7 +375,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { LastLogin = DateTime.Now };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
-                .Check(u => u.LastLogin).Before(DateTime.Parse("01/01/2001 00:00:00"))
+                .Check(u => u.LastLogin).IsBefore(DateTime.Parse("01/01/2001 00:00:00"))
                 .Validate();
 
             Assert.AreEqual("LastLogin should be before 01/01/2001 00:00:00", results.First().Condition.Message);
@@ -387,7 +387,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { LastLogin = DateTime.Parse("01/01/2001 00:00:00") };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
-                .Check(u => u.LastLogin).After(DateTime.Parse("01/01/2012 00:00:00"))
+                .Check(u => u.LastLogin).IsAfter(DateTime.Parse("01/01/2012 00:00:00"))
                 .Validate();
 
             Assert.AreEqual("LastLogin should be after 01/01/2012 00:00:00", results.First().Condition.Message);
@@ -399,7 +399,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { LastLogin = DateTime.Parse("01/01/2001 00:00:00") };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
-                .Check(u => u.LastLogin).On(DateTime.Parse("01/01/2012 00:00:00"))
+                .Check(u => u.LastLogin).IsOn(DateTime.Parse("01/01/2012 00:00:00"))
                 .Validate();
 
             Assert.AreEqual("LastLogin should be on 01/01/2012 00:00:00", results.First().Condition.Message);
@@ -413,7 +413,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { LastLogin = DateTime.Parse("01/01/2001 00:00:00") };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
-                .Check(u => u.LastLogin).On(DateTime.Parse("01/01/2012 00:00:00"))
+                .Check(u => u.LastLogin).IsOn(DateTime.Parse("01/01/2012 00:00:00"))
                 .Validate();
 
             Assert.AreEqual("LastLogin doit être mis sur 01/01/2012 00:00:00", results.First().Condition.Message);

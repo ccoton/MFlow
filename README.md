@@ -99,29 +99,29 @@ The following validation checks are suported...
 
 	Generic:
 	
-	Equal,
-	NotEqual,
-	IsRequired,
+		IsEqual,
+		IsNotEqual,
+		IsRequired,
 	
 	Strings:
 	
-	NotEmpty,
-	RegEx,
-	IsEmail,
-	Contains,
-	IsLength,
-	IsCreditCard,
-
+		IsNotEmpty,
+		IsEmail,
+		IsLength,
+		IsCreditCard,
+		Contains,
+		Mathes (a regex),
+	
 	Numbers:
 	
-	LessThan,
-	GreaterThan,
-	LessThanOrEqualTo,
-	GreaterThanOrEqualTo,
+		IsLessThan,
+		IsGreaterThan,
+		IsLessThanOrEqualTo,
+		IsGreaterThanOrEqualTo,
 
 	Dates:
 	
-	Before,
-	After, 
-	On
+		IsBefore,
+		IsAfter, 
+		IsOn
 				
