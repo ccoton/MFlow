@@ -123,6 +123,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Xml\Custom.Messages.en.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="XmlConfiguration\After.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

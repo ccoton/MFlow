@@ -24,6 +24,30 @@ namespace MFlow.Core.Internal
             _resourceLocator = new ResourceLocator();
         }
 
+        /// <summary>
+        ///     Resolve a validation message using an property name
+        /// </summary>
+        public string Resolve(string propertyName, ValidationType type, string message)
+        {
+            if (ShouldResolve(message))
+            {
+                var customMessage = message.StartsWith("$") && message.EndsWith("$");
+
+                if (!customMessage && type == ValidationType.Unknown)
+                    return string.Empty;
+
+                message = PrepareForResolve(message);
+                var key = customMessage ? message : type.ToString();
+
+                string outMessage = string.Empty;
+
+                outMessage = string.Format(_resourceLocator.GetResource(key), propertyName);
+
+                return outMessage;
+            }
+
+            return message;
+        }
 
         /// <summary>
         ///     Resolve a validation message using an expression

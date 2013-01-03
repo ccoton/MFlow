@@ -147,7 +147,9 @@ namespace MFlow.Core.Validation
         {
             if (_conditions.Any())
             {
-                _conditions.Last().SetMessage(message);
+                var lastCondition = _conditions.Last();
+                message = _messageResolver.Resolve(lastCondition.Key, ValidationType.Unknown, message);
+                lastCondition.SetMessage(message);
             }
             return this;
         }

@@ -14,6 +14,11 @@ namespace MFlow.Core.Internal
     internal interface IMessageResolver
     {
         /// <summary>
+        ///     Resolve a validation message using an property name
+        /// </summary>
+        string Resolve(string propertyName, ValidationType type, string message);
+
+        /// <summary>
         ///     Resolve a validation message using an expression
         /// </summary>
         string Resolve<T, O>(Expression<Func<T, O>> expression, ValidationType type, string message);

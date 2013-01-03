@@ -457,5 +457,18 @@ namespace MFlow.Core.Tests.Validation
 
             Assert.AreEqual("The password should not be empty or null", results.Skip(1).Take(1).First().Condition.Message);
         }
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Email_Chained_Fluent_Custom_Message()
+        {
+            var user = new User() { Username = "fred" };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            var results = fluentValidation
+                .Check(u => u.Username).IsEmail()
+                .Message("$ACustomMessage$")
+                .Validate();
+
+            Assert.AreEqual("Something different here", results.First().Condition.Message);
+        }
     }
 }
