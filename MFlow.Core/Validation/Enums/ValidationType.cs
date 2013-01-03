@@ -23,6 +23,7 @@ namespace MFlow.Core.Validation.Enums
         After = 11, 
         On = 12,
         IsRequired = 13,
-        IsLength = 14
+        IsLength = 14,
+        IsCreditCard = 15
     }
 }

@@ -39,5 +39,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         IFluentValidation<T> IsLength(int length);
 
+        /// <summary>
+        ///     Check if the expressions evaluates to a string matching a credit card pattern
+        /// </summary>
+        IFluentValidation<T> IsCreditCard(ConditionType conditionType = ConditionType.And);
+
     }
 }

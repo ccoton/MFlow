@@ -45,7 +45,9 @@
     <Compile Include="Conditions\FluentConditions.cs" />
     <Compile Include="Conditions\IFluentCondition.cs" />
     <Compile Include="Conditions\IFluentConditions.cs" />
+    <Compile Include="Internal\Validators\CreditCardValidator.cs" />
     <Compile Include="Internal\IMessageResolver.cs" />
+    <Compile Include="Internal\Validators\IValidator.cs" />
     <Compile Include="Internal\MessageResolver.cs" />
     <Compile Include="Resources\IResourceLocator.cs" />
     <Compile Include="Resources\ResourceLocator.cs" />

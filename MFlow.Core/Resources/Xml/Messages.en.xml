@@ -15,4 +15,5 @@
   <On>{0} should be on {1}</On>
   <IsRequired>{0} is a required field</IsRequired>
   <IsLength>{0} should be {1} characters long</IsLength>
+  <IsCreditCard>{0} is not a valid credit card number</IsCreditCard>
 </Messages>

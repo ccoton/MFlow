@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using MFlow.Core.Conditions;
 using MFlow.Core.Events;
 using MFlow.Core.Internal;
+using MFlow.Core.Internal.Validators;
 
 namespace MFlow.Core.Validation
 {
@@ -74,6 +75,19 @@ namespace MFlow.Core.Validation
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && compiled.Invoke(_target).Length == length;
             base.If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, length.ToString(), Enums.ValidationType.IsLength, string.Empty));
+            return this;
+        }
+
+        /// <summary>
+        ///     Check if the expressions evaluates to a string matching a credit card pattern
+        /// </summary>
+        public IFluentValidation<T> IsCreditCard(ConditionType conditionType = ConditionType.And)
+        {
+            var internalValidator = new CreditCardValidator();
+            Expression<Func<T, string>> expression = (Expression<Func<T, string>>)_expressions.Last();
+            Func<T, string> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => internalValidator.Validate(compiled.Invoke(_target));
+            base.If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsCreditCard, string.Empty));
             return this;
         }
     }

@@ -1,0 +1,1 @@
+﻿[Display] Value should be a valid credit card number [When] Username [Is] NotCreditCard
