@@ -95,5 +95,33 @@ VML:
 
 When you reference the error message like this, the same process described above will happen and the validator will attempt to load a message for the current culture first and then fall back to the default.
     
-More examples in the Wiki.
+The following validation checks are suported...
+
+	Generic:
+	
+	Equal,
+	NotEqual,
+	IsRequired,
+	
+	Strings:
+	
+	NotEmpty,
+	RegEx,
+	IsEmail,
+	Contains,
+	IsLength,
+	IsCreditCard,
+
+	Numbers:
+	
+	LessThan,
+	GreaterThan,
+	LessThanOrEqualTo,
+	GreaterThanOrEqualTo,
+
+	Dates:
+	
+	Before,
+	After, 
+	On
 				
