@@ -116,6 +116,28 @@ namespace MFlow.Core.Internal
             return message;
         }
 
+        /// <summary>
+        ///     Resolve a validation message using an expression
+        /// </summary>
+        public string Resolve<T, O>(Expression<Func<T, O>> expression, O start, O end, ValidationType type, string message)
+        {
+            if (ShouldResolve(message))
+            {
+                var customMessage = message.StartsWith("$") && message.EndsWith("$");
+                message = PrepareForResolve(message);
+                var key = customMessage ? message : type.ToString();
+
+                string outMessage = string.Empty;
+                var propertyName = _propertyNameResolver.Resolve(expression);
+
+                outMessage = string.Format(_resourceLocator.GetResource(key), propertyName, start != null ? start.ToString() : "null", end != null ? end.ToString() : "null");
+
+                return outMessage;
+            }
+
+            return message;
+        }
+
         private bool ShouldResolve(string message)
         {
             if (!string.IsNullOrEmpty(message) && !string.IsNullOrWhiteSpace(message)

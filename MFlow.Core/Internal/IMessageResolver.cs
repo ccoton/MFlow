@@ -32,5 +32,10 @@ namespace MFlow.Core.Internal
         ///     Resolve a validation message using an expression
         /// </summary>
         string Resolve<T, O>(Expression<Func<T, O>> expression, O value, ValidationType type, string message);
+
+        /// <summary>
+        ///     Resolve a validation message using an expression
+        /// </summary>
+        string Resolve<T, O>(Expression<Func<T, O>> expression, O start, O end, ValidationType type, string message);
     }
 }

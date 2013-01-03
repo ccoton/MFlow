@@ -22,6 +22,7 @@ namespace MFlow.Core.Validation.Enums
         Before = 10,
         After = 11, 
         On = 12,
-        IsRequired = 13
+        IsRequired = 13,
+        IsLength = 14
     }
 }

@@ -34,5 +34,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         IFluentValidation<T> Contains(string value);
 
+        /// <summary>
+        ///     Checks if the expression evaluates to a string that is of length
+        /// </summary>
+        IFluentValidation<T> IsLength(int length);
+
     }
 }

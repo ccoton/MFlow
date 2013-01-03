@@ -29,6 +29,22 @@ namespace MFlow.Core.Tests.VmlConfiguration
         }
 
         [TestMethod]
+        public void Test_Fluent_Validation_IsLength_False_Loaded_From_Vml()
+        {
+            var user = new User() { };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsLength.validation.vml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsLength_True_Loaded_From_Vml()
+        {
+            var user = new User() { Username = "12345678901234567890" };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsLength.validation.vml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
         public void Test_Fluent_Validation_IsRequired_False_Loaded_From_Vml()
         {
             var user = new User() { };

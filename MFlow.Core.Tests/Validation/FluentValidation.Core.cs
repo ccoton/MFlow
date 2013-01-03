@@ -346,6 +346,18 @@ namespace MFlow.Core.Tests.Validation
         }
 
         [TestMethod]
+        public void Test_Chained_Fluent_Validation_IsLength_Message_Lookup()
+        {
+            var user = new User() { Username = "fred" };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            var results = fluentValidation
+                .Check(u => u.Username).IsLength(5)
+                .Validate();
+
+            Assert.AreEqual("Username should be 5 characters long", results.First().Condition.Message);
+        }
+
+        [TestMethod]
         public void Test_Chained_Fluent_Validation_IsRequired_Message_Lookup()
         {
             var user = new User() { Username = "" };

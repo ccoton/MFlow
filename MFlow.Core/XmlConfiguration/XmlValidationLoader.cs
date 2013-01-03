@@ -86,6 +86,7 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseBefore(validator, document);
             validator = ParseOn(validator, document);
             validator = ParseIsRequired(validator, document);
+            validator = ParseIsLength(validator, document);
 
             return validator;
         }
@@ -126,6 +127,11 @@ namespace MFlow.Core.XmlConfiguration
         private IFluentValidation<T> ParseIsRequired<T>(IFluentValidation<T> validator, XDocument document)
         {
             return CreateExpressions<T, string, string>(validator, document, "IsRequired", (e, ev, m, v) => { return validator.Check(e).IsRequired<string>().Message(m); });
+        }
+
+        private IFluentValidation<T> ParseIsLength<T>(IFluentValidation<T> validator, XDocument document)
+        {
+            return CreateExpressions<T, string, int>(validator, document, "IsLength", (e, ev, m, v) => { return validator.Check(e).IsLength(v).Message(m); });
         }
 
         private IFluentValidation<T> ParseContains<T>(IFluentValidation<T> validator, XDocument document)

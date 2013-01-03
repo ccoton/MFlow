@@ -64,5 +64,17 @@ namespace MFlow.Core.Validation
             base.If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.Contains, string.Empty));
             return this;
         }
+
+        /// <summary>
+        ///     Checks if the expression evaluates to a string that is of length
+        /// </summary>
+        public IFluentValidation<T> IsLength(int length)
+        {
+            Expression<Func<T, string>> expression = (Expression<Func<T, string>>)_expressions.Last();
+            Func<T, string> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && compiled.Invoke(_target).Length == length;
+            base.If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, length.ToString(), Enums.ValidationType.IsLength, string.Empty));
+            return this;
+        }
     }
 }

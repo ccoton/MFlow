@@ -13,6 +13,24 @@ namespace MFlow.Core.Tests.Validation
     {
 
         [TestMethod]
+        public void Test_Fluent_Validation_IsLength()
+        {
+            var user = new User() { Password = "password123", Username = "ausername@somedomain.com", LoginCount = 12 };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsTrue(fluentValidation
+                .Check(u => u.Username).IsLength(24).Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsLength_When_Null()
+        {
+            var user = new User() { Password = "password123", Username = null, LoginCount = 12 };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                .Check(u => u.Username).IsLength(24).Satisfied());
+        }
+
+        [TestMethod]
         public void Test_Fluent_Validation_RegEx()
         {
             var user = new User() { Password = "password123", Username = "ausername@somedomain.com", LoginCount = 12 };
