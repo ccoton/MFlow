@@ -29,6 +29,7 @@ namespace MFlow.Core.Validation.Enums
         IsZipCode = 17,
         IsThisYear = 18,
         IsThisMonth = 19,
-        IsThisWeek = 20
+        IsThisWeek = 20,
+        IsToday = 21
     }
 }

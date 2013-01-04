@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FluentValidation>
+  <Validator>
+    <Rules>
+      <IsToday property="LastLogin" message="Last login should be today" />
+    </Rules>
+  </Validator>
+</FluentValidation>

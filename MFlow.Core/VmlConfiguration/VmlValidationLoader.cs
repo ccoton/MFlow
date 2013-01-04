@@ -105,6 +105,7 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseIsThisYear(validator, document);
             validator = ParseIsThisMonth(validator, document);
             validator = ParseIsThisWeek(validator, document);
+            validator = ParseIsToday(validator, document);
 
             return validator;
         }
@@ -227,6 +228,11 @@ namespace MFlow.Core.XmlConfiguration
         private IFluentValidation<T> ParseIsThisWeek<T>(IFluentValidation<T> validator, string document)
         {
             return CreateExpressions<T, DateTime, DateTime>(validator, document, "[Is] NotThisWeek", (e, ev, m, v) => { return validator.Check(e).IsThisWeek().Message(m); });
+        }
+
+        private IFluentValidation<T> ParseIsToday<T>(IFluentValidation<T> validator, string document)
+        {
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "[Is] NotToday", (e, ev, m, v) => { return validator.Check(e).IsToday().Message(m); });
         }
 
         private IFluentValidation<T> ParseOn<T>(IFluentValidation<T> validator, string document)

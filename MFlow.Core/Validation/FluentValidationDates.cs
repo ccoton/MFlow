@@ -91,5 +91,17 @@ namespace MFlow.Core.Validation
             If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisMonth, string.Empty), conditionType);
             return this;
         }
+
+        /// <summary>
+        ///     Checks if the expression evaluates to a date that is today
+        /// </summary>
+        public IFluentValidation<T> IsToday(ConditionType conditionType = ConditionType.And)
+        {
+            Expression<Func<T, DateTime>> expression = GetCurrentExpression<DateTime>();
+            Func<T, DateTime> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Date == DateTime.Now.Date;
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsToday, string.Empty), conditionType);
+            return this;
+        }
     }
 }

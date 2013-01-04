@@ -19,4 +19,5 @@
   <IsPostCode>{0} doit être un code postal valide</IsPostCode>
   <IsThisYear>{0} should be a date from this year</IsThisYear>
   <IsThisMonth>{0} should be a date from this month</IsThisMonth>
+  <IsToday>{0} should be todays date</IsToday>
 </Messages>

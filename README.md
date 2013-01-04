@@ -128,5 +128,6 @@ The following validation checks are suported...
 		IsOn,
 		IsThisYear,
 		IsThisMonth,
-		IsThisWeek
+		IsThisWeek,
+		IsToday
 				
