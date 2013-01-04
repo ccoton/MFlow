@@ -208,6 +208,17 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
+        ///     Validate this instance
+        /// </summary>
+        public IEnumerable<IValidationResult<T>> ValidateAndThrow<E>() where E : Exception, new()
+        {
+            var results = Validate();
+            if (results.Any())
+                throw new E();
+            return results;
+        }
+
+        /// <summary>
         ///     Throws an exception
         /// </summary>
         public void Throw<E>(E exception) where E : Exception

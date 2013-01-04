@@ -95,6 +95,11 @@ namespace MFlow.Core.Validation
         IEnumerable<IValidationResult<T>> Validate();
 
         /// <summary>
+        ///     Validate this instance
+        /// </summary>
+        IEnumerable<IValidationResult<T>> ValidateAndThrow<E>() where E : Exception, new();
+
+        /// <summary>
         ///     Throws an exception
         /// </summary>
         void Throw<E>(E exception) where E : Exception;

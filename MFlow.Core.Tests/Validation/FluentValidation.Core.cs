@@ -24,12 +24,22 @@ namespace MFlow.Core.Tests.Validation
         }
 
         [TestMethod]
-        public void Test_Chained_Fluent_Validation_With_Valid_Expression()
+        [ExpectedException(typeof(ArgumentException))]
+        public void Test_Chained_Fluent_Validation_ValidateAndThrow_InValid()
         {
             var user = new User() { Password = "password123", Username = "testing" };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
-            Assert.IsTrue(fluentValidation
-                .Check(u => u.Username).IsEqualTo("testing").Satisfied());
+            fluentValidation
+                .Check(u => u.Username).IsEqualTo("xxx").ValidateAndThrow<ArgumentException>();
+        }
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_ValidateAndThrow_Valid()
+        {
+            var user = new User() { Password = "password123", Username = "xxx" };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                .Check(u => u.Username).IsEqualTo("xxx").ValidateAndThrow<ArgumentException>().Any());
         }
 
         [TestMethod]
