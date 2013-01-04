@@ -39,5 +39,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         IFluentValidation<T> IsThisMonth(ConditionType conditionType = ConditionType.And);
 
+        /// <summary>
+        ///     Checks if the expression evaluates to a date that is this week
+        /// </summary>
+        IFluentValidation<T> IsThisWeek(ConditionType conditionType = ConditionType.And);
+
     }
 }

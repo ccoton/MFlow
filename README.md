@@ -126,5 +126,7 @@ The following validation checks are suported...
 		IsBefore,
 		IsAfter, 
 		IsOn,
-		IsThisYear
+		IsThisYear,
+		IsThisMonth,
+		IsThisWeek
 				

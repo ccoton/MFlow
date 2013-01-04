@@ -79,6 +79,9 @@
     <None Include="VmlConfiguration\Contains.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="VmlConfiguration\IsThisWeek.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="VmlConfiguration\IsThisMonth.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -151,6 +154,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XmlConfiguration\Contains.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\IsThisWeek.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XmlConfiguration\IsThisMonth.validation.xml">

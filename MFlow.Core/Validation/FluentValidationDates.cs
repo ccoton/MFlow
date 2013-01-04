@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using MFlow.Core.Conditions;
 using MFlow.Core.Events;
@@ -72,6 +74,20 @@ namespace MFlow.Core.Validation
             Expression<Func<T, DateTime>> expression = GetCurrentExpression<DateTime>();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Date.Year == DateTime.Now.Year && compiled.Invoke(_target).Month == DateTime.Now.Month;
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisMonth, string.Empty), conditionType);
+            return this;
+        }
+
+        /// <summary>
+        ///     Checks if the expression evaluates to a date that is this week
+        /// </summary>
+        public IFluentValidation<T> IsThisWeek(ConditionType conditionType = ConditionType.And)
+        {
+            Expression<Func<T, DateTime>> expression = GetCurrentExpression<DateTime>();
+            Func<T, DateTime> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Date.Year == DateTime.Now.Year && compiled.Invoke(_target).Month == DateTime.Now.Month &&
+                Thread.CurrentThread.CurrentCulture.Calendar.GetWeekOfYear(compiled.Invoke(_target), CalendarWeekRule.FirstDay, DayOfWeek.Monday) ==
+                Thread.CurrentThread.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
             If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisMonth, string.Empty), conditionType);
             return this;
         }

@@ -104,6 +104,7 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseIsZipCode(validator, document);
             validator = ParseIsThisYear(validator, document);
             validator = ParseIsThisMonth(validator, document);
+            validator = ParseIsThisWeek(validator, document);
 
             return validator;
         }
@@ -221,6 +222,11 @@ namespace MFlow.Core.XmlConfiguration
         private IFluentValidation<T> ParseIsThisMonth<T>(IFluentValidation<T> validator, string document)
         {
             return CreateExpressions<T, DateTime, DateTime>(validator, document, "[Is] NotThisMonth", (e, ev, m, v) => { return validator.Check(e).IsThisMonth().Message(m); });
+        }
+
+        private IFluentValidation<T> ParseIsThisWeek<T>(IFluentValidation<T> validator, string document)
+        {
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "[Is] NotThisWeek", (e, ev, m, v) => { return validator.Check(e).IsThisWeek().Message(m); });
         }
 
         private IFluentValidation<T> ParseOn<T>(IFluentValidation<T> validator, string document)
