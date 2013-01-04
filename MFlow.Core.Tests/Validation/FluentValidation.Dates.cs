@@ -64,5 +64,23 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsFalse(fluentValidation
                 .Check(u => u.LastLogin).IsOn(DateTime.Now).Satisfied());
         }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsThisYear_Valid()
+        {
+            var user = new User() { LastLogin = DateTime.Now, Password = "password123", Username = "testing", LoginCount = 10 };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsTrue(fluentValidation
+                .Check(u => u.LastLogin).IsThisYear().Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsThisYear_InValid()
+        {
+            var user = new User() { LastLogin = DateTime.Now.AddYears(1), Password = "password123", Username = "testing", LoginCount = 10 };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                .Check(u => u.LastLogin).IsThisYear().Satisfied());
+        }
     }
 }

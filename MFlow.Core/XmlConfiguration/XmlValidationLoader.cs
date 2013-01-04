@@ -90,6 +90,7 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseIsCreditCard(validator, document);
             validator = ParseIsPostCode(validator, document);
             validator = ParseIsZipCode(validator, document);
+            validator = ParseIsThisYear(validator, document);
 
             return validator;
         }
@@ -220,6 +221,11 @@ namespace MFlow.Core.XmlConfiguration
         private IFluentValidation<T> ParseOn<T>(IFluentValidation<T> validator, XDocument document)
         {
             return CreateExpressions<T, DateTime, DateTime>(validator, document, "On", (e, ev, m, v) => { return validator.Check(e).IsOn(v).Message(m); });
+        }
+
+        private IFluentValidation<T> ParseIsThisYear<T>(IFluentValidation<T> validator, XDocument document)
+        {
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "IsThisYear", (e, ev, m, v) => { return validator.Check(e).IsThisYear().Message(m); });
         }
 
         private IFluentValidation<T> CreateExpressions<T, O, C>(IFluentValidation<T> validator, XDocument document, string nodeName, Func<Expression<Func<T, O>>, Expression<Func<T, O>>, string, C, IFluentValidation<T>> function)

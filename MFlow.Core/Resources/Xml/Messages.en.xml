@@ -17,4 +17,5 @@
   <IsLength>{0} should be {1} characters long</IsLength>
   <IsCreditCard>{0} should be valid credit card number</IsCreditCard>
   <IsPostCode>{0} should be a valid post code</IsPostCode>
+  <IsThisYear>{0} should be a date from this year</IsThisYear>
 </Messages>

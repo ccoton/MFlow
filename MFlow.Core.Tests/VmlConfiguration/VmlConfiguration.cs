@@ -340,6 +340,21 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
+        [TestMethod]
+        public void Test_Fluent_Validation_IsThisYear_False_Loaded_From_Vml()
+        {
+            var user = new User() { LastLogin = DateTime.Now.AddYears(1) };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsThisYear.validation.vml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsThisYear_True_Loaded_From_Vml()
+        {
+            var user = new User() { LastLogin = DateTime.Now};
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsThisYear.validation.vml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
 
         [TestMethod]
         public void Test_Fluent_Validation_CustomRule_True_Loaded_From_Vml()

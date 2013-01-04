@@ -102,6 +102,7 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseIsCreditCard(validator, document);
             validator = ParseIsPostCode(validator, document);
             validator = ParseIsZipCode(validator, document);
+            validator = ParseIsThisYear(validator, document);
 
             return validator;
         }
@@ -209,6 +210,11 @@ namespace MFlow.Core.XmlConfiguration
         private IFluentValidation<T> ParseAfter<T>(IFluentValidation<T> validator, string document)
         {
             return CreateExpressions<T, DateTime, DateTime>(validator, document, "[Is] Before ", (e, ev, m, v) => { return validator.Check(e).IsAfter(v).Message(m); });
+        }
+
+        private IFluentValidation<T> ParseIsThisYear<T>(IFluentValidation<T> validator, string document)
+        {
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "[Is] NotThisYear", (e, ev, m, v) => { return validator.Check(e).IsThisYear().Message(m); });
         }
 
         private IFluentValidation<T> ParseOn<T>(IFluentValidation<T> validator, string document)

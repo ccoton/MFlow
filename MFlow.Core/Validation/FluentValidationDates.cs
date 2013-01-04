@@ -51,5 +51,17 @@ namespace MFlow.Core.Validation
             If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.On, string.Empty), conditionType);
             return this;
         }
+
+        /// <summary>
+        ///     Checks if the expression evaluates to a data that is this year
+        /// </summary>
+        public IFluentValidation<T> IsThisYear(ConditionType conditionType = ConditionType.And)
+        {
+            Expression<Func<T, DateTime>> expression = GetCurrentExpression<DateTime>();
+            Func<T, DateTime> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Date.Year == DateTime.Now.Year;
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisYear, string.Empty), conditionType);
+            return this;
+        }
     }
 }
