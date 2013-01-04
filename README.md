@@ -109,6 +109,7 @@ The following validation checks are suported...
 		IsEmail,
 		IsLength,
 		IsCreditCard,
+		IsPostCode,
 		Contains,
 		Mathes (a regex),
 	

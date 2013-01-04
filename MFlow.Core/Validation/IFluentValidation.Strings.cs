@@ -30,7 +30,7 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> IsEmail(ConditionType conditionType = ConditionType.And);
 
         /// <summary>
-        ///     Checks if the expressions evaluates to a string that contains value
+        ///     Checks if the expression evaluates to a string that contains value
         /// </summary>
         IFluentValidation<T> Contains(string value);
 
@@ -40,9 +40,14 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> IsLength(int length);
 
         /// <summary>
-        ///     Check if the expressions evaluates to a string matching a credit card pattern
+        ///     Check if the expression evaluates to a string matching a credit card pattern
         /// </summary>
         IFluentValidation<T> IsCreditCard(ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Check if the expression evaluates to a string that is a post code
+        /// </summary>
+        IFluentValidation<T> IsPostCode(ConditionType conditionType = ConditionType.And);
 
     }
 }

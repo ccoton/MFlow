@@ -24,6 +24,7 @@ namespace MFlow.Core.Validation.Enums
         On = 12,
         IsRequired = 13,
         IsLength = 14,
-        IsCreditCard = 15
+        IsCreditCard = 15,
+        IsPostCode = 16
     }
 }

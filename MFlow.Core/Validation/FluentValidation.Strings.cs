@@ -90,5 +90,18 @@ namespace MFlow.Core.Validation
             base.If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsCreditCard, string.Empty));
             return this;
         }
+
+        /// <summary>
+        ///     Check if the expression evaluates to a string that is a post code
+        /// </summary>
+        public IFluentValidation<T> IsPostCode(ConditionType conditionType = ConditionType.And)
+        {
+            var regEx = @"(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX]][0-9][A-HJKSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY])))) [0-9][A-Z-[CIKMOV]]{2})";
+            Expression<Func<T, string>> expression = (Expression<Func<T, string>>)_expressions.Last();
+            Func<T, string> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && new Regex(regEx).IsMatch(compiled.Invoke(_target));
+            base.If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsPostCode, string.Empty));
+            return this;
+        }
     }
 }

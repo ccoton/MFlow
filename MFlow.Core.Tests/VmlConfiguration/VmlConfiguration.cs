@@ -60,6 +60,23 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsPostCode_False_Loaded_From_Vml()
+        {
+            var user = new User() { };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsPostCode.validation.vml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsPostCode_True_Loaded_From_Vml()
+        {
+            var user = new User() { Username = "B69 1TE" };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsPostCode.validation.vml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
+
         [TestMethod]
         public void Test_Fluent_Validation_IsRequired_False_Loaded_From_Vml()
         {

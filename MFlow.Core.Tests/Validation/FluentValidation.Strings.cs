@@ -49,6 +49,24 @@ namespace MFlow.Core.Tests.Validation
         }
 
         [TestMethod]
+        public void Test_Fluent_Validation_IsPostCode()
+        {
+            var user = new User() { Password = "password123", Username = "B69 1TE", LoginCount = 12 };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsTrue(fluentValidation
+                .Check(u => u.Username).IsPostCode().Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsPostCode_When_Null()
+        {
+            var user = new User() { Password = "password123", Username = null, LoginCount = 12 };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                .Check(u => u.Username).IsPostCode().Satisfied());
+        }
+
+        [TestMethod]
         public void Test_Fluent_Validation_RegEx()
         {
             var user = new User() { Password = "password123", Username = "ausername@somedomain.com", LoginCount = 12 };

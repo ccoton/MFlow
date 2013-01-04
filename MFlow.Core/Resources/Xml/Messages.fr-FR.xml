@@ -14,6 +14,7 @@
   <After>{0} devrait être après {1}</After>
   <On>{0} doit être mis sur {1}</On>
   <IsRequired>{0} est un champ obligatoire</IsRequired>
-  <Length>{0} should be {1} characters long</Length>
-  <IsCreditCard>{0} is not a valid credit card number</IsCreditCard>
+  <IsLength>{0} should be {1} characters long</IsLength>
+  <IsCreditCard>{0} should be valid credit card number</IsCreditCard>
+  <IsPostCode>{0} should be a valid post code</IsPostCode>
 </Messages>
