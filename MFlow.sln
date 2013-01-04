@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AFA517
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Mvc.Tests", "MFlow.Mvc.Tests\MFlow.Mvc.Tests.csproj", "{96AF68AD-FCF5-4492-B9BF-F2C113E0A1DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Samples.WebApi", "MFlow.Samples.WebApi\MFlow.Samples.WebApi.csproj", "{ACC2A163-F57A-46C5-96DB-CA5AC312BB8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,11 +48,16 @@ Global
 		{96AF68AD-FCF5-4492-B9BF-F2C113E0A1DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96AF68AD-FCF5-4492-B9BF-F2C113E0A1DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96AF68AD-FCF5-4492-B9BF-F2C113E0A1DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACC2A163-F57A-46C5-96DB-CA5AC312BB8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACC2A163-F57A-46C5-96DB-CA5AC312BB8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACC2A163-F57A-46C5-96DB-CA5AC312BB8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACC2A163-F57A-46C5-96DB-CA5AC312BB8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1393DA97-7191-42D6-B72A-399787CB1F63} = {2BDAF41F-B47C-449A-BD0A-52F02F427B15}
+		{ACC2A163-F57A-46C5-96DB-CA5AC312BB8B} = {2BDAF41F-B47C-449A-BD0A-52F02F427B15}
 	EndGlobalSection
 EndGlobal
