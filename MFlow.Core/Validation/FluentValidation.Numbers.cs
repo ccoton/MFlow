@@ -21,7 +21,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsLessThan(int value, ConditionType conditionType = ConditionType.And)
         {
-            Expression<Func<T, int>> expression = (Expression<Func<T, int>>)_expressions.Last();
+            Expression<Func<T, int>> expression = GetCurrentExpression<int>();
             Func<T, int> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) < value;
             If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.LessThan, string.Empty), conditionType);
@@ -33,7 +33,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsGreaterThan(int value, ConditionType conditionType = ConditionType.And)
         {
-            Expression<Func<T, int>> expression = (Expression<Func<T, int>>)_expressions.Last();
+            Expression<Func<T, int>> expression = GetCurrentExpression<int>();
             Func<T, int> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) > value;
             If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.GreaterThan, string.Empty), conditionType);
@@ -45,7 +45,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsLessThanOrEqualTo(int value, ConditionType conditionType = ConditionType.And)
         {
-            Expression<Func<T, int>> expression = (Expression<Func<T, int>>)_expressions.Last();
+            Expression<Func<T, int>> expression = GetCurrentExpression<int>();
             Func<T, int> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) <= value;
             If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.LessThanOrEqualTo, string.Empty), conditionType);
@@ -57,7 +57,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsGreaterThanOrEqualTo(int value, ConditionType conditionType = ConditionType.And)
         {
-            Expression<Func<T, int>> expression = (Expression<Func<T, int>>)_expressions.Last();
+            Expression<Func<T, int>> expression = GetCurrentExpression<int>();
             Func<T, int> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) >= value;
             If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.GreaterThanOrEqualTo, string.Empty), conditionType);

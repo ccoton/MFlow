@@ -21,7 +21,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsBefore(DateTime value, ConditionType conditionType = ConditionType.And)
         {
-            Expression<Func<T, DateTime>> expression = (Expression<Func<T, DateTime>> )_expressions.Last();
+            Expression<Func<T, DateTime>> expression = GetCurrentExpression<DateTime>();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) < value;
             If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.Before, string.Empty), conditionType);
@@ -33,7 +33,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsAfter(DateTime value, ConditionType conditionType = ConditionType.And)
         {
-            Expression<Func<T, DateTime>> expression = (Expression<Func<T, DateTime>>)_expressions.Last();
+            Expression<Func<T, DateTime>> expression = GetCurrentExpression<DateTime>();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) > value;
             If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.After, string.Empty), conditionType);
@@ -45,7 +45,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsOn(DateTime value, ConditionType conditionType = ConditionType.And)
         {
-            Expression<Func<T, DateTime>> expression = (Expression<Func<T, DateTime>>)_expressions.Last();
+            Expression<Func<T, DateTime>> expression = GetCurrentExpression<DateTime>();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Date == value.Date;
             If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.On, string.Empty), conditionType);

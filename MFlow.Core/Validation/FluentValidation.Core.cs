@@ -18,7 +18,7 @@ namespace MFlow.Core.Validation
     {
         private readonly IPropertyNameResolver _resolver;
         private readonly IMessageResolver _messageResolver;
-        private IList<object> _expressions;
+        private object _currentExpression;
 
         /// <summary>
         ///     Constructor
@@ -29,7 +29,6 @@ namespace MFlow.Core.Validation
             this.If(validate == null).Throw(new ArgumentException("validate"));
             _resolver = new PropertyNameResolver();
             _messageResolver = new MessageResolver();
-            _expressions = new List<object>();
             base.Clear();
         }
 
@@ -40,6 +39,16 @@ namespace MFlow.Core.Validation
             else
                 Or(expression, key, message);
             return this;
+        }
+
+        private Expression<Func<T, C>> GetCurrentExpression<C>() 
+        {
+            return (Expression<Func<T, C>>)_currentExpression;
+        }
+
+        private void SetCurrentExpression<C>(Expression<Func<T, C>> expression)
+        {
+            _currentExpression= expression; 
         }
 
         /// <summary>
@@ -58,13 +67,12 @@ namespace MFlow.Core.Validation
             return _target;
         }
 
-
         /// <summary>
         ///     Adds an expression to the chain 
         /// </summary>
         public IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And)
         {
-            _expressions.Add(expression);
+            SetCurrentExpression(expression);
             return this;
         }
 
