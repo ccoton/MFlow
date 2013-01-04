@@ -17,7 +17,7 @@
   <IsLength>{0} doit être {1} caractères</IsLength>
   <IsCreditCard>{0} doit être valide numéro de carte de crédit</IsCreditCard>
   <IsPostCode>{0} doit être un code postal valide</IsPostCode>
-  <IsThisYear>{0} should be a date from this year</IsThisYear>
-  <IsThisMonth>{0} should be a date from this month</IsThisMonth>
-  <IsToday>{0} should be todays date</IsToday>
+  <IsThisYear>{0} doit être une date à partir de cette année</IsThisYear>
+  <IsThisMonth>{0} doit être une date à partir de ce mois</IsThisMonth>
+  <IsToday>{0} doit être la date d'aujourd'hui</IsToday>
 </Messages>
