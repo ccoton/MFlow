@@ -49,5 +49,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         IFluentValidation<T> IsPostCode(ConditionType conditionType = ConditionType.And);
 
+        /// <summary>
+        ///     Check if the expression evaluates to a strin that is a zip code
+        /// </summary>
+        IFluentValidation<T> IsZipCode(ConditionType conditionType = ConditionType.And);
+
     }
 }

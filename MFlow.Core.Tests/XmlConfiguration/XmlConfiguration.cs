@@ -77,6 +77,22 @@ namespace MFlow.Core.Tests.XmlConfiguration
         }
 
         [TestMethod]
+        public void Test_Fluent_Validation_IsZipCode_False_Loaded_From_Xml()
+        {
+            var user = new User() { };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsZipCode.validation.xml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsZipCode_True_Loaded_From_Xml()
+        {
+            var user = new User() { Username = "35801" };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsZipCode.validation.xml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
         public void Test_Fluent_Validation_IsRequired_False_Loaded_From_Xml()
         {
             var user = new User() { };

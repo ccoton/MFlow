@@ -79,6 +79,9 @@
     <None Include="VmlConfiguration\Contains.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="VmlConfiguration\IsZipCode.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="VmlConfiguration\IsPostCode.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -142,6 +145,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XmlConfiguration\Contains.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\IsZipCode.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XmlConfiguration\IsPostCode.validation.xml">

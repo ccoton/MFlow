@@ -101,6 +101,7 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseIsLength(validator, document);
             validator = ParseIsCreditCard(validator, document);
             validator = ParseIsPostCode(validator, document);
+            validator = ParseIsZipCode(validator, document);
 
             return validator;
         }
@@ -153,6 +154,11 @@ namespace MFlow.Core.XmlConfiguration
         private IFluentValidation<T> ParseIsPostCode<T>(IFluentValidation<T> validator, string document)
         {
             return CreateExpressions<T, string, string>(validator, document, "[Is] NotPostCode", (e, ev, m, v) => { return validator.Check(e).IsPostCode().Message(m); });
+        }
+
+        private IFluentValidation<T> ParseIsZipCode<T>(IFluentValidation<T> validator, string document)
+        {
+            return CreateExpressions<T, string, string>(validator, document, "[Is] NotZipCode", (e, ev, m, v) => { return validator.Check(e).IsZipCode().Message(m); });
         }
 
         private IFluentValidation<T> ParseIsRequired<T>(IFluentValidation<T> validator, string document)

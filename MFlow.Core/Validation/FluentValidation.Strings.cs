@@ -103,5 +103,18 @@ namespace MFlow.Core.Validation
             base.If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsPostCode, string.Empty));
             return this;
         }
+
+        /// <summary>
+        ///     Check if the expression evaluates to a strin that is a zip code
+        /// </summary>
+        public IFluentValidation<T> IsZipCode(ConditionType conditionType = ConditionType.And)
+        {
+            var regEx = @"^[0-9]{5}(-[0-9]{4})?$";
+            Expression<Func<T, string>> expression = (Expression<Func<T, string>>)_expressions.Last();
+            Func<T, string> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && new Regex(regEx).IsMatch(compiled.Invoke(_target));
+            base.If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsPostCode, string.Empty));
+            return this;
+        }
     }
 }

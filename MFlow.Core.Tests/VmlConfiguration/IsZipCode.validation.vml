@@ -1,0 +1,1 @@
+﻿[Display] Value should be a valid zip code [When] Username [Is] NotZipCode
