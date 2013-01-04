@@ -13,12 +13,9 @@ namespace MFlow.Samples.WebApi.Controllers
         public string[] Get([FromUri]CreateAuditEventModel model)
         {
             if (!ModelState.IsValid)
-            {
-
                 return ModelState.Values.SelectMany(m => m.Errors)
                                  .Select(e => e.ErrorMessage)
                                  .ToArray();
-            }
 
             return new string[] { "Success" };
         }
