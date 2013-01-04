@@ -110,6 +110,7 @@ The following validation checks are suported...
 		IsLength,
 		IsCreditCard,
 		IsPostCode,
+		IsZipCode,
 		Contains,
 		Mathes (a regex),
 	
