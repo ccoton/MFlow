@@ -18,4 +18,5 @@
   <IsCreditCard>{0} doit être valide numéro de carte de crédit</IsCreditCard>
   <IsPostCode>{0} doit être un code postal valide</IsPostCode>
   <IsThisYear>{0} should be a date from this year</IsThisYear>
+  <IsThisMonth>{0} should be a date from this month</IsThisMonth>
 </Messages>

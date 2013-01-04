@@ -30,9 +30,14 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> IsOn(DateTime value, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
-        ///     Checks if the expression evaluates to a data that is this year
+        ///     Checks if the expression evaluates to a date that is this year
         /// </summary>
         IFluentValidation<T> IsThisYear(ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Checks if the expression evaluates to a date that is this month
+        /// </summary>
+        IFluentValidation<T> IsThisMonth(ConditionType conditionType = ConditionType.And);
 
     }
 }

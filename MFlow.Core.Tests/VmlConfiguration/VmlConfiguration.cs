@@ -357,6 +357,22 @@ namespace MFlow.Core.Tests.VmlConfiguration
         }
 
         [TestMethod]
+        public void Test_Fluent_Validation_IsThisMonth_False_Loaded_From_Vml()
+        {
+            var user = new User() { LastLogin = DateTime.Now.AddMonths(1) };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsThisMonth.validation.vml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsThisMonth_True_Loaded_From_Vml()
+        {
+            var user = new User() { LastLogin = DateTime.Now };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsThisMonth.validation.vml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
         public void Test_Fluent_Validation_CustomRule_True_Loaded_From_Vml()
         {
             var user = new User() { LoginCount = 999 };
