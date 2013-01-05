@@ -80,7 +80,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsTrue(fluentValidation
                 .Check(u => u.Username).IsEqualTo("testing")
                 .Check(u => u.Password).IsEqualTo("password123")
-                .Check(u => u.Username).IsEqualTo("testingx", conditionType: ConditionType.Or).Satisfied());
+                .Check(u => u.Username, conditionType: ConditionType.Or).IsEqualTo("testingx").Satisfied());
         }
 
         [TestMethod]
@@ -91,7 +91,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsFalse(fluentValidation
                 .Check(u => u.Username).IsEqualTo("testing")
                 .Check(u => u.Password).IsEqualTo("password123")
-                .Check(u => u.Username).IsEqualTo("test", conditionType: ConditionType.Or).Satisfied());
+                .Check(u => u.Username, conditionType: ConditionType.Or).IsEqualTo("test").Satisfied());
         }
 
         [TestMethod]

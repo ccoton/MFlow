@@ -23,12 +23,12 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to a string that matches the regEx 
         /// </summary>
-        IFluentValidation<T> Mathes(string regEx, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> Mathes(string regEx);
 
         /// <summary>
         ///     Checks if the expression evaluates to a string that is an email address 
         /// </summary>
-        IFluentValidation<T> IsEmail(ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsEmail();
 
         /// <summary>
         ///     Checks if the expression evaluates to a string that contains value
@@ -43,17 +43,17 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Check if the expression evaluates to a string matching a credit card pattern
         /// </summary>
-        IFluentValidation<T> IsCreditCard(ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsCreditCard();
 
         /// <summary>
         ///     Check if the expression evaluates to a string that is a post code
         /// </summary>
-        IFluentValidation<T> IsPostCode(ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsPostCode();
 
         /// <summary>
         ///     Check if the expression evaluates to a strin that is a zip code
         /// </summary>
-        IFluentValidation<T> IsZipCode(ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsZipCode();
 
     }
 }

@@ -8,6 +8,7 @@ using MFlow.Core.Conditions;
 using MFlow.Core.Conditions.Enums;
 using MFlow.Core.Events;
 using MFlow.Core.Internal;
+using MFlow.Core.Validation.Context;
 using MFlow.Core.Validation.Enums;
 
 namespace MFlow.Core.Validation
@@ -19,7 +20,7 @@ namespace MFlow.Core.Validation
     {
         private readonly IPropertyNameResolver _resolver;
         private readonly IMessageResolver _messageResolver;
-        private object _currentExpression;
+        private ICurrentValidationContext<T> _currentContext;
 
         /// <summary>
         ///     Constructor
@@ -37,19 +38,9 @@ namespace MFlow.Core.Validation
         {
             if (conditionType == ConditionType.And)
                 And(expression, key, message);
-            else
+            else 
                 Or(expression, key, message);
             return this;
-        }
-
-        private Expression<Func<T, C>> GetCurrentExpression<C>() 
-        {
-            return (Expression<Func<T, C>>)_currentExpression;
-        }
-
-        private void SetCurrentExpression<C>(Expression<Func<T, C>> expression)
-        {
-            _currentExpression= expression; 
         }
 
         /// <summary>
@@ -73,7 +64,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And)
         {
-            SetCurrentExpression(expression);
+            _currentContext = new CurrentValidationContext<T>(expression, conditionType);
             return this;
         }
 

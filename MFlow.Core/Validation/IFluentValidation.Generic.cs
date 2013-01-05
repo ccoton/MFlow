@@ -18,27 +18,27 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an object that is equal to the value expression 
         /// </summary>
-        IFluentValidation<T> IsEqualTo<C>(Expression<Func<T, C>> valueExpression, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsEqualTo<C>(Expression<Func<T, C>> valueExpression);
 
         /// <summary>
         ///     Checks if the expression evaluates to an object that is equal to the value 
         /// </summary>
-        IFluentValidation<T> IsEqualTo<C>(C value, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsEqualTo<C>(C value);
 
         /// <summary>
         ///     Checks if the expression evaluates to an object that is not equal to the value expression 
         /// </summary>
-        IFluentValidation<T> IsNotEqualTo<C>(Expression<Func<T, C>> valueExpression, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsNotEqualTo<C>(Expression<Func<T, C>> valueExpression);
 
         /// <summary>
         ///     Checks if the expression evaluates to an object that is not equal to the value 
         /// </summary>
-        IFluentValidation<T> IsNotEqualTo<C>(C value, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsNotEqualTo<C>(C value);
 
         /// <summary>
         ///     Is the item required
         /// </summary>
-        IFluentValidation<T> IsRequired<C>(ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsRequired<C>();
 
         /// <summary>
         ///     Evaluates another validation instance that this one depends on
