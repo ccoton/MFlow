@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using MFlow.Core.Conditions;
+using MFlow.Core.Conditions.Enums;
 using MFlow.Core.Events;
 
 namespace MFlow.Core.Validation
@@ -17,21 +18,21 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an int that is less than the value 
         /// </summary>
-        IFluentValidation<T> IsLessThan(int value, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsLessThan(int value);
 
         /// <summary>
         ///     Checks if the expression evaluates to an int that is greater than the value 
         /// </summary>
-        IFluentValidation<T> IsGreaterThan(int value, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsGreaterThan(int value);
 
         /// <summary>
         ///     Checks if the expression evaluates to an int that is less than or equal to the value 
         /// </summary>
-        IFluentValidation<T> IsLessThanOrEqualTo(int value, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsLessThanOrEqualTo(int value);
 
         /// <summary>
         ///     Checks if the expression evaluates to an int that is greater than or equal to the value 
         /// </summary>
-        IFluentValidation<T> IsGreaterThanOrEqualTo(int value, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> IsGreaterThanOrEqualTo(int value);
     }
 }

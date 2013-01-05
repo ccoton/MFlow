@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using MFlow.Core.Conditions;
+using MFlow.Core.Conditions.Enums;
 using MFlow.Core.Events;
 using MFlow.Core.Validation.Enums;
 
@@ -26,7 +27,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Adds an expression to the chain 
         /// </summary>
-        IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And);
+        IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And, ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Takes a boolean IF condition and evaluates it
@@ -92,12 +93,12 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Validate this instance
         /// </summary>
-        IEnumerable<IValidationResult<T>> Validate();
+        IEnumerable<IValidationResult<T>> Validate(bool supressWarnings = true);
 
         /// <summary>
         ///     Validate this instance
         /// </summary>
-        IEnumerable<IValidationResult<T>> ValidateAndThrow<E>() where E : Exception, new();
+        IEnumerable<IValidationResult<T>> ValidateAndThrow<E>(bool supressWarnings = true) where E : Exception, new();
 
         /// <summary>
         ///     Throws an exception
@@ -107,6 +108,6 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        bool Satisfied();
+        bool Satisfied(bool supressWarnings = true);
     }
 }

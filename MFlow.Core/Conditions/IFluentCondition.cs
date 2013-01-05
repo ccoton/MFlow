@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using MFlow.Core.Conditions.Enums;
 
 namespace MFlow.Core.Conditions
 {
@@ -16,6 +17,7 @@ namespace MFlow.Core.Conditions
     {
         Expression<Func<T, bool>> Condition { get; }
         ConditionType Type { get; }
+        ConditionOutput Output { get; }
         string Key { get; }
         string Message { get; }
 

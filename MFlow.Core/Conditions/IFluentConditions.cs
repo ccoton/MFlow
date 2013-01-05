@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using MFlow.Core.Conditions.Enums;
 
 namespace MFlow.Core.Conditions
 {
@@ -15,32 +16,32 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Takes a boolean IF condition and evaluates it
         /// </summary>
-        IFluentConditions<T> If(bool condition, string key = "", string message = "");
+        IFluentConditions<T> If(bool condition, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean IF condition, then evaluates it
         /// </summary>
-        IFluentConditions<T> If(Expression<Func<T, bool>> expression, string key="", string message = "");
+        IFluentConditions<T> If(Expression<Func<T, bool>> expression, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Takes a boolean AND condition and evaluates it
         /// </summary>
-        IFluentConditions<T> And(bool condition, string key = "", string message = "");
+        IFluentConditions<T> And(bool condition, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean AND condition, then evaluates it
         /// </summary>
-        IFluentConditions<T> And(Expression<Func<T, bool>> expression, string key = "", string message = "");
+        IFluentConditions<T> And(Expression<Func<T, bool>> expression, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Takes a boolean OR condition and evaluates it
         /// </summary>
-        IFluentConditions<T> Or(bool condition, string key = "", string message = "");
+        IFluentConditions<T> Or(bool condition, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean OR condition, then evaluates it
         /// </summary>
-        IFluentConditions<T> Or(Expression<Func<T, bool>> expression, string key = "", string message = "");
+        IFluentConditions<T> Or(Expression<Func<T, bool>> expression, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Clear the conditions for the validation instance
@@ -60,6 +61,6 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        bool Satisfied();
+        bool Satisfied(bool supressWarnings = true);
     }
 }

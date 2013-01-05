@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MFlow.Core.Conditions
+namespace MFlow.Core.Conditions.Enums
 {
     /// <summary>
     ///     An enum representing a conditional type
