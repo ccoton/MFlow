@@ -51,6 +51,7 @@
     <Compile Include="Internal\MessageResolver.cs" />
     <Compile Include="Resources\IResourceLocator.cs" />
     <Compile Include="Resources\ResourceLocator.cs" />
+    <Compile Include="Conditions\Enums\ConditionOutput.cs" />
     <Compile Include="Validation\Enums\ValidationType.cs" />
     <Compile Include="Validation\FluentValidationDates.cs" />
     <Compile Include="Validation\IFluentValidationBuilder.cs" />
