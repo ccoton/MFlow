@@ -155,7 +155,7 @@ namespace MFlow.Core.Tests.Conditions
         public void Test_Fluent_Conditions_Satisfied_Doesnt_Supress_Warnings()
         {
             IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
-            var output = fluentConditions.If(true).And(false, output: ConditionOutput.Warning).Satisfied(supressWarnings:false);
+            var output = fluentConditions.If(true).And(false, output: ConditionOutput.Warning).Satisfied(suppressWarnings:false);
             Assert.IsFalse(output);
         }
     }

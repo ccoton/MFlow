@@ -61,6 +61,6 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        bool Satisfied(bool supressWarnings = true);
+        bool Satisfied(bool suppressWarnings = true);
     }
 }

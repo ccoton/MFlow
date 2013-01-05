@@ -45,11 +45,11 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        bool Satisfied(bool supressWarnings = true);
+        bool Satisfied(bool suppressWarnings = true);
 
         /// <summary>
         ///     Validate this instance
         /// </summary>
-        IEnumerable<IValidationResult<T>> Validate(bool supressWarnings = true);
+        IEnumerable<IValidationResult<T>> Validate(bool suppressWarnings = true);
     }
 }

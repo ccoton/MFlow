@@ -186,12 +186,12 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Validate this instance
         /// </summary>
-        public IEnumerable<IValidationResult<T>> Validate(bool supressWarnings = true)
+        public IEnumerable<IValidationResult<T>> Validate(bool suppressWarnings = true)
         {
             var results = new List<IValidationResult<T>>();
 
             foreach (var condition in base._conditions
-                .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !supressWarnings))
+                .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
                 .Where(c => !c.Condition.Compile().Invoke(_target)))
                 results.Add(new ValidationResult<T>(condition));
 
@@ -204,9 +204,9 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Validate this instance
         /// </summary>
-        public IEnumerable<IValidationResult<T>> ValidateAndThrow<E>(bool supressWarnings = true) where E : Exception, new()
+        public IEnumerable<IValidationResult<T>> ValidateAndThrow<E>(bool suppressWarnings = true) where E : Exception, new()
         {
-            var results = Validate(supressWarnings);
+            var results = Validate(suppressWarnings);
             if (results.Any())
                 throw new E();
             return results;
@@ -228,9 +228,9 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        public new bool Satisfied(bool supressWarnings = true)
+        public new bool Satisfied(bool suppressWarnings = true)
         {
-            return base.Satisfied(supressWarnings);
+            return base.Satisfied(suppressWarnings);
         }
     }
 }

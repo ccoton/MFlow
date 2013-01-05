@@ -93,12 +93,12 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Validate this instance
         /// </summary>
-        IEnumerable<IValidationResult<T>> Validate(bool supressWarnings = true);
+        IEnumerable<IValidationResult<T>> Validate(bool suppressWarnings = true);
 
         /// <summary>
         ///     Validate this instance
         /// </summary>
-        IEnumerable<IValidationResult<T>> ValidateAndThrow<E>(bool supressWarnings = true) where E : Exception, new();
+        IEnumerable<IValidationResult<T>> ValidateAndThrow<E>(bool suppressWarnings = true) where E : Exception, new();
 
         /// <summary>
         ///     Throws an exception
@@ -108,6 +108,6 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        bool Satisfied(bool supressWarnings = true);
+        bool Satisfied(bool suppressWarnings = true);
     }
 }

@@ -147,13 +147,13 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        public bool Satisfied(bool supressWarnings = true)
+        public bool Satisfied(bool suppressWarnings = true)
         {
             return _conditions
-                .Where(c=> (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !supressWarnings ))
+                .Where(c=> (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings ))
                 .All(c => c.Condition.Compile().Invoke(_target) == true && c.Type == ConditionType.And) ||
                 _conditions
-                .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !supressWarnings))
+                .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
                 .Any(c => c.Condition.Compile().Invoke(_target) && c.Type == ConditionType.Or);
         }
     }

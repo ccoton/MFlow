@@ -218,7 +218,7 @@ namespace MFlow.Core.Tests.Validation
             var results = fluentValidation
                 .Check(u => u.Username).IsEqualTo("testing")
                 .Check(u => u.Username, output: ConditionOutput.Warning).IsEqualTo("abc")
-                .Check(u => u.Password).IsEqualTo("password123").Validate(supressWarnings:false);
+                .Check(u => u.Password).IsEqualTo("password123").Validate(suppressWarnings:false);
 
             Assert.AreEqual(3, results.ToList().Count());
         }
