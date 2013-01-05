@@ -17,18 +17,24 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Constructor
         /// </summary>
-        public FluentCondition(Expression<Func<T, bool>> condition, ConditionType type, string key, string message)
+        public FluentCondition(Expression<Func<T, bool>> condition, ConditionType type, string key, string message, ConditionOutput output = ConditionOutput.Error)
         {
             Condition = condition;
             Type = type;
             Key = key;
             Message = message;
+            Output = output;
         }
 
         /// <summary>
         ///     The condition
         /// </summary>
         public Expression<Func<T, bool>> Condition { get; private set; }
+
+        /// <summary>
+        ///     The output of the condition, an error or warning etc
+        /// </summary>
+        public ConditionOutput Output { get; private set; }
 
         /// <summary>
         ///     The type of the condition

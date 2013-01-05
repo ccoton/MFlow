@@ -138,13 +138,25 @@ namespace MFlow.Core.Tests.Conditions
         {
             IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
             var output = fluentConditions.If(true).Satisfied();
-
             fluentConditions.Clear();
-
             output = fluentConditions.If(false).Satisfied();
-
             Assert.IsFalse(output);
+        }
 
+        [TestMethod]
+        public void Test_Fluent_Conditions_Satisfied_Supresses_Warnings()
+        {
+            IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
+            var output = fluentConditions.If(true).And(false, output: ConditionOutput.Warning).Satisfied();
+            Assert.IsTrue(output);
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Conditions_Satisfied_Doesnt_Supress_Warnings()
+        {
+            IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
+            var output = fluentConditions.If(true).And(false, output: ConditionOutput.Warning).Satisfied(supressWarnings:false);
+            Assert.IsFalse(output);
         }
     }
 }

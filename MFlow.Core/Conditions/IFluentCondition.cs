@@ -17,6 +17,7 @@ namespace MFlow.Core.Conditions
     {
         Expression<Func<T, bool>> Condition { get; }
         ConditionType Type { get; }
+        ConditionOutput Output { get; }
         string Key { get; }
         string Message { get; }
 
