@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using MFlow.Core.Conditions;
+using MFlow.Core.Conditions.Enums;
 using MFlow.Core.Events;
 using MFlow.Core.Internal;
 

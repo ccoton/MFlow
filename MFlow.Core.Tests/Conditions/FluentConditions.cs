@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using MFlow.Core.Conditions;
+using MFlow.Core.Conditions.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MFlow.Core.Tests.Conditions

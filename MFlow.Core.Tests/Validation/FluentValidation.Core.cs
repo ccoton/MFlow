@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Threading;
 using System.Globalization;
+using MFlow.Core.Conditions.Enums;
 
 namespace MFlow.Core.Tests.Validation
 {

@@ -39,8 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conditions\ConditionType.cs" />
-    <Compile Include="Conditions\ExecuteThread.cs" />
+    <Compile Include="Conditions\Enums\ConditionType.cs" />
+    <Compile Include="Conditions\Enums\ExecuteThread.cs" />
     <Compile Include="Conditions\FluentCondition.cs" />
     <Compile Include="Conditions\FluentConditions.cs" />
     <Compile Include="Conditions\IFluentCondition.cs" />
