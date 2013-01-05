@@ -34,12 +34,12 @@ namespace MFlow.Core.Validation
             base.Clear();
         }
 
-        private IFluentValidation<T> If(Expression<Func<T, bool>> expression, string key, string message, ConditionType conditionType = ConditionType.And)
+        private IFluentValidation<T> If(Expression<Func<T, bool>> expression, string key, string message)
         {
-            if (conditionType == ConditionType.And)
-                And(expression, key, message);
-            else 
-                Or(expression, key, message);
+            if (_currentContext.ConditionType == ConditionType.And)
+                And(expression, key, message, _currentContext.ConditionOutput);
+            else
+                Or(expression, key, message, _currentContext.ConditionOutput);
             return this;
         }
 
@@ -62,9 +62,9 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Adds an expression to the chain 
         /// </summary>
-        public IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And)
+        public IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And, ConditionOutput output = ConditionOutput.Error)
         {
-            _currentContext = new CurrentValidationContext<T>(expression, conditionType);
+            _currentContext = new CurrentValidationContext<T>(expression, conditionType, output);
             return this;
         }
 
@@ -186,11 +186,13 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Validate this instance
         /// </summary>
-        public IEnumerable<IValidationResult<T>> Validate()
+        public IEnumerable<IValidationResult<T>> Validate(bool supressWarnings = true)
         {
             var results = new List<IValidationResult<T>>();
 
-            foreach (var condition in base._conditions.Where(c => !c.Condition.Compile().Invoke(_target)))
+            foreach (var condition in base._conditions
+                .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !supressWarnings))
+                .Where(c => !c.Condition.Compile().Invoke(_target)))
                 results.Add(new ValidationResult<T>(condition));
 
             foreach (var dependency in _dependencies)
@@ -202,9 +204,9 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Validate this instance
         /// </summary>
-        public IEnumerable<IValidationResult<T>> ValidateAndThrow<E>() where E : Exception, new()
+        public IEnumerable<IValidationResult<T>> ValidateAndThrow<E>(bool supressWarnings = true) where E : Exception, new()
         {
-            var results = Validate();
+            var results = Validate(supressWarnings);
             if (results.Any())
                 throw new E();
             return results;
@@ -226,9 +228,9 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        public new bool Satisfied()
+        public new bool Satisfied(bool supressWarnings = true)
         {
-            return base.Satisfied();
+            return base.Satisfied(supressWarnings);
         }
     }
 }

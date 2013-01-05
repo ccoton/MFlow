@@ -23,11 +23,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsNotEmpty()
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target));
-            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.NotEmpty, string.Empty), conditionType );
+            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.NotEmpty, string.Empty) );
             return this;
         }
 
@@ -36,11 +35,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> Mathes(string regEx)
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && new Regex(regEx).IsMatch(compiled.Invoke(_target));
-            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, regEx, Enums.ValidationType.RegEx, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, regEx, Enums.ValidationType.RegEx, string.Empty));
             return this;
         }
 
@@ -49,12 +47,11 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsEmail()
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
             var regEx = @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && new Regex(regEx).IsMatch(compiled.Invoke(_target));
-            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsEmail, string.Empty), conditionType );
+            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsEmail, string.Empty) );
             return this;
         }
 
@@ -63,11 +60,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> Contains(string value)
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && compiled.Invoke(_target).Contains(value);
-            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.Contains, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.Contains, string.Empty));
             return this;
         }
 
@@ -76,11 +72,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsLength(int length)
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && compiled.Invoke(_target).Length == length;
-            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, length.ToString(), Enums.ValidationType.IsLength, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, length.ToString(), Enums.ValidationType.IsLength, string.Empty));
             return this;
         }
 
@@ -89,12 +84,11 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsCreditCard()
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
             var internalValidator = new CreditCardValidator();
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => internalValidator.Validate(compiled.Invoke(_target));
-            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsCreditCard, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsCreditCard, string.Empty));
             return this;
         }
 
@@ -103,12 +97,11 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsPostCode()
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
             var regEx = @"(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX]][0-9][A-HJKSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY])))) [0-9][A-Z-[CIKMOV]]{2})";
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && new Regex(regEx).IsMatch(compiled.Invoke(_target));
-            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsPostCode, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsPostCode, string.Empty));
             return this;
         }
 
@@ -117,12 +110,11 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsZipCode()
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
             var regEx = @"^[0-9]{5}(-[0-9]{4})?$";
             Func<T, string> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && new Regex(regEx).IsMatch(compiled.Invoke(_target));
-            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsPostCode, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsPostCode, string.Empty));
             return this;
         }
     }

@@ -24,11 +24,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsBefore(DateTime value)
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) < value;
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.Before, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.Before, string.Empty));
             return this;
         }
 
@@ -37,11 +36,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsAfter(DateTime value)
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) > value;
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.After, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.After, string.Empty));
             return this;
         }
 
@@ -50,11 +48,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsOn(DateTime value)
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Date == value.Date;
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.On, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.On, string.Empty));
             return this;
         }
 
@@ -63,11 +60,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsThisYear()
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Date.Year == DateTime.Now.Year;
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisYear, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisYear, string.Empty));
             return this;
         }
 
@@ -76,11 +72,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsThisMonth()
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Date.Year == DateTime.Now.Year && compiled.Invoke(_target).Month == DateTime.Now.Month;
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisMonth, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisMonth, string.Empty));
             return this;
         }
 
@@ -89,13 +84,12 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsThisWeek()
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Date.Year == DateTime.Now.Year && compiled.Invoke(_target).Month == DateTime.Now.Month &&
                 Thread.CurrentThread.CurrentCulture.Calendar.GetWeekOfYear(compiled.Invoke(_target), CalendarWeekRule.FirstDay, DayOfWeek.Monday) ==
                 Thread.CurrentThread.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisMonth, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisMonth, string.Empty));
             return this;
         }
 
@@ -104,11 +98,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsToday()
         {
-            var conditionType = _currentContext.ConditionType;
             Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
             Func<T, DateTime> compiled = expression.Compile();
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Date == DateTime.Now.Date;
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsToday, string.Empty), conditionType);
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsToday, string.Empty));
             return this;
         }
     }

@@ -184,7 +184,6 @@ namespace MFlow.Core.Tests.Validation
 
         }
 
-
         [TestMethod]
         public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Multipe_Results()
         {
@@ -196,6 +195,32 @@ namespace MFlow.Core.Tests.Validation
 
             Assert.AreEqual(2, results.ToList().Count());
 
+        }
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Multipe_Results_With_Warnings_Supressed()
+        {
+            var user = new User() { Password = "password1234", Username = "testingx" };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            var results = fluentValidation
+                .Check(u => u.Username).IsEqualTo("testing")
+                .Check(u => u.Username, output: ConditionOutput.Warning).IsEqualTo("abc")
+                .Check(u => u.Password).IsEqualTo("password123").Validate();
+
+            Assert.AreEqual(2, results.ToList().Count());
+        }
+
+        [TestMethod]
+        public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Multipe_Results_With_Warnings()
+        {
+            var user = new User() { Password = "password1234", Username = "testingx" };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            var results = fluentValidation
+                .Check(u => u.Username).IsEqualTo("testing")
+                .Check(u => u.Username, output: ConditionOutput.Warning).IsEqualTo("abc")
+                .Check(u => u.Password).IsEqualTo("password123").Validate(supressWarnings:false);
+
+            Assert.AreEqual(3, results.ToList().Count());
         }
 
         [TestMethod]
