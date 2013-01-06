@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MFlow.Mvc.Tests.Supporting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace MFlow.Mvc.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class ValidatedModel
     {
-        [TestMethod]
+        [Test]
         public void Test_Validated_Model_With_Errors()
         {
             var loginViewModel = new LoginViewModel() { Password = "", Username = "" };
@@ -19,7 +19,7 @@ namespace MFlow.Mvc.Tests
             Assert.AreEqual(results.Count(), 2);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Validated_Model_With_No_Errors()
         {
             var loginViewModel = new LoginViewModel() { Password = "password", Username = "username" };

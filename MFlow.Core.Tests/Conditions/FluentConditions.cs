@@ -2,28 +2,28 @@
 using System.Threading;
 using MFlow.Core.Conditions;
 using MFlow.Core.Conditions.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace MFlow.Core.Tests.Conditions
 {
-    [TestClass]
+    [TestFixture]
     public class FluentConditions
     {
-        [TestMethod]
+        [Test]
         public void Test_Simple_Fluent_Condition_Returns_True()
         {
             IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
             Assert.IsTrue(fluentConditions.If(1 == 1).Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Simple_Fluent_Condition_Returns_False()
         {
             IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
             Assert.IsFalse(fluentConditions.If(1 == 2).Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Chain_Of_True_Conditions()
         {
             IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
@@ -31,7 +31,7 @@ namespace MFlow.Core.Tests.Conditions
             Assert.IsTrue(chain);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Chain_Of_False_Conditions()
         {
             IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
@@ -39,7 +39,7 @@ namespace MFlow.Core.Tests.Conditions
             Assert.IsFalse(chain);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Chain_Containing_True_Or()
         {
             IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
@@ -47,7 +47,7 @@ namespace MFlow.Core.Tests.Conditions
             Assert.IsTrue(chain);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Chain_Containing_False_Or()
         {
             IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
@@ -55,7 +55,7 @@ namespace MFlow.Core.Tests.Conditions
             Assert.IsFalse(chain);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Chain_Of_Conditions_Executes()
         {
             var output = false;
@@ -69,7 +69,7 @@ namespace MFlow.Core.Tests.Conditions
             Assert.IsTrue(output);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Chain_Of_Conditions_Executes_On_Thread()
         {
             var thread = System.Threading.Thread.CurrentThread.ManagedThreadId;
@@ -83,7 +83,7 @@ namespace MFlow.Core.Tests.Conditions
                 );
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Chain_Of_Conditions_Doesnt_Execute()
         {
             var output = false;
@@ -97,7 +97,7 @@ namespace MFlow.Core.Tests.Conditions
             Assert.IsFalse(output);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Chain_Of_Conditions_Executes_Else()
         {
             var output = 1;
@@ -114,7 +114,7 @@ namespace MFlow.Core.Tests.Conditions
             Assert.IsTrue(output == 3);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Chain_Of_Conditions_Executes_Else_On_Thread()
         {
             var thread = System.Threading.Thread.CurrentThread.ManagedThreadId;
@@ -133,7 +133,7 @@ namespace MFlow.Core.Tests.Conditions
                 );
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Conditions_Clear()
         {
             IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
@@ -143,7 +143,7 @@ namespace MFlow.Core.Tests.Conditions
             Assert.IsFalse(output);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Conditions_Satisfied_Supresses_Warnings()
         {
             IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());
@@ -151,7 +151,7 @@ namespace MFlow.Core.Tests.Conditions
             Assert.IsTrue(output);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Conditions_Satisfied_Doesnt_Supress_Warnings()
         {
             IFluentConditions<object> fluentConditions = new MFlow.Core.Conditions.FluentConditions<object>(new Object());

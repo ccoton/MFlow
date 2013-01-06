@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using MFlow.Core.Tests.Supporting;
 using MFlow.Core.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace MFlow.Core.Tests.VmlConfiguration
 {
-    [TestClass]
+    [TestFixture]
     public class VmlConfiguration
     {
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_NotEmpty_False_Loaded_From_Vml()
         {
             var user = new User() { };
@@ -20,7 +20,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_NotEmpty_True_Loaded_From_Vml()
         {
             var user = new User() { Username = "testing" };
@@ -28,7 +28,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsLength_False_Loaded_From_Vml()
         {
             var user = new User() { };
@@ -36,7 +36,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsLength_True_Loaded_From_Vml()
         {
             var user = new User() { Username = "12345678901234567890" };
@@ -44,7 +44,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsLongerThan_False_Loaded_From_Vml()
         {
             var user = new User() { };
@@ -52,7 +52,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsLongerThan_True_Loaded_From_Vml()
         {
             var user = new User() { Username = "123456789012345678901" };
@@ -60,7 +60,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsCreditCard_False_Loaded_From_Vml()
         {
             var user = new User() { };
@@ -68,7 +68,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsCreditCard_True_Loaded_From_Vml()
         {
             var user = new User() { Username ="5105 1051 0510 5100" };
@@ -76,7 +76,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsPostCode_False_Loaded_From_Vml()
         {
             var user = new User() { };
@@ -84,7 +84,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsPostCode_True_Loaded_From_Vml()
         {
             var user = new User() { Username = "B69 1TE" };
@@ -92,7 +92,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsZipCode_False_Loaded_From_Vml()
         {
             var user = new User() { };
@@ -100,7 +100,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsZipCode_True_Loaded_From_Vml()
         {
             var user = new User() { Username = "35801" };
@@ -108,7 +108,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsRequired_False_Loaded_From_Vml()
         {
             var user = new User() { };
@@ -116,7 +116,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsRequired_True_Loaded_From_Vml()
         {
             var user = new User() { Username = "testing" };
@@ -124,7 +124,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_Contains_False_Loaded_From_Vml()
         {
             var user = new User() { };
@@ -132,7 +132,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_Contains_True_Loaded_From_Vml()
         {
             var user = new User() { Username = "test admin test" };
@@ -140,7 +140,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_RegEx_False_Loaded_From_Vml()
         {
             var user = new User() { Username = "testing" };
@@ -148,7 +148,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_RegEx_True_Loaded_From_Vml()
         {
             var user = new User() { Username = "user@somedomain.com" };
@@ -156,7 +156,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsEmail_False_Loaded_From_Vml()
         {
             var user = new User() { Username = "testing" };
@@ -164,7 +164,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsEmail_True_Loaded_From_Vml()
         {
             var user = new User() { Username = "user@somedomain.com" };
@@ -172,7 +172,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_Equal_False_Loaded_From_Vml()
         {
             var user = new User() { Username = "testing" };
@@ -180,7 +180,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_EqualExpression_False_Loaded_From_Vml()
         {
             var user = new User() { Password = "123", ConfirmPassword = "456" };
@@ -188,7 +188,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_EqualExpression_True_Loaded_From_Vml()
         {
             var user = new User() { Password = "123", ConfirmPassword = "123" };
@@ -196,7 +196,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_NotEqualExpression_False_Loaded_From_Vml()
         {
             var user = new User() { Password = "123", ConfirmPassword = "123" };
@@ -204,7 +204,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_NotEqualExpression_True_Loaded_From_Vml()
         {
             var user = new User() { Password = "123", ConfirmPassword = "456" };
@@ -212,7 +212,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_Equal_True_Loaded_From_Xml()
         {
             var user = new User() { Username = "fred" };
@@ -220,7 +220,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_NotEqual_False_Loaded_From_Vml()
         {
             var user = new User() { Username = "fred" };
@@ -228,7 +228,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_NotEqual_True_Loaded_From_Vml()
         {
             var user = new User() { Username = "testing" };
@@ -236,7 +236,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_After_False_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/02/2010") };
@@ -244,7 +244,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_After_True_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/02/2020") };
@@ -252,7 +252,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_Before_False_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/02/2020") };
@@ -260,7 +260,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_Before_True_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/02/2010") };
@@ -268,7 +268,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_On_False_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/02/2015") };
@@ -276,7 +276,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_On_True_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/01/2015") };
@@ -284,7 +284,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_LessThan_False_Loaded_From_Vml()
         {
             var user = new User() { LoginCount = 12 };
@@ -292,7 +292,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_LessThan_True_Loaded_From_Vml()
         {
             var user = new User() { LoginCount = 9 };
@@ -300,7 +300,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_GreaterThan_False_Loaded_From_Vml()
         {
             var user = new User() { LoginCount = 1 };
@@ -308,7 +308,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_GreaterThan_True_Loaded_From_Vml()
         {
             var user = new User() { LoginCount = 15 };
@@ -316,7 +316,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_LessThanOrEqualTo_False_Loaded_From_Vml()
         {
             var user = new User() { LoginCount = 11 };
@@ -324,7 +324,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_LessThanOrEqualTo_True_Loaded_From_Vml()
         {
             var user = new User() { LoginCount = 10 };
@@ -332,7 +332,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_GreaterThanOrEqualTo_False_Loaded_From_Vml()
         {
             var user = new User() { LoginCount = 1 };
@@ -340,7 +340,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_GreaterThanOrEqualTo_True_Loaded_From_Vml()
         {
             var user = new User() { LoginCount = 10 };
@@ -348,7 +348,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_CustomRule_False_Loaded_From_Vml()
         {
             var user = new User() { LoginCount = 1 };
@@ -356,7 +356,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsThisYear_False_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Now.AddYears(1) };
@@ -364,7 +364,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsThisYear_True_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Now};
@@ -372,7 +372,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsThisMonth_False_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Now.AddMonths(1) };
@@ -380,7 +380,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsThisMonth_True_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Now };
@@ -388,7 +388,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsThisWeek_False_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Now.AddDays(7) };
@@ -396,7 +396,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsThisWeek_True_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Now };
@@ -404,7 +404,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsToday_False_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Now.AddDays(1) };
@@ -412,7 +412,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsToday_True_Loaded_From_Vml()
         {
             var user = new User() { LastLogin = DateTime.Now };
@@ -420,7 +420,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_CustomRule_True_Loaded_From_Vml()
         {
             var user = new User() { LoginCount = 999 };

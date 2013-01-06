@@ -3,28 +3,28 @@ using MFlow.Core.Conditions;
 using MFlow.Core.Events;
 using MFlow.Core.Tests.Supporting;
 using MFlow.Core.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Threading;
 using System.Globalization;
 using MFlow.Core.Conditions.Enums;
+using NUnit.Framework;
 
 namespace MFlow.Core.Tests.Validation
 {
-    [TestClass]
+    [TestFixture]
     public partial class FluentValidation
     {
 
         private readonly IFluentValidationFactory _factory = new FluentValidationFactory();
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void Test_Fluent_Validation_Constructor_Exception()
         {
             var fluentValidation = _factory.GetFluentValidation<User>(null);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void Test_Chained_Fluent_Validation_ValidateAndThrow_InValid()
         {
@@ -34,7 +34,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Username).IsEqualTo("xxx").ValidateAndThrow<ArgumentException>();
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_ValidateAndThrow_Valid()
         {
             var user = new User() { Password = "password123", Username = "xxx" };
@@ -43,7 +43,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Username).IsEqualTo("xxx").ValidateAndThrow<ArgumentException>().Any());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_With_InValid_Expression()
         {
             var user = new User() { Password = "password123", Username = "testing" };
@@ -52,7 +52,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Username).IsEqualTo("xxx").Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_With_Valid_Expression_Chain()
         {
             var user = new User() { Password = "password123", Username = "testing" };
@@ -62,7 +62,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Password).IsEqualTo("password123").Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_With_InValid_Expression_Chain()
         {
             var user = new User() { Password = "password123", Username = "testingx" };
@@ -72,7 +72,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Password).IsEqualTo("password123").Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_With_Valid_Or_Expression_Chain()
         {
             var user = new User() { Password = "password1213", Username = "testingx" };
@@ -83,7 +83,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Username, conditionType: ConditionType.Or).IsEqualTo("testingx").Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_With_InValid_Or_Expression_Chain()
         {
             var user = new User() { Password = "password1234", Username = "testingx" };
@@ -94,7 +94,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Username, conditionType: ConditionType.Or).IsEqualTo("test").Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_With_Valid_Expression_Executes()
         {
             var user = new User() { Password = "password123", Username = "testing" };
@@ -110,7 +110,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsTrue(user.Username == "valid");
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_With_Valid_Expression_Executes_Else()
         {
             var user = new User() { Password = "password123", Username = "testing2" };
@@ -124,7 +124,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsTrue(user.Username == "invalid");
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Raises_Event()
         {
             var user = new User() { Password = "password123", Username = "testing" };
@@ -145,7 +145,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual(user.Username, "caught event");
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Results()
         {
             var user = new User() { Password = "password123", Username = "testingx" };
@@ -158,7 +158,7 @@ namespace MFlow.Core.Tests.Validation
 
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Returns_Correct_Key()
         {
             var user = new User() { Password = "password123", Username = "testingx" };
@@ -171,7 +171,7 @@ namespace MFlow.Core.Tests.Validation
 
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Returns_Correct_Message()
         {
             var user = new User() { Password = "password123", Username = "testingx" };
@@ -184,7 +184,7 @@ namespace MFlow.Core.Tests.Validation
 
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Multipe_Results()
         {
             var user = new User() { Password = "password1234", Username = "testingx" };
@@ -197,7 +197,7 @@ namespace MFlow.Core.Tests.Validation
 
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Multipe_Results_With_Warnings_Supressed()
         {
             var user = new User() { Password = "password1234", Username = "testingx" };
@@ -210,7 +210,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual(2, results.ToList().Count());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Returns_Correct_Number_Of_Multipe_Results_With_Warnings()
         {
             var user = new User() { Password = "password1234", Username = "testingx" };
@@ -223,7 +223,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual(3, results.ToList().Count());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Returns_Correct_Keys()
         {
             var user = new User() { Password = "password123", Username = "testingx" };
@@ -236,7 +236,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("Password", results.Skip(1).Take(1).First().Condition.Key);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Returns_Correct_Messages()
         {
             var user = new User() { Password = "password1234", Username = "testingx" };
@@ -249,7 +249,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("Password is now valid", results.Skip(1).Take(1).First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Returns_Correct_Complex_Keys()
         {
             var fluentValidation = _factory.GetFluentValidation<Thread>(Thread.CurrentThread);
@@ -261,7 +261,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("CurrentCulture.EnglishName", results.Skip(1).Take(1).First().Condition.Key);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_NotNullOrEmpty_With_Valid_Value()
         {
             var user = new User() { Password = "password1234", Username = "testingx" };
@@ -273,7 +273,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual(0, results.Count());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_NotNullOrEmpty_Message_Lookup()
         {
             var user = new User() { Password = "password1234", Username = "" };
@@ -285,7 +285,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("Username should not be empty", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Equal_Message_Lookup()
         {
             var user = new User() { Password = "password1234", Username = "" };
@@ -297,7 +297,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("Username should be equal to test", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_NotEqual_Message_Lookup()
         {
             var user = new User() { Password = "password1234", Username = "test" };
@@ -309,7 +309,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("Username should not be equal to test", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_LessThan_Message_Lookup()
         {
             var user = new User() { LoginCount = 11 };
@@ -321,7 +321,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("LoginCount should be less than 10", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_LessThanOrEqualTo_Message_Lookup()
         {
             var user = new User() { LoginCount = 11 };
@@ -333,7 +333,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("LoginCount should be less than or equal to 10", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_GreaterThan_Message_Lookup()
         {
             var user = new User() { LoginCount = 9 };
@@ -345,7 +345,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("LoginCount should be greater than 10", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_GreaterThanOrEqualTo_Message_Lookup()
         {
             var user = new User() { LoginCount = 9 };
@@ -357,7 +357,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("LoginCount should be greater than or equal to 10", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Email_Message_Lookup()
         {
             var user = new User() { Username = "fred" };
@@ -369,7 +369,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("Username should be an email", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Contains_Message_Lookup()
         {
             var user = new User() { Username = "fred" };
@@ -381,7 +381,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("Username should contain dave", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_IsLength_Message_Lookup()
         {
             var user = new User() { Username = "fred" };
@@ -393,7 +393,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("Username should be 5 characters long", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_IsRequired_Message_Lookup()
         {
             var user = new User() { Username = "" };
@@ -405,7 +405,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("Username is a required field", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Before_Message_Lookup()
         {
             var user = new User() { LastLogin = DateTime.Now };
@@ -417,7 +417,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("LastLogin should be before 01/01/2001 00:00:00", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_After_Message_Lookup()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/01/2001 00:00:00") };
@@ -429,7 +429,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("LastLogin should be after 01/01/2012 00:00:00", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_On_Message_Lookup()
         {
             var user = new User() { LastLogin = DateTime.Parse("01/01/2001 00:00:00") };
@@ -441,7 +441,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("LastLogin should be on 01/01/2012 00:00:00", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_On_Message_Lookup_Different_Culture()
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr-FR");
@@ -455,7 +455,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("LastLogin doit être mis sur 01/01/2012 00:00:00", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Message_Lookup_Missing_Culture()
         {
 
@@ -470,7 +470,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("Username should not be empty", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsEmail_False_Loaded_From_Xml()
         {
             var user = new User() { Username = "testing" };
@@ -478,7 +478,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Email_Fluent_Message()
         {
             var user = new User() { Username = "fred" };
@@ -491,7 +491,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("The username should be some kind of valid email address", results.First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Email_Chained_Fluent_Message()
         {
             var user = new User() { Username = "fred" };
@@ -506,7 +506,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual("The password should not be empty or null", results.Skip(1).Take(1).First().Condition.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Email_Chained_Fluent_Custom_Message()
         {
             var user = new User() { Username = "fred" };

@@ -2,15 +2,15 @@
 using MFlow.Core.Conditions;
 using MFlow.Core.Tests.Supporting;
 using MFlow.Core.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace MFlow.Core.Tests.Validation
 {
-    [TestClass]
+    [TestFixture]
     public class GenericValidator
     {
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void Test_Simple_Fluent_Validation_Throws_Exception()
         {
@@ -19,7 +19,7 @@ namespace MFlow.Core.Tests.Validation
             fluentValidation.If(string.IsNullOrEmpty(username)).Throw(new ArgumentException("Username"));
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Simple_Fluent_Validation_Doesnt_Throw_Exception()
         {
             var fluentValidation = new MFlow.Core.Validation.GenericValidator();
@@ -27,7 +27,7 @@ namespace MFlow.Core.Tests.Validation
             fluentValidation.If(string.IsNullOrEmpty(username)).Throw(new ArgumentException("Username"));
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void Test_Chained_Fluent_Validation_Throws_Exception()
         {
@@ -39,7 +39,7 @@ namespace MFlow.Core.Tests.Validation
                 .Throw(new ArgumentException("Username and Password"));
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Validation_Doesnt_Throw_Exception()
         {
             var fluentValidation = new MFlow.Core.Validation.GenericValidator();
@@ -50,7 +50,7 @@ namespace MFlow.Core.Tests.Validation
                 .Throw(new ArgumentException("Username and Password"));
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void Test_Chained_Fluent_Or_Validation_Throws_Exception()
         {
@@ -62,7 +62,7 @@ namespace MFlow.Core.Tests.Validation
                 .Throw(new ArgumentException("Username or Password"));
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Chained_Fluent_Or_Validation_Doesnt_Throw_Exception()
         {
             var fluentValidation = new MFlow.Core.Validation.GenericValidator();

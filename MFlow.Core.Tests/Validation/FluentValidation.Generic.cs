@@ -3,16 +3,16 @@ using MFlow.Core.Conditions;
 using MFlow.Core.Events;
 using MFlow.Core.Tests.Supporting;
 using MFlow.Core.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Threading;
+using NUnit.Framework;
 
 namespace MFlow.Core.Tests.Validation
 {
     public partial class FluentValidation
     {
       
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_Equal()
         {
             var user = new User() { Password = "password123", Username = "testing" };
@@ -21,7 +21,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Username).IsEqualTo("testing").Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_Equal_Expression()
         {
             var user = new User() { Password = "password123", Username = "testing", ConfirmPassword = "password123" };
@@ -30,7 +30,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Password).IsEqualTo(u=>u.ConfirmPassword).Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_Not_Equal()
         {
             var user = new User() { Password = "password123", Username = "testing" };
@@ -39,7 +39,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Username).IsNotEqualTo("testing").Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_NotEqual_Expression()
         {
             var user = new User() { Password = "password123", Username = "testing", ConfirmPassword = "password1234" };
@@ -48,7 +48,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Password).IsNotEqualTo(u => u.ConfirmPassword).Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_Not_Equal_When_Null()
         {
             var user = new User() { Password = "password123", Username = null };
@@ -57,7 +57,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Username).IsNotEqualTo("testing").Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsRequired_When_Valid()
         {
             var user = new User() { Password = "password123", Username = "testing", ConfirmPassword = "password1234" };
@@ -66,7 +66,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Password).IsRequired<string>().Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_IsRequired_When_Empty()
         {
             var user = new User() { Password = "", Username = "testing", ConfirmPassword = "password1234" };
@@ -75,7 +75,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Password).IsRequired<string>().Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_DependsOn_Satisfied_Dependency()
         {
             var user = new User() { Password = "password123", Username = "testing", LoginCount = 12 };
@@ -88,7 +88,7 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.LoginCount).IsGreaterThan(11).DependsOn(dependency.If(true)).Satisfied());
         }
 
-        [TestMethod]
+        [Test]
         public void Test_Fluent_Validation_DependsOn_Unsatisfied_Dependency()
         {
             var user = new User() { Password = "password123", Username = "testing", LoginCount = 12 };
