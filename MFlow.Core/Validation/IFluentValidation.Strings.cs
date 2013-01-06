@@ -39,6 +39,11 @@ namespace MFlow.Core.Validation
         ///     Checks if the expression evaluates to a string that is of length
         /// </summary>
         IFluentValidation<T> IsLength(int length);
+        
+        /// <summary>
+        ///     Checks if the expression evaluates to a string longer than length
+        /// </summary>
+        IFluentValidation<T> IsLongerThan(int length);
 
         /// <summary>
         ///     Check if the expression evaluates to a string matching a credit card pattern

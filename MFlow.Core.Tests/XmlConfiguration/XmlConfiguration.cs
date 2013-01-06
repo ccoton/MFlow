@@ -45,6 +45,22 @@ namespace MFlow.Core.Tests.XmlConfiguration
         }
 
         [TestMethod]
+        public void Test_Fluent_Validation_IsLongerThan_False_Loaded_From_Xml()
+        {
+            var user = new User() { };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsLongerThan.validation.xml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsLongerThan_True_Loaded_From_Xml()
+        {
+            var user = new User() { Username = "1234567890123456789012" };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsLongerThan.validation.xml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
+
+        [TestMethod]
         public void Test_Fluent_Validation_IsCreditCard_False_Loaded_From_Xml()
         {
             var user = new User() { };

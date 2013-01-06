@@ -15,6 +15,7 @@
   <On>{0} doit être mis sur {1}</On>
   <IsRequired>{0} est un champ obligatoire</IsRequired>
   <IsLength>{0} doit être {1} caractères</IsLength>
+  <IsLongerThan>{0} should be longer than {1} characters long</IsLongerThan>
   <IsCreditCard>{0} doit être valide numéro de carte de crédit</IsCreditCard>
   <IsPostCode>{0} doit être un code postal valide</IsPostCode>
   <IsThisYear>{0} doit être une date à partir de cette année</IsThisYear>

@@ -30,6 +30,7 @@ namespace MFlow.Core.Validation.Enums
         IsThisYear = 18,
         IsThisMonth = 19,
         IsThisWeek = 20,
-        IsToday = 21
+        IsToday = 21,
+        IsLongerThan = 22
     }
 }

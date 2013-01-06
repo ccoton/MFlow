@@ -99,6 +99,7 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseOn(validator, document);
             validator = ParseIsRequired(validator, document);
             validator = ParseIsLength(validator, document);
+            validator = ParseIsLongerThan(validator, document);
             validator = ParseIsCreditCard(validator, document);
             validator = ParseIsPostCode(validator, document);
             validator = ParseIsZipCode(validator, document);
@@ -148,6 +149,11 @@ namespace MFlow.Core.XmlConfiguration
         private IFluentValidation<T> ParseIsLength<T>(IFluentValidation<T> validator, string document)
         {
             return CreateExpressions<T, string, int>(validator, document, "[Is] NotLength ", (e, ev, m, v) => { return validator.Check(e).IsLength(v).Message(m); });
+        }
+
+        private IFluentValidation<T> ParseIsLongerThan<T>(IFluentValidation<T> validator, string document)
+        {
+            return CreateExpressions<T, string, int>(validator, document, "[Is] NotLongerThan ", (e, ev, m, v) => { return validator.Check(e).IsLongerThan(v).Message(m); });
         }
 
         private IFluentValidation<T> ParseIsCreditCard<T>(IFluentValidation<T> validator, string document)

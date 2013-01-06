@@ -95,7 +95,7 @@ VML:
 
 When you reference the error message like this, the same process described above will happen and the validator will attempt to load a message for the current culture first and then fall back to the default.
     
-The following validation checks are suported in the fluent interface/xml/xml config...
+The following validation checks are suported in the fluent interface/xml/vml config...
 
 	Generic:
 	
@@ -108,6 +108,7 @@ The following validation checks are suported in the fluent interface/xml/xml con
 		IsNotEmpty,
 		IsEmail,
 		IsLength,
+		IsLongerThan,
 		IsCreditCard,
 		IsPostCode,
 		IsZipCode,

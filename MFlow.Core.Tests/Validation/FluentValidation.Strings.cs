@@ -29,6 +29,24 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsFalse(fluentValidation
                 .Check(u => u.Username).IsLength(24).Satisfied());
         }
+        
+        [TestMethod]
+        public void Test_Fluent_Validation_IsLongerThan()
+        {
+            var user = new User() { Password = "password123", Username = "afunnyusername@somedomain.com", LoginCount = 12 };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsTrue(fluentValidation
+                .Check(u => u.Username).IsLongerThan(24).Satisfied());
+        }
+
+        [TestMethod]
+        public void Test_Fluent_Validation_IsLongerThan_When_Null()
+        {
+            var user = new User() { Password = "password123", Username = null, LoginCount = 12 };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                .Check(u => u.Username).IsLongerThan(24).Satisfied());
+        }
 
         [TestMethod]
         public void Test_Fluent_Validation_IsCeditCard()
