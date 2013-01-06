@@ -90,6 +90,18 @@ namespace MFlow.Core.Validation
             If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, length.ToString(), Enums.ValidationType.IsLongerThan, string.Empty));
             return this;
         }
+        
+        /// <summary>
+        ///     Checks if the expression evaluates to a string shorter than length
+        /// </summary>
+        public IFluentValidation<T> IsShorterThan(int length)
+        {
+            Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
+            Func<T, string> compiled = expression.Compile();
+            Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && compiled.Invoke(_target).Length < length;
+            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, length.ToString(), Enums.ValidationType.IsShorterThan, string.Empty));
+            return this;
+        }
 
         /// <summary>
         ///     Check if the expressions evaluates to a string matching a credit card pattern

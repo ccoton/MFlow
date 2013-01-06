@@ -109,6 +109,7 @@ The following validation checks are suported in the fluent interface/xml/vml con
 		IsEmail,
 		IsLength,
 		IsLongerThan,
+		IsShorterThan,
 		IsCreditCard,
 		IsPostCode,
 		IsZipCode,

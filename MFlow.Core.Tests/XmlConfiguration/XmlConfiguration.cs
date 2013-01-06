@@ -47,16 +47,32 @@ namespace MFlow.Core.Tests.XmlConfiguration
         [Test]
         public void Test_Fluent_Validation_IsLongerThan_False_Loaded_From_Xml()
         {
-            var user = new User() { };
+            var user = new User() {Username = "123" };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsLongerThan.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
-
+        
         [Test]
         public void Test_Fluent_Validation_IsLongerThan_True_Loaded_From_Xml()
         {
             var user = new User() { Username = "1234567890123456789012" };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsLongerThan.validation.xml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
+        
+        [Test]
+        public void Test_Fluent_Validation_IsShorterThan_False_Loaded_From_Xml()
+        {
+            var user = new User() { Username = "12321323132321321321321" };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsShorterThan.validation.xml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [Test]
+        public void Test_Fluent_Validation_IsShorterThan_True_Loaded_From_Xml()
+        {
+            var user = new User() { Username = "12321" };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsShorterThan.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 

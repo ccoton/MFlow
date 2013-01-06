@@ -16,6 +16,7 @@
   <IsRequired>{0} is a required field</IsRequired>
   <IsLength>{0} should be {1} characters long</IsLength>
   <IsLongerThan>{0} should be longer than {1} characters long</IsLongerThan>
+  <IsShorterThan>{0} should not be longer than {1} characters long</IsShorterThan>
   <IsCreditCard>{0} should be valid credit card number</IsCreditCard>
   <IsPostCode>{0} should be a valid post code</IsPostCode>
   <IsThisYear>{0} should be a date from this year</IsThisYear>

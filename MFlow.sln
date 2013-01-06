@@ -1,15 +1,14 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Core", "MFlow.Core\MFlow.Core.csproj", "{64DD43B3-3A13-4325-B074-E26FD285CC7D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Core.Tests", "MFlow.Core.Tests\MFlow.Core.Tests.csproj", "{50E56BCB-0CBD-4330-8C55-541808529B8A}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 4.3
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{2BDAF41F-B47C-449A-BD0A-52F02F427B15}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Mvc", "MFlow.Mvc\MFlow.Mvc.csproj", "{446759FA-5274-472A-87F2-1B1CCACB6919}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Samples.Mvc", "MFlow.Samples.Mvc\MFlow.Samples.Mvc.csproj", "{1393DA97-7191-42D6-B72A-399787CB1F63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Samples.WebApi", "MFlow.Samples.WebApi\MFlow.Samples.WebApi.csproj", "{ACC2A163-F57A-46C5-96DB-CA5AC312BB8B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AFA51701-67ED-4749-BDB2-6CB05126A620}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,9 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AFA517
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Mvc.Tests", "MFlow.Mvc.Tests\MFlow.Mvc.Tests.csproj", "{96AF68AD-FCF5-4492-B9BF-F2C113E0A1DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Core", "MFlow.Core\MFlow.Core.csproj", "{64DD43B3-3A13-4325-B074-E26FD285CC7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Samples.WebApi", "MFlow.Samples.WebApi\MFlow.Samples.WebApi.csproj", "{ACC2A163-F57A-46C5-96DB-CA5AC312BB8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Core.Tests", "MFlow.Core.Tests\MFlow.Core.Tests.csproj", "{50E56BCB-0CBD-4330-8C55-541808529B8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Mvc", "MFlow.Mvc\MFlow.Mvc.csproj", "{446759FA-5274-472A-87F2-1B1CCACB6919}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Mvc.Tests", "MFlow.Mvc.Tests\MFlow.Mvc.Tests.csproj", "{96AF68AD-FCF5-4492-B9BF-F2C113E0A1DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

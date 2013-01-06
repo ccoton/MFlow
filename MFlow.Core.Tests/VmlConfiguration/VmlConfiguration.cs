@@ -47,7 +47,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
         [Test]
         public void Test_Fluent_Validation_IsLongerThan_False_Loaded_From_Vml()
         {
-            var user = new User() { };
+            var user = new User() {  Username = "12345678901"};
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsLongerThan.validation.vml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
@@ -57,6 +57,22 @@ namespace MFlow.Core.Tests.VmlConfiguration
         {
             var user = new User() { Username = "123456789012345678901" };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsLongerThan.validation.vml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
+       
+        [Test]
+        public void Test_Fluent_Validation_IsShorterThan_False_Loaded_From_Vml()
+        {
+            var user = new User() { Username = "1234567890123456712345666"  };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsShorterThan.validation.vml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [Test]
+        public void Test_Fluent_Validation_IsShorterThan_True_Loaded_From_Vml()
+        {
+            var user = new User() { Username = "12345678901234567" };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsShorterThan.validation.vml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 

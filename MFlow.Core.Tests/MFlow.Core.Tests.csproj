@@ -84,6 +84,9 @@
     <None Include="VmlConfiguration\IsLongerThan.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="VmlConfiguration\IsShorterThan.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="VmlConfiguration\IsToday.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -148,6 +151,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="VmlConfiguration\RegEx.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="XmlConfiguration\IsShorterThan.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
