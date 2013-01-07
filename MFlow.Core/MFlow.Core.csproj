@@ -87,7 +87,6 @@
     <Compile Include="Validation\ValidationResult.cs" />
     <Compile Include="Validation\IFluentValidationLoader.cs" />
     <Compile Include="XmlConfiguration\XmlValidationLoader.cs" />
-    <Compile Include="Config\IFluentValidationLoaderFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Xml\Messages.fr-FR.xml">
@@ -107,6 +106,5 @@
   -->
   <ItemGroup>
     <Folder Include="XmlConfiguration\" />
-    <Folder Include="Config\" />
   </ItemGroup>
 </Project>
