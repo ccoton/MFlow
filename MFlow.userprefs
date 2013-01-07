@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="c:\git\MFlow\MFlow.Mvc.Tests\ValidatedModel.cs">
     <Files>
-      <File FileName="c:\git\MFlow\MFlow.Mvc.Tests\ValidatedModel.cs" Line="18" Column="105" />
+      <File FileName="c:\git\MFlow\MFlow.Mvc.Tests\ValidatedModel.cs" Line="11" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,9 +11,7 @@
           <Node name="MFlow.Core" expanded="True" />
           <Node name="MFlow.Core.Tests" expanded="True" />
           <Node name="MFlow.Mvc" expanded="True" />
-          <Node name="MFlow.Mvc.Tests" expanded="True">
-            <Node name="ValidatedModel.cs" selected="True" />
-          </Node>
+          <Node name="MFlow.Mvc.Tests" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
