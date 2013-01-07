@@ -60,6 +60,22 @@ namespace MFlow.Core.Tests.VmlConfiguration
 			Assert.IsTrue(fluentValidation.Satisfied());
 		}
 
+		[Test]
+		public void Test_Fluent_Validation_IsAlpha_False_Loaded_From_Vml()
+		{
+			var user = new User() { Username = "123" };
+			var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsAlpha.validation.vml");
+			Assert.IsFalse(fluentValidation.Satisfied());
+		}
+		
+		[Test]
+		public void Test_Fluent_Validation_IsAlpha_True_Loaded_From_Vml()
+		{
+			var user = new User() { Username = "abcdefg" };
+			var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsAlpha.validation.vml");
+			Assert.IsTrue(fluentValidation.Satisfied());
+		}
+
         [Test]
         public void Test_Fluent_Validation_IsLongerThan_False_Loaded_From_Vml()
         {

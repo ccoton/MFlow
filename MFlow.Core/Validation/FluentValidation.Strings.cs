@@ -154,5 +154,17 @@ namespace MFlow.Core.Validation
 			If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsNumeric, string.Empty));
 			return this;
 		}
+
+		/// <summary>
+		///     Check if the expression evaluates to a string that is alpha only
+		/// </summary>
+		public IFluentValidation<T> IsAlpha()
+		{
+			Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
+			Func<T, string> compiled = expression.Compile();
+			Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && compiled.Invoke(_target).ToCharArray().All(c=> Char.IsLetter(c));
+			If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsAlpha, string.Empty));
+			return this;
+		}
     }
 }

@@ -132,10 +132,28 @@ namespace MFlow.Core.Tests.Validation
 		[Test]
 		public void Test_Fluent_Validation_IsNumeric_When_Null()
 		{
-			var user = new User() { Password = "password123", Username = "abcdefg", LoginCount = 12 };
+			var user = new User() { Password = "password123", Username = null, LoginCount = 12 };
 			var fluentValidation = _factory.GetFluentValidation<User>(user);
 			Assert.IsFalse(fluentValidation
 			               .Check(u => u.Username).IsNumeric().Satisfied());
+		}
+
+		[Test]
+		public void Test_Fluent_Validation_IsAlpha()
+		{
+			var user = new User() { Password = "password123", Username = "abcd", LoginCount = 12 };
+			var fluentValidation = _factory.GetFluentValidation<User>(user);
+			Assert.IsTrue(fluentValidation
+			              .Check(u => u.Username).IsAlpha().Satisfied());
+		}
+		
+		[Test]
+		public void Test_Fluent_Validation_IsAlpha_When_Null()
+		{
+			var user = new User() { Password = "password123", Username = null, LoginCount = 12 };
+			var fluentValidation = _factory.GetFluentValidation<User>(user);
+			Assert.IsFalse(fluentValidation
+			               .Check(u => u.Username).IsAlpha().Satisfied());
 		}
 
         [Test]

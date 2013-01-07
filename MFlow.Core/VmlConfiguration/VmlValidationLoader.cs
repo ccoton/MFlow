@@ -100,6 +100,7 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseIsRequired(validator, document);
             validator = ParseIsLength(validator, document);
 			validator = ParseIsNumeric(validator, document);
+			validator = ParseIsAlpha(validator, document);
             validator = ParseIsLongerThan(validator, document);
             validator = ParseIsShorterThan(validator, document);
             validator = ParseIsCreditCard(validator, document);
@@ -156,6 +157,11 @@ namespace MFlow.Core.XmlConfiguration
 		private IFluentValidation<T> ParseIsNumeric<T>(IFluentValidation<T> validator, string document)
 		{
 			return CreateExpressions<T, string, int>(validator, document, "[Is] NotNumeric", (e, ev, m, v) => { return validator.Check(e).IsNumeric().Message(m); });
+		}
+
+		private IFluentValidation<T> ParseIsAlpha<T>(IFluentValidation<T> validator, string document)
+		{
+			return CreateExpressions<T, string, int>(validator, document, "[Is] NotAlpha", (e, ev, m, v) => { return validator.Check(e).IsAlpha().Message(m); });
 		}
 
         private IFluentValidation<T> ParseIsLongerThan<T>(IFluentValidation<T> validator, string document)

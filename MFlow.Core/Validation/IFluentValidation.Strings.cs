@@ -70,5 +70,10 @@ namespace MFlow.Core.Validation
 		/// </summary>
 		IFluentValidation<T> IsNumeric();
 
+		/// <summary>
+		///    Check if the expression evalates to a string that is alpha only
+		/// </summary>
+		IFluentValidation<T> IsAlpha();
+
     }
 }

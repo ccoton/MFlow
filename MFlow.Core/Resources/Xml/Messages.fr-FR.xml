@@ -23,4 +23,5 @@
   <IsThisMonth>{0} doit être une date à partir de ce mois</IsThisMonth>
   <IsToday>{0} doit être la date d'aujourd'hui</IsToday>
   <IsNumeric>{0} should be a numeric value</IsNumeric>
+  <IsAlpha>{0} should only contain letters</IsAlpha>
 </Messages>

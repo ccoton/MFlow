@@ -156,6 +156,9 @@
     <None Include="VmlConfiguration\IsNumeric.validation.vml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="VmlConfiguration\IsAlpha.validation.vml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Xml\Custom.Messages.en.xml">
@@ -240,6 +243,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XmlConfiguration\IsNumeric.validation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlConfiguration\IsAlpha.validation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

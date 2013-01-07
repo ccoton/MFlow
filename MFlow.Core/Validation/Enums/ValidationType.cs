@@ -33,6 +33,7 @@ namespace MFlow.Core.Validation.Enums
         IsToday = 21,
         IsLongerThan = 22,
         IsShorterThan = 23,
-		IsNumeric = 24
+		IsNumeric = 24,
+		IsAlpha = 25
     }
 }
