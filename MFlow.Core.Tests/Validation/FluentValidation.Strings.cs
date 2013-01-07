@@ -120,6 +120,24 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Username).IsZipCode().Satisfied());
         }
 
+		[Test]
+		public void Test_Fluent_Validation_IsNumeric()
+		{
+			var user = new User() { Password = "password123", Username = "35801", LoginCount = 12 };
+			var fluentValidation = _factory.GetFluentValidation<User>(user);
+			Assert.IsTrue(fluentValidation
+			              .Check(u => u.Username).IsNumeric().Satisfied());
+		}
+		
+		[Test]
+		public void Test_Fluent_Validation_IsNumeric_When_Null()
+		{
+			var user = new User() { Password = "password123", Username = "abcdefg", LoginCount = 12 };
+			var fluentValidation = _factory.GetFluentValidation<User>(user);
+			Assert.IsFalse(fluentValidation
+			               .Check(u => u.Username).IsNumeric().Satisfied());
+		}
+
         [Test]
         public void Test_Fluent_Validation_RegEx()
         {

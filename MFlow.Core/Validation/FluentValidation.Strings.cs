@@ -130,7 +130,7 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
-        ///     Check if the expression evaluates to a strin that is a zip code
+        ///     Check if the expression evaluates to a string that is a zip code
         /// </summary>
         public IFluentValidation<T> IsZipCode()
         {
@@ -141,5 +141,18 @@ namespace MFlow.Core.Validation
             If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsPostCode, string.Empty));
             return this;
         }
+
+		/// <summary>
+		///     Check if the expression evaluates to a string that is numeric
+		/// </summary>
+		public IFluentValidation<T> IsNumeric()
+		{
+			var number = 0;
+			Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
+			Func<T, string> compiled = expression.Compile();
+			Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && int.TryParse(compiled.Invoke(_target), out number);
+			If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsNumeric, string.Empty));
+			return this;
+		}
     }
 }

@@ -65,5 +65,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         IFluentValidation<T> IsZipCode();
 
+		/// <summary>
+		///    Check if the expression evalates to a string that is numeric
+		/// </summary>
+		IFluentValidation<T> IsNumeric();
+
     }
 }

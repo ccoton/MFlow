@@ -44,6 +44,22 @@ namespace MFlow.Core.Tests.XmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
+		[Test]
+		public void Test_Fluent_Validation_IsNumeric_False_Loaded_From_Xml()
+		{
+			var user = new User() { Username = "abc" };
+			var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsNumeric.validation.xml");
+			Assert.IsFalse(fluentValidation.Satisfied());
+		}
+		
+		[Test]
+		public void Test_Fluent_Validation_IsNumeric_True_Loaded_From_Xml()
+		{
+			var user = new User() { Username = "123456789" };
+			var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsNumeric.validation.xml");
+			Assert.IsTrue(fluentValidation.Satisfied());
+		}
+
         [Test]
         public void Test_Fluent_Validation_IsLongerThan_False_Loaded_From_Xml()
         {

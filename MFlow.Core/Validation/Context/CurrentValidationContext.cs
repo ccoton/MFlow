@@ -8,6 +8,9 @@ using MFlow.Core.Conditions.Enums;
 
 namespace MFlow.Core.Validation.Context
 {
+	/// <summary>
+	///     The context of the current validation
+	/// </summary>
     internal class CurrentValidationContext<T> : ICurrentValidationContext<T>
     {
         private readonly object _expression;
@@ -19,12 +22,22 @@ namespace MFlow.Core.Validation.Context
             ConditionOutput = output;
         }
 
+		/// <summary>
+		///     Gets the current expression
+		/// </summary>
         public Expression<Func<T, C>> GetExpression<C>()
         {
             return (Expression<Func<T, C>>)_expression;
         }
 
+		/// <summary>
+		///     Gets the current condition type
+		/// </summary>
         public ConditionType ConditionType { get; private set; }
+
+		/// <summary>
+		///     Gets the current condition output
+		/// </summary>
         public ConditionOutput ConditionOutput { get; private set; }
     }
 }

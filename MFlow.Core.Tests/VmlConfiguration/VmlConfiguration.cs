@@ -44,6 +44,22 @@ namespace MFlow.Core.Tests.VmlConfiguration
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
+		[Test]
+		public void Test_Fluent_Validation_IsNumeric_False_Loaded_From_Vml()
+		{
+			var user = new User() { Username = "abc" };
+			var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsNumeric.validation.vml");
+			Assert.IsFalse(fluentValidation.Satisfied());
+		}
+		
+		[Test]
+		public void Test_Fluent_Validation_IsNumeric_True_Loaded_From_Vml()
+		{
+			var user = new User() { Username = "123432321" };
+			var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsNumeric.validation.vml");
+			Assert.IsTrue(fluentValidation.Satisfied());
+		}
+
         [Test]
         public void Test_Fluent_Validation_IsLongerThan_False_Loaded_From_Vml()
         {
