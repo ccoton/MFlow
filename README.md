@@ -113,6 +113,8 @@ The following validation checks are suported in the fluent interface/xml/vml con
 		IsCreditCard,
 		IsPostCode,
 		IsZipCode,
+		IsNumeric,
+		IsAlpha,
 		Contains,
 		Mathes (a regex),
 	
