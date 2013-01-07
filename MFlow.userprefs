@@ -1,0 +1,25 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\git\MFlow\MFlow.Mvc.Tests\ValidatedModel.cs">
+    <Files>
+      <File FileName="c:\git\MFlow\MFlow.Mvc.Tests\ValidatedModel.cs" Line="18" Column="105" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Samples" expanded="True" />
+          <Node name="MFlow.Core" expanded="True" />
+          <Node name="MFlow.Core.Tests" expanded="True" />
+          <Node name="MFlow.Mvc" expanded="True" />
+          <Node name="MFlow.Mvc.Tests" expanded="True">
+            <Node name="ValidatedModel.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
