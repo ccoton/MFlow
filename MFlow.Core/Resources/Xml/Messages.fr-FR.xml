@@ -15,13 +15,13 @@
   <On>{0} doit être mis sur {1}</On>
   <IsRequired>{0} est un champ obligatoire</IsRequired>
   <IsLength>{0} doit être {1} caractères</IsLength>
-  <IsLongerThan>{0} should be longer than {1} characters long</IsLongerThan>
-  <IsShorterThan>{0} should not be longer than {1} characters long</IsShorterThan>
+  <IsLongerThan> {0} doit être supérieure à {1} caractères </IsLongerThan>
+  <IsShorterThan> {0} ne doit pas être supérieure à {1} caractères </IsShorterThan>
   <IsCreditCard>{0} doit être valide numéro de carte de crédit</IsCreditCard>
   <IsPostCode>{0} doit être un code postal valide</IsPostCode>
   <IsThisYear>{0} doit être une date à partir de cette année</IsThisYear>
   <IsThisMonth>{0} doit être une date à partir de ce mois</IsThisMonth>
   <IsToday>{0} doit être la date d'aujourd'hui</IsToday>
-  <IsNumeric>{0} should be a numeric value</IsNumeric>
-  <IsAlpha>{0} should only contain letters</IsAlpha>
+  <IsNumeric> {0} doit être une valeur numérique </IsNumeric>
+  <IsAlpha> {0} ne doit contenir que des lettres </IsAlpha>
 </Messages>
