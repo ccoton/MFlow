@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using MFlow.Core.Conditions;
-using MFlow.Core.Conditions.Enums;
-using MFlow.Core.Events;
-using MFlow.Core.Internal;
 
 namespace MFlow.Core.Validation
 {
@@ -17,7 +10,7 @@ namespace MFlow.Core.Validation
     /// </summary>
     public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>
     {
-        private IList<Func<IFluentValidation<T>>> _dependencies = new List<Func<IFluentValidation<T>>>();
+        IList<Func<IFluentValidation<T>>> _dependencies = new List<Func<IFluentValidation<T>>>();
 
         /// <summary>
         ///     Checks if the expression evaluates to an object that is equal to the value expression 

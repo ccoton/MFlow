@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MFlow.Core.Tests.Supporting;
 using MFlow.Core.Validation;
 
@@ -10,7 +6,7 @@ namespace MFlow.Core.Tests.CustomRules
 {
     public class CheckCustomCondition : IFluentValidationCustomRule<User>
     {
-        private readonly IFluentValidationFactory _factory;
+        readonly IFluentValidationFactory _factory;
         public CheckCustomCondition()
         {
             _factory = new FluentValidationFactory();

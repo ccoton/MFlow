@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MFlow.Core.Validation;
 
 namespace MFlow.Mvc
@@ -13,8 +10,8 @@ namespace MFlow.Mvc
     /// </summary>
     public class ValidatedModel<T> : IValidatedModel<T>, IValidatableObject
     {
-        private IFluentValidationBuilder<T> _validator;
-        private IFluentValidationFactory _factory;
+        IFluentValidationBuilder<T> _validator;
+        IFluentValidationFactory _factory;
 
         /// <summary>
         ///     Set the target for validation

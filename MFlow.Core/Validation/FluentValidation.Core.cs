@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using MFlow.Core.Conditions;
 using MFlow.Core.Conditions.Enums;
 using MFlow.Core.Events;
@@ -18,9 +16,9 @@ namespace MFlow.Core.Validation
     /// </summary>
     public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>, IFluentValidationBuilder<T>
     {
-        private readonly IPropertyNameResolver _resolver;
-        private readonly IMessageResolver _messageResolver;
-        private ICurrentValidationContext<T> _currentContext;
+        readonly IPropertyNameResolver _resolver;
+        readonly IMessageResolver _messageResolver;
+        ICurrentValidationContext<T> _currentContext;
 
         /// <summary>
         ///     Constructor
@@ -28,13 +26,13 @@ namespace MFlow.Core.Validation
         internal FluentValidation(T validate)
             : base(validate)
         {
-            this.If(validate == null).Throw(new ArgumentException("validate"));
+            If(validate == null).Throw(new ArgumentException("validate"));
             _resolver = new PropertyNameResolver();
             _messageResolver = new MessageResolver();
             base.Clear();
         }
 
-        private IFluentValidation<T> If(Expression<Func<T, bool>> expression, string key, string message)
+        IFluentValidation<T> If(Expression<Func<T, bool>> expression, string key, string message)
         {
             if (_currentContext.ConditionType == ConditionType.And)
                 And(expression, key, message, _currentContext.ConditionOutput);

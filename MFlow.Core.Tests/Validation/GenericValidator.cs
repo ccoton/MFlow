@@ -1,6 +1,4 @@
 ﻿using System;
-using MFlow.Core.Conditions;
-using MFlow.Core.Tests.Supporting;
 using MFlow.Core.Validation;
 using NUnit.Framework;
 
@@ -9,7 +7,6 @@ namespace MFlow.Core.Tests.Validation
     [TestFixture]
     public class GenericValidator
     {
-
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void Test_Simple_Fluent_Validation_Throws_Exception()

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MFlow.Core.Conditions.Enums
+﻿namespace MFlow.Core.Conditions.Enums
 {
     /// <summary>
     ///     An enum represeting a choice of thread options to use 

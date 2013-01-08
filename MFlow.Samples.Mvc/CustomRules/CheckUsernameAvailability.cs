@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using MFlow.Core.Validation;
 using MFlow.Samples.Mvc.Models;
 
@@ -9,7 +6,7 @@ namespace MFlow.Samples.Mvc.CustomRules
 {
     public class CheckUsernameAvailability :  IFluentValidationCustomRule<RegisterModel>
     {
-        private readonly IFluentValidationFactory _factory;
+        readonly IFluentValidationFactory _factory;
 
         public CheckUsernameAvailability()
         {

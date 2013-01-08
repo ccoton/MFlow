@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using MFlow.Core.Conditions.Enums;
 
 namespace MFlow.Core.Conditions
@@ -15,13 +11,39 @@ namespace MFlow.Core.Conditions
     /// <typeparam name="T"></typeparam>
     public interface IFluentCondition<T>
     {
+		/// <summary>
+		///     The condition
+		/// </summary>
         Expression<Func<T, bool>> Condition { get; }
+
+		/// <summary>
+		///     The type of the condition
+		/// </summary>
         ConditionType Type { get; }
+
+		/// <summary>
+		///     The output of the condition
+		/// </summary>
         ConditionOutput Output { get; }
+
+		/// <summary>
+		///     A key to identify to condition
+		/// </summary>
         string Key { get; }
+
+		/// <summary>
+		///     A message to display when the condition isn't satisfied
+		/// </summary>
         string Message { get; }
 
+		/// <summary>
+		///     Sets the key.
+		/// </summary>
         void SetKey(string key);
+
+		/// <summary>
+		///     Sets the message.
+		/// </summary>
         void SetMessage(string message);
     }
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MFlow.Core.Internal.Validators
+﻿namespace MFlow.Core.Internal.Validators
 {
-    internal class CreditCardValidator : IValidator<string>
+    class CreditCardValidator : IValidator<string>
     {
         public bool Validate(string input)
         {

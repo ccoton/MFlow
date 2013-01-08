@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MFlow.Core.Events
+﻿namespace MFlow.Core.Events
 {
     /// <summary>
     ///     An event that can be raised by the validator

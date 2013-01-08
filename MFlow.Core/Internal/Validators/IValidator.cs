@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MFlow.Core.Internal.Validators
+﻿namespace MFlow.Core.Internal.Validators
 {
-    internal interface IValidator<TInput>
+	/// <summary>
+	///     A validator
+	/// </summary>
+    interface IValidator<TInput>
     {
+		/// <summary>
+		///     A validate method
+		/// </summary>
         bool Validate(TInput input);
     }
 }

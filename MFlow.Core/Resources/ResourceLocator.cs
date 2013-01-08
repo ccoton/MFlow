@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Resources;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace MFlow.Core.Resources
@@ -14,10 +11,10 @@ namespace MFlow.Core.Resources
     /// <summary>
     ///     A resource locator implementation
     /// </summary>
-    internal class ResourceLocator : IResourceLocator
+    class ResourceLocator : IResourceLocator
     {
 
-        private static readonly Dictionary<string, Dictionary<string, string>> _resources;
+        static readonly Dictionary<string, Dictionary<string, string>> _resources;
 
         /// <summary>
         ///     Static constructor that loads the default and current culture resources
@@ -51,7 +48,7 @@ namespace MFlow.Core.Resources
             return dictionary.Single(i => i.Key == key).Value;
         }
 
-        private static void LoadAndCache(string fileName)
+        static void LoadAndCache(string fileName)
         {
             var path = string.Format(@"{0}\Resources\Xml\{1}", Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath), fileName);
             var customPath = string.Format(@"{0}\Resources\Xml\Custom.{1}", Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath), fileName);
@@ -76,13 +73,13 @@ namespace MFlow.Core.Resources
             }
         }
 
-        private static XDocument LoadDocument(string fileName)
+        static XDocument LoadDocument(string fileName)
         {
             var document = XDocument.Load(fileName);
             return document;
         }
 
-        private static Dictionary<string, string> ParseDocument(XDocument document)
+        static Dictionary<string, string> ParseDocument(XDocument document)
         {
             var output = new Dictionary<string, string>();
             var nodes = document.Descendants(XName.Get("Messages")).SingleOrDefault().Descendants();
