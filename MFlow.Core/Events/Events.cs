@@ -10,8 +10,8 @@ namespace MFlow.Core.Events
     /// </summary>
     public class Events : IEvents
     {
-        private List<Delegate> _actions;
-        private List<Delegate> Actions
+        List<Delegate> _actions;
+        List<Delegate> Actions
         {
             get { return _actions ?? (_actions = new List<Delegate>()); }
         }
@@ -36,7 +36,7 @@ namespace MFlow.Core.Events
                 var sameThread = ((IEvent<object>)eventArgs).SameThread;
                 if (!sameThread)
                 {
-                    System.Threading.ThreadPool.QueueUserWorkItem(delegate
+                    ThreadPool.QueueUserWorkItem(delegate
                         {
                             action(eventArgs);
                         }, Thread.CurrentPrincipal);
@@ -50,7 +50,7 @@ namespace MFlow.Core.Events
 
         private sealed class EventRegistrationRemover : IDisposable
         {
-            private readonly Action _callOnDispose;
+            readonly Action _callOnDispose;
 
             public EventRegistrationRemover(Action toCall)
             {

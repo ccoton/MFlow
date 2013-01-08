@@ -5,7 +5,7 @@
     /// </summary>
     public class EventsFactory : IEventsFactory
     {
-        private static IEvents _events;
+        static IEvents _events;
 
         /// <summary>
         ///     Static constructor

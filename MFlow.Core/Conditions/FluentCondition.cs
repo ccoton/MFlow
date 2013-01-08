@@ -8,7 +8,7 @@ namespace MFlow.Core.Conditions
     ///     Represents a fluent condition that applies to a type (T) and has
     ///     a type, key and message
     /// </summary>
-    internal class FluentCondition<T> : IFluentCondition<T>
+    class FluentCondition<T> : IFluentCondition<T>
     {
         /// <summary>
         ///     Constructor

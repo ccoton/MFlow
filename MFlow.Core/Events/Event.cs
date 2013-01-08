@@ -5,8 +5,8 @@
     /// </summary>
     public class Event<T> : IEvent<T>
     {
-        private readonly T _source;
-        private readonly bool _sameThread;
+        readonly T _source;
+        readonly bool _sameThread;
 
         /// <summary>
         ///     Constructor
