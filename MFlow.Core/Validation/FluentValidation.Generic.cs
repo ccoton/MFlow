@@ -20,8 +20,16 @@ namespace MFlow.Core.Validation
             Expression<Func<T, C>> expression = _currentContext.GetExpression<C>();
             Func<T, C> compiled = expression.Compile();
             Func<T, C> compiledValue = valueExpression.Compile();
-            Expression<Func<T, bool>> derived = f => (compiled.Invoke(_target) != null && compiledValue.Invoke(_target) != null)
-                && compiled.Invoke(_target).Equals(compiledValue.Invoke(_target));
+            
+            Func<T, bool> calculate = (f) => {
+            	var compiledOutput = compiled.Invoke(f);
+            	var compiledValueOutput = compiledValue.Invoke(f);
+            	
+            	return (compiledOutput != null && compiledValueOutput != null)
+                && compiledOutput.Equals(compiledValueOutput);
+            };
+            
+            Expression<Func<T, bool>> derived = f => calculate(_target);
             If(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, valueExpression, Enums.ValidationType.Equal, string.Empty));
             return this;
         }
