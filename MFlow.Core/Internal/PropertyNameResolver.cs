@@ -6,7 +6,7 @@ namespace MFlow.Core.Internal
     /// <summary>
     ///     A class for resolving property names using expressions
     /// </summary>
-    internal class PropertyNameResolver : IPropertyNameResolver
+    class PropertyNameResolver : IPropertyNameResolver
     {
         /// <summary>
         ///     Resolve a property name using an expression

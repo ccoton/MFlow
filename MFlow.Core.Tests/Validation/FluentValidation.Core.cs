@@ -14,7 +14,7 @@ namespace MFlow.Core.Tests.Validation
     public partial class FluentValidation
     {
 
-        private readonly IFluentValidationFactory _factory = new FluentValidationFactory();
+        readonly IFluentValidationFactory _factory = new FluentValidationFactory();
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]

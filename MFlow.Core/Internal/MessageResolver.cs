@@ -11,8 +11,8 @@ namespace MFlow.Core.Internal
     internal class MessageResolver : IMessageResolver
     {
 
-        private readonly IPropertyNameResolver _propertyNameResolver;
-        private readonly IResourceLocator _resourceLocator;
+        readonly IPropertyNameResolver _propertyNameResolver;
+        readonly IResourceLocator _resourceLocator;
 
         public MessageResolver()
         {
@@ -134,7 +134,7 @@ namespace MFlow.Core.Internal
             return message;
         }
 
-        private bool ShouldResolve(string message)
+        bool ShouldResolve(string message)
         {
             if (!string.IsNullOrEmpty(message) && !string.IsNullOrWhiteSpace(message)
                 && !(message.StartsWith("$") && message.EndsWith("$")))
@@ -145,7 +145,7 @@ namespace MFlow.Core.Internal
             return true;
         }
 
-        private string PrepareForResolve(string message)
+        string PrepareForResolve(string message)
         {
             if ((message.StartsWith("$") && message.EndsWith("$")))
             {
