@@ -10,7 +10,7 @@ namespace MFlow.Performance
 		public static void Main(string[] args)
 		{
 			var user = new User() { Forename = "test", Surname = "test", Email = "testing" };
-			var validator = new FluentValidationFactory().GetFluentValidation(user);
+				var validator = new FluentValidationFactory().GetFluentValidation(user);
 			
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();

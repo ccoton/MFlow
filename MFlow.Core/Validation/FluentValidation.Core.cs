@@ -30,7 +30,7 @@ namespace MFlow.Core.Validation
             If(validate == null).Throw(new ArgumentException("validate"));
             _resolver = new PropertyNameResolver();
             _messageResolver = new MessageResolver();
-            _expressionBuilder = ExpressionBuilder<T>.Instance;
+            _expressionBuilder = new ExpressionBuilder<T>();
             base.Clear();
         }
 
