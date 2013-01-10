@@ -19,7 +19,7 @@ namespace MFlow.Core.Validation
         {
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
             Func<T, string> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(_expressionBuilder.Invoke(compiled, _target)) && !string.IsNullOrEmpty(_expressionBuilder.Invoke(compiled, _target));
+            Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(_expressionBuilder.Invoke(compiled, _target));
             If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.NotEmpty, string.Empty) );
             return this;
         }

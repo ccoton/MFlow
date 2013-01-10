@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Linq;
 
 namespace MFlow.Core.Internal
 {
@@ -32,13 +33,7 @@ namespace MFlow.Core.Internal
 		/// </summary>
 		public C Invoke<C>(Func<T, C> compiled, T target)
 		{
-			var key = new InvokeCacheKey() { Target = target, Func = compiled };
-			if(_compilations.ContainsKey(key))
-				return (C)_compilations[key];
-			
-			var invoked = compiled.Invoke(target);
-			_compilations.Add(key, invoked);
-			return invoked;
+			return compiled.Invoke(target);
 		}
 	}
 	
