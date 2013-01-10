@@ -18,7 +18,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsNotEmpty()
         {
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
-            Func<T, string> compiled = expression.Compile();
+            Func<T, string> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target));
             If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.NotEmpty, string.Empty) );
             return this;

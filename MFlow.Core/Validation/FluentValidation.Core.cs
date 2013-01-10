@@ -18,6 +18,7 @@ namespace MFlow.Core.Validation
     {
         readonly IPropertyNameResolver _resolver;
         readonly IMessageResolver _messageResolver;
+        readonly IExpressionBuilder<T> _expressionBuilder;
         ICurrentValidationContext<T> _currentContext;
 
         /// <summary>
@@ -29,6 +30,7 @@ namespace MFlow.Core.Validation
             If(validate == null).Throw(new ArgumentException("validate"));
             _resolver = new PropertyNameResolver();
             _messageResolver = new MessageResolver();
+            _expressionBuilder = ExpressionBuilder<T>.Instance;
             base.Clear();
         }
 

@@ -48,6 +48,8 @@
     <Compile Include="Conditions\FluentConditions.cs" />
     <Compile Include="Conditions\IFluentCondition.cs" />
     <Compile Include="Conditions\IFluentConditions.cs" />
+    <Compile Include="Internal\ExpressionBuilder.cs" />
+    <Compile Include="Internal\IExpressionBuilder.cs" />
     <Compile Include="Internal\Validators\CreditCardValidator.cs" />
     <Compile Include="Internal\IMessageResolver.cs" />
     <Compile Include="Internal\Validators\IValidator.cs" />
