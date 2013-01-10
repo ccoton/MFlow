@@ -15,7 +15,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsLessThan(int value)
         {
             Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
-            Func<T, int> compiled = expression.Compile();
+            Func<T, int> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) < value;
             If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.LessThan, string.Empty));
             return this;
@@ -27,7 +27,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsGreaterThan(int value)
         {
             Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
-            Func<T, int> compiled = expression.Compile();
+            Func<T, int> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) > value;
             If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.GreaterThan, string.Empty));
             return this;
@@ -39,7 +39,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsLessThanOrEqualTo(int value)
         {
             Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
-            Func<T, int> compiled = expression.Compile();
+            Func<T, int> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) <= value;
             If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.LessThanOrEqualTo, string.Empty));
             return this;
@@ -51,7 +51,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsGreaterThanOrEqualTo(int value)
         {
             Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
-            Func<T, int> compiled = expression.Compile();
+            Func<T, int> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) >= value;
             If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.GreaterThanOrEqualTo, string.Empty));
             return this;
