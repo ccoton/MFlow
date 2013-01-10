@@ -11,7 +11,7 @@ namespace MFlow.Core.Internal
 	class ExpressionBuilder<T> : IExpressionBuilder<T>
 	{
 		static IDictionary<string, object> _expressions= new Dictionary<string, object>();
-		static IDictionary<object, object> _compilations = new Dictionary<object, object>();
+		static IDictionary<InvokeCacheKey, object> _compilations = new Dictionary<InvokeCacheKey, object>();
 		
 		/// <summary>
 		///     Compiles the expression
@@ -32,8 +32,19 @@ namespace MFlow.Core.Internal
 		/// </summary>
 		public C Invoke<C>(Func<T, C> compiled, T target)
 		{
-			// Add caching here...
-			return compiled.Invoke(target);
+			var key = new InvokeCacheKey() { Target = target, Func = compiled };
+			if(_compilations.ContainsKey(key))
+				return (C)_compilations[key];
+			
+			var invoked = compiled.Invoke(target);
+			_compilations.Add(key, invoked);
+			return invoked;
 		}
+	}
+	
+	class InvokeCacheKey
+	{
+		public object Target{get;set;}
+		public object Func{get;set;}
 	}
 }
