@@ -51,6 +51,9 @@
     <Compile Include="Internal\ExpressionBuilder.cs" />
     <Compile Include="Internal\IExpressionBuilder.cs" />
     <Compile Include="Internal\IMessageResolver.cs" />
+    <Compile Include="Internal\Validators\Generic\EqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\NotEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\RequiredValidator.cs" />
     <Compile Include="Internal\Validators\ICompareValidator.cs" />
     <Compile Include="Internal\Validators\IValidator.cs" />
     <Compile Include="Internal\MessageResolver.cs" />
@@ -124,6 +127,7 @@
   </Target>
   -->
   <ItemGroup>
+    <Folder Include="Internal\Validators\Generic" />
     <Folder Include="Internal\Validators\Strings" />
     <Folder Include="XmlConfiguration\" />
   </ItemGroup>
