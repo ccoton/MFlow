@@ -517,5 +517,22 @@ namespace MFlow.Core.Tests.Validation
 
             Assert.AreEqual("Something different here", results.First().Condition.Message);
         }
+        
+        [Test]
+        public void Test_Chained_Fluent_Validation_Multiple_Validation_Instances()
+        {
+         	var user = new User() { Username = "fred" };
+         	var emptyUser = new User() { Username = "" };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            var secondFluentValidation = _factory.GetFluentValidation<User>(emptyUser);
+            fluentValidation.Check(u=>u.Username).IsNotEmpty();
+            secondFluentValidation.Check(u=>u.Username).IsNotEmpty();
+            
+            var first = fluentValidation.Satisfied();
+            var second = secondFluentValidation.Satisfied();
+            
+            Assert.IsTrue(first && !second);
+            
+        }
     }
 }
