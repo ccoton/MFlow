@@ -35,10 +35,4 @@ namespace MFlow.Core.Internal
 		   	return compiled.Invoke(target);
 		}
 	}
-	
-	class InvokeCacheKey
-	{
-		public object Target{get;set;}
-		public object Func{get;set;}
-	}
 }
