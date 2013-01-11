@@ -15,5 +15,6 @@ namespace MFlow.Performance.Supporting
 		public string Forename {get;set;}
 		public string Surname {get;set;}
 		public string Email {get;set;}
+		public DateTime LastLogin {get;set;}
 	}
 }

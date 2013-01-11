@@ -32,15 +32,7 @@ namespace MFlow.Core.Internal
 		/// </summary>
 		public C Invoke<C>(Func<T, C> compiled, T target)
 		{
-
-		   	if(_compilations.Any(c=>c.Key.Target.Equals(target) && (Func<T, C>)c.Key.Func == compiled))
-        		return (C)_compilations.Single(c=>c.Key.Target.Equals(target) && (Func<T, C>)c.Key.Func == compiled).Value;
-      		
-		   	var key = new InvokeCacheKey() { Target = target, Func = compiled };
-		   	var invoked = compiled.Invoke(target);
-   			_compilations.Add(key, invoked);  
-   			return invoked;
-		
+		   	return compiled.Invoke(target);
 		}
 	}
 	
