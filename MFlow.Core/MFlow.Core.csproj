@@ -50,11 +50,22 @@
     <Compile Include="Conditions\IFluentConditions.cs" />
     <Compile Include="Internal\ExpressionBuilder.cs" />
     <Compile Include="Internal\IExpressionBuilder.cs" />
-    <Compile Include="Internal\Validators\CreditCardValidator.cs" />
     <Compile Include="Internal\IMessageResolver.cs" />
-    <Compile Include="Internal\Validators\EmailValidator.cs" />
+    <Compile Include="Internal\Validators\ICompareValidator.cs" />
     <Compile Include="Internal\Validators\IValidator.cs" />
     <Compile Include="Internal\MessageResolver.cs" />
+    <Compile Include="Internal\Validators\Strings\ContainsValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\CreditCardValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\EmailValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\AlphaValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\NumericValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\LengthValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\LongerValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\MatchesValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\NotEmptyValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\PostCodeValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\ShorterValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\ZipCodeValidator.cs" />
     <Compile Include="Resources\IResourceLocator.cs" />
     <Compile Include="Resources\ResourceLocator.cs" />
     <Compile Include="Conditions\Enums\ConditionOutput.cs" />
@@ -113,6 +124,7 @@
   </Target>
   -->
   <ItemGroup>
+    <Folder Include="Internal\Validators\Strings" />
     <Folder Include="XmlConfiguration\" />
   </ItemGroup>
 </Project>

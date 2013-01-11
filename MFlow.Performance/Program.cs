@@ -15,13 +15,12 @@ namespace MFlow.Performance
 			validator
 				.Check(c=>c.Forename).IsNotEmpty()
 				.Check(c=>c.Surname).IsNotEmpty()
-				.Check(c=>c.Email).IsNotEmpty()
 				.Check(c=>c.Email).IsEmail();
-				
+			
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 			
-			for(var i = 0; i < 1000000; i++)
+			for(var i = 0; i < 100; i++)
 			{
 				validator
 					.Satisfied();
