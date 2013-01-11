@@ -51,6 +51,13 @@
     <Compile Include="Internal\ExpressionBuilder.cs" />
     <Compile Include="Internal\IExpressionBuilder.cs" />
     <Compile Include="Internal\IMessageResolver.cs" />
+    <Compile Include="Internal\Validators\Dates\AfterValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\BeforeValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\OnValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\ThisMonthValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\ThisWeekValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\ThisYearValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\TodayValidator.cs" />
     <Compile Include="Internal\Validators\Generic\EqualToValidator.cs" />
     <Compile Include="Internal\Validators\Generic\NotEqualToValidator.cs" />
     <Compile Include="Internal\Validators\Generic\RequiredValidator.cs" />
@@ -78,7 +85,7 @@
     <Compile Include="Conditions\Enums\ConditionOutput.cs" />
     <Compile Include="Validation\Context\CurrentValidationContext.cs" />
     <Compile Include="Validation\Enums\ValidationType.cs" />
-    <Compile Include="Validation\FluentValidationDates.cs" />
+    <Compile Include="Validation\FluentValidation.Dates.cs" />
     <Compile Include="Validation\Context\ICurrentValidationContext.cs" />
     <Compile Include="Validation\IFluentValidationBuilder.cs" />
     <Compile Include="Validation\IFluentValidation.Dates.cs" />
@@ -131,6 +138,7 @@
   </Target>
   -->
   <ItemGroup>
+    <Folder Include="Internal\Validators\Dates" />
     <Folder Include="Internal\Validators\Generic" />
     <Folder Include="Internal\Validators\Numbers" />
     <Folder Include="Internal\Validators\Strings" />
