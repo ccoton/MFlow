@@ -10,17 +10,20 @@ namespace MFlow.Performance
 		public static void Main(string[] args)
 		{
 			var user = new User() { Forename = "test", Surname = "test", Email = "testing" };
-				var validator = new FluentValidationFactory().GetFluentValidation(user);
+			var validator = new FluentValidationFactory().GetFluentValidation(user);
 			
+			validator
+				.Check(c=>c.Forename).IsNotEmpty()
+				.Check(c=>c.Surname).IsNotEmpty()
+				.Check(c=>c.Email).IsNotEmpty()
+				.Check(c=>c.Email).IsEmail();
+				
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 			
-			for(var i = 0; i < 100; i++)
+			for(var i = 0; i < 1000000; i++)
 			{
 				validator
-					.Check(c=>c.Forename).IsNotEmpty()
-					.Check(c=>c.Surname).IsNotEmpty()
-					.Check(c=>c.Email).IsNotEmpty()
 					.Satisfied();
 			}
 			

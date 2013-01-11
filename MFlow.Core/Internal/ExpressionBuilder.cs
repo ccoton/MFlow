@@ -11,7 +11,7 @@ namespace MFlow.Core.Internal
 	/// </summary>
 	class ExpressionBuilder<T> : IExpressionBuilder<T>
 	{
-		static IDictionary<string, object> _expressions= new Dictionary<string, object>();
+		static IDictionary<object, object> _expressions= new Dictionary<object, object>();
 		static IDictionary<InvokeCacheKey, object> _compilations = new Dictionary<InvokeCacheKey, object>();
 		
 		/// <summary>
@@ -19,12 +19,11 @@ namespace MFlow.Core.Internal
 		/// </summary>
 		public Func<T, C> Compile<C>(Expression<Func<T, C>> expression)
 		{
-			var key = string.Format("{0}_{1}", typeof(T).FullName, expression.Body.ToString());
-			if(_expressions.ContainsKey(key))
-				return (Func<T, C>)_expressions[key];
+			if(_expressions.ContainsKey(expression))
+				return (Func<T, C>)_expressions[expression];
 			
 			var compiled = expression.Compile();
-			_expressions.Add(key, compiled);
+			_expressions.Add(expression, compiled);
 			return compiled;
 		}
 		
@@ -33,7 +32,15 @@ namespace MFlow.Core.Internal
 		/// </summary>
 		public C Invoke<C>(Func<T, C> compiled, T target)
 		{
-			return compiled.Invoke(target);
+
+		   	if(_compilations.Any(c=>c.Key.Target.Equals(target) && (Func<T, C>)c.Key.Func == compiled))
+        		return (C)_compilations.Single(c=>c.Key.Target.Equals(target) && (Func<T, C>)c.Key.Func == compiled).Value;
+      		
+		   	var key = new InvokeCacheKey() { Target = target, Func = compiled };
+		   	var invoked = compiled.Invoke(target);
+   			_compilations.Add(key, invoked);  
+   			return invoked;
+		
 		}
 	}
 	

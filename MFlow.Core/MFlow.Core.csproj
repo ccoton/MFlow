@@ -52,6 +52,7 @@
     <Compile Include="Internal\IExpressionBuilder.cs" />
     <Compile Include="Internal\Validators\CreditCardValidator.cs" />
     <Compile Include="Internal\IMessageResolver.cs" />
+    <Compile Include="Internal\Validators\EmailValidator.cs" />
     <Compile Include="Internal\Validators\IValidator.cs" />
     <Compile Include="Internal\MessageResolver.cs" />
     <Compile Include="Resources\IResourceLocator.cs" />
@@ -91,6 +92,11 @@
     <Compile Include="XmlConfiguration\XmlValidationLoader.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ProfilingSessions\Session20130111_075636.sdps" />
+    <Content Include="ProfilingSessions\Session20130111_075910.sdps" />
+    <Content Include="ProfilingSessions\Session20130111_140123.sdps" />
+    <Content Include="ProfilingSessions\Session20130111_141508.sdps" />
+    <Content Include="ProfilingSessions\Session20130111_145257.sdps" />
     <Content Include="Resources\Xml\Messages.fr-FR.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

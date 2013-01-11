@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+
 using MFlow.Core.Conditions.Enums;
+using MFlow.Core.Internal;
 
 namespace MFlow.Core.Conditions
 {
@@ -20,6 +22,8 @@ namespace MFlow.Core.Conditions
         ///     The target of this validation instance
         /// </summary>
         protected T _target;
+        
+        IExpressionBuilder<T> _expressionBuilder; 
 
         /// <summary>
         ///     Constructor
@@ -29,6 +33,7 @@ namespace MFlow.Core.Conditions
         {
             _conditions = new List<IFluentCondition<T>>();
             _target = Target;
+            _expressionBuilder = new ExpressionBuilder<T>();
         }
 
         /// <summary>z
@@ -149,10 +154,10 @@ namespace MFlow.Core.Conditions
         {
             return _conditions
                 .Where(c=> (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings ))
-                .All(c => c.Condition.Compile().Invoke(_target) == true && c.Type == ConditionType.And) ||
+            	.All(c => _expressionBuilder.Compile(c.Condition).Invoke(_target) == true && c.Type == ConditionType.And) ||
                 _conditions
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
-                .Any(c => c.Condition.Compile().Invoke(_target) && c.Type == ConditionType.Or);
+                .Any(c => _expressionBuilder.Compile(c.Condition).Invoke(_target) && c.Type == ConditionType.Or);
         }
     }
 }

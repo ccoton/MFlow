@@ -41,10 +41,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsEmail()
         {
+        	var emailValidator = new EmailValidator();
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
-            var regEx = @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
             Func<T, string> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => !string.IsNullOrEmpty(compiled.Invoke(_target)) && new Regex(regEx).IsMatch(compiled.Invoke(_target));
+            Expression<Func<T, bool>> derived = f => emailValidator.Validate(compiled.Invoke(_target));
             If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsEmail, string.Empty) );
             return this;
         }
