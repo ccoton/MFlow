@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using MFlow.Core.Conditions;
+using MFlow.Core.Internal.Validators.Numbers;
 
 namespace MFlow.Core.Validation
 {
@@ -14,9 +15,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsLessThan(int value)
         {
+        	var lessThanValidator = new LessThanValidator();
             Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
             Func<T, int> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) < value;
+            Expression<Func<T, bool>> derived = f => lessThanValidator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
             If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.LessThan, string.Empty));
             return this;
         }
@@ -26,9 +28,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsGreaterThan(int value)
         {
+        	var greaterThanValidator = new GreaterThanValidator();
             Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
             Func<T, int> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) > value;
+          	Expression<Func<T, bool>> derived = f => greaterThanValidator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
             If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.GreaterThan, string.Empty));
             return this;
         }
@@ -38,9 +41,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsLessThanOrEqualTo(int value)
         {
+        	var lessThanOrEqualToValidator = new LessThanOrEqualToValidator();
             Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
             Func<T, int> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) <= value;
+            Expression<Func<T, bool>> derived = f => lessThanOrEqualToValidator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
             If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.LessThanOrEqualTo, string.Empty));
             return this;
         }
@@ -50,9 +54,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsGreaterThanOrEqualTo(int value)
         {
+        	var greaterThanOrEqualToValidator = new GreaterThanOrEqualToValidator();
             Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
             Func<T, int> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target) >= value;
+            Expression<Func<T, bool>> derived = f => greaterThanOrEqualToValidator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
             If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.GreaterThanOrEqualTo, string.Empty));
             return this;
         }

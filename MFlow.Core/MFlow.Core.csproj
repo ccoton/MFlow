@@ -57,6 +57,10 @@
     <Compile Include="Internal\Validators\ICompareValidator.cs" />
     <Compile Include="Internal\Validators\IValidator.cs" />
     <Compile Include="Internal\MessageResolver.cs" />
+    <Compile Include="Internal\Validators\Numbers\GreatherThanValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\GreatherThanOrEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\LessThanOrEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\LessThanValidator.cs" />
     <Compile Include="Internal\Validators\Strings\ContainsValidator.cs" />
     <Compile Include="Internal\Validators\Strings\CreditCardValidator.cs" />
     <Compile Include="Internal\Validators\Strings\EmailValidator.cs" />
@@ -128,6 +132,7 @@
   -->
   <ItemGroup>
     <Folder Include="Internal\Validators\Generic" />
+    <Folder Include="Internal\Validators\Numbers" />
     <Folder Include="Internal\Validators\Strings" />
     <Folder Include="XmlConfiguration\" />
   </ItemGroup>
