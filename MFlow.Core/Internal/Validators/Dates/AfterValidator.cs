@@ -5,9 +5,9 @@ namespace MFlow.Core.Internal.Validators.Dates
     /// <summary>
     ///     After Validator
     /// </summary>
-    class AfterValidator : ICompareValidator<DateTime, DateTime>
+    class AfterValidator : IComparisonValidator<DateTime, DateTime>
     {
-        public bool Validate (DateTime input, DateTime value)
+        public bool Validate(DateTime input, DateTime value)
         {
             return input > value;
         }

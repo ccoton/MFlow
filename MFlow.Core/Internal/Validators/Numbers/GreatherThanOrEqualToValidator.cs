@@ -3,9 +3,9 @@
     /// <summary>
     ///     GreaterThanOrEqualTo Validator
     /// </summary>
-    class GreaterThanOrEqualToValidator : ICompareValidator<int, int>
+    class GreaterThanOrEqualToValidator : IComparisonValidator<int, int>
     {
-        public bool Validate (int input, int value)
+        public bool Validate(int input, int value)
         {
             return input >= value;
         }

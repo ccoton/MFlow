@@ -3,9 +3,9 @@
     /// <summary>
     ///     LessThan Validator
     /// </summary>
-    class LessThanValidator : ICompareValidator<int, int>
+    class LessThanValidator : IComparisonValidator<int, int>
     {
-        public bool Validate (int input, int value)
+        public bool Validate(int input, int value)
         {
             return input < value;
         }

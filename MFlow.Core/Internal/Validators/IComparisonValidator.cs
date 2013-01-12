@@ -3,11 +3,11 @@
     /// <summary>
     ///     A validator that compares values
     /// </summary>
-    interface ICompareValidator<TInput, TCompare>
+    interface IComparisonValidator<TInput, TCompare>
     {
         /// <summary>
         ///     A validate method
         /// </summary>
-        bool Validate (TInput input, TCompare value);
+        bool Validate(TInput input, TCompare value);
     }
 }

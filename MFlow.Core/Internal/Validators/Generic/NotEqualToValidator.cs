@@ -3,11 +3,11 @@
     /// <summary>
     ///     NotEqualTo Validator
     /// </summary>
-    class NotEqualToValidator<T, T2> : ICompareValidator<T, T2>
+    class NotEqualToValidator<T, T2> : IComparisonValidator<T, T2>
     {
-        public bool Validate (T input, T2 value)
+        public bool Validate(T input, T2 value)
         {
-            return input != null && !input.Equals (value);
+            return input != null && !input.Equals(value);
         }
     }
 }
