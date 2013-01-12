@@ -102,9 +102,9 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Username).IsEqualTo("testing")
                 .Check(u => u.Password).IsEqualTo("password123")
                 .Then(() =>
-                {
-                    user.Username = "valid";
-                });
+            {
+                user.Username = "valid";
+            });
 
             Assert.IsTrue(user.Username == "valid");
         }
@@ -117,8 +117,10 @@ namespace MFlow.Core.Tests.Validation
             fluentValidation
                 .Check(u => u.Username).IsEqualTo("testing")
                 .Check(u => u.Password).IsEqualTo("password123")
-                .Then(() => { user.Username = "valid"; })
-                .Else(() => { user.Username = "invalid"; });
+                .Then(() => {
+                user.Username = "valid"; })
+                .Else(() => {
+                user.Username = "invalid"; });
 
             Assert.IsTrue(user.Username == "invalid");
         }
@@ -131,10 +133,10 @@ namespace MFlow.Core.Tests.Validation
 
             var events = new EventsFactory().GetEventStore();
             events.Register<UserCreatedEvent>(s =>
-                {
-                    s.Source.Username = "caught event";
-                    user = s.Source;
-                });
+            {
+                s.Source.Username = "caught event";
+                user = s.Source;
+            });
 
             fluentValidation
                  .Check(u => u.Username).IsEqualTo("testing")
@@ -217,7 +219,7 @@ namespace MFlow.Core.Tests.Validation
             var results = fluentValidation
                 .Check(u => u.Username).IsEqualTo("testing")
                 .Check(u => u.Username, output: ConditionOutput.Warning).IsEqualTo("abc")
-                .Check(u => u.Password).IsEqualTo("password123").Validate(suppressWarnings:false);
+                .Check(u => u.Password).IsEqualTo("password123").Validate(suppressWarnings: false);
 
             Assert.AreEqual(3, results.ToList().Count());
         }
@@ -413,7 +415,9 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.LastLogin).IsBefore(DateTime.Parse("01/01/2001 00:00:00"))
                 .Validate();
 
-            Assert.AreEqual("LastLogin should be before 01/01/2001 00:00:00", results.First().Condition.Message);
+            var message = string.Format("LastLogin should be before {0}", DateTime.Parse("01/01/2001 00:00:00"));
+
+            Assert.AreEqual(message, results.First().Condition.Message);
         }
 
         [Test]
@@ -425,7 +429,9 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.LastLogin).IsAfter(DateTime.Parse("01/01/2012 00:00:00"))
                 .Validate();
 
-            Assert.AreEqual("LastLogin should be after 01/01/2012 00:00:00", results.First().Condition.Message);
+            var message = string.Format("LastLogin should be after {0}", DateTime.Parse("01/01/2012 00:00:00"));
+
+            Assert.AreEqual(message, results.First().Condition.Message);
         }
 
         [Test]
@@ -437,7 +443,9 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.LastLogin).IsOn(DateTime.Parse("01/01/2012 00:00:00"))
                 .Validate();
 
-            Assert.AreEqual("LastLogin should be on 01/01/2012 00:00:00", results.First().Condition.Message);
+            var message = string.Format("LastLogin should be on {0}", DateTime.Parse("01/01/2012 00:00:00"));
+
+            Assert.AreEqual(message, results.First().Condition.Message);
         }
 
         [Test]
@@ -451,7 +459,9 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.LastLogin).IsOn(DateTime.Parse("01/01/2012 00:00:00"))
                 .Validate();
 
-            Assert.AreEqual("LastLogin doit être mis sur 01/01/2012 00:00:00", results.First().Condition.Message);
+            var message = string.Format("LastLogin doit être mis sur {0}", DateTime.Parse("01/01/2012 00:00:00"));
+
+            Assert.AreEqual(message, results.First().Condition.Message);
         }
 
         [Test]
@@ -521,12 +531,12 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Chained_Fluent_Validation_Multiple_Validation_Instances()
         {
-         	var user = new User() { Username = "fred" };
-         	var emptyUser = new User() { Username = "" };
+            var user = new User() { Username = "fred" };
+            var emptyUser = new User() { Username = "" };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             var secondFluentValidation = _factory.GetFluentValidation<User>(emptyUser);
-            fluentValidation.Check(u=>u.Username).IsNotEmpty();
-            secondFluentValidation.Check(u=>u.Username).IsNotEmpty();
+            fluentValidation.Check(u => u.Username).IsNotEmpty();
+            secondFluentValidation.Check(u => u.Username).IsNotEmpty();
             
             var first = fluentValidation.Satisfied();
             var second = secondFluentValidation.Satisfied();
