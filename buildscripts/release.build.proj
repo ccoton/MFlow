@@ -2,18 +2,24 @@
 	<PropertyGroup>
 		<BaseDir>$(MSBuildProjectDirectory)\..</BaseDir>
 		<Configuration Condition="'$(Configuration)'==''" >Release</Configuration>
-		<BuildDir>$(BaseDir)\build</BuildDir>
+		<BuildDir>$(BaseDir)\.build</BuildDir>
 		<SolutionFile>$(BaseDir)\MFlow.sln</SolutionFile>
 		<TestAssemblies>
 			$(BaseDir)\MFlow.Core.Tests\bin\$(Configuration)\MFlow.Core.Tests.dll;
 			$(BaseDir)\MFlow.Mvc.Tests\bin\$(Configuration)\MFlow.Mvc.Tests.dll;
 		</TestAssemblies>
+		<PackageDir>$(BuildDir)\Packages</PackageDir>
+		<PackageSuffix Condition="'$(PackageSuffix)'!=''"></PackageSuffix>
+		<OutputDir>$(BuildDir)\$(Configuration)$(PackageSuffix)</OutputDir>
+		<MSBuildExtensions>$(BaseDir)\lib\msbuild\msbuild.community.tasks.dll</MSBuildExtensions>
 		<MSBuildExtensions>$(BaseDir)\lib\msbuild\msbuild.community.tasks.dll</MSBuildExtensions>
 	</PropertyGroup>
 	
 	<UsingTask AssemblyFile="$(MSBuildExtensions)" TaskName="MSBuild.Community.Tasks.NUnit" Condition="'$(teamcity_version)' == ''" />
+	<UsingTask AssemblyFile="$(MSBuildExtensions)" TaskName="MSBuild.Community.Tasks.Zip" />
+	<UsingTask AssemblyFile="$(MSBuildExtensions)" TaskName="MSBuild.Community.Tasks.XmlUpdate" />
 	
-	<Target Name="default" DependsOnTargets="Compile; Test" />
+	<Target Name="default" DependsOnTargets="Compile; Test; Deploy; PackageZip; CreatePackages" />
  
  	<Target Name="Compile">
 		<MSBuild Projects="$(SolutionFile)" Properties="Configuration=$(Configuration)"  Targets="Rebuild" />
@@ -23,7 +29,66 @@
 		<NUnit Assemblies="$(TestAssemblies)" ToolPath="$(BaseDir)\lib\nunit"  />
 	</Target>
 	
+	<Target Name="Deploy">
+		
+		<ItemGroup>
+			<MainBinaries Include="$(BaseDir)\MFlow.Core\bin\$(Configuration)$(PackageSuffix)\**\*.*" />
+			<MvcBinaries Include="$(BaseDir)\MFlow.Mvc\bin\$(Configuration)$(PackageSuffix)\**\*.*" />
+		</ItemGroup>
+
+		<!-- Copy to the output directory -->
+		<Copy SourceFiles="@(MainBinaries)" DestinationFolder="$(OutputDir)\MFlow.Core\%(RecursiveDir)"  />
+		<Copy SourceFiles="@(MvcBinaries)" DestinationFolder="$(OutputDir)\MFlow.Mvc\%(RecursiveDir)"  />
+	</Target>
+
+	<Target Name="PackageZip">
+		<ItemGroup>
+			<FilesToZip Include="$(OutputDir)\**\*.*" />
+		</ItemGroup>
+		<Message Text="@(FilesToZip)" />
+		<Zip Files="@(FilesToZip)" ZipFileName="$(BuildDir)\MFlow.$(PackageSuffix).zip" WorkingDirectory="$(OutputDir)" />
+	</Target>
 	
+	<Target Name="CreatePackages">
+		<Copy SourceFiles="$(MSBuildProjectDirectory)\MFlow.Core$(PackageSuffix).nuspec" DestinationFolder="$(PackageDir)\temp\MFlow.Core$(PackageSuffix)" />
+		<Copy SourceFiles="$(MSBuildProjectDirectory)\MFlow.Mvc$(PackageSuffix).nuspec" DestinationFolder="$(PackageDir)\temp\MFlow.Mvc$(PackageSuffix)" />
+		<Copy SourceFiles="@(MainBinaries)" DestinationFolder="$(PackageDir)\temp\MFlow.Core$(PackageSuffix)\lib\Net40\%(RecursiveDir)" />
+		<Copy SourceFiles="@(MvcBinaries)" DestinationFolder="$(PackageDir)\temp\MFlow.Mvc$(PackageSuffix)\lib\Net40\%(RecursiveDir)" />
+		
+		<!-- Get the version number of the main assembly to insert into the nuspec files -->
+		<GetAssemblyIdentity AssemblyFiles="$(OutputDir)\MFlow.Core\MFlow.Core.dll">
+			<Output TaskParameter="Assemblies" ItemName="AsmInfo" />
+		</GetAssemblyIdentity>
+		
+		<!-- insert the version number into the nuspec files -->
+		<XmlUpdate
+		  Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
+			XmlFileName="$(PackageDir)\temp\MFlow.Core$(PackageSuffix)\MFlow.Core$(PackageSuffix).nuspec"
+			XPath="/package/metadata/version"
+			Value="%(AsmInfo.Version)" />
+		
+		<!-- Get the version number of the main assembly to insert into the nuspec files -->
+		<GetAssemblyIdentity AssemblyFiles="$(OutputDir)\MFlow.Mvc\MFlow.Mvc.dll">
+			<Output TaskParameter="Assemblies" ItemName="AsmInfo" />
+		</GetAssemblyIdentity>
+		
+		<!-- insert the version number into the nuspec files -->
+		<XmlUpdate
+		  Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
+			XmlFileName="$(PackageDir)\temp\MFlow.Mvc$(PackageSuffix)\MFlow.Mvc$(PackageSuffix).nuspec"
+			XPath="/package/metadata/version"
+			Value="%(AsmInfo.Version)" />
+
+
+
+		<Exec WorkingDirectory="$(BuildDir)\Packages" 
+					Command="$(BaseDir)\.nuget\nuget.exe pack $(PackageDir)\temp\MFlow.Core$(PackageSuffix)\MFlow.Core$(PackageSuffix).nuspec" />
+
+		<Exec WorkingDirectory="$(BuildDir)\Packages" 
+					Command="$(BaseDir)\.nuget\nuget.exe pack $(PackageDir)\temp\MFlow.Mvc$(PackageSuffix)\MFlow.Mvc$(PackageSuffix).nuspec" />					
+
+		<RemoveDir Directories="$(PackageDir)\temp" />
+	</Target>
 	
 	
 </Project>
