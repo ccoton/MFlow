@@ -135,8 +135,5 @@
   <ItemGroup>
     <Folder Include="XmlConfiguration\" />
     <Folder Include="Internal\Validators\" />
-    <Folder Include="Internal\Validators\" />
-    <Folder Include="Internal\Validators\" />
-    <Folder Include="Internal\Validators\" />
   </ItemGroup>
 </Project>
