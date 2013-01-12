@@ -117,11 +117,6 @@
     <Compile Include="XmlConfiguration\XmlValidationLoader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ProfilingSessions\Session20130111_075636.sdps" />
-    <Content Include="ProfilingSessions\Session20130111_075910.sdps" />
-    <Content Include="ProfilingSessions\Session20130111_140123.sdps" />
-    <Content Include="ProfilingSessions\Session20130111_141508.sdps" />
-    <Content Include="ProfilingSessions\Session20130111_145257.sdps" />
     <Content Include="Resources\Xml\Messages.fr-FR.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -138,10 +133,10 @@
   </Target>
   -->
   <ItemGroup>
-    <Folder Include="Internal\Validators\Dates" />
-    <Folder Include="Internal\Validators\Generic" />
-    <Folder Include="Internal\Validators\Numbers" />
-    <Folder Include="Internal\Validators\Strings" />
     <Folder Include="XmlConfiguration\" />
+    <Folder Include="Internal\Validators\" />
+    <Folder Include="Internal\Validators\" />
+    <Folder Include="Internal\Validators\" />
+    <Folder Include="Internal\Validators\" />
   </ItemGroup>
 </Project>

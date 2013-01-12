@@ -4,7 +4,7 @@ using System;
 namespace MFlow.Performance.Supporting
 {
 	/// <summary>
-	/// Description of User.
+	///     Description of User.
 	/// </summary>
 	public class User
 	{

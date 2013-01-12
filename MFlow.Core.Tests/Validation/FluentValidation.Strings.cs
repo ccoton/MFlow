@@ -16,14 +16,14 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Username).IsLength(24).Satisfied());
         }
 
-		[Test]
-		public void Test_Fluent_Validation_IsLength_InValid()
-		{
-			var user = new User() { Username = "aaa" };
-			var fluentValidation = _factory.GetFluentValidation<User>(user);
-			Assert.IsFalse(fluentValidation
-			              .Check(u => u.Username).IsLength(24).Satisfied());
-		}
+       [Test]
+       public void Test_Fluent_Validation_IsLength_InValid()
+       {
+            var user = new User() { Username = "aaa" };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                        .Check(u => u.Username).IsLength(24).Satisfied());
+       }
 
         [Test]
         public void Test_Fluent_Validation_IsLength_When_Null()
