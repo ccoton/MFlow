@@ -13,52 +13,52 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to an int that is less that the value 
         /// </summary>
-        public IFluentValidation<T> IsLessThan(int value)
+        public IFluentValidation<T> IsLessThan (int value)
         {
-        	var lessThanValidator = new LessThanValidator();
-            Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
-            Func<T, int> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => lessThanValidator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.LessThan, string.Empty));
+            var lessThanValidator = new LessThanValidator ();
+            Expression<Func<T, int>> expression = _currentContext.GetExpression<int> ();
+            Func<T, int> compiled = _expressionBuilder.Compile (expression);
+            Expression<Func<T, bool>> derived = f => lessThanValidator.Validate (_expressionBuilder.Invoke (compiled, _target), value);
+            If (derived, _resolver.Resolve<T, int> (expression), _messageResolver.Resolve (expression, value, Enums.ValidationType.LessThan, string.Empty));
             return this;
         }
 
         /// <summary>
         ///     Checks if the expression evaluates to an int that is greater that the value 
         /// </summary>
-        public IFluentValidation<T> IsGreaterThan(int value)
+        public IFluentValidation<T> IsGreaterThan (int value)
         {
-        	var greaterThanValidator = new GreaterThanValidator();
-            Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
-            Func<T, int> compiled = _expressionBuilder.Compile(expression);
-          	Expression<Func<T, bool>> derived = f => greaterThanValidator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.GreaterThan, string.Empty));
+            var greaterThanValidator = new GreaterThanValidator ();
+            Expression<Func<T, int>> expression = _currentContext.GetExpression<int> ();
+            Func<T, int> compiled = _expressionBuilder.Compile (expression);
+            Expression<Func<T, bool>> derived = f => greaterThanValidator.Validate (_expressionBuilder.Invoke (compiled, _target), value);
+            If (derived, _resolver.Resolve<T, int> (expression), _messageResolver.Resolve (expression, value, Enums.ValidationType.GreaterThan, string.Empty));
             return this;
         }
 
         /// <summary>
         ///     Checks if the expression evaluates to an int that is less than or equal to the value 
         /// </summary>
-        public IFluentValidation<T> IsLessThanOrEqualTo(int value)
+        public IFluentValidation<T> IsLessThanOrEqualTo (int value)
         {
-        	var lessThanOrEqualToValidator = new LessThanOrEqualToValidator();
-            Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
-            Func<T, int> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => lessThanOrEqualToValidator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.LessThanOrEqualTo, string.Empty));
+            var lessThanOrEqualToValidator = new LessThanOrEqualToValidator ();
+            Expression<Func<T, int>> expression = _currentContext.GetExpression<int> ();
+            Func<T, int> compiled = _expressionBuilder.Compile (expression);
+            Expression<Func<T, bool>> derived = f => lessThanOrEqualToValidator.Validate (_expressionBuilder.Invoke (compiled, _target), value);
+            If (derived, _resolver.Resolve<T, int> (expression), _messageResolver.Resolve (expression, value, Enums.ValidationType.LessThanOrEqualTo, string.Empty));
             return this;
         }
 
         /// <summary>
         ///     Checks if the expression evaluates to an int that is greater than or equal to the value 
         /// </summary>
-        public IFluentValidation<T> IsGreaterThanOrEqualTo(int value)
+        public IFluentValidation<T> IsGreaterThanOrEqualTo (int value)
         {
-        	var greaterThanOrEqualToValidator = new GreaterThanOrEqualToValidator();
-            Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
-            Func<T, int> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => greaterThanOrEqualToValidator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.GreaterThanOrEqualTo, string.Empty));
+            var greaterThanOrEqualToValidator = new GreaterThanOrEqualToValidator ();
+            Expression<Func<T, int>> expression = _currentContext.GetExpression<int> ();
+            Func<T, int> compiled = _expressionBuilder.Compile (expression);
+            Expression<Func<T, bool>> derived = f => greaterThanOrEqualToValidator.Validate (_expressionBuilder.Invoke (compiled, _target), value);
+            If (derived, _resolver.Resolve<T, int> (expression), _messageResolver.Resolve (expression, value, Enums.ValidationType.GreaterThanOrEqualTo, string.Empty));
             return this;
         }
    
