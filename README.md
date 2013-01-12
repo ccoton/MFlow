@@ -3,6 +3,14 @@ MFlow
 
 MFlow is a simple conditional logic/validation framework for .NET. 
 
+Installing via nuget:
+
+	Install-Pacakge MFlow.Core 
+	
+Or
+
+	Install-Package MFlow.Mvc
+
 The idea is to improve and give a more fluent approach to conditional and validation checking. Similar to the way that the fluentvalidation framework for .NET works. 
 
 Example:
