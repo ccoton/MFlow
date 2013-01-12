@@ -32,12 +32,16 @@
 	<Target Name="Deploy">
 		
 		<ItemGroup>
-			<MainBinaries Include="$(BaseDir)\MFlow.Core\bin\$(Configuration)$(PackageSuffix)\**\*.*" />
-			<MvcBinaries Include="$(BaseDir)\MFlow.Mvc\bin\$(Configuration)$(PackageSuffix)\**\*.*" />
+			<MainBinaries Include="$(BaseDir)\MFlow.Core\bin\$(Configuration)$(PackageSuffix)\**\*.dll" />
+			<Resources Include="$(BaseDir)\MFlow.Core\bin\$(Configuration)$(PackageSuffix)\Resources\**\*.*" />
+			<Install Include="$(BaseDir)\MFlow.Core\install.ps1" />
+			<MvcBinaries Include="$(BaseDir)\MFlow.Mvc\bin\$(Configuration)$(PackageSuffix)\**\*.dll" />
 		</ItemGroup>
 
 		<!-- Copy to the output directory -->
 		<Copy SourceFiles="@(MainBinaries)" DestinationFolder="$(OutputDir)\MFlow.Core\%(RecursiveDir)"  />
+		<Copy SourceFiles="@(Resources)" DestinationFolder="$(OutputDir)\MFlow.Core\Content\Resources\%(RecursiveDir)"  />
+		<Copy SourceFiles="@(Install)" DestinationFolder="$(OutputDir)\MFlow.Core\%(RecursiveDir)"  />
 		<Copy SourceFiles="@(MvcBinaries)" DestinationFolder="$(OutputDir)\MFlow.Mvc\%(RecursiveDir)"  />
 	</Target>
 
@@ -53,6 +57,8 @@
 		<Copy SourceFiles="$(MSBuildProjectDirectory)\MFlow.Core$(PackageSuffix).nuspec" DestinationFolder="$(PackageDir)\temp\MFlow.Core$(PackageSuffix)" />
 		<Copy SourceFiles="$(MSBuildProjectDirectory)\MFlow.Mvc$(PackageSuffix).nuspec" DestinationFolder="$(PackageDir)\temp\MFlow.Mvc$(PackageSuffix)" />
 		<Copy SourceFiles="@(MainBinaries)" DestinationFolder="$(PackageDir)\temp\MFlow.Core$(PackageSuffix)\lib\Net40\%(RecursiveDir)" />
+		<Copy SourceFiles="@(Resources)" DestinationFolder="$(PackageDir)\temp\MFlow.Core$(PackageSuffix)\Content\Resources\%(RecursiveDir)" />
+		<Copy SourceFiles="@(Install)" DestinationFolder="$(PackageDir)\temp\MFlow.Core$(PackageSuffix)\tools\Net40\%(RecursiveDir)" />
 		<Copy SourceFiles="@(MvcBinaries)" DestinationFolder="$(PackageDir)\temp\MFlow.Mvc$(PackageSuffix)\lib\Net40\%(RecursiveDir)" />
 		
 		<!-- Get the version number of the main assembly to insert into the nuspec files -->
