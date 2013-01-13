@@ -36,12 +36,12 @@ $xml = [xml](Get-Content $buildnumberfile)
 #get the name of the app pool
 $major = $xml.BuildNumber.Major
 $minor =  [string]([int]$xml.BuildNumber.Minor + 1)
-$version = $xml.BuildNumber.Version
+$version = $xml.BuildNumber.Build
 $revision = $xml.BuildNumber.Revision
 $updatedVersion = $major + "." + $minor + "." + $version + "." + $revision
 Update-AllAssemblyInfoFiles $updatedVersion;
 $xml.BuildNumber.Major = $major
 $xml.BuildNumber.Minor = $minor
-$xml.BuildNumber.Version = $version
+$xml.BuildNumber.Build = $version
 $xml.BuildNumber.Revision = $revision
 $xml.Save($buildnumberfile)
