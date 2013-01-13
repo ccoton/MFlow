@@ -91,7 +91,7 @@
 			<GitCommitArgs>git commit -m "Release build v%(AsmInfo.Version)</GitCommitArgs>
 			<GitPushArgs>git push origin master</GitPushArgs>
 			<GitTagArgs>git tag v%(AsmInfo.Version)</GitTagArgs>
-			<GitPushTagsArgs>git push --tags</GitPushTagsArgs>
+			<GitPushTagArgs>git push --tags</GitPushTagArgs>
 		</PropertyGroup>
 			
 		<Exec WorkingDirectory="$(BaseDir)" 
