@@ -36,16 +36,20 @@ namespace MFlow.Core.Resources
             var derivedName = string.Format("Messages.{0}.xml", Thread.CurrentThread.CurrentUICulture.Name);
             var defaultName = string.Format("Messages.en.xml", Thread.CurrentThread.CurrentUICulture.Name);
 
-            if(!_resources.ContainsKey(derivedName))
+            if (!_resources.ContainsKey(derivedName))
                 LoadAndCache(string.Format("Messages.{0}.xml", Thread.CurrentThread.CurrentUICulture.Name));
 
-            Dictionary<string, string> dictionary;
+            Dictionary<string, string> defaultDictionary = _resources.Single(r => r.Key == defaultName).Value;
+            Dictionary<string, string> derivedDictionary = null;
             if (_resources.ContainsKey(derivedName))
-                dictionary = _resources.Single(r => r.Key == derivedName).Value;
-            else
-                dictionary = _resources.Single(r => r.Key == defaultName).Value;
+                derivedDictionary = _resources.Single(r => r.Key == derivedName).Value;
 
-            return dictionary.Single(i => i.Key == key).Value;
+            var resource = defaultDictionary.Single(i => i.Key == key).Value;
+
+            if (derivedDictionary != null && derivedDictionary.Any(i => i.Key == key))
+                resource = derivedDictionary.Single(i => i.Key == key).Value;
+
+            return resource;
         }
 
         static void LoadAndCache(string fileName)
@@ -58,12 +62,12 @@ namespace MFlow.Core.Resources
                 {
                     var document = ParseDocument(LoadDocument(path));
 
-                    if(File.Exists(customPath))
+                    if (File.Exists(customPath))
                     {
                         var customDocument = ParseDocument(LoadDocument(customPath));
 
-                        foreach(var item in customDocument)
-                            document.Add(item.Key,item.Value);
+                        foreach (var item in customDocument)
+                            document.Add(item.Key, item.Value);
 
                     }
 
