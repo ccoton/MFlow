@@ -3,6 +3,7 @@
 		<BaseDir>$(MSBuildProjectDirectory)\..</BaseDir>
 		<Configuration Condition="'$(Configuration)'==''" >Release</Configuration>
 		<BuildDir>$(BaseDir)\.build</BuildDir>
+		<GitDir>C:\Program Files (x86)\Git\bin</GitDir>
 		<SolutionFile>$(BaseDir)\MFlow.sln</SolutionFile>
 		<TestAssemblies>
 			$(BaseDir)\MFlow.Core.Tests\bin\$(Configuration)\MFlow.Core.Tests.dll;
@@ -85,7 +86,12 @@
 			XPath="/package/metadata/version"
 			Value="%(AsmInfo.Version)" />
 
-
+		<PropertyGroup>
+			<GitArgs>git tag v%(AsmInfo.Version)</GitArgs>
+		</PropertyGroup>
+			
+		<Exec WorkingDirectory="$(BaseDir)" 
+					Command="$(GitArgs)" />
 
 		<Exec WorkingDirectory="$(BuildDir)\Packages" 
 					Command="$(BaseDir)\.nuget\nuget.exe pack $(PackageDir)\temp\MFlow.Core$(PackageSuffix)\MFlow.Core$(PackageSuffix).nuspec" />
