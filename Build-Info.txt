@@ -1,0 +1,16 @@
+Build.cmd
+
+	Runs a debug build and increments the revision number in AssemblyInfo files and buildnumber.xml
+
+Release.Build.cmd
+
+	Runs a release build and increments the minor build number, also generates nuget packages and 
+	creates a git tag with the updated version number
+
+Publish.Nuget.Build.cmd
+
+	Runs a release build and increments the minor build number, generates nuget packages and 
+	publishes them.
+
+If no
+
