@@ -13,6 +13,7 @@
 	<language>en-US</language>
 	<dependencies>
       <dependency id="MFlow.Core" version="" />
+	  <dependency id="MFlow.Mvc" version="" />
 	  <dependency id="Newtonsoft.Json" version="" />
 	  <dependency id="jQuery" version="" />
 	  <dependency id="Microsoft.AspNet.WebApi" version="" />
