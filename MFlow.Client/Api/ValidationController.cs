@@ -8,8 +8,14 @@ using System.Linq;
 
 namespace MFlow.Client
 {
+    /// <summary>
+    ///     A validation api controller
+    /// </summary>
     public class ValidationController : ApiController
     {
+        /// <summary>
+        ///      Handles post requests, trys to validate the passed in model.    
+        /// </summary>
         public IEnumerable<ValidationResult> Post(ModelToValidate model)
         {           
             if (model.Validate == null)

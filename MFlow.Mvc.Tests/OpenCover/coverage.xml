@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageSession xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Modules>
+    <Module skippedDueTo="Filter" hash="99-9A-9B-D9-22-6D-73-65-98-D8-F6-66-DB-95-A7-82-26-51-BF-4C">
+      <FullName>C:\Windows\Microsoft.Net\assembly\GAC_64\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll</FullName>
+      <ModuleName>mscorlib</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="MissingPdb" hash="AB-6E-C6-45-FA-8F-A0-32-6D-61-09-08-D5-05-77-EE-4D-FA-66-9D">
+      <FullName>C:\Program Files (x86)\SharpDevelop\4.3\bin\Tools\NUnit\nunit-console.exe</FullName>
+      <ModuleName>nunit-console</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="MissingPdb" hash="23-35-8C-86-05-D5-AE-FE-3C-1F-09-A0-86-02-40-7C-4F-CA-59-41">
+      <FullName>C:\Program Files (x86)\SharpDevelop\4.3\bin\Tools\NUnit\lib\nunit.core.dll</FullName>
+      <ModuleName>nunit.core</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="MissingPdb" hash="79-F8-9A-22-4E-29-52-37-00-CF-81-FF-1F-EA-05-EC-74-2A-2E-C8">
+      <FullName>C:\Program Files (x86)\SharpDevelop\4.3\bin\Tools\NUnit\lib\nunit-console-runner.dll</FullName>
+      <ModuleName>nunit-console-runner</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="MissingPdb" hash="57-DD-20-42-DA-33-B3-EE-DA-8C-8E-25-C9-E5-07-B5-08-62-0F-88">
+      <FullName>C:\Program Files (x86)\SharpDevelop\4.3\bin\Tools\NUnit\lib\nunit.util.dll</FullName>
+      <ModuleName>nunit.util</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="MissingPdb" hash="AD-76-2F-3C-5E-F6-77-0D-C6-AD-AF-A3-90-85-28-07-2D-A0-59-50">
+      <FullName>C:\Program Files (x86)\SharpDevelop\4.3\bin\Tools\NUnit\lib\nunit.core.interfaces.dll</FullName>
+      <ModuleName>nunit.core.interfaces</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="10-B5-E0-24-E1-99-24-A5-F0-2B-17-EE-69-99-32-B5-55-DD-1D-5D">
+      <FullName>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</FullName>
+      <ModuleName>System.Configuration</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="E7-72-A5-F2-49-92-86-80-B3-3B-6E-82-E9-B3-75-9C-16-06-54-CD">
+      <FullName>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll</FullName>
+      <ModuleName>System</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="7C-0D-5E-E8-2D-81-8E-D4-B9-71-0C-26-68-3B-F7-6D-CB-6B-F8-2F">
+      <FullName>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll</FullName>
+      <ModuleName>System.Xml</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="90-22-6B-0A-DA-23-C3-86-06-BE-44-DE-2E-D2-9B-87-C0-E3-5C-5F">
+      <FullName>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Runtime.Remoting\v4.0_4.0.0.0__b77a5c561934e089\System.Runtime.Remoting.dll</FullName>
+      <ModuleName>System.Runtime.Remoting</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="MissingPdb" hash="23-35-8C-86-05-D5-AE-FE-3C-1F-09-A0-86-02-40-7C-4F-CA-59-41">
+      <FullName>C:\Program Files (x86)\SharpDevelop\4.3\bin\Tools\NUnit\lib\nunit.core.dll</FullName>
+      <ModuleName>nunit.core</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="E7-72-A5-F2-49-92-86-80-B3-3B-6E-82-E9-B3-75-9C-16-06-54-CD">
+      <FullName>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll</FullName>
+      <ModuleName>System</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="7C-0D-5E-E8-2D-81-8E-D4-B9-71-0C-26-68-3B-F7-6D-CB-6B-F8-2F">
+      <FullName>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll</FullName>
+      <ModuleName>System.Xml</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="MissingPdb" hash="AD-76-2F-3C-5E-F6-77-0D-C6-AD-AF-A3-90-85-28-07-2D-A0-59-50">
+      <FullName>C:\Program Files (x86)\SharpDevelop\4.3\bin\Tools\NUnit\lib\nunit.core.interfaces.dll</FullName>
+      <ModuleName>nunit.core.interfaces</ModuleName>
+      <Classes />
+    </Module>
+    <Module hash="2E-C3-30-CF-8E-A3-32-73-86-82-91-30-6C-33-E2-3D-EB-38-2B-9A">
+      <FullName>C:\Users\Mark\AppData\Local\Temp\nunit20\ShadowCopyCache\4976_634937922108826315\Tests_113389857\assembly\dl3\c3b1b26c\81df317a_95f2cd01\MFlow.Mvc.Tests.dll</FullName>
+      <ModuleName>MFlow.Mvc.Tests</ModuleName>
+      <Files>
+        <File uid="1" fullPath="c:\git\MFlow\MFlow.Mvc.Tests\Supporting\LoginViewModel.cs" />
+        <File uid="2" fullPath="c:\git\MFlow\MFlow.Mvc.Tests\ValidatedModel.cs" />
+      </Files>
+      <Classes>
+        <Class>
+          <FullName>&lt;Module&gt;</FullName>
+          <Methods />
+        </Class>
+        <Class>
+          <FullName>MFlow.Mvc.Tests.Supporting.LoginViewModel</FullName>
+          <Methods>
+            <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="0" branchCoverage="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <MetadataToken>100663298</MetadataToken>
+              <Name>System.String MFlow.Mvc.Tests.Supporting.LoginViewModel::get_Username()</Name>
+              <SequencePoints />
+              <BranchPoints />
+              <MethodPoint vc="2" uspid="1" ordinal="0" offset="0" />
+            </Method>
+            <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="0" branchCoverage="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <MetadataToken>100663299</MetadataToken>
+              <Name>System.Void MFlow.Mvc.Tests.Supporting.LoginViewModel::set_Username(System.String)</Name>
+              <SequencePoints />
+              <BranchPoints />
+              <MethodPoint vc="2" uspid="2" ordinal="0" offset="0" />
+            </Method>
+            <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="0" branchCoverage="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <MetadataToken>100663300</MetadataToken>
+              <Name>System.String MFlow.Mvc.Tests.Supporting.LoginViewModel::get_Password()</Name>
+              <SequencePoints />
+              <BranchPoints />
+              <MethodPoint vc="2" uspid="3" ordinal="0" offset="0" />
+            </Method>
+            <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="0" branchCoverage="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <MetadataToken>100663301</MetadataToken>
+              <Name>System.Void MFlow.Mvc.Tests.Supporting.LoginViewModel::set_Password(System.String)</Name>
+              <SequencePoints />
+              <BranchPoints />
+              <MethodPoint vc="2" uspid="4" ordinal="0" offset="0" />
+            </Method>
+            <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="100" branchCoverage="100" isConstructor="true" isStatic="false" isGetter="false" isSetter="false">
+              <MetadataToken>100663297</MetadataToken>
+              <Name>System.Void MFlow.Mvc.Tests.Supporting.LoginViewModel::.ctor()</Name>
+              <FileRef uid="1" />
+              <SequencePoints>
+                <SequencePoint vc="2" uspid="5" ordinal="0" offset="0" sl="5" sc="9" el="5" ec="32" />
+                <SequencePoint vc="2" uspid="6" ordinal="1" offset="7" sl="6" sc="9" el="6" ec="10" />
+                <SequencePoint vc="2" uspid="7" ordinal="2" offset="8" sl="7" sc="13" el="7" ec="29" />
+                <SequencePoint vc="2" uspid="8" ordinal="3" offset="22" sl="9" sc="13" el="11" ec="119" />
+                <SequencePoint vc="2" uspid="9" ordinal="4" offset="191" sl="13" sc="9" el="13" ec="10" />
+              </SequencePoints>
+              <BranchPoints />
+              <MethodPoint xsi:type="SequencePoint" vc="2" uspid="5" ordinal="0" offset="0" sl="5" sc="9" el="5" ec="32" />
+            </Method>
+          </Methods>
+        </Class>
+        <Class>
+          <FullName>MFlow.Mvc.Tests.ValidatedModel</FullName>
+          <Methods>
+            <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="100" branchCoverage="100" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <MetadataToken>100663302</MetadataToken>
+              <Name>System.Void MFlow.Mvc.Tests.ValidatedModel::Test_Validated_Model_With_Errors()</Name>
+              <FileRef uid="2" />
+              <SequencePoints>
+                <SequencePoint vc="1" uspid="10" ordinal="0" offset="0" sl="16" sc="9" el="16" ec="10" />
+                <SequencePoint vc="1" uspid="11" ordinal="1" offset="1" sl="17" sc="13" el="17" ec="88" />
+                <SequencePoint vc="1" uspid="12" ordinal="2" offset="33" sl="18" sc="13" el="18" ec="138" />
+                <SequencePoint vc="1" uspid="13" ordinal="3" offset="48" sl="19" sc="13" el="19" ec="49" />
+                <SequencePoint vc="1" uspid="14" ordinal="4" offset="61" sl="20" sc="9" el="20" ec="10" />
+              </SequencePoints>
+              <BranchPoints />
+              <MethodPoint xsi:type="SequencePoint" vc="1" uspid="10" ordinal="0" offset="0" sl="16" sc="9" el="16" ec="10" />
+            </Method>
+            <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="100" branchCoverage="100" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <MetadataToken>100663303</MetadataToken>
+              <Name>System.Void MFlow.Mvc.Tests.ValidatedModel::Test_Validated_Model_With_No_Errors()</Name>
+              <FileRef uid="2" />
+              <SequencePoints>
+                <SequencePoint vc="1" uspid="15" ordinal="0" offset="0" sl="24" sc="9" el="24" ec="10" />
+                <SequencePoint vc="1" uspid="16" ordinal="1" offset="1" sl="25" sc="13" el="25" ec="104" />
+                <SequencePoint vc="1" uspid="17" ordinal="2" offset="33" sl="26" sc="4" el="26" ec="129" />
+                <SequencePoint vc="1" uspid="18" ordinal="3" offset="48" sl="27" sc="13" el="27" ec="49" />
+                <SequencePoint vc="1" uspid="19" ordinal="4" offset="61" sl="28" sc="9" el="28" ec="10" />
+              </SequencePoints>
+              <BranchPoints />
+              <MethodPoint xsi:type="SequencePoint" vc="1" uspid="15" ordinal="0" offset="0" sl="24" sc="9" el="24" ec="10" />
+            </Method>
+            <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="0" branchCoverage="0" isConstructor="true" isStatic="false" isGetter="false" isSetter="false">
+              <MetadataToken>100663304</MetadataToken>
+              <Name>System.Void MFlow.Mvc.Tests.ValidatedModel::.ctor()</Name>
+              <SequencePoints />
+              <BranchPoints />
+              <MethodPoint vc="1" uspid="20" ordinal="0" offset="0" />
+            </Method>
+          </Methods>
+        </Class>
+      </Classes>
+    </Module>
+    <Module hash="9F-95-D4-3A-45-A3-79-B7-15-41-03-83-2D-FC-D4-E8-E5-62-87-34">
+      <FullName>C:\Users\Mark\AppData\Local\Temp\nunit20\ShadowCopyCache\4976_634937922108826315\Tests_113389857\assembly\dl3\19a7f2a2\95296a77_95f2cd01\MFlow.Mvc.dll</FullName>
+      <ModuleName>MFlow.Mvc</ModuleName>
+      <Files>
+        <File uid="5" fullPath="c:\git\MFlow\MFlow.Mvc\ValidatedModel.cs" />
+      </Files>
+      <Classes>
+        <Class>
+          <FullName>&lt;Module&gt;</FullName>
+          <Methods />
+        </Class>
+        <Class>
+          <FullName>MFlow.Mvc.ValidatedModel`1</FullName>
+          <Methods>
+            <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="100" branchCoverage="100" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <MetadataToken>100663301</MetadataToken>
+              <Name>MFlow.Core.Validation.IFluentValidationBuilder`1&lt;T&gt; MFlow.Mvc.ValidatedModel`1::get_Validator()</Name>
+              <FileRef uid="5" />
+              <SequencePoints>
+                <SequencePoint vc="2" uspid="21" ordinal="0" offset="0" sl="31" sc="13" el="31" ec="14" />
+                <SequencePoint vc="2" uspid="22" ordinal="1" offset="1" sl="32" sc="17" el="32" ec="35" />
+                <SequencePoint vc="2" uspid="23" ordinal="2" offset="10" sl="33" sc="13" el="33" ec="14" />
+              </SequencePoints>
+              <BranchPoints />
+              <MethodPoint xsi:type="SequencePoint" vc="2" uspid="21" ordinal="0" offset="0" sl="31" sc="13" el="31" ec="14" />
+            </Method>
+            <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="100" branchCoverage="100" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <MetadataToken>100663300</MetadataToken>
+              <Name>System.Void MFlow.Mvc.ValidatedModel`1::SetTarget(T,System.Boolean,System.String)</Name>
+              <FileRef uid="5" />
+              <SequencePoints>
+                <SequencePoint vc="2" uspid="24" ordinal="0" offset="0" sl="20" sc="9" el="20" ec="10" />
+                <SequencePoint vc="2" uspid="25" ordinal="1" offset="1" sl="21" sc="13" el="21" ec="54" />
+                <SequencePoint vc="2" uspid="26" ordinal="2" offset="12" sl="22" sc="13" el="22" ec="92" />
+                <SequencePoint vc="2" uspid="27" ordinal="3" offset="32" sl="23" sc="9" el="23" ec="10" />
+              </SequencePoints>
+              <BranchPoints />
+              <MethodPoint xsi:type="SequencePoint" vc="2" uspid="24" ordinal="0" offset="0" sl="20" sc="9" el="20" ec="10" />
+            </Method>
+            <Method visited="true" cyclomaticComplexity="2" sequenceCoverage="100" branchCoverage="100" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <MetadataToken>100663302</MetadataToken>
+              <Name>System.Collections.Generic.IEnumerable`1&lt;System.ComponentModel.DataAnnotations.ValidationResult&gt; MFlow.Mvc.ValidatedModel`1::Validate(System.ComponentModel.DataAnnotations.ValidationContext)</Name>
+              <FileRef uid="5" />
+              <SequencePoints>
+                <SequencePoint vc="2" uspid="28" ordinal="0" offset="0" sl="40" sc="9" el="40" ec="10" />
+                <SequencePoint vc="2" uspid="29" ordinal="1" offset="1" sl="41" sc="13" el="41" ec="71" />
+                <SequencePoint vc="2" uspid="30" ordinal="2" offset="24" sl="42" sc="13" el="42" ec="50" />
+                <SequencePoint vc="2" uspid="31" ordinal="3" offset="37" sl="43" sc="13" el="43" ec="111" />
+                <SequencePoint vc="2" uspid="32" ordinal="4" offset="77" sl="44" sc="9" el="44" ec="10" />
+              </SequencePoints>
+              <BranchPoints>
+                <BranchPoint vc="1" uspid="33" ordinal="0" offset="43" path="0" />
+                <BranchPoint vc="1" uspid="34" ordinal="1" offset="43" path="1" />
+              </BranchPoints>
+              <MethodPoint xsi:type="SequencePoint" vc="2" uspid="28" ordinal="0" offset="0" sl="40" sc="9" el="40" ec="10" />
+            </Method>
+            <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="0" branchCoverage="0" isConstructor="true" isStatic="false" isGetter="false" isSetter="false">
+              <MetadataToken>100663303</MetadataToken>
+              <Name>System.Void MFlow.Mvc.ValidatedModel`1::.ctor()</Name>
+              <SequencePoints />
+              <BranchPoints />
+              <MethodPoint vc="2" uspid="35" ordinal="0" offset="0" />
+            </Method>
+            <Method visited="true" cyclomaticComplexity="1" sequenceCoverage="100" branchCoverage="100" isConstructor="false" isStatic="true" isGetter="false" isSetter="false">
+              <MetadataToken>100663304</MetadataToken>
+              <Name>System.ComponentModel.DataAnnotations.ValidationResult MFlow.Mvc.ValidatedModel`1::&lt;Validate&gt;b__0(MFlow.Core.Validation.IValidationResult`1&lt;T&gt;)</Name>
+              <FileRef uid="5" />
+              <SequencePoints>
+                <SequencePoint vc="2" uspid="36" ordinal="0" offset="0" sl="43" sc="41" el="43" ec="109" />
+              </SequencePoints>
+              <BranchPoints />
+              <MethodPoint xsi:type="SequencePoint" vc="2" uspid="36" ordinal="0" offset="0" sl="43" sc="41" el="43" ec="109" />
+            </Method>
+          </Methods>
+        </Class>
+      </Classes>
+    </Module>
+    <Module skippedDueTo="Filter" hash="B3-8B-3A-84-6B-F6-8B-81-C7-FB-6A-D5-93-36-10-90-CE-F8-08-5E">
+      <FullName>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ComponentModel.DataAnnotations\v4.0_4.0.0.0__31bf3856ad364e35\System.ComponentModel.DataAnnotations.dll</FullName>
+      <ModuleName>System.ComponentModel.DataAnnotations</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="MissingPdb" hash="53-B4-05-D9-36-E0-19-73-98-02-90-25-BA-9E-F9-3E-BE-28-86-CC">
+      <FullName>C:\Users\Mark\AppData\Local\Temp\nunit20\ShadowCopyCache\4976_634937922108826315\Tests_113389857\assembly\dl3\ae71a38f\01cbe476_95f2cd01\MFlow.Core.dll</FullName>
+      <ModuleName>MFlow.Core</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="MissingPdb" hash="13-4C-94-D1-A1-A5-D9-8F-F1-E4-CE-A7-87-EF-CC-42-FC-6B-CA-BC">
+      <FullName>C:\Users\Mark\AppData\Local\Temp\nunit20\ShadowCopyCache\4976_634937922108826315\Tests_113389857\assembly\dl3\4d524269\3746a658_d5f0cd01\nunit.framework.dll</FullName>
+      <ModuleName>nunit.framework</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="7F-D6-72-D4-75-13-1C-2D-BC-05-8E-1D-2D-EF-A9-94-4F-69-97-07">
+      <FullName>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll</FullName>
+      <ModuleName>System.Core</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="MissingPdb" hash="">
+      <FullName>RefEmit_InMemoryManifestModule</FullName>
+      <ModuleName>Anonymously Hosted DynamicMethods Assembly</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="4C-62-29-71-D8-36-31-ED-4E-A1-BE-02-DC-5F-B2-4A-EA-85-DE-4F">
+      <FullName>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Xml.Linq\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.Linq.dll</FullName>
+      <ModuleName>System.Xml.Linq</ModuleName>
+      <Classes />
+    </Module>
+  </Modules>
+</CoverageSession>
