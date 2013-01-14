@@ -1,5 +1,5 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="default">
-	
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="default">	
+
 	<PropertyGroup>
 		<BaseDir>$(MSBuildProjectDirectory)\..</BaseDir>
 		<Configuration Condition="'$(Configuration)'==''" >Release</Configuration>
@@ -9,34 +9,37 @@
 		<PackageSuffix Condition="'$(PackageSuffix)'!=''"></PackageSuffix>
 		<OutputDir>$(BuildDir)\$(Configuration)$(PackageSuffix)</OutputDir>
 		<MSBuildExtensions>$(BaseDir)\lib\msbuild\msbuild.community.tasks.dll</MSBuildExtensions>
-		<MSBuildExtensions>$(BaseDir)\lib\msbuild\msbuild.community.tasks.dll</MSBuildExtensions>
 	</PropertyGroup>
 	
-	<GetAssemblyIdentity AssemblyFiles="$(OutputDir)\MFlow.Core\MFlow.Core.dll">
-		<Output TaskParameter="Assemblies" ItemName="AsmInfo" />
-	</GetAssemblyIdentity>
+	<Target Name="default">
 	
-	<PropertyGroup>
-		<GitAddArgs>git add .</GitAddArgs>
-		<GitCommitArgs>git commit -m "Release build v%(AsmInfo.Version)</GitCommitArgs>
-		<GitPushArgs>git push origin master</GitPushArgs>
-		<GitTagArgs>git tag v%(AsmInfo.Version)</GitTagArgs>
-		<GitPushTagArgs>git push --tags</GitPushTagArgs>
-	</PropertyGroup>
+		<GetAssemblyIdentity AssemblyFiles="$(OutputDir)\MFlow.Core\MFlow.Core.dll">
+			<Output TaskParameter="Assemblies" ItemName="AsmInfo" />
+		</GetAssemblyIdentity>
 		
-	<Exec WorkingDirectory="$(BaseDir)" 
-				Command="$(GitAddArgs)" />			
+		<PropertyGroup>
+			<GitAddArgs>git add .</GitAddArgs>
+			<GitCommitArgs>git commit -m "Release build v%(AsmInfo.Version)</GitCommitArgs>
+			<GitPushArgs>git push origin master</GitPushArgs>
+			<GitTagArgs>git tag v%(AsmInfo.Version)</GitTagArgs>
+			<GitPushTagArgs>git push --tags</GitPushTagArgs>
+		</PropertyGroup>
+			
+		<Exec WorkingDirectory="$(BaseDir)" 
+					Command="$(GitAddArgs)" />			
+			
+		<Exec WorkingDirectory="$(BaseDir)" 
+					Command="$(GitCommitArgs)" />
+			
+		<Exec WorkingDirectory="$(BaseDir)" 
+					Command="$(GitPushArgs)" />
 		
-	<Exec WorkingDirectory="$(BaseDir)" 
-				Command="$(GitCommitArgs)" />
+		<Exec WorkingDirectory="$(BaseDir)" 
+					Command="$(GitTagArgs)" />
 		
-	<Exec WorkingDirectory="$(BaseDir)" 
-				Command="$(GitPushArgs)" />
-	
-	<Exec WorkingDirectory="$(BaseDir)" 
-				Command="$(GitTagArgs)" />
-	
-	<Exec WorkingDirectory="$(BaseDir)" 
-				Command="$(GitPushTagArgs)" />
+		<Exec WorkingDirectory="$(BaseDir)" 
+					Command="$(GitPushTagArgs)" />
+					
+	</Target>
 </Project>
 					
