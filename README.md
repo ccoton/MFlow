@@ -11,6 +11,20 @@ Or
 
 	Install-Package MFlow.Mvc
 
+Or
+
+	Install-Package MFlow.Client
+	
+Installing the MFlow.Client packages also installs MFlow.Core & MFlow.Mvc and gives you the ability validate both server side and client side using a WebApi call. Like so:
+
+    <script type="text/javascript" src="~/Scripts/MFlowClient.js"></script>
+    <script type="text/javascript">
+
+		// The id of a containing control, contains control used to populate the type specified..
+        $('#loginForm').MFlowClient('MFlow.Samples.Mvc, MFlow.Samples.Mvc.Models.LoginModel');
+
+    </script>
+	
 The idea is to improve and give a more fluent approach to conditional and validation checking. Similar to the way that the fluentvalidation framework for .NET works. 
 
 Example:
