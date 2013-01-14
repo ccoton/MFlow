@@ -8,7 +8,7 @@
     <h1>@ViewBag.Title.</h1>
 </hgroup>
 
-<section id="loginForm">
+<section id="registerForm">
 <h2>Register your details.</h2>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -54,6 +54,10 @@
 </section>
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script type="text/javascript" src="~/Scripts/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/MFlowClient.js"></script>
+<script type="text/javascript">
+
+	$('#registerForm').MFlowClient('MFlow.Samples.Mvc, MFlow.Samples.Mvc.Models.RegisterModel');
+
+</script>

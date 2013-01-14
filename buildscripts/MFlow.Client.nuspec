@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>MFlow.Client</id>
+    <version></version>
+    <authors>Mark Woodhall</authors>
+    <licenseUrl>https://raw.github.com/markwoodhall/MFlow/master/license.txt</licenseUrl>
+    <projectUrl>https://github.com/markwoodhall/MFlow</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A simple .net validation framework. A javascript/webapi client for the MVC Library</description>
+    <summary>A simple .net validation framework. A javascript/webapi client for the MVC Library</summary>    
+	<language>en-US</language>
+	<dependencies>
+      <dependency id="MFlow.Core" version="" />
+	  <dependency id="Newtonsoft.Json" version="" />
+	  <dependency id="jQuery" version="" />
+	  <dependency id="Microsoft.AspNet.WebApi" version="" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,42 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="default">
+	
+	<PropertyGroup>
+		<BaseDir>$(MSBuildProjectDirectory)\..</BaseDir>
+		<Configuration Condition="'$(Configuration)'==''" >Release</Configuration>
+		<BuildDir>$(BaseDir)\.build</BuildDir>
+		<GitDir>C:\Program Files (x86)\Git\bin</GitDir>
+		<PackageDir>$(BuildDir)\Packages</PackageDir>
+		<PackageSuffix Condition="'$(PackageSuffix)'!=''"></PackageSuffix>
+		<OutputDir>$(BuildDir)\$(Configuration)$(PackageSuffix)</OutputDir>
+		<MSBuildExtensions>$(BaseDir)\lib\msbuild\msbuild.community.tasks.dll</MSBuildExtensions>
+		<MSBuildExtensions>$(BaseDir)\lib\msbuild\msbuild.community.tasks.dll</MSBuildExtensions>
+	</PropertyGroup>
+	
+	<GetAssemblyIdentity AssemblyFiles="$(OutputDir)\MFlow.Core\MFlow.Core.dll">
+		<Output TaskParameter="Assemblies" ItemName="AsmInfo" />
+	</GetAssemblyIdentity>
+	
+	<PropertyGroup>
+		<GitAddArgs>git add .</GitAddArgs>
+		<GitCommitArgs>git commit -m "Release build v%(AsmInfo.Version)</GitCommitArgs>
+		<GitPushArgs>git push origin master</GitPushArgs>
+		<GitTagArgs>git tag v%(AsmInfo.Version)</GitTagArgs>
+		<GitPushTagArgs>git push --tags</GitPushTagArgs>
+	</PropertyGroup>
+		
+	<Exec WorkingDirectory="$(BaseDir)" 
+				Command="$(GitAddArgs)" />			
+		
+	<Exec WorkingDirectory="$(BaseDir)" 
+				Command="$(GitCommitArgs)" />
+		
+	<Exec WorkingDirectory="$(BaseDir)" 
+				Command="$(GitPushArgs)" />
+	
+	<Exec WorkingDirectory="$(BaseDir)" 
+				Command="$(GitTagArgs)" />
+	
+	<Exec WorkingDirectory="$(BaseDir)" 
+				Command="$(GitPushTagArgs)" />
+</Project>
+					

@@ -10,7 +10,7 @@
 
 <section id="loginForm">
 <h2>Use a local account to log in.</h2>
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl})) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -41,6 +41,10 @@
 </section>
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script type="text/javascript" src="~/Scripts/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/MFlowClient.js"></script>
+<script type="text/javascript">
+
+	$('#loginForm').MFlowClient('MFlow.Samples.Mvc, MFlow.Samples.Mvc.Models.LoginModel');
+
+</script>
