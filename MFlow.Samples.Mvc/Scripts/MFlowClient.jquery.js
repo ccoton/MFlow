@@ -54,7 +54,7 @@
             {
                 this.find($('input[id][name]')).blur(onBlur);
             }
-            alert(settings.hintOnFocus);
+
             if(settings.hintOnFocus)
             {
                 this.find($('input[id][name]')).focus(onBlur);
