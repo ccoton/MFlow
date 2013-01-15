@@ -1,10 +1,12 @@
 
-using System.Web.Http;
-using Newtonsoft.Json;
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web.Http;
+
+using MFlow.Client.Models;
+using Newtonsoft.Json;
 
 namespace MFlow.Client
 {
@@ -23,7 +25,7 @@ namespace MFlow.Client
 
             if (string.IsNullOrEmpty(model.Type))
                 throw new ArgumentException("ModelToValidate must define a type to validate");
-
+            
             var assembly = model.Type.Split(',').First();
             var type = model.Type.Split(',').Skip(1).First();
             var validateType = System.Reflection.Assembly.Load(assembly).GetType(type);

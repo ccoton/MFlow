@@ -58,11 +58,12 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Api\ValidationController.cs" />
     <Compile Include="Models\ModelToValidate.cs" />
+    <Compile Include="Models\ModelValidationType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Scripts\MFlowClient.js">
+    <None Include="Scripts\MFlowClient.jquery.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
