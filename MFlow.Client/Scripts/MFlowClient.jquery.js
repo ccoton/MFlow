@@ -2,12 +2,11 @@
 
   $.fn.MFlowClient = function(type, settings) {
   
-  
             var form = this;
                
             var onBlur = function()
             {
-                    var blured = $(this);
+                var blured = $(this);
     			var validate = '{';
     
     			form.find('input[id][name]').each(function() {

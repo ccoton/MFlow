@@ -4,15 +4,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Http;
-
-using MFlow.Client.Models;
 using Newtonsoft.Json;
 
-namespace MFlow.Client
+namespace MFlow.Client.Api
 {
-    /// <summary>
-    ///     A validation api controller
-    /// </summary>
     public class ValidationController : ApiController
     {
         /// <summary>
@@ -20,7 +15,7 @@ namespace MFlow.Client
         /// </summary>
         public IEnumerable<ValidationResult> Post(ModelToValidate model)
         {           
-            if(model==null)
+            if (model == null)
                 throw new ArgumentException("ModelToValidate must have some data to validate");
 
             if (model.Validate == null)
@@ -28,20 +23,11 @@ namespace MFlow.Client
 
             if (string.IsNullOrEmpty(model.Type))
                 throw new ArgumentException("ModelToValidate must define a type to validate");
-            
+
             var assembly = model.Type.Split(',').First();
             var type = model.Type.Split(',').Skip(1).First();
-            Type validateType = null;
-            try
-            { 
-                validateType = System.Reflection.Assembly.Load(assembly).GetType(type);
-            } 
-            catch(Exception)
-            {
-                throw new ArgumentException("ModelToValidate must define a type to validate");
-            }
-            
-            if ( validateType == null || !typeof(IValidatableObject).IsAssignableFrom(validateType))
+            var validateType = System.Reflection.Assembly.Load(assembly).GetType(type);
+            if (validateType == null || !typeof(IValidatableObject).IsAssignableFrom(validateType))
                 throw new ArgumentException("ModelToValidate must implement IValidatableObject");
 
             var objectToValidate = (IValidatableObject)JsonConvert.DeserializeObject(model.Validate.ToString(), validateType);
