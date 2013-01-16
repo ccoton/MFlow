@@ -1,3 +1,4 @@
+using MFlow.Client.Models;
 namespace MFlow.Client
 {
     /// <summary>
@@ -14,6 +15,12 @@ namespace MFlow.Client
         ///     The type of the object we are trying to validate
         /// </summary>
         public string Type { get; set; }
+        
+        /// <summary>
+        ///     The type of model validation
+        /// </summary>
+        public ModelValidationType ValidationType {get;set;}
+        
     }
 }
 
