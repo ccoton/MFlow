@@ -18,6 +18,9 @@ namespace MFlow.Client
         /// </summary>
         public IEnumerable<ValidationResult> Post(ModelToValidate model)
         {           
+            if(model==null)
+                throw new ArgumentException("ModelToValidate must have some data to validate");
+
             if (model.Validate == null)
                 throw new ArgumentException("ModelToValidate must have some data to validate");
 
@@ -26,7 +29,15 @@ namespace MFlow.Client
 
             var assembly = model.Type.Split(',').First();
             var type = model.Type.Split(',').Skip(1).First();
-            var validateType = System.Reflection.Assembly.Load(assembly).GetType(type);
+            Type validateType = null;
+            try
+            { 
+                validateType = System.Reflection.Assembly.Load(assembly).GetType(type);
+            } 
+            catch(Exception)
+            {
+                throw new ArgumentException("ModelToValidate must define a type to validate");
+            }
             
             if ( validateType == null || !typeof(IValidatableObject).IsAssignableFrom(validateType))
                 throw new ArgumentException("ModelToValidate must implement IValidatableObject");
