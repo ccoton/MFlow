@@ -5,7 +5,7 @@ namespace MFlow.Core.Internal.Validators.Dates
     /// <summary>
     ///     On Validator
     /// </summary>
-    class OnValidator : IComparisonValidator<DateTime, DateTime>
+    class OnValidator : IOnValidator
     {
         public bool Validate(DateTime input, DateTime value)
         {

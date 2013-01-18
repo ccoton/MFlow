@@ -3,7 +3,7 @@
     /// <summary>
     ///     Required Validator
     /// </summary>
-    class RequiredValidator<T> : IValidator<T>
+    class RequiredValidator<T> : IRequiredValidator<T>
     {
         public bool Validate (T input)
         {

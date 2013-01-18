@@ -19,6 +19,7 @@ namespace MFlow.Core.Validation
         readonly IPropertyNameResolver _resolver;
         readonly IMessageResolver _messageResolver;
         readonly IExpressionBuilder<T> _expressionBuilder;
+        readonly IValidatorFactory _validatorFactory;
         ICurrentValidationContext<T> _currentContext;
 
         /// <summary>
@@ -31,6 +32,7 @@ namespace MFlow.Core.Validation
             _resolver = new PropertyNameResolver();
             _messageResolver = new MessageResolver();
             _expressionBuilder = new ExpressionBuilder<T>();
+            _validatorFactory = new ValidatorFactory();
             base.Clear();
         }
 

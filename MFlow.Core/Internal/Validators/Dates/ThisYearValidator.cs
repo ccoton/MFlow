@@ -6,7 +6,7 @@ namespace MFlow.Core.Internal.Validators.Dates
     /// <summary>
     ///     ThisYear Validator
     /// </summary>
-    public class ThisYearValidator : IValidator<DateTime>
+    public class ThisYearValidator : IThisYearValidator
     {
         public bool Validate (DateTime input)
         {

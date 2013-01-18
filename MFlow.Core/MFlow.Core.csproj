@@ -114,6 +114,18 @@
     <Compile Include="Validation\IFluentValidationLoader.cs" />
     <Compile Include="XmlConfiguration\XmlValidationLoader.cs" />
     <Compile Include="Internal\Validators\IComparisonValidator.cs" />
+    <Compile Include="Internal\Validators\IValidatorFactory.cs" />
+    <Compile Include="Internal\Validators\ValidatorFactory.cs" />
+    <Compile Include="Internal\Validators\Dates\IAfterValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\IBeforeValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\IOnValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\IThisMonthValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\IThisWeekValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\IThisYearValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\ITodayValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\IEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\INotEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\IRequiredValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Xml\Messages.fr-FR.xml">

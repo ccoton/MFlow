@@ -7,7 +7,7 @@ namespace MFlow.Core.Internal.Validators.Dates
     /// <summary>
     ///     ThisWeek Validator
     /// </summary>
-    public class ThisWeekValidator : IValidator<DateTime>
+    public class ThisWeekValidator : IThisWeekValidator
     {
         public bool Validate (DateTime input)
         {

@@ -5,7 +5,7 @@ namespace MFlow.Core.Internal.Validators.Dates
     /// <summary>
     ///     Before Validator
     /// </summary>
-    class BeforeValidator : IComparisonValidator<DateTime, DateTime>
+    class BeforeValidator : IBeforeValidator
     {
         public bool Validate(DateTime input, DateTime value)
         {
