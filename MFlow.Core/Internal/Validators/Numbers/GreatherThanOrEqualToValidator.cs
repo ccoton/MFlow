@@ -3,7 +3,7 @@
     /// <summary>
     ///     GreaterThanOrEqualTo Validator
     /// </summary>
-    class GreaterThanOrEqualToValidator : IComparisonValidator<int, int>
+    class GreaterThanOrEqualToValidator : IGreaterThanOrEqualToValidator
     {
         public bool Validate(int input, int value)
         {

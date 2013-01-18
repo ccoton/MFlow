@@ -126,6 +126,7 @@
     <Compile Include="Internal\Validators\Generic\IEqualToValidator.cs" />
     <Compile Include="Internal\Validators\Generic\INotEqualToValidator.cs" />
     <Compile Include="Internal\Validators\Generic\IRequiredValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\IGreaterThanOrEqualToValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Xml\Messages.fr-FR.xml">
