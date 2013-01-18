@@ -83,7 +83,7 @@ Global
 		{1BE96F96-8234-41E3-AD08-8B64A2FB10A4} = {5B172B1F-3F9C-4F94-8E94-096DB6262577}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = MFlow.Samples.Mvc\MFlow.Samples.Mvc.csproj
+		StartupItem = MFlow.Performance\MFlow.Performance.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.inheritsSet = VisualStudio
@@ -99,6 +99,10 @@ Global
 		$2.EventAddBraceStyle = NextLine
 		$2.EventRemoveBraceStyle = NextLine
 		$2.StatementBraceStyle = NextLine
+		$2.ElseNewLinePlacement = NewLine
+		$2.ElseIfNewLinePlacement = NewLine
+		$2.CatchNewLinePlacement = NewLine
+		$2.FinallyNewLinePlacement = NewLine
 		$2.ArrayInitializerBraceStyle = NextLine
 		$2.BeforeMethodDeclarationParentheses = False
 		$2.BeforeMethodCallParentheses = False

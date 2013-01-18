@@ -13,10 +13,10 @@ namespace MFlow.Core.Validation
         public IFluentValidationBuilder<T> GetFluentValidation<T>(T target, bool loadXmlRuleset = false, 
                                                                   string fileName = "")
         {
-            if(!loadXmlRuleset)
+            if (!loadXmlRuleset)
                 return new FluentValidation<T>(target);
             IFluentValidationLoader loader = null; 
-            if(fileName.ToLower().EndsWith(".vml"))
+            if (fileName.ToLower().EndsWith(".vml"))
                 loader = new VmlValidationLoader();
             else 
                 loader = new XmlValidationLoader();

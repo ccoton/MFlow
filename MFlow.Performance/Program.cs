@@ -13,6 +13,7 @@ namespace MFlow.Performance
             var validator = new FluentValidationFactory().GetFluentValidation(user);
 
             validator
+                .Check(c => c.Forename).IsNotEqualTo("d")
                 .Check(c => c.Forename).IsNotEmpty()
                 .Check(c => c.Surname).IsNotEmpty()
                 .Check(c => c.Email).IsEmail()

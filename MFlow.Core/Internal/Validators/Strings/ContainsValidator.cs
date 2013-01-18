@@ -6,7 +6,7 @@ namespace MFlow.Core.Internal.Validators.Strings
     /// <summary>
     ///     Contains Validator
     /// </summary>
-    class ContainsValidator : IComparisonValidator<string, string>
+    class ContainsValidator : IContainsValidator
     {
         static IDictionary<string, bool> cache = new Dictionary<string, bool>();
         

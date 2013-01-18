@@ -1,6 +1,6 @@
 using MFlow.Core.Internal.Validators;
 
-namespace MFlow.Core
+namespace MFlow.Core.Internal.Validators.Generic
 {
     interface IRequiredValidator<T> : IValidator<T>
     {

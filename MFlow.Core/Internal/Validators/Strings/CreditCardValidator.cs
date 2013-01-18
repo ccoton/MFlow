@@ -1,6 +1,6 @@
 ﻿namespace MFlow.Core.Internal.Validators.Strings
 {
-    class CreditCardValidator : IValidator<string>
+    class CreditCardValidator : ICreditCardValidator
     {
         public bool Validate(string input)
         {
@@ -14,10 +14,10 @@
             char[] chars = input.ToCharArray();
             for (int i = chars.Length - 1; i > -1; i--)
             {
-                int j = ((int)chars[i]) - 48;
+                int j = ((int)chars [i]) - 48;
                 checksum += j;
                 if (((i - chars.Length) % 2) == 0)
-                    checksum += DELTAS[j];
+                    checksum += DELTAS [j];
             }
 
             return ((checksum % 10) == 0);

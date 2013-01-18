@@ -8,7 +8,7 @@ namespace MFlow.Core.Internal.Validators.Strings
     /// <summary>
     ///     Matches Validator
     /// </summary>
-    class MatchesValidator : IComparisonValidator<string, string>
+    class MatchesValidator : IMatchesValidator
     {
         static IDictionary<string, bool> cache = new Dictionary<string, bool>();
 

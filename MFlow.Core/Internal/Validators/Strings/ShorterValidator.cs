@@ -6,7 +6,7 @@ namespace MFlow.Core.Internal.Validators.Strings
     /// <summary>
     ///     Shorter Validator
     /// </summary>
-    class ShorterValidator : IComparisonValidator<string, int>
+    class ShorterValidator : IShorterValidator
     {
         static IDictionary<string, bool> cache = new Dictionary<string, bool>();
 

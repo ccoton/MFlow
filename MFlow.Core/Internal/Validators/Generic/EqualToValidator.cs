@@ -3,9 +3,9 @@
     /// <summary>
     ///     EqualTo Validator
     /// </summary>
-    class EqualToValidator<T, T2> : IEqualToValidator<T,T2>
+    class EqualToValidator<TInput, TCompare> : IEqualToValidator<TInput,TCompare>
     {
-        public bool Validate(T input, T2 value)
+        public bool Validate(TInput input, TCompare value)
         {
             return input != null && input.Equals(value);
         }

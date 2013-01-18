@@ -34,11 +34,38 @@ namespace MFlow.Core
 
         TValidator GetValidator<TValidator>()
         {
-            var type = _types.Where(t => typeof(TValidator).IsAssignableFrom(t) && t.IsClass).FirstOrDefault();
+            Type type = null;
+            if (!typeof(TValidator).IsGenericType)
+            {
+                type = _types.Where(t => typeof(TValidator).IsAssignableFrom(t) && t.IsClass).FirstOrDefault();
+            }
+            else
+            {
+                foreach (var theType in _types)
+                {
+                    var item = theType.GetInterfaces()
+                        .Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(TValidator).GetGenericTypeDefinition())
+                            .Select(t => t.GetGenericArguments().First())
+                            .FirstOrDefault();
+
+                    if (item != null)
+                    {
+                        type = item.DeclaringType;
+                        type = type.MakeGenericType(typeof(TValidator).GetGenericArguments());
+                        break;
+                    }
+                }
+            }
+
             if (type == null)
                 throw new ArgumentException(string.Format("Cannot find a validator for {0}", typeof(TValidator).Name));
-            
-            var constructor = Expression.Lambda(Expression.New(type.GetConstructor(new Type[]{}))).Compile();
+
+            if (type.IsGenericType)
+            {
+                return (TValidator)(type.GetConstructor(Type.EmptyTypes)).Invoke(new object[] { });
+            }
+
+            var constructor = Expression.Lambda(Expression.New(type.GetConstructor(Type.EmptyTypes))).Compile();
             
             return (TValidator)constructor.DynamicInvoke();
         }

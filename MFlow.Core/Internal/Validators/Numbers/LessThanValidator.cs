@@ -3,7 +3,7 @@
     /// <summary>
     ///     LessThan Validator
     /// </summary>
-    class LessThanValidator : IComparisonValidator<int, int>
+    class LessThanValidator : ILessThanValidator
     {
         public bool Validate(int input, int value)
         {

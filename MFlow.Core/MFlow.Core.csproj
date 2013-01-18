@@ -14,13 +14,14 @@
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>True</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -127,6 +128,21 @@
     <Compile Include="Internal\Validators\Generic\INotEqualToValidator.cs" />
     <Compile Include="Internal\Validators\Generic\IRequiredValidator.cs" />
     <Compile Include="Internal\Validators\Numbers\IGreaterThanOrEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\ILessThanOrEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\IGreaterThanValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\ILessThanValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IAlphaValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IContainsValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\ICreditCardValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IEmailValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\ILengthValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\ILongerValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IMatchesValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\INotEmptyValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\INumericValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IPostCodeValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IShorterValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IZipCodeValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Xml\Messages.fr-FR.xml">
@@ -144,8 +160,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="XmlConfiguration\" />
-    <Folder Include="Internal\Validators\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
