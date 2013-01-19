@@ -31,10 +31,16 @@ namespace MFlow.Core.Validation
             : base(validate)
         {
             If(validate == null).Throw(new ArgumentException("validate"));
+            If(propertyNameResolver == null).Throw(new ArgumentException("propertyNameResolver"));
+            If(messageResolver == null).Throw(new ArgumentException("messageResolver"));
+            If(expressionBuilder == null).Throw(new ArgumentException("expressionBuilder"));
+            If(validatorFactory == null).Throw(new ArgumentException("validatorFactory"));
+
             _resolver = propertyNameResolver;
             _messageResolver = messageResolver;
             _expressionBuilder = expressionBuilder;
             _validatorFactory = validatorFactory;
+
             base.Clear();
         }
 
