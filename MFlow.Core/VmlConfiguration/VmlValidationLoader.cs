@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using MFlow.Core.Validation;
 
-namespace MFlow.Core.XmlConfiguration
+namespace MFlow.Core.VmlConfiguration
 {
     /// <summary>
     ///     Load a fluentvalidation configuration
@@ -14,8 +14,9 @@ namespace MFlow.Core.XmlConfiguration
     class VmlValidationLoader : IFluentValidationLoader
     {
         static IDictionary<string, object> _validators;
-        static IDictionary<string, object> _customRules;
         static IFluentValidationFactory _validationFactory;
+
+        object _validatorsLock = new object();
 
         /// <summary>
         ///     Static constructor
@@ -23,7 +24,6 @@ namespace MFlow.Core.XmlConfiguration
         static VmlValidationLoader()
         {
             _validators = new Dictionary<string, object>();
-            _customRules = new Dictionary<string, object>();
             _validationFactory = new FluentValidationFactory();
         }
 
@@ -54,7 +54,14 @@ namespace MFlow.Core.XmlConfiguration
                 validator = _validationFactory.GetFluentValidation(target).If(true);
                 validator = ParseVml(validator, derivedName);
                 validator = ParseCustomRules(validator, derivedName);
-                _validators.Add(derivedName, validator);
+
+                lock (_validatorsLock)
+                {
+                    if (!_validators.ContainsKey(derivedName))
+                    {
+                        _validators.Add(derivedName, validator);
+                    }
+                }
             }
 
             return validator;

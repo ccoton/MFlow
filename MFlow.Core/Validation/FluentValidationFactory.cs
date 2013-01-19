@@ -1,5 +1,6 @@
 ﻿using MFlow.Core.XmlConfiguration;
 using MFlow.Core.Internal;
+using MFlow.Core.VmlConfiguration;
 
 namespace MFlow.Core.Validation
 {

@@ -15,8 +15,10 @@ namespace MFlow.Core.XmlConfiguration
     class XmlValidationLoader : IFluentValidationLoader
     {
         static IDictionary<string, object> _validators;
-        static IDictionary<string, object> _customRules;
         static IFluentValidationFactory _validationFactory;
+
+        object _validatorsLock = new object();
+
 
         /// <summary>
         ///     Static constructor
@@ -24,7 +26,6 @@ namespace MFlow.Core.XmlConfiguration
         static XmlValidationLoader()
         {
             _validators = new Dictionary<string, object>();
-            _customRules = new Dictionary<string, object>();
             _validationFactory = new FluentValidationFactory();
         }
 
@@ -55,7 +56,14 @@ namespace MFlow.Core.XmlConfiguration
                 validator = _validationFactory.GetFluentValidation(target).If(true);
                 validator = ParseXml(validator, derivedName);
                 validator = ParseCustomRules(validator, derivedName);
-                _validators.Add(derivedName, validator);
+
+                lock (_validatorsLock)
+                {
+                    if (!_validators.ContainsKey(derivedName))
+                    {
+                        _validators.Add(derivedName, validator);
+                    }
+                }
             }
 
             return validator;
@@ -203,7 +211,7 @@ namespace MFlow.Core.XmlConfiguration
             return CreateExpressions<T, string, string>(validator, document, "RegEx", (e, ev, m, v) => {
                 return validator.Check(e).Mathes(v).Message(m); });
         }
-	
+    
         IFluentValidation<T> ParseIsEmail<T>(IFluentValidation<T> validator, XDocument document)
         {
             return CreateExpressions<T, string, string>(validator, document, "IsEmail", (e, ev, m, v) => {
