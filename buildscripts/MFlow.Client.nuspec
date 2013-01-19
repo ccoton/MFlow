@@ -8,12 +8,13 @@
     <projectUrl>https://github.com/markwoodhall/MFlow</projectUrl>
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>A simple .net validation framework. A javascript client for the MVC Library you need to also install MFlow.WebApi</description>
-    <summary>A simple .net validation framework. A javascript client, to use this client you need to also install MFlow.WebApi</summary>    
+    <description>A simple jQuery plugin for MFlow</description>
+    <summary>A simple jQuery plugin that allows communication with the MFlow.WebApi validation controller in order to provide client side style validation</summary>    
 	<language>en-US</language>
 	<dependencies>
 	  <dependency id="jQuery" version="" />
 	  <dependency id="MFlow.WebApi" version="" />
+	  <dependency id="MFlow.Mvc" version="" />
     </dependencies>
   </metadata>
 </package>
