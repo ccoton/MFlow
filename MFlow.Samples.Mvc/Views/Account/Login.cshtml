@@ -45,6 +45,13 @@
 <script type="text/javascript" src="~/Scripts/MFlowClient.jquery.js"></script>
 <script type="text/javascript">
 
-	$('#loginForm').MFlowClient('MFlow.Samples.Mvc, MFlow.Samples.Mvc.Models.LoginModel', { errorOnBlur: true, hintOnFocus: true});
-
+	$('#loginForm').MFlowClient('MFlow.Samples.Mvc, MFlow.Samples.Mvc.Models.LoginModel', 
+		{ 
+			errorOnBlur: true, 
+			hintOnFocus: true, 
+			validationErrorClass: 'input-validation-error', 
+			validationValidClass: 'field-validation-valid',
+			validationUrl: '/api/Validation'
+		});
+		
 </script>

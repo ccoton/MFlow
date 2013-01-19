@@ -20,13 +20,13 @@
     			
     			$.ajax({
     				type: 'POST',
-    				url: '/api/Validation',
+    				url: settings.validationUrl,
     				contentType: 'application/json;charset=utf-8',
     				data:request,
     				success: function (data) {
     				
-    				        blured.removeClass('input-validation-error');
-    				        $('span[data-valmsg-for="' + blured.attr('id') + '"]').addClass('field-validation-valid');;
+    				        blured.removeClass(settings.validationErrorClass);
+    				        $('span[data-valmsg-for="' + blured.attr('id') + '"]').addClass(settings.validationValidClass);
         				   
         				   for(var i=0; i<data.length; i++)
         				   {
@@ -36,11 +36,11 @@
         						   if(blured.attr('id') == members[m])
         						   {
         							   var memberName = members[m];
-        							   $('#'+memberName).addClass('input-validation-error');
+        							   $('#'+memberName).addClass(settings.validationErrorClass);
         							   
         							   var errorNode = $('span[data-valmsg-for="' + memberName + '"]');
-        							   errorNode.removeClass('field-validation-valid');
-        							   errorNode.addClass('field-validation-error');
+        							   errorNode.removeClass(settings.validationValidClass);
+        							   errorNode.addClass(settings.validationErrorClass);
         							   errorNode.html(data[i].ErrorMessage);
         						   }
         					   }
