@@ -16,23 +16,25 @@ namespace MFlow.Core.Validation
     /// </summary>
     public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>, IFluentValidationBuilder<T>
     {
+        ICurrentValidationContext<T> _currentContext;
         readonly IPropertyNameResolver _resolver;
         readonly IMessageResolver _messageResolver;
         readonly IExpressionBuilder<T> _expressionBuilder;
         readonly IValidatorFactory _validatorFactory;
-        ICurrentValidationContext<T> _currentContext;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        internal FluentValidation(T validate)
+        internal FluentValidation(T validate, IPropertyNameResolver propertyNameResolver,
+                                  IMessageResolver messageResolver, IExpressionBuilder<T> expressionBuilder,
+                                  IValidatorFactory validatorFactory)
             : base(validate)
         {
             If(validate == null).Throw(new ArgumentException("validate"));
-            _resolver = new PropertyNameResolver();
-            _messageResolver = new MessageResolver();
-            _expressionBuilder = new ExpressionBuilder<T>();
-            _validatorFactory = new ValidatorFactory();
+            _resolver = propertyNameResolver;
+            _messageResolver = messageResolver;
+            _expressionBuilder = expressionBuilder;
+            _validatorFactory = validatorFactory;
             base.Clear();
         }
 

@@ -15,6 +15,7 @@ namespace MFlow.Core.XmlConfiguration
     {
         static IDictionary<string, object> _validators;
         static IDictionary<string, object> _customRules;
+        static IFluentValidationFactory _validationFactory;
 
         /// <summary>
         ///     Static constructor
@@ -23,6 +24,7 @@ namespace MFlow.Core.XmlConfiguration
         {
             _validators = new Dictionary<string, object>();
             _customRules = new Dictionary<string, object>();
+            _validationFactory = new FluentValidationFactory();
         }
 
         /// <summary>
@@ -47,7 +49,9 @@ namespace MFlow.Core.XmlConfiguration
             }
             else
             {
-                validator = new FluentValidation<T>(target);
+                // Call if(true) just to return the actual Validator
+                // instead of the builder
+                validator = _validationFactory.GetFluentValidation(target).If(true);
                 validator = ParseVml(validator, derivedName);
                 validator = ParseCustomRules(validator, derivedName);
                 _validators.Add(derivedName, validator);

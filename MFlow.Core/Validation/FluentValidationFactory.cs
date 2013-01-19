@@ -1,4 +1,5 @@
 ﻿using MFlow.Core.XmlConfiguration;
+using MFlow.Core.Internal;
 
 namespace MFlow.Core.Validation
 {
@@ -13,8 +14,14 @@ namespace MFlow.Core.Validation
         public IFluentValidationBuilder<T> GetFluentValidation<T>(T target, bool loadXmlRuleset = false, 
                                                                   string fileName = "")
         {
+
+            var resolver = new PropertyNameResolver();
+            var messageResolver = new MessageResolver();
+            var expressionBuilder = new ExpressionBuilder<T>();
+            var validatorFactory = new ValidatorFactory();
+
             if (!loadXmlRuleset)
-                return new FluentValidation<T>(target);
+                return new FluentValidation<T>(target, resolver, messageResolver, expressionBuilder, validatorFactory);
             IFluentValidationLoader loader = null; 
             if (fileName.ToLower().EndsWith(".vml"))
                 loader = new VmlValidationLoader();
