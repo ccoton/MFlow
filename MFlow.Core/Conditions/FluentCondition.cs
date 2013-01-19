@@ -15,6 +15,9 @@ namespace MFlow.Core.Conditions
         /// </summary>
         public FluentCondition(Expression<Func<T, bool>> condition, ConditionType type, string key, string message, ConditionOutput output = ConditionOutput.Error)
         {
+            if (condition == null)
+                throw new ArgumentNullException("condition");
+
             Condition = condition;
             Type = type;
             Key = key;

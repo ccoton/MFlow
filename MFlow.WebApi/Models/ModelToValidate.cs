@@ -1,5 +1,4 @@
-using MFlow.Client.Models;
-namespace MFlow.Client
+namespace MFlow.WebApi.Models
 {
     /// <summary>
     ///     A class used as a model to the ValidationApi controller

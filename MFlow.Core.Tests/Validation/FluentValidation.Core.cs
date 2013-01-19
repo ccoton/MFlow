@@ -17,7 +17,7 @@ namespace MFlow.Core.Tests.Validation
         readonly IFluentValidationFactory _factory = new FluentValidationFactory();
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void Test_Fluent_Validation_Constructor_Exception()
         {
             var fluentValidation = _factory.GetFluentValidation<User>(null);

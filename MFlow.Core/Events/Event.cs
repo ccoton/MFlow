@@ -1,4 +1,6 @@
-﻿namespace MFlow.Core.Events
+﻿using System;
+
+namespace MFlow.Core.Events
 {
     /// <summary>
     ///     An event that can be raised by the validator
@@ -13,6 +15,9 @@
         /// </summary>
         protected Event(T source, bool sameThread)
         {
+            if (source == null)
+                throw new ArgumentNullException("source");
+
             _source = source;
             _sameThread = sameThread;
         }

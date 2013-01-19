@@ -14,7 +14,7 @@ namespace MFlow.Core.Validation
         IList<Func<IFluentValidation<T>>> _dependencies = new List<Func<IFluentValidation<T>>>();
 
         /// <summary>
-        ///     Checks if the expression evaluates to an object that is equal to the value expression 
+        ///     Checks if the expression evaluates to an object that is equal to the value expression
         /// </summary>
         public IFluentValidation<T> IsEqualTo<C>(Expression<Func<T, C>> valueExpression)
         {
@@ -28,7 +28,7 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
-        ///     Checks if the expression evaluates to an object that is equal to the value 
+        ///     Checks if the expression evaluates to an object that is equal to the value
         /// </summary>
         public IFluentValidation<T> IsEqualTo<C>(C value)
         {
@@ -41,7 +41,7 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
-        ///     Checks if the expression evaluates to an object that is equal to the value expression 
+        ///     Checks if the expression evaluates to an object that is equal to the value expression
         /// </summary>
         public IFluentValidation<T> IsNotEqualTo<C>(Expression<Func<T, C>> valueExpression)
         {
@@ -55,12 +55,11 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
-        ///     Checks if the expression evaluates to an object that is not equal to the value 
+        ///     Checks if the expression evaluates to an object that is not equal to the value
         /// </summary>
         public IFluentValidation<T> IsNotEqualTo<C>(C value)
         {
             var notEqualToValidator = _validatorFactory.GetValidator<C,C, INotEqualToValidator<C,C>>();
-            ;
             Expression<Func<T, C>> expression = _currentContext.GetExpression<C>();
             Func<T, C> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => notEqualToValidator.Validate(_expressionBuilder.Invoke(compiled, _target), value);

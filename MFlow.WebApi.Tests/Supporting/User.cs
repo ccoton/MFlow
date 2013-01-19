@@ -1,6 +1,6 @@
 using MFlow.Mvc;
 
-namespace MFlow.Client.Tests
+namespace MFlow.WebApi.Tests
 {
     public class User : ValidatedModel<User>
     {

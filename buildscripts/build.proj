@@ -2,11 +2,12 @@
 	<PropertyGroup>
 		<BaseDir>$(MSBuildProjectDirectory)\..</BaseDir>
 		<Configuration Condition="'$(Configuration)'==''" >Debug</Configuration>
-		<BuildDir>$(BaseDir)\build</BuildDir>
+		<BuildDir>$(BaseDir)\.build</BuildDir>
 		<SolutionFile>$(BaseDir)\MFlow.sln</SolutionFile>
 		<TestAssemblies>
 			$(BaseDir)\MFlow.Core.Tests\bin\$(Configuration)\MFlow.Core.Tests.dll;
 			$(BaseDir)\MFlow.Mvc.Tests\bin\$(Configuration)\MFlow.Mvc.Tests.dll;
+			$(BaseDir)\MFlow.WebApi.Tests\bin\$(Configuration)\MFlow.WebApi.Tests.dll;
 		</TestAssemblies>
 		<MSBuildExtensions>$(BaseDir)\lib\msbuild\msbuild.community.tasks.dll</MSBuildExtensions>
 	</PropertyGroup>

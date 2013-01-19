@@ -7,6 +7,7 @@
 		<TestAssemblies>
 			$(BaseDir)\MFlow.Core.Tests\bin\$(Configuration)\MFlow.Core.Tests.dll;
 			$(BaseDir)\MFlow.Mvc.Tests\bin\$(Configuration)\MFlow.Mvc.Tests.dll;
+			$(BaseDir)\MFlow.WebApi.Tests\bin\$(Configuration)\MFlow.WebApi.Tests.dll;
 		</TestAssemblies>
 		<PackageDir>$(BuildDir)\Packages</PackageDir>
 		<PackageSuffix Condition="'$(PackageSuffix)'!=''"></PackageSuffix>
@@ -35,7 +36,7 @@
 			<Resources Include="$(BaseDir)\MFlow.Core\bin\$(Configuration)$(PackageSuffix)\Resources\**\*.*" />
 			<Install Include="$(BaseDir)\MFlow.Core\install.ps1" />
 			<MvcBinaries Include="$(BaseDir)\MFlow.Mvc\bin\$(Configuration)$(PackageSuffix)\**\MFlow.Mvc.dll" />
-			<ClientBinaries Include="$(BaseDir)\MFlow.Client\bin\$(Configuration)$(PackageSuffix)\**\MFlow.Client.dll" />
+			<WebApiBinaries Include="$(BaseDir)\MFlow.WebApi\bin\$(Configuration)$(PackageSuffix)\**\MFlow.WebApi.dll" />
 			<Scripts Include="$(BaseDir)\MFlow.Client\bin\$(Configuration)$(PackageSuffix)\Scripts\**\*.*" />
 		</ItemGroup>
 
@@ -44,7 +45,7 @@
 		<Copy SourceFiles="@(Resources)" DestinationFolder="$(OutputDir)\MFlow.Core\Content\Resources\%(RecursiveDir)"  />
 		<Copy SourceFiles="@(Install)" DestinationFolder="$(OutputDir)\MFlow.Core\%(RecursiveDir)"  />
 		<Copy SourceFiles="@(MvcBinaries)" DestinationFolder="$(OutputDir)\MFlow.Mvc\%(RecursiveDir)"  />
-		<Copy SourceFiles="@(ClientBinaries)" DestinationFolder="$(OutputDir)\MFlow.Client\%(RecursiveDir)"  />
+		<Copy SourceFiles="@(WebApiBinaries)" DestinationFolder="$(OutputDir)\MFlow.WebApi\%(RecursiveDir)"  />
 		<Copy SourceFiles="@(Scripts)" DestinationFolder="$(OutputDir)\MFlow.Client\Content\Scripts\%(RecursiveDir)"  />
 	</Target>
 
@@ -60,11 +61,12 @@
 		<Copy SourceFiles="$(MSBuildProjectDirectory)\MFlow.Core$(PackageSuffix).nuspec" DestinationFolder="$(PackageDir)\temp\MFlow.Core$(PackageSuffix)" />
 		<Copy SourceFiles="$(MSBuildProjectDirectory)\MFlow.Mvc$(PackageSuffix).nuspec" DestinationFolder="$(PackageDir)\temp\MFlow.Mvc$(PackageSuffix)" />
 		<Copy SourceFiles="$(MSBuildProjectDirectory)\MFlow.Client$(PackageSuffix).nuspec" DestinationFolder="$(PackageDir)\temp\MFlow.Client$(PackageSuffix)" />
+		<Copy SourceFiles="$(MSBuildProjectDirectory)\MFlow.WebApi$(PackageSuffix).nuspec" DestinationFolder="$(PackageDir)\temp\MFlow.WebApi$(PackageSuffix)" />
 		<Copy SourceFiles="@(MainBinaries)" DestinationFolder="$(PackageDir)\temp\MFlow.Core$(PackageSuffix)\lib\Net40\%(RecursiveDir)" />
 		<Copy SourceFiles="@(Resources)" DestinationFolder="$(PackageDir)\temp\MFlow.Core$(PackageSuffix)\Content\Resources\%(RecursiveDir)" />
 		<Copy SourceFiles="@(Install)" DestinationFolder="$(PackageDir)\temp\MFlow.Core$(PackageSuffix)\tools\Net40\%(RecursiveDir)" />
 		<Copy SourceFiles="@(MvcBinaries)" DestinationFolder="$(PackageDir)\temp\MFlow.Mvc$(PackageSuffix)\lib\Net40\%(RecursiveDir)" />
-		<Copy SourceFiles="@(ClientBinaries)" DestinationFolder="$(PackageDir)\temp\MFlow.Client$(PackageSuffix)\lib\Net40\%(RecursiveDir)" />
+		<Copy SourceFiles="@(WebApiBinaries)" DestinationFolder="$(PackageDir)\temp\MFlow.WebApi$(PackageSuffix)\lib\Net40\%(RecursiveDir)" />
 		<Copy SourceFiles="@(Scripts)" DestinationFolder="$(PackageDir)\temp\MFlow.Client$(PackageSuffix)\Content\Scripts\%(RecursiveDir)" />
 		<!-- Get the version number of the main assembly to insert into the nuspec files -->
 		<GetAssemblyIdentity AssemblyFiles="$(OutputDir)\MFlow.Core\MFlow.Core.dll">
@@ -89,11 +91,6 @@
 			XmlFileName="$(PackageDir)\temp\MFlow.Mvc$(PackageSuffix)\MFlow.Mvc$(PackageSuffix).nuspec"
 			XPath="/package/metadata/version"
 			Value="%(AsmInfo.Version)" />
-			
-		<!-- Get the version number of the main assembly to insert into the nuspec files -->
-		<GetAssemblyIdentity AssemblyFiles="$(OutputDir)\MFlow.Client\MFlow.Client.dll">
-			<Output TaskParameter="Assemblies" ItemName="AsmInfo" />
-		</GetAssemblyIdentity>
 		
 		<!-- insert the version number into the nuspec files -->
 		<XmlUpdate
@@ -102,7 +99,18 @@
 			XPath="/package/metadata/version"
 			Value="%(AsmInfo.Version)" />
 
-
+			
+		<!-- Get the version number of the main assembly to insert into the nuspec files -->
+		<GetAssemblyIdentity AssemblyFiles="$(OutputDir)\MFlow.WebApi\MFlow.WebApi.dll">
+			<Output TaskParameter="Assemblies" ItemName="AsmInfo" />
+		</GetAssemblyIdentity>
+		
+		<!-- insert the version number into the nuspec files -->
+		<XmlUpdate
+		  Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
+			XmlFileName="$(PackageDir)\temp\MFlow.WebApi$(PackageSuffix)\MFlow.WebApi$(PackageSuffix).nuspec"
+			XPath="/package/metadata/version"
+			Value="%(AsmInfo.Version)" />
 
 		<Exec WorkingDirectory="$(BuildDir)\Packages" 
 					Command="$(BaseDir)\.nuget\nuget.exe pack $(PackageDir)\temp\MFlow.Core$(PackageSuffix)\MFlow.Core$(PackageSuffix).nuspec" />
@@ -112,7 +120,10 @@
 
 		<Exec WorkingDirectory="$(BuildDir)\Packages" 
 					Command="$(BaseDir)\.nuget\nuget.exe pack $(PackageDir)\temp\MFlow.Client$(PackageSuffix)\MFlow.Client$(PackageSuffix).nuspec" />
-					
+				
+		<Exec WorkingDirectory="$(BuildDir)\Packages" 
+					Command="$(BaseDir)\.nuget\nuget.exe pack $(PackageDir)\temp\MFlow.WebApi$(PackageSuffix)\MFlow.WebApi$(PackageSuffix).nuspec" />
+				
 		<RemoveDir Directories="$(PackageDir)\temp" />
 	</Target>
 	

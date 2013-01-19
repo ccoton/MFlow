@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MFlow.Client.Models
+namespace MFlow.WebApi.Models
 {
     /// <summary>
     ///     A model validation type enum, to define the type of validation to apply

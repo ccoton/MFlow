@@ -21,17 +21,17 @@ namespace MFlow.Core.Conditions
         ///     The target of this validation instance
         /// </summary>
         protected T _target;
-        
         IExpressionBuilder<T> _expressionBuilder; 
 
         /// <summary>
         ///     Constructor
-        /// </summary>
-        /// <param name="Target"></param>       
-        public FluentConditions(T Target)
+        /// </summary>      
+        public FluentConditions(T target)
         {
+            if (target == null)
+                throw new ArgumentNullException("target");
+            _target = target;
             _conditions = new List<IFluentCondition<T>>();
-            _target = Target;
             _expressionBuilder = new ExpressionBuilder<T>();
         }
 
@@ -112,7 +112,8 @@ namespace MFlow.Core.Conditions
                 if (options == ExecuteThread.Current)
                 {
                     execute();
-                } else
+                }
+                else
                 {
                     System.Threading.ThreadPool.QueueUserWorkItem(delegate
                     {
@@ -133,7 +134,8 @@ namespace MFlow.Core.Conditions
                 if (options == ExecuteThread.Current)
                 {
                     execute();
-                } else
+                }
+                else
                 {
                     System.Threading.ThreadPool.QueueUserWorkItem(delegate
                     {

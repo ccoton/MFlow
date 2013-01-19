@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Http;
+
+using MFlow.WebApi.Models;
 using Newtonsoft.Json;
 
-namespace MFlow.Client.Api
+namespace MFlow.WebApi.Api
 {
     public class ValidationController : ApiController
     {
