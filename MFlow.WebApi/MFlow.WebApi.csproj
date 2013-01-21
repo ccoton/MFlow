@@ -76,6 +76,7 @@
     <Compile Include="Models\ModelValidationType.cs" />
     <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Api\SuggestionController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

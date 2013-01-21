@@ -20,8 +20,13 @@ namespace MFlow.Mvc
         IFluentValidationBuilder<T> Validator { get; }
 
         /// <summary>
-        ///     Validtes the current object instance against the validator
+        ///     Validates the current object instance against the validator
         /// </summary>
         IEnumerable<ValidationResult> Validate(ValidationContext validationContext);
+
+        /// <summary>
+        ///      Validates the current object instance against the validator, providing pre validation suggestions
+        /// </summary>
+        IEnumerable<ValidationResult> Suggest(ValidationContext validationContext);
     }
 }

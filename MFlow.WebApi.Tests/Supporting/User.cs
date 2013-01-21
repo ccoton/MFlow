@@ -12,6 +12,7 @@ namespace MFlow.WebApi.Tests
         {
             SetTarget(this);
             Validator.Check(m => m.Username).IsNotEmpty()
+                .Check(m => m.Username, output: Core.Conditions.Enums.ConditionOutput.Warning).IsNotEmpty().Message("Enter a username")
                 .Check(m => m.Password).IsNotEmpty();
         }
     }

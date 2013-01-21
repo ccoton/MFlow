@@ -6,6 +6,6 @@
     public enum ModelValidationType
     {
         Errors = 0,
-        Hints = 1
+        Warnings = 1
     }
 }

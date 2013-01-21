@@ -7,10 +7,11 @@ using System.Web.Http;
 
 using MFlow.WebApi.Models;
 using Newtonsoft.Json;
+using MFlow.Mvc;
 
 namespace MFlow.WebApi.Api
 {
-    public class ValidationController : ApiController
+    public class SuggestionController : ApiController
     {
         /// <summary>
         ///      Handles post requests, trys to validate the passed in model.    
@@ -29,12 +30,12 @@ namespace MFlow.WebApi.Api
             var assembly = model.Type.Split(',').First();
             var type = model.Type.Split(',').Skip(1).First();
             var validateType = System.Reflection.Assembly.Load(assembly).GetType(type);
-            if (validateType == null || !typeof(IValidatableObject).IsAssignableFrom(validateType))
-                throw new ArgumentException("ModelToValidate must implement IValidatableObject");
+            if (validateType == null || !typeof(ISuggestableObject).IsAssignableFrom(validateType))
+                throw new ArgumentException("ModelToValidate must implement ISuggestableObject");
 
-            var objectToValidate = (IValidatableObject)JsonConvert.DeserializeObject(model.Validate.ToString(), validateType);
+            var objectToValidate = (ISuggestableObject)JsonConvert.DeserializeObject(model.Validate.ToString(), validateType);
 
-            var results = objectToValidate.Validate(new ValidationContext(objectToValidate, null, null));
+            var results = objectToValidate.Suggest(new ValidationContext(objectToValidate, null, null));
 
             return results;
 

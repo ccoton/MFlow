@@ -70,6 +70,7 @@
     <Compile Include="IValidatedModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidatedModel.cs" />
+    <Compile Include="ISuggestableObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MFlow.Core\MFlow.Core.csproj">

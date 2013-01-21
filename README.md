@@ -20,8 +20,18 @@ Installing the MFlow.Client packages also installs MFlow.Core & MFlow.Mvc and gi
     <script type="text/javascript" src="~/Scripts/MFlowClient.js"></script>
     <script type="text/javascript">
 
-		// The id of a containing control, contains control used to populate the type specified..
-        $('#loginForm').MFlowClient('MFlow.Samples.Mvc, MFlow.Samples.Mvc.Models.LoginModel');
+		$('#registerForm').MFlowClient('MFlow.Samples.Mvc, MFlow.Samples.Mvc.Models.RegisterModel', 
+			{ 
+				// validate the item on blur
+				validateOnBlur: true, 
+				// give a suggestion on focus
+				suggestOnFocus: true, 
+				validationErrorClass: 'input-validation-error', 
+				validationValidClass: 'field-validation-valid',
+				suggestionClass: 'input-validation-suggestion',
+				validationUrl: '/api/Validation',
+				suggestionUrl: '/api/Suggestion'
+			});
 
     </script>
 	

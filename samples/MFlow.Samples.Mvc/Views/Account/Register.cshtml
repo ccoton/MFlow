@@ -60,10 +60,13 @@
 
 	$('#registerForm').MFlowClient('MFlow.Samples.Mvc, MFlow.Samples.Mvc.Models.RegisterModel', 
 		{ 
-			errorOnBlur: true, 
-			hintOnFocus: true, 
+			validateOnBlur: true, 
+			suggestOnFocus: true, 
 			validationErrorClass: 'input-validation-error', 
 			validationValidClass: 'field-validation-valid',
-			validationUrl: '/api/Validation'
+			suggestionClass: 'input-validation-suggestion',
+			validationUrl: '/api/Validation',
+			suggestionUrl: '/api/Suggestion'
 		});
+		
 </script>

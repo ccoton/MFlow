@@ -502,8 +502,21 @@ textarea {
     font-weight: bold;
 }
 
+span.input-validation-suggestion {
+    background-color: #FAF878;
+    color:#000000;
+    padding:6px;
+}
+
 .field-validation-valid {
     display: none;
+}
+
+span.input-validation-error {
+background-color: #e80c4d;
+    color: #000000;
+    font-weight: bold;
+    padding:6px;
 }
 
 input.input-validation-error {
@@ -511,6 +524,14 @@ input.input-validation-error {
 }
 
 input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+input.input-validation-suggestion {
+    border: 1px solid #e80c4d;
+}
+
+input[type="checkbox"].input-validation-suggestion {
     border: 0 none;
 }
 
@@ -523,7 +544,6 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
-
 
 /* tables
 ----------------------------------------------------------*/

@@ -92,6 +92,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Api\ValidationController.cs" />
     <Compile Include="Supporting\User.cs" />
+    <Compile Include="Api\SuggestionController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
