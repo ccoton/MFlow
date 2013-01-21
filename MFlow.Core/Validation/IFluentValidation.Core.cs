@@ -65,6 +65,11 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> Message(string message);
 
         /// <summary>
+        ///     Add a hint to a validation expression
+        /// </summary>
+        IFluentValidation<T> Hint(string hint);
+
+        /// <summary>
         ///     Takes an action to execute if the validator is satisfied
         /// </summary>
         IFluentValidation<T> Then(Action execute, ExecuteThread options = ExecuteThread.Current);

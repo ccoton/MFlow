@@ -47,9 +47,9 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> If(Expression<Func<T, bool>> expression, string key, string message)
         {
             if (_currentContext.ConditionType == ConditionType.And)
-                And(expression, key, message, _currentContext.ConditionOutput);
+                And(expression, key, message, "", _currentContext.ConditionOutput);
             else
-                Or(expression, key, message, _currentContext.ConditionOutput);
+                Or(expression, key, message, "", _currentContext.ConditionOutput);
             return this;
         }
 
@@ -160,6 +160,20 @@ namespace MFlow.Core.Validation
                 var lastCondition = _conditions.Last();
                 message = _messageResolver.Resolve(lastCondition.Key, ValidationType.Unknown, message);
                 lastCondition.SetMessage(message);
+            }
+            return this;
+        }
+
+        /// <summary>
+        ///     Add a hint to a validation expression
+        /// </summary>
+        public IFluentValidation<T> Hint(string hint)
+        {
+            if (_conditions.Any())
+            {
+                var lastCondition = _conditions.Last();
+                hint = _messageResolver.Resolve(lastCondition.Key, ValidationType.Unknown, hint);
+                lastCondition.SetHint(hint);
             }
             return this;
         }

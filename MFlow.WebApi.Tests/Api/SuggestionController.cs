@@ -45,7 +45,7 @@ namespace MFlow.WebApi.Tests.Api
         }
 
         [Test]
-        public void Test_Suggestion_Controller_Post_Model_With_Warnings()
+        public void Test_Suggestion_Controller_Post_Model_With_Suggestions()
         {
             var modelToValidate = new ModelToValidate() { Validate = JsonConvert.SerializeObject(new User()), Type="MFlow.WebApi.Tests, MFlow.WebApi.Tests.User" };
             var validationController = new MFlow.WebApi.Api.SuggestionController();

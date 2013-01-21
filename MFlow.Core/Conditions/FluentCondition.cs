@@ -13,7 +13,7 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Constructor
         /// </summary>
-        public FluentCondition(Expression<Func<T, bool>> condition, ConditionType type, string key, string message, ConditionOutput output = ConditionOutput.Error)
+        public FluentCondition(Expression<Func<T, bool>> condition, ConditionType type, string key, string message, string hint, ConditionOutput output = ConditionOutput.Error)
         {
             if (condition == null)
                 throw new ArgumentNullException("condition");
@@ -22,6 +22,7 @@ namespace MFlow.Core.Conditions
             Type = type;
             Key = key;
             Message = message;
+            Hint = hint;
             Output = output;
         }
 
@@ -51,11 +52,24 @@ namespace MFlow.Core.Conditions
         public string Message { get; private set; }
 
         /// <summary>
+        ///     A message to display as a help indicator
+        /// </summary>
+        public string Hint { get; private set; }
+
+        /// <summary>
         ///     Set the message
         /// </summary>
         public void SetMessage(string message)
         {
             Message = message;
+        }
+
+        /// <summary>
+        ///     Sets the hint.
+        /// </summary>
+        public void SetHint(string hint)
+        {
+            Hint = hint;
         }
 
         /// <summary>

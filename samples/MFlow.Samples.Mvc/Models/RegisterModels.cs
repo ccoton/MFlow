@@ -11,13 +11,6 @@ namespace MFlow.Samples.Mvc.Models
             // Use the base ValidatedModel class to define rules
             // Pass in true to load the validation rules from xml
             SetTarget(this, loadRuleset:true, rulesetFile:"RegisterModel.validation.vml");
-            Validator
-                .Check(c=>c.Forenames, output: ConditionOutput.Warning).IsNotEmpty().Message("Enter your firstname and middle name if applicable")
-                .Check(c=>c.Surname, output: ConditionOutput.Warning).IsNotEmpty().Message("Enter your surname")
-                .Check(c=>c.Email, output: ConditionOutput.Warning).IsNotEmpty().Message("Enter your email address")
-                .Check(c=>c.UserName, output: ConditionOutput.Warning).IsNotEmpty().Message("Enter your username, think of something cool")
-                .Check(c=>c.Password, output: ConditionOutput.Warning).IsNotEmpty().Message("Enter your password, something secure!")
-                .Check(c=>c.ConfirmPassword, output: ConditionOutput.Warning).IsNotEmpty().Message("Confirm your password, make sure it matches the password above");
         }
 
         [Display(Name = "Forenames")]

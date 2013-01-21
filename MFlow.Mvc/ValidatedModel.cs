@@ -49,9 +49,8 @@ namespace MFlow.Mvc
         public IEnumerable<ValidationResult> Suggest(ValidationContext validationContext)
         {            
             _validator.SetTarget((T)validationContext.ObjectInstance);
-            var validate = _validator.Validate(false).ToList();
-            return validate.Where(v => v.Condition.Output == MFlow.Core.Conditions.Enums.ConditionOutput.Warning)
-                .Select(v => new ValidationResult(v.Condition.Message, new[] { v.Condition.Key })); 
+            var validate = _validator.Validate().ToList();
+            return validate.Where(v => !string.IsNullOrEmpty(v.Condition.Hint)).Select(v => new ValidationResult(v.Condition.Hint, new[] { v.Condition.Key })); 
 
         }
 

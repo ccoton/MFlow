@@ -37,13 +37,23 @@ namespace MFlow.Core.Conditions
         string Message { get; }
 
         /// <summary>
+        ///     A message to display as a help indicator
+        /// </summary>
+        string Hint { get; }
+
+        /// <summary>
         ///     Sets the key.
         /// </summary>
-        void SetKey (string key);
+        void SetKey(string key);
 
         /// <summary>
         ///     Sets the message.
         /// </summary>
-        void SetMessage (string message);
+        void SetMessage(string message);
+
+        /// <summary>
+        ///     Sets the hint.
+        /// </summary>
+        void SetHint(string hint);
     }
 }

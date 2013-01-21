@@ -124,10 +124,16 @@ namespace MFlow.Core.XmlConfiguration
                 var location = item.Attribute(XName.Get("location")).Value;
 
                 var message = string.Empty;
+                var hint = string.Empty;
+
                 var messageAttribute = item.Attribute(XName.Get("message"));
+                var hintAttribute = item.Attribute(XName.Get("hint"));
 
                 if (messageAttribute != null)
                     message = messageAttribute.Value;
+
+                if (hintAttribute != null)
+                    hint = hintAttribute.Value;
 
                 Assembly.Load(location).GetTypes().Where(t => t.IsClass && t.Name.ToLower() == condition.ToLower() && typeof(IFluentValidationCustomRule<T>).IsAssignableFrom(t)).ToList()
                 .ForEach(f =>
@@ -142,173 +148,173 @@ namespace MFlow.Core.XmlConfiguration
 
         IFluentValidation<T> ParseNotEmpty<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "NotEmpty", (e, ev, m, v) => {
-                return validator.Check(e).IsNotEmpty().Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "NotEmpty", (e, ev, m, v, h) => {
+                return validator.Check(e).IsNotEmpty().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsRequired<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "IsRequired", (e, ev, m, v) => {
-                return validator.Check(e).IsRequired<string>().Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "IsRequired", (e, ev, m, v, h) => {
+                return validator.Check(e).IsRequired<string>().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsLength<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, int>(validator, document, "IsLength", (e, ev, m, v) => {
-                return validator.Check(e).IsLength(v).Message(m); });
+            return CreateExpressions<T, string, int>(validator, document, "IsLength", (e, ev, m, v, h) => {
+                return validator.Check(e).IsLength(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsNumeric<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, int>(validator, document, "IsNumeric", (e, ev, m, v) => {
-                return validator.Check(e).IsNumeric().Message(m); });
+            return CreateExpressions<T, string, int>(validator, document, "IsNumeric", (e, ev, m, v, h) => {
+                return validator.Check(e).IsNumeric().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsAlpha<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, int>(validator, document, "IsAlpha", (e, ev, m, v) => {
-                return validator.Check(e).IsAlpha().Message(m); });
+            return CreateExpressions<T, string, int>(validator, document, "IsAlpha", (e, ev, m, v, h) => {
+                return validator.Check(e).IsAlpha().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsLongerThan<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, int>(validator, document, "IsLongerThan", (e, ev, m, v) => {
-                return validator.Check(e).IsLongerThan(v).Message(m); });
+            return CreateExpressions<T, string, int>(validator, document, "IsLongerThan", (e, ev, m, v, h) => {
+                return validator.Check(e).IsLongerThan(v).Message(m).Hint(h); });
         }
         
         IFluentValidation<T> ParseIsShorterThan<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, int>(validator, document, "IsShorterThan", (e, ev, m, v) => {
-                return validator.Check(e).IsShorterThan(v).Message(m); });
+            return CreateExpressions<T, string, int>(validator, document, "IsShorterThan", (e, ev, m, v, h) => {
+                return validator.Check(e).IsShorterThan(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsCreditCard<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, int>(validator, document, "IsCreditCard", (e, ev, m, v) => {
-                return validator.Check(e).IsCreditCard().Message(m); });
+            return CreateExpressions<T, string, int>(validator, document, "IsCreditCard", (e, ev, m, v, h) => {
+                return validator.Check(e).IsCreditCard().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsPostCode<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, int>(validator, document, "IsPostCode", (e, ev, m, v) => {
-                return validator.Check(e).IsPostCode().Message(m); });
+            return CreateExpressions<T, string, int>(validator, document, "IsPostCode", (e, ev, m, v, h) => {
+                return validator.Check(e).IsPostCode().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsZipCode<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, int>(validator, document, "IsZipCode", (e, ev, m, v) => {
-                return validator.Check(e).IsZipCode().Message(m); });
+            return CreateExpressions<T, string, int>(validator, document, "IsZipCode", (e, ev, m, v, h) => {
+                return validator.Check(e).IsZipCode().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseContains<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "Contains", (e, ev, m, v) => {
-                return validator.Check(e).Contains(v).Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "Contains", (e, ev, m, v, h) => {
+                return validator.Check(e).Contains(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseRegEx<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "RegEx", (e, ev, m, v) => {
-                return validator.Check(e).Mathes(v).Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "RegEx", (e, ev, m, v, h) => {
+                return validator.Check(e).Mathes(v).Message(m).Hint(h); });
         }
     
         IFluentValidation<T> ParseIsEmail<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "IsEmail", (e, ev, m, v) => {
-                return validator.Check(e).IsEmail().Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "IsEmail", (e, ev, m, v, h) => {
+                return validator.Check(e).IsEmail().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseEqual<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "Equal", (e, ev, m, v) => {
-                return validator.Check(e).IsEqualTo(v).Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "Equal", (e, ev, m, v, h) => {
+                return validator.Check(e).IsEqualTo(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseEqualExpression<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "EqualTo", (e, ev, m, v) => {
-                return validator.Check(e).IsEqualTo(ev).Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "EqualTo", (e, ev, m, v, h) => {
+                return validator.Check(e).IsEqualTo(ev).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseNotEqual<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "NotEqual", (e, ev, m, v) => {
-                return validator.Check(e).IsNotEqualTo(v).Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "NotEqual", (e, ev, m, v, h) => {
+                return validator.Check(e).IsNotEqualTo(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseNotEqualExpression<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, string, string>(validator, document, "NotEqualTo", (e, ev, m, v) => {
-                return validator.Check(e).IsNotEqualTo(ev).Message(m); });
+            return CreateExpressions<T, string, string>(validator, document, "NotEqualTo", (e, ev, m, v, h) => {
+                return validator.Check(e).IsNotEqualTo(ev).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseLessThan<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, int, int>(validator, document, "LessThan", (e, ev, m, v) => {
-                return validator.Check(e).IsLessThan(v).Message(m); });
+            return CreateExpressions<T, int, int>(validator, document, "LessThan", (e, ev, m, v, h) => {
+                return validator.Check(e).IsLessThan(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseGreaterThan<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, int, int>(validator, document, "GreaterThan", (e, ev, m, v) => {
-                return validator.Check(e).IsGreaterThan(v).Message(m); });
+            return CreateExpressions<T, int, int>(validator, document, "GreaterThan", (e, ev, m, v, h) => {
+                return validator.Check(e).IsGreaterThan(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseLessThanOrEqualTo<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, int, int>(validator, document, "LessThanOrEqualTo", (e, ev, m, v) => {
-                return validator.Check(e).IsLessThanOrEqualTo(v).Message(m); });
+            return CreateExpressions<T, int, int>(validator, document, "LessThanOrEqualTo", (e, ev, m, v, h) => {
+                return validator.Check(e).IsLessThanOrEqualTo(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseGreaterThanOrEqualTo<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, int, int>(validator, document, "GreaterThanOrEqualTo", (e, ev, m, v) => {
-                return validator.Check(e).IsGreaterThanOrEqualTo(v).Message(m); });
+            return CreateExpressions<T, int, int>(validator, document, "GreaterThanOrEqualTo", (e, ev, m, v, h) => {
+                return validator.Check(e).IsGreaterThanOrEqualTo(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseAfter<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, DateTime, DateTime>(validator, document, "After", (e, ev, m, v) => {
-                return validator.Check(e).IsAfter(v).Message(m); });
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "After", (e, ev, m, v, h) => {
+                return validator.Check(e).IsAfter(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseBefore<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, DateTime, DateTime>(validator, document, "Before", (e, ev, m, v) => {
-                return validator.Check(e).IsBefore(v).Message(m); });
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "Before", (e, ev, m, v, h) => {
+                return validator.Check(e).IsBefore(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseOn<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, DateTime, DateTime>(validator, document, "On", (e, ev, m, v) => {
-                return validator.Check(e).IsOn(v).Message(m); });
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "On", (e, ev, m, v, h) => {
+                return validator.Check(e).IsOn(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsThisYear<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, DateTime, DateTime>(validator, document, "IsThisYear", (e, ev, m, v) => {
-                return validator.Check(e).IsThisYear().Message(m); });
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "IsThisYear", (e, ev, m, v, h) => {
+                return validator.Check(e).IsThisYear().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsThisMonth<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, DateTime, DateTime>(validator, document, "IsThisMonth", (e, ev, m, v) => {
-                return validator.Check(e).IsThisMonth().Message(m); });
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "IsThisMonth", (e, ev, m, v, h) => {
+                return validator.Check(e).IsThisMonth().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsThisWeek<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, DateTime, DateTime>(validator, document, "IsThisWeek", (e, ev, m, v) => {
-                return validator.Check(e).IsThisWeek().Message(m); });
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "IsThisWeek", (e, ev, m, v, h) => {
+                return validator.Check(e).IsThisWeek().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsToday<T>(IFluentValidation<T> validator, XDocument document)
         {
-            return CreateExpressions<T, DateTime, DateTime>(validator, document, "IsToday", (e, ev, m, v) => {
-                return validator.Check(e).IsToday().Message(m); });
+            return CreateExpressions<T, DateTime, DateTime>(validator, document, "IsToday", (e, ev, m, v, h) => {
+                return validator.Check(e).IsToday().Message(m).Hint(h); });
         }
 
-        IFluentValidation<T> CreateExpressions<T, O, C>(IFluentValidation<T> validator, XDocument document, string nodeName, Func<Expression<Func<T, O>>, Expression<Func<T, O>>, string, C, IFluentValidation<T>> function)
+        IFluentValidation<T> CreateExpressions<T, O, C>(IFluentValidation<T> validator, XDocument document, string nodeName, Func<Expression<Func<T, O>>, Expression<Func<T, O>>, string, C, string, IFluentValidation<T>> function)
         {
             var nodes = document.Root.Descendants(XName.Get(nodeName));
 
@@ -316,13 +322,18 @@ namespace MFlow.Core.XmlConfiguration
             {
                 var propertyName = item.Attribute(XName.Get("property")).Value;
                 var messageAttribute = item.Attribute(XName.Get("message"));
+                var hintAttribute = item.Attribute(XName.Get("hint"));
                 var valueAttribute = item.Attribute(XName.Get("value"));
                 var toPropertyName = item.Attribute(XName.Get("toProperty"));
 
                 var message = string.Empty;
+                var hint = string.Empty;
 
                 if (messageAttribute != null)
                     message = messageAttribute.Value;
+
+                if (hintAttribute != null)
+                    hint = hintAttribute.Value;
 
                 var parameter = Expression.Parameter(typeof(T));
                 var property = Expression.Property(parameter, propertyName);
@@ -339,23 +350,23 @@ namespace MFlow.Core.XmlConfiguration
 
                 if (valueAttribute == null)
                 {
-                    validator = function(expression, toExpression, message, default(C));
+                    validator = function(expression, toExpression, message, default(C), hint);
                 }
                 else
                 {
                     var type = default(C);
                     if (type is int)
                     {
-                        validator = function(expression, toExpression, message, (C)(object)int.Parse(valueAttribute.Value));
+                        validator = function(expression, toExpression, message, (C)(object)int.Parse(valueAttribute.Value), hint);
                     }
                     else
                     if (type is DateTime)
                     {
-                        validator = function(expression, toExpression, message, (C)(object)DateTime.Parse(valueAttribute.Value));
+                        validator = function(expression, toExpression, message, (C)(object)DateTime.Parse(valueAttribute.Value), hint);
                     }
                     else
                     {
-                        validator = function(expression, toExpression, message, (C)(object)valueAttribute.Value.ToString());
+                        validator = function(expression, toExpression, message, (C)(object)valueAttribute.Value.ToString(), hint);
                     }
                 }
 

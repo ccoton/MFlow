@@ -7,9 +7,8 @@
             SetTarget(this);
 
             Validator
-                .Check(u => u.Username).IsNotEmpty().Message("Username should not be empty, please enter a username")
-                .Check(u => u.Password).IsNotEmpty().Message("Password should not be empty, please enter a password")
-                .Check(u => u.Username, output: Core.Conditions.Enums.ConditionOutput.Warning).IsNotEmpty().Message("Please enter a username");
+                .Check(u => u.Username).IsNotEmpty().Message("Username should not be empty, please enter a username").Hint("Please enter a username")
+                .Check(u => u.Password).IsNotEmpty().Message("Password should not be empty, please enter a password");
             
         }
 

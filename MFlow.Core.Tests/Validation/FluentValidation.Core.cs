@@ -545,5 +545,33 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsTrue(first && !second);
             
         }
+
+        [Test]
+        public void Test_Chained_Fluent_Validation_Hint()
+        {
+            var user = new User() { Username = "fred" };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            var results = fluentValidation
+                .Check(u => u.Username).IsEmail()
+                    .Message("Some kind of message")
+                    .Hint("A different hint message")
+                    .Validate();
+            
+            Assert.AreEqual("A different hint message", results.First().Condition.Hint);
+        }
+
+        [Test]
+        public void Test_Chained_Fluent_Validation_Custom_Hint()
+        {
+            var user = new User() { Username = "fred" };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            var results = fluentValidation
+                .Check(u => u.Username).IsEmail()
+                    .Message("Some kind of message")
+                    .Hint("$ACustomMessage$")
+                    .Validate();
+            
+            Assert.AreEqual("Something different here", results.First().Condition.Hint);
+        }
     }
 }

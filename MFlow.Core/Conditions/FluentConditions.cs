@@ -38,27 +38,27 @@ namespace MFlow.Core.Conditions
         /// <summary>z
         ///     Takes a boolean IF condition and evaluates it
         /// </summary>
-        public IFluentConditions<T> If(bool condition, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error)
+        public IFluentConditions<T> If(bool condition, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error)
         {
-            And(condition, key, message, output);
+            And(condition, key, message, hint, output);
             return this;
         }
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean IF condition, then evaluates it
         /// </summary>
-        public IFluentConditions<T> If(Expression<Func<T, bool>> expression, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error)
+        public IFluentConditions<T> If(Expression<Func<T, bool>> expression, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error)
         {
-            And(expression, key, message, output);
+            And(expression, key, message, hint, output);
             return this;
         }
 
         /// <summary>
         ///     Takes a boolean AND condition and evaluates it
         /// </summary>
-        public IFluentConditions<T> And(bool condition, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error)
+        public IFluentConditions<T> And(bool condition, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error)
         {
-            var fluentCondition = new FluentCondition<T>(c => condition, ConditionType.And, key, message, output);
+            var fluentCondition = new FluentCondition<T>(c => condition, ConditionType.And, key, message, hint, output);
             _conditions.Add(fluentCondition);
             return this;
         }
@@ -66,9 +66,9 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean AND condition, then evaluates it
         /// </summary>
-        public IFluentConditions<T> And(Expression<Func<T, bool>> expression, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error)
+        public IFluentConditions<T> And(Expression<Func<T, bool>> expression, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error)
         {
-            var fluentCondition = new FluentCondition<T>(expression, ConditionType.And, key, message, output);
+            var fluentCondition = new FluentCondition<T>(expression, ConditionType.And, key, message, hint, output);
             _conditions.Add(fluentCondition);
             return this;
         }
@@ -76,9 +76,9 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Takes a boolean OR condition and evaluates it
         /// </summary>
-        public IFluentConditions<T> Or(bool condition, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error)
+        public IFluentConditions<T> Or(bool condition, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error)
         {
-            var fluentCondition = new FluentCondition<T>(c => condition, ConditionType.Or, key, message, output);
+            var fluentCondition = new FluentCondition<T>(c => condition, ConditionType.Or, key, message, hint, output);
             _conditions.Add(fluentCondition);
             return this;
         }
@@ -86,9 +86,9 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean OR condition, then evaluates it
         /// </summary>
-        public IFluentConditions<T> Or(Expression<Func<T, bool>> expression, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error)
+        public IFluentConditions<T> Or(Expression<Func<T, bool>> expression, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error)
         {
-            var fluentCondition = new FluentCondition<T>(expression, ConditionType.Or, key, message, output);
+            var fluentCondition = new FluentCondition<T>(expression, ConditionType.Or, key, message, hint, output);
             _conditions.Add(fluentCondition);
             return this;
         }

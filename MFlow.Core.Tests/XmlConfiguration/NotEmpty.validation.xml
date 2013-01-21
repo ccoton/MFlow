@@ -2,7 +2,7 @@
 <FluentValidation>
   <Validator>
     <Rules>
-      <NotEmpty property="Username" message="Username cannot be empty" />
+      <NotEmpty property="Username" message="Username cannot be empty" hint="Enter a username" />
     </Rules>
   </Validator>
 </FluentValidation>

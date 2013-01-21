@@ -12,32 +12,32 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Takes a boolean IF condition and evaluates it
         /// </summary>
-        IFluentConditions<T> If(bool condition, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error);
+        IFluentConditions<T> If(bool condition, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean IF condition, then evaluates it
         /// </summary>
-        IFluentConditions<T> If(Expression<Func<T, bool>> expression, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error);
+        IFluentConditions<T> If(Expression<Func<T, bool>> expression, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Takes a boolean AND condition and evaluates it
         /// </summary>
-        IFluentConditions<T> And(bool condition, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error);
+        IFluentConditions<T> And(bool condition, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean AND condition, then evaluates it
         /// </summary>
-        IFluentConditions<T> And(Expression<Func<T, bool>> expression, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error);
+        IFluentConditions<T> And(Expression<Func<T, bool>> expression, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Takes a boolean OR condition and evaluates it
         /// </summary>
-        IFluentConditions<T> Or(bool condition, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error);
+        IFluentConditions<T> Or(bool condition, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Takes an Expression and invokes it as a boolean OR condition, then evaluates it
         /// </summary>
-        IFluentConditions<T> Or(Expression<Func<T, bool>> expression, string key = "", string message = "", ConditionOutput output = ConditionOutput.Error);
+        IFluentConditions<T> Or(Expression<Func<T, bool>> expression, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error);
 
         /// <summary>
         ///     Clear the conditions for the validation instance
