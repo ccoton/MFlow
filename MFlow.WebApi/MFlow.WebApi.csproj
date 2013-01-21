@@ -7,7 +7,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>MFlow.WebApi</RootNamespace>
     <AssemblyName>MFlow.WebApi</AssemblyName>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <NoWin32Manifest>False</NoWin32Manifest>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>

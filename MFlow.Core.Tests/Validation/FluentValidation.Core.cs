@@ -21,6 +21,7 @@ namespace MFlow.Core.Tests.Validation
         public void Test_Fluent_Validation_Constructor_Exception()
         {
             var fluentValidation = _factory.GetFluentValidation<User>(null);
+            fluentValidation.Validate();
         }
 
         [Test]

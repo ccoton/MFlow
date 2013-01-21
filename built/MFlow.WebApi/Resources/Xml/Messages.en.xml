@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Messages>
+  <NotEmpty>{0} should not be empty</NotEmpty>
+  <Equal>{0} should be equal to {1}</Equal>
+  <NotEqual>{0} should not be equal to {1}</NotEqual>
+  <LessThan>{0} should be less than {1}</LessThan>
+  <LessThanOrEqualTo>{0} should be less than or equal to {1}</LessThanOrEqualTo>
+  <GreaterThan>{0} should be greater than {1}</GreaterThan>
+  <GreaterThanOrEqualTo>{0} should be greater than or equal to {1}</GreaterThanOrEqualTo>
+  <RegEx>{0} should validate expression {1}</RegEx>
+  <IsEmail>{0} should be an email</IsEmail>
+  <Contains>{0} should contain {1}</Contains>
+  <Before>{0} should be before {1}</Before>
+  <After>{0} should be after {1}</After>
+  <On>{0} should be on {1}</On>
+  <IsRequired>{0} is a required field</IsRequired>
+  <IsLength>{0} should be {1} characters long</IsLength>
+  <IsLongerThan>{0} should be longer than {1} characters long</IsLongerThan>
+  <IsShorterThan>{0} should not be longer than {1} characters long</IsShorterThan>
+  <IsCreditCard>{0} should be valid credit card number</IsCreditCard>
+  <IsPostCode>{0} should be a valid post code</IsPostCode>
+  <IsThisYear>{0} should be a date from this year</IsThisYear>
+  <IsThisMonth>{0} should be a date from this month</IsThisMonth>
+  <IsToday>{0} should be todays date</IsToday>
+  <IsNumeric>{0} should be a numeric value</IsNumeric>
+  <IsAlpha>{0} should only contain letters</IsAlpha>
+</Messages>
