@@ -55,5 +55,11 @@ namespace MFlow.Core.Conditions
         ///     Sets the hint.
         /// </summary>
         void SetHint(string hint);
+
+        /// <summary>
+        ///     Sets the condition output type
+        /// </summary>
+        void SetConditionOutput(ConditionOutput output);
+
     }
 }

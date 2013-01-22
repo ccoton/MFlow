@@ -72,9 +72,18 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Adds an expression to the chain 
         /// </summary>
-        public IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And, ConditionOutput output = ConditionOutput.Error)
+        public IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And)
         {
-            _currentContext = new CurrentValidationContext<T>(expression, conditionType, output);
+            _currentContext = new CurrentValidationContext<T>(expression, conditionType, ConditionOutput.Error);
+            return this;
+        }
+
+        /// <summary>
+        ///     When applied to a Check make it behave as a warning, by default will not be raised when validation occurs
+        /// </summary>
+        public IFluentValidation<T> Warn()
+        {
+            _conditions.Last().SetConditionOutput(ConditionOutput.Warning);
             return this;
         }
 

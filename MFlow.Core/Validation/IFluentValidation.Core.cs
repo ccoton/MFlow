@@ -22,7 +22,12 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Adds an expression to the chain 
         /// </summary>
-        IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And, ConditionOutput output = ConditionOutput.Error);
+        IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     When applied to a Check make it behave as a warning, by default will not be raised when validation occurs
+        /// </summary>
+        IFluentValidation<T> Warn();
 
         /// <summary>
         ///     Takes a boolean IF condition and evaluates it

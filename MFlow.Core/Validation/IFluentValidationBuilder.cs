@@ -21,7 +21,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Sets up a condition
         /// </summary>
-        IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And, ConditionOutput output = ConditionOutput.Error);
+        IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
         ///     Takes a boolean IF condition and evaluates it

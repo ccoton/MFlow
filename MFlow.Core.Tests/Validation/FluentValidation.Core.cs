@@ -206,7 +206,7 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
                 .Check(u => u.Username).IsEqualTo("testing")
-                .Check(u => u.Username, output: ConditionOutput.Warning).IsEqualTo("abc")
+                .Check(u => u.Username).Warn().IsEqualTo("abc")
                 .Check(u => u.Password).IsEqualTo("password123").Validate();
 
             Assert.AreEqual(2, results.ToList().Count());
@@ -219,7 +219,7 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             var results = fluentValidation
                 .Check(u => u.Username).IsEqualTo("testing")
-                .Check(u => u.Username, output: ConditionOutput.Warning).IsEqualTo("abc")
+                .Check(u => u.Username).Warn().IsEqualTo("abc")
                 .Check(u => u.Password).IsEqualTo("password123").Validate(suppressWarnings: false);
 
             Assert.AreEqual(3, results.ToList().Count());

@@ -79,5 +79,13 @@ namespace MFlow.Core.Conditions
         {
             Key = key;
         }
+
+        /// <summary>
+        ///     Sets the condition output type
+        /// </summary>
+        public void SetConditionOutput(ConditionOutput output)
+        {
+            Output = output;
+        }
     }
 }
