@@ -1,4 +1,6 @@
-﻿namespace MFlow.Core.Validation
+﻿using MFlow.Core.Validation.Builder;
+
+namespace MFlow.Core.Validation.Factories
 {
     /// <summary>
     ///     A factory to provide an fluentvalidation implementation

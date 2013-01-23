@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using MFlow.Core.Validation;
+using MFlow.Core.Validation.Builder;
+using MFlow.Core.Validation.Factories;
     
 namespace MFlow.Mvc
 {

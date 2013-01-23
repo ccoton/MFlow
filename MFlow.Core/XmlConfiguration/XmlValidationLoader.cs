@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Xml.Linq;
 using MFlow.Core.Validation;
+using MFlow.Core.Validation.Factories;
 
 namespace MFlow.Core.XmlConfiguration
 {

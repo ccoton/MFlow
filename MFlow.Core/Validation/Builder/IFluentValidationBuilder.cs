@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using MFlow.Core.Conditions.Enums;
+using MFlow.Core.Validation.Checker;
 
-namespace MFlow.Core.Validation
+namespace MFlow.Core.Validation.Builder
 {
     public interface IFluentValidationBuilder<T>
     {

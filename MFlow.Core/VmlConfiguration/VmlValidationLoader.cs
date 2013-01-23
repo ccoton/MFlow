@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using MFlow.Core.Validation;
+using MFlow.Core.Validation.Factories;
 
 namespace MFlow.Core.VmlConfiguration
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace MFlow.Core.Validation
+namespace MFlow.Core.Validation.Checker
 {
     /// <summary>
     ///     A fluent validation interface
