@@ -4,7 +4,6 @@
 		<Configuration Condition="'$(Configuration)'==''" >Release</Configuration>
 		<BuildDir>$(BaseDir)\.build</BuildDir>
 		<SolutionFile>$(BaseDir)\MFlow.sln</SolutionFile>
-		<SamplesSolutionFile>$(BaseDir)\MFlow.Samples.sln</SamplesSolutionFile>
 		<TestAssemblies>
 			$(BaseDir)\MFlow.Core.Tests\bin\$(Configuration)\MFlow.Core.Tests.dll;
 			$(BaseDir)\MFlow.Mvc.Tests\bin\$(Configuration)\MFlow.Mvc.Tests.dll;
@@ -24,7 +23,6 @@
  
  	<Target Name="Compile">
 		<MSBuild Projects="$(SolutionFile)" Properties="Configuration=$(Configuration)"  Targets="Rebuild" />
-		<MSBuild Projects="$(SamplesSolutionFile)" Properties="Configuration=$(Configuration)"  Targets="Rebuild" />
 	</Target>
 
 	<Target Name="Test">
