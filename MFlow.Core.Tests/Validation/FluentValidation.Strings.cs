@@ -229,7 +229,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Username = "ausername@somedomain.com" };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Check(u => u.Username).Mathes(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*").Satisfied());
+                .Check(u => u.Username).Matches(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*").Satisfied());
         }
 
 		[Test]
@@ -238,7 +238,7 @@ namespace MFlow.Core.Tests.Validation
 			var user = new User() { Username = "ausernamesomedomain.com" };
 			var fluentValidation = _factory.GetFluentValidation<User>(user);
 			Assert.IsFalse(fluentValidation
-			              .Check(u => u.Username).Mathes(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*").Satisfied());
+			              .Check(u => u.Username).Matches(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*").Satisfied());
 		}
 
         [Test]
@@ -247,7 +247,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User() { Username = null };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Check(u => u.Username).Mathes(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*").Satisfied());
+                .Check(u => u.Username).Matches(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*").Satisfied());
         }
 
         [Test]

@@ -215,7 +215,7 @@ namespace MFlow.Core.XmlConfiguration
         IFluentValidation<T> ParseRegEx<T>(IFluentValidation<T> validator, XDocument document)
         {
             return CreateExpressions<T, string, string>(validator, document, "RegEx", (e, ev, m, v, h) => {
-                return validator.Check(e).Mathes(v).Message(m).Hint(h); });
+                return validator.Check(e).Matches(v).Message(m).Hint(h); });
         }
     
         IFluentValidation<T> ParseIsEmail<T>(IFluentValidation<T> validator, XDocument document)

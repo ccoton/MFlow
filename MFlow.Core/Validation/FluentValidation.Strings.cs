@@ -26,7 +26,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Checks if the expression evaluates to a string that matches the regEx 
         /// </summary>
-        public IFluentValidation<T> Mathes(string regEx)
+        public IFluentValidation<T> Matches(string regEx)
         {
             var matchesValidator = _validatorFactory.GetValidator<string, string, IMatchesValidator>();
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();

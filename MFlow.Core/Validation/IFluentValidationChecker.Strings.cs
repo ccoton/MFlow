@@ -13,7 +13,7 @@
         /// <summary>
         ///     Checks if the expression evaluates to a string that matches the regEx 
         /// </summary>
-        IFluentValidation<T> Mathes (string regEx);
+        IFluentValidation<T> Matches (string regEx);
 
         /// <summary>
         ///     Checks if the expression evaluates to a string that is an email address 

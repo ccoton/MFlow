@@ -227,7 +227,7 @@ namespace MFlow.Core.VmlConfiguration
         IFluentValidation<T> ParseRegEx<T>(IFluentValidation<T> validator, string document)
         {
             return CreateExpressions<T, string, string>(validator, document, "[Is] NotStringPattern", (e, ev, m, v, h) => {
-                return validator.Check(e).Mathes(v).Message(m).Hint(h); });
+                return validator.Check(e).Matches(v).Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsEmail<T>(IFluentValidation<T> validator, string document)
