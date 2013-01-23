@@ -5,113 +5,113 @@ namespace MFlow.Core.Tests.Validation
 {
     public partial class FluentValidation
     {
-      
+        
         [Test]
         public void Test_Fluent_Validation_Equal()
         {
             var user = new User {
-	Username = "testing"
-};
+                Username = "testing"
+            };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Check(u => u.Username).IsEqualTo("testing").Satisfied());
+                          .Check(u => u.Username).IsEqualTo("testing").Satisfied());
         }
 
         [Test]
         public void Test_Fluent_Validation_Equal_Expression()
         {
             var user = new User {
-	Password = "password123",
-	ConfirmPassword = "password123"
-};
+                Password = "password123",
+                ConfirmPassword = "password123"
+            };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Check(u => u.Password).IsEqualTo(u=>u.ConfirmPassword).Satisfied());
+                          .Check(u => u.Password).IsEqualTo(u=>u.ConfirmPassword).Satisfied());
         }
 
         [Test]
         public void Test_Fluent_Validation_Not_Equal()
         {
             var user = new User {
-	Username = "testing"
-};
+                Username = "testing"
+            };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Check(u => u.Username).IsNotEqualTo("testing").Satisfied());
+                           .Check(u => u.Username).IsNotEqualTo("testing").Satisfied());
         }
 
         [Test]
         public void Test_Fluent_Validation_NotEqual_Expression()
         {
             var user = new User {
-	Password = "password123",
-	ConfirmPassword = "password1234"
-};
+                Password = "password123",
+                ConfirmPassword = "password1234"
+            };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Check(u => u.Password).IsNotEqualTo(u => u.ConfirmPassword).Satisfied());
+                          .Check(u => u.Password).IsNotEqualTo(u => u.ConfirmPassword).Satisfied());
         }
 
         [Test]
         public void Test_Fluent_Validation_Not_Equal_When_Null()
         {
             var user = new User {
-	Username = null
-};
+                Username = null
+            };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Check(u => u.Username).IsNotEqualTo("testing").Satisfied());
+                           .Check(u => u.Username).IsNotEqualTo("testing").Satisfied());
         }
 
         [Test]
         public void Test_Fluent_Validation_IsRequired_When_Valid()
         {
             var user = new User {
-	Password = "password123"
-};
+                Password = "password123"
+            };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Check(u => u.Password).IsRequired<string>().Satisfied());
+                          .Check(u => u.Password).IsRequired<string>().Satisfied());
         }
 
         [Test]
         public void Test_Fluent_Validation_IsRequired_When_Empty()
         {
             var user = new User {
-	Password = ""
-};
+                Password = ""
+            };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Check(u => u.Password).IsRequired<string>().Satisfied());
+                           .Check(u => u.Password).IsRequired<string>().Satisfied());
         }
 
         [Test]
         public void Test_Fluent_Validation_DependsOn_Satisfied_Dependency()
         {
             var user = new User {
-	LoginCount = 12
-};
+                LoginCount = 12
+            };
 
             var dependency = _factory.GetFluentValidation<User>(user);
             dependency.If(true);
 
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
-                .Check(u => u.LoginCount).IsGreaterThan(11).DependsOn(dependency.If(true)).Satisfied());
+                          .Check(u => u.LoginCount).IsGreaterThan(11).DependsOn(dependency.If(true)).Satisfied());
         }
 
         [Test]
         public void Test_Fluent_Validation_DependsOn_Unsatisfied_Dependency()
         {
             var user = new User {
-	LoginCount = 12
-};
+                LoginCount = 12
+            };
 
             var dependency  = _factory.GetFluentValidation<User>(user);
 
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
-                .Check(u => u.LoginCount).IsGreaterThan(11).DependsOn(dependency.If(false)).Satisfied());
+                           .Check(u => u.LoginCount).IsGreaterThan(11).DependsOn(dependency.If(false)).Satisfied());
         }
     }
 }

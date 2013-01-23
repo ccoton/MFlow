@@ -11,8 +11,8 @@ namespace MFlow.Core.Tests.XmlConfiguration
         public void Test_Fluent_Validation_CustomRule_False_Loaded_From_Xml()
         {
             var user = new User {
-	LoginCount = 1
-};
+                LoginCount = 1
+            };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "CustomRule.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
@@ -22,8 +22,8 @@ namespace MFlow.Core.Tests.XmlConfiguration
         public void Test_Fluent_Validation_CustomRule_True_Loaded_From_Xml()
         {
             var user = new User {
-	LoginCount = 999
-};
+                LoginCount = 999
+            };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "CustomRule.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }

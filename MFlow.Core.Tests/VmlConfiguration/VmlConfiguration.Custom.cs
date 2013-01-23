@@ -11,8 +11,8 @@ namespace MFlow.Core.Tests.VmlConfiguration
         public void Test_Fluent_Validation_CustomRule_False_Loaded_From_Vml()
         {
             var user = new User {
-	LoginCount = 1
-};
+                LoginCount = 1
+            };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "CustomRule.validation.vml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
@@ -21,8 +21,8 @@ namespace MFlow.Core.Tests.VmlConfiguration
         public void Test_Fluent_Validation_CustomRule_True_Loaded_From_Vml()
         {
             var user = new User {
-	LoginCount = 999
-};
+                LoginCount = 999
+            };
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "CustomRule.validation.vml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
