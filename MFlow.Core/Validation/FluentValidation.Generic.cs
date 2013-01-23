@@ -79,27 +79,5 @@ namespace MFlow.Core.Validation
             If(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsRequired, string.Empty));
             return this;
         }
-
-        /// <summary>
-        ///     Evaluates another validation instance that this one depends on
-        /// </summary>
-        public IFluentValidation<T> DependsOn<D>(IFluentValidation<D> validator)
-        {
-            Expression<Func<T, bool>> derived = f => validator.Satisfied(true);
-            base.And(derived);
-            return this;
-        }
-
-        /// <summary>
-        ///     Evaluates another validation instance that this one depends on
-        /// </summary>
-        public IFluentValidation<T> DependsOn<D>(Expression<Func<T, D>> validator) where D : IFluentValidation<T>
-        {
-            Func<T, D> compiled = _expressionBuilder.Compile(validator);
-            _dependencies.Add(() => compiled.Invoke(_target));
-            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Satisfied(true);
-            base.And(derived, message: string.Empty);
-            return this;
-        }
     }
 }

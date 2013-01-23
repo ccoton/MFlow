@@ -14,7 +14,8 @@ namespace MFlow.Core.Validation
     /// <summary>
     ///     A fluent validation implementation
     /// </summary>
-    public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>, IFluentValidationBuilder<T>
+    public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>, 
+        IFluentValidationBuilder<T>, IFluentValidationChecker<T>
     {
         ICurrentValidationContext<T> _currentContext;
         readonly IPropertyNameResolver _resolver;
@@ -72,7 +73,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Adds an expression to the chain 
         /// </summary>
-        public IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And)
+        public IFluentValidationChecker<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And)
         {
             _currentContext = new CurrentValidationContext<T>(expression, conditionType, ConditionOutput.Error);
             return this;
@@ -160,6 +161,28 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
+        ///     Evaluates another validation instance that this one depends on
+        /// </summary>
+        public IFluentValidation<T> DependsOn<D>(IFluentValidation<D> validator)
+        {
+            Expression<Func<T, bool>> derived = f => validator.Satisfied(true);
+            base.And(derived);
+            return this;
+        }
+
+        /// <summary>
+        ///     Evaluates another validation instance that this one depends on
+        /// </summary>
+        public IFluentValidation<T> DependsOn<D>(Expression<Func<T, D>> validator) where D : IFluentValidation<T>
+        {
+            Func<T, D> compiled = _expressionBuilder.Compile(validator);
+            _dependencies.Add(() => compiled.Invoke(_target));
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Satisfied(true);
+            base.And(derived, message: string.Empty);
+            return this;
+        }
+        
+        /// <summary>
         ///     Add a message to a validation expression
         /// </summary>
         public IFluentValidation<T> Message(string message)
@@ -200,7 +223,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Clears the validator
         /// </summary>
-        public new IFluentValidation<T> Clear()
+        public new IFluentValidationBuilder<T> Clear()
         {
             base.Clear();
             return this;

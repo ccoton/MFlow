@@ -6,7 +6,7 @@ namespace MFlow.Core.Validation
     /// <summary>
     ///     A fluent validation interface
     /// </summary>
-    public partial interface IFluentValidation<T>
+    public partial interface IFluentValidationChecker<T>
     {
         /// <summary>
         ///     Checks if the expression evaluates to an object that is equal to the value expression 
@@ -32,15 +32,5 @@ namespace MFlow.Core.Validation
         ///     Is the item required
         /// </summary>
         IFluentValidation<T> IsRequired<C>();
-
-        /// <summary>
-        ///     Evaluates another validation instance that this one depends on
-        /// </summary>
-        IFluentValidation<T> DependsOn<D>(IFluentValidation<D> validator);
-
-        /// <summary>
-        ///     Evaluates another validation instance that this one depends on
-        /// </summary>
-        IFluentValidation<T> DependsOn<D>(Expression<Func<T, D>> validator) where D : IFluentValidation<T>;
     }
 }

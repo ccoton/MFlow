@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MFlow.Mvc.Tests.Supporting;
 using NUnit.Framework;
+using MFlow.Mvc.Tests.Supporting;
 
 namespace MFlow.Mvc.Tests
 {

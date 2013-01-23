@@ -3,7 +3,7 @@
     /// <summary>
     ///     A fluent validation interface
     /// </summary>
-    public partial interface IFluentValidation<T>
+    public partial interface IFluentValidationChecker<T>
     {
         /// <summary>
         ///     Checks if the expression evaluates to an int that is less than the value 

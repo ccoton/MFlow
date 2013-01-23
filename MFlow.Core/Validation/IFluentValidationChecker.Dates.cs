@@ -5,7 +5,7 @@ namespace MFlow.Core.Validation
     /// <summary>
     ///     A fluent validation interface
     /// </summary>
-    public partial interface IFluentValidation<T>
+    public partial interface IFluentValidationChecker<T>
     {
         /// <summary>
         ///     Checks if the expression evaluates to a date that is less than the value 

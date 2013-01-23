@@ -22,7 +22,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Adds an expression to the chain 
         /// </summary>
-        IFluentValidation<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And);
+        IFluentValidationChecker<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
         ///     When applied to a Check make it behave as a warning, by default will not be raised when validation occurs
@@ -85,6 +85,16 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> Else(Action execute, ExecuteThread options = ExecuteThread.Current);
 
         /// <summary>
+        ///     Evaluates another validation instance that this one depends on
+        /// </summary>
+        IFluentValidation<T> DependsOn<D>(IFluentValidation<D> validator);
+
+        /// <summary>
+        ///     Evaluates another validation instance that this one depends on
+        /// </summary>
+        IFluentValidation<T> DependsOn<D>(Expression<Func<T, D>> validator) where D : IFluentValidation<T>;
+        
+        /// <summary>
         ///     Raises an event
         /// </summary>
         IFluentValidation<T> Raise<E>(E eventToRaise) where E : IEvent<T>;
@@ -93,7 +103,7 @@ namespace MFlow.Core.Validation
         ///     Clears the validation conditions
         /// </summary>
         /// <returns></returns>
-        IFluentValidation<T> Clear();
+        IFluentValidationBuilder<T> Clear();
 
         /// <summary>
         ///     Validate this instance
