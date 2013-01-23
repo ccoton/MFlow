@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using MFlow.Core.Validation;
 using MFlow.Core.Validation.Builder;
 
 namespace MFlow.Mvc

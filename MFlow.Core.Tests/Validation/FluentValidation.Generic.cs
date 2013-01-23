@@ -1,5 +1,4 @@
 ﻿using MFlow.Core.Tests.Supporting;
-using MFlow.Core.Validation;
 using NUnit.Framework;
 
 namespace MFlow.Core.Tests.Validation
@@ -10,7 +9,9 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_Equal()
         {
-            var user = new User() { Username = "testing" };
+            var user = new User {
+	Username = "testing"
+};
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
                 .Check(u => u.Username).IsEqualTo("testing").Satisfied());
@@ -19,7 +20,10 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_Equal_Expression()
         {
-            var user = new User() { Password = "password123", ConfirmPassword = "password123" };
+            var user = new User {
+	Password = "password123",
+	ConfirmPassword = "password123"
+};
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
                 .Check(u => u.Password).IsEqualTo(u=>u.ConfirmPassword).Satisfied());
@@ -28,7 +32,9 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_Not_Equal()
         {
-            var user = new User() { Username = "testing" };
+            var user = new User {
+	Username = "testing"
+};
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
                 .Check(u => u.Username).IsNotEqualTo("testing").Satisfied());
@@ -37,7 +43,10 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_NotEqual_Expression()
         {
-            var user = new User() { Password = "password123", ConfirmPassword = "password1234" };
+            var user = new User {
+	Password = "password123",
+	ConfirmPassword = "password1234"
+};
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
                 .Check(u => u.Password).IsNotEqualTo(u => u.ConfirmPassword).Satisfied());
@@ -46,7 +55,9 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_Not_Equal_When_Null()
         {
-            var user = new User() { Username = null };
+            var user = new User {
+	Username = null
+};
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
                 .Check(u => u.Username).IsNotEqualTo("testing").Satisfied());
@@ -55,7 +66,9 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_IsRequired_When_Valid()
         {
-            var user = new User() { Password = "password123" };
+            var user = new User {
+	Password = "password123"
+};
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
                 .Check(u => u.Password).IsRequired<string>().Satisfied());
@@ -64,7 +77,9 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_IsRequired_When_Empty()
         {
-            var user = new User() { Password = "" };
+            var user = new User {
+	Password = ""
+};
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
                 .Check(u => u.Password).IsRequired<string>().Satisfied());
@@ -73,7 +88,9 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_DependsOn_Satisfied_Dependency()
         {
-            var user = new User() { LoginCount = 12 };
+            var user = new User {
+	LoginCount = 12
+};
 
             var dependency = _factory.GetFluentValidation<User>(user);
             dependency.If(true);
@@ -86,7 +103,9 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_DependsOn_Unsatisfied_Dependency()
         {
-            var user = new User() { LoginCount = 12 };
+            var user = new User {
+	LoginCount = 12
+};
 
             var dependency  = _factory.GetFluentValidation<User>(user);
 

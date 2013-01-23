@@ -83,7 +83,7 @@ namespace MFlow.Core.Resources
             return document;
         }
 
-        static Dictionary<string, string> ParseDocument(XDocument document)
+        static Dictionary<string, string> ParseDocument(XContainer document)
         {
             var output = new Dictionary<string, string>();
             var nodes = document.Descendants(XName.Get("Messages")).SingleOrDefault().Descendants();

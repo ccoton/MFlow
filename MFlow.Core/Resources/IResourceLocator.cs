@@ -3,7 +3,7 @@
     /// <summary>
     ///     A resource locator
     /// </summary>
-    internal interface IResourceLocator
+    interface IResourceLocator
     {
         /// <summary>
         ///     Gets a resource by its key

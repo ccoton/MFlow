@@ -130,7 +130,7 @@ namespace MFlow.Core.VmlConfiguration
                 document = document.Replace("\n", "\r\n");
 
             var nodes = document.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
-            nodes = nodes.Where(n => n.ToLower().Contains("[location]") && n.ToLower().StartsWith("[display]")).ToList();
+            nodes = nodes.Where(n => n.ToLower().Contains("[location]") && n.ToLower().StartsWith("[display]", StringComparison.Ordinal)).ToList();
 
             foreach (var item in nodes)
             {
@@ -333,7 +333,7 @@ namespace MFlow.Core.VmlConfiguration
                 document = document.Replace("\n", "\r\n");
 
             var nodes = document.Split(new string[] { Environment.NewLine }, StringSplitOptions.None).ToList();
-            nodes = nodes.Where(n => !n.ToLower().Contains("[location]") && n.ToLower().StartsWith("[display]") && n.ToLower().Contains(nodeName.ToLower())).ToList();
+            nodes = nodes.Where(n => !n.ToLower().Contains("[location]") && n.ToLower().StartsWith("[display]", StringComparison.Ordinal) && n.ToLower().Contains(nodeName.ToLower())).ToList();
 
             foreach (var item in nodes)
             {

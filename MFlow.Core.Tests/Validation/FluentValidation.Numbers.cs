@@ -1,5 +1,4 @@
 ﻿using MFlow.Core.Tests.Supporting;
-using MFlow.Core.Validation;
 using NUnit.Framework;
 
 namespace MFlow.Core.Tests.Validation
@@ -9,7 +8,9 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_LessThan_Valid()
         {
-            var user = new User() { LoginCount = 10 };
+            var user = new User {
+	LoginCount = 10
+};
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
                 .Check(u => u.LoginCount).IsLessThan(11).Satisfied());
@@ -18,7 +19,9 @@ namespace MFlow.Core.Tests.Validation
 		[Test]
 		public void Test_Fluent_Validation_LessThan_InValid()
 		{
-			var user = new User() { LoginCount = 12 };
+			var user = new User {
+	LoginCount = 12
+};
 			var fluentValidation = _factory.GetFluentValidation<User>(user);
 			Assert.IsFalse(fluentValidation
 			              .Check(u => u.LoginCount).IsLessThan(11).Satisfied());
@@ -27,7 +30,9 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_LessThanOrEqualTo_Valid()
         {
-            var user = new User() { LoginCount = 10 };
+            var user = new User {
+	LoginCount = 10
+};
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
                 .Check(u => u.LoginCount).IsLessThanOrEqualTo(11)
@@ -37,7 +42,9 @@ namespace MFlow.Core.Tests.Validation
 		[Test]
 		public void Test_Fluent_Validation_LessThanOrEqualTo_InValid()
 		{
-			var user = new User() { LoginCount = 12 };
+			var user = new User {
+	LoginCount = 12
+};
 			var fluentValidation = _factory.GetFluentValidation<User>(user);
 			Assert.IsFalse(fluentValidation
 			              .Check(u => u.LoginCount).IsLessThanOrEqualTo(11)
@@ -47,7 +54,9 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_GreaterThan_Valid()
         {
-            var user = new User() { LoginCount = 12 };
+            var user = new User {
+	LoginCount = 12
+};
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
                 .Check(u => u.LoginCount).IsGreaterThan(11).Satisfied());
@@ -56,7 +65,9 @@ namespace MFlow.Core.Tests.Validation
 		[Test]
 		public void Test_Fluent_Validation_GreaterThan_InValid()
 		{
-			var user = new User() { LoginCount = 10 };
+			var user = new User {
+	LoginCount = 10
+};
 			var fluentValidation = _factory.GetFluentValidation<User>(user);
 			Assert.IsFalse(fluentValidation
 			              .Check(u => u.LoginCount).IsGreaterThan(11).Satisfied());
@@ -65,7 +76,9 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Fluent_Validation_GreaterThanOrEqualTo_Valid()
         {
-            var user = new User() { LoginCount = 12 };
+            var user = new User {
+	LoginCount = 12
+};
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsTrue(fluentValidation
                 .Check(u => u.LoginCount).IsGreaterThanOrEqualTo(12)
@@ -75,7 +88,9 @@ namespace MFlow.Core.Tests.Validation
 		[Test]
 		public void Test_Fluent_Validation_GreaterThanOrEqualTo_InValid()
 		{
-			var user = new User() { LoginCount = 10 };
+			var user = new User {
+	LoginCount = 10
+};
 			var fluentValidation = _factory.GetFluentValidation<User>(user);
 			Assert.IsFalse(fluentValidation
 	              .Check(u => u.LoginCount).IsGreaterThanOrEqualTo(12)

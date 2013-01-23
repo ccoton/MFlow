@@ -11,7 +11,10 @@ namespace MFlow.Mvc.Tests
         [Test]
         public void Test_Validated_Model_With_Errors()
         {
-            var loginViewModel = new LoginViewModel() { Password = "", Username = "" };
+            var loginViewModel = new LoginViewModel {
+	Password = "",
+	Username = ""
+};
             var results = loginViewModel.Validate(new System.ComponentModel.DataAnnotations.ValidationContext(loginViewModel, null, null));
             Assert.AreEqual(results.Count(), 2);
         }
@@ -19,7 +22,10 @@ namespace MFlow.Mvc.Tests
         [Test]
         public void Test_Validated_Model_With_Errors_Gives_Suggestion_Hint()
         {
-            var loginViewModel = new LoginViewModel() { Password = "", Username = "" };
+            var loginViewModel = new LoginViewModel {
+	Password = "",
+	Username = ""
+};
             var results = loginViewModel.Suggest(new System.ComponentModel.DataAnnotations.ValidationContext(loginViewModel, null, null));
             Assert.IsTrue(results.Any(r => r.ErrorMessage == "Please enter a username"));
         }
@@ -27,7 +33,10 @@ namespace MFlow.Mvc.Tests
         [Test]
         public void Test_Validated_Model_With_No_Errors()
         {
-            var loginViewModel = new LoginViewModel() { Password = "password", Username = "username" };
+            var loginViewModel = new LoginViewModel {
+	Password = "password",
+	Username = "username"
+};
             var results = loginViewModel.Validate(new System.ComponentModel.DataAnnotations.ValidationContext(loginViewModel, null, null));
             Assert.AreEqual(results.Count(), 0);
         }

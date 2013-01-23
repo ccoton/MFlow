@@ -30,7 +30,7 @@ namespace MFlow.Core.Internal
             }
 
             var expressionString = memberExpression.ToString();
-            return expressionString.Substring(expressionString.IndexOf(".") + 1);
+            return expressionString.Substring(expressionString.IndexOf(".", StringComparison.Ordinal) + 1);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace MFlow.Core.Tests.Conditions
         public void Test_Fluent_Chain_Of_True_Conditions()
         {
             IFluentConditions<object> fluentConditions = new FluentConditions<object>(new Object());
-            var chain = fluentConditions.If(1 == 1).And(true == true).And(false == false).Satisfied();
+            var chain = fluentConditions.If(1 == 1).And(true).And(!false).Satisfied();
             Assert.IsTrue(chain);
         }
 
@@ -34,7 +34,7 @@ namespace MFlow.Core.Tests.Conditions
         public void Test_Fluent_Chain_Of_False_Conditions()
         {
             IFluentConditions<object> fluentConditions = new FluentConditions<object>(new Object());
-            var chain = fluentConditions.If(1 == 2).And(true == false).And(false == true).Satisfied();
+            var chain = fluentConditions.If(1 == 2).And(false).And(!true).Satisfied();
             Assert.IsFalse(chain);
         }
 
@@ -59,7 +59,7 @@ namespace MFlow.Core.Tests.Conditions
         {
             var output = false;
             IFluentConditions<object> fluentConditions = new FluentConditions<object>(new Object());
-            fluentConditions.And(1 == 1).And(true == true).And(false == false).Then(
+            fluentConditions.And(1 == 1).And(true).And(!false).Then(
                     () =>
                     {
                         output = true;
@@ -74,7 +74,7 @@ namespace MFlow.Core.Tests.Conditions
             var thread = System.Threading.Thread.CurrentThread.ManagedThreadId;
             IFluentConditions<object> fluentConditions = new FluentConditions<object>(new Object());
 
-            fluentConditions.And(1 == 1).And(true == true).And(false == false)
+            fluentConditions.And(1 == 1).And(true).And(!false)
                 .Then(() =>
                     {
                         Assert.IsTrue(thread != System.Threading.Thread.CurrentThread.ManagedThreadId);
@@ -87,7 +87,7 @@ namespace MFlow.Core.Tests.Conditions
         {
             var output = false;
             IFluentConditions<object> fluentConditions = new FluentConditions<object>(new Object());
-            fluentConditions.And(1 == 1).And(true == true).And(false == true).Then(
+            fluentConditions.And(1 == 1).And(true).And(!true).Then(
                     () =>
                     {
                         output = true;
@@ -101,7 +101,7 @@ namespace MFlow.Core.Tests.Conditions
         {
             var output = 1;
             IFluentConditions<object> fluentConditions = new FluentConditions<object>(new Object());
-            fluentConditions.And(1 == 1).And(true == true).And(true == false).Then(
+            fluentConditions.And(1 == 1).And(true).And(false).Then(
                     () =>
                     {
                         output = 2;
@@ -119,7 +119,7 @@ namespace MFlow.Core.Tests.Conditions
             var thread = System.Threading.Thread.CurrentThread.ManagedThreadId;
             IFluentConditions<object> fluentConditions = new FluentConditions<object>(new Object());
 
-            fluentConditions.And(1 == 1).And(true == true).And(true == false).Then(
+            fluentConditions.And(1 == 1).And(true).And(false).Then(
                     () =>
                     {
                         Assert.IsTrue(false);

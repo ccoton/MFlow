@@ -153,7 +153,7 @@ namespace MFlow.Core.Conditions
         {
             return _conditions
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
-                .All(c => _expressionBuilder.Compile(c.Condition).Invoke(_target) == true && c.Type == ConditionType.And) ||
+                .All(c => _expressionBuilder.Compile(c.Condition).Invoke(_target) && c.Type == ConditionType.And) ||
                 _conditions
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
                 .Any(c => _expressionBuilder.Compile(c.Condition).Invoke(_target) && c.Type == ConditionType.Or);

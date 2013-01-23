@@ -125,7 +125,6 @@ namespace MFlow.Core.XmlConfiguration
                 var location = item.Attribute(XName.Get("location")).Value;
 
                 var message = string.Empty;
-                var hint = string.Empty;
 
                 var messageAttribute = item.Attribute(XName.Get("message"));
                 var hintAttribute = item.Attribute(XName.Get("hint"));
@@ -133,8 +132,10 @@ namespace MFlow.Core.XmlConfiguration
                 if (messageAttribute != null)
                     message = messageAttribute.Value;
 
-                if (hintAttribute != null)
-                    hint = hintAttribute.Value;
+                if (hintAttribute != null) {
+					var hint = string.Empty;
+					hint = hintAttribute.Value;
+				}
 
                 Assembly.Load(location).GetTypes().Where(t => t.IsClass && t.Name.ToLower() == condition.ToLower() && typeof(IFluentValidationCustomRule<T>).IsAssignableFrom(t)).ToList()
                 .ForEach(f =>
@@ -367,7 +368,7 @@ namespace MFlow.Core.XmlConfiguration
                     }
                     else
                     {
-                        validator = function(expression, toExpression, message, (C)(object)valueAttribute.Value.ToString(), hint);
+                        validator = function(expression, toExpression, message, (C)(object)valueAttribute.Value, hint);
                     }
                 }
 

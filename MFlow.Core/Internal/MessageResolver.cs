@@ -26,7 +26,7 @@ namespace MFlow.Core.Internal
         public string Resolve (string propertyName, ValidationType type, string message)
         {
             if (ShouldResolve (message)) {
-                var customMessage = message.StartsWith ("$") && message.EndsWith ("$");
+                var customMessage = message.StartsWith("$", StringComparison.Ordinal) && message.EndsWith("$", StringComparison.Ordinal);
 
                 if (!customMessage && type == ValidationType.Unknown)
                     return string.Empty;
@@ -50,7 +50,7 @@ namespace MFlow.Core.Internal
         public string Resolve<T, O> (Expression<Func<T, O>> expression, ValidationType type, string message)
         {
             if (ShouldResolve (message)) {
-                var customMessage = message.StartsWith ("$") && message.EndsWith ("$");
+                var customMessage = message.StartsWith("$", StringComparison.Ordinal) && message.EndsWith("$", StringComparison.Ordinal);
                 message = PrepareForResolve (message);
                 var key = customMessage ? message : type.ToString ();
 
@@ -71,7 +71,7 @@ namespace MFlow.Core.Internal
         public string Resolve<T, O> (Expression<Func<T, O>> expression, O value, ValidationType type, string message)
         {
             if (ShouldResolve (message)) {
-                var customMessage = message.StartsWith ("$") && message.EndsWith ("$");
+                var customMessage = message.StartsWith("$", StringComparison.Ordinal) && message.EndsWith("$", StringComparison.Ordinal);
                 message = PrepareForResolve (message);
                 var key = customMessage ? message : type.ToString ();
 
@@ -92,7 +92,7 @@ namespace MFlow.Core.Internal
         public string Resolve<T, O> (Expression<Func<T, O>> expression, Expression<Func<T, O>> toExpression, ValidationType type, string message)
         {
             if (ShouldResolve (message)) {
-                var customMessage = message.StartsWith ("$") && message.EndsWith ("$");
+                var customMessage = message.StartsWith("$", StringComparison.Ordinal) && message.EndsWith("$", StringComparison.Ordinal);
                 message = PrepareForResolve (message);
                 var key = customMessage ? message : type.ToString ();
 
@@ -100,7 +100,7 @@ namespace MFlow.Core.Internal
                 var propertyName = _propertyNameResolver.Resolve (expression);
                 var toPropertyName = _propertyNameResolver.Resolve (toExpression);
 
-                outMessage = string.Format (_resourceLocator.GetResource (key), propertyName, toPropertyName.ToString ());
+                outMessage = string.Format(_resourceLocator.GetResource(key), propertyName, toPropertyName);
 
                 return outMessage;
             }
@@ -114,7 +114,7 @@ namespace MFlow.Core.Internal
         public string Resolve<T, O> (Expression<Func<T, O>> expression, O start, O end, ValidationType type, string message)
         {
             if (ShouldResolve (message)) {
-                var customMessage = message.StartsWith ("$") && message.EndsWith ("$");
+                var customMessage = message.StartsWith("$", StringComparison.Ordinal) && message.EndsWith("$", StringComparison.Ordinal);
                 message = PrepareForResolve (message);
                 var key = customMessage ? message : type.ToString ();
 
@@ -132,7 +132,7 @@ namespace MFlow.Core.Internal
         bool ShouldResolve (string message)
         {
             if (!string.IsNullOrEmpty (message) && !string.IsNullOrWhiteSpace (message)
-                && !(message.StartsWith ("$") && message.EndsWith ("$"))) {
+                && !(message.StartsWith("$", StringComparison.Ordinal) && message.EndsWith("$", StringComparison.Ordinal))) {
                 return false;
             }
 
@@ -141,7 +141,7 @@ namespace MFlow.Core.Internal
 
         string PrepareForResolve (string message)
         {
-            if ((message.StartsWith ("$") && message.EndsWith ("$"))) {
+            if ((message.StartsWith("$", StringComparison.Ordinal) && message.EndsWith("$", StringComparison.Ordinal))) {
                 message = message.Substring (1);
                 message = message.Substring (0, message.Length - 1);
             }

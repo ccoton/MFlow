@@ -1,9 +1,8 @@
-using System;
+﻿using System;
 using MFlow.Core.Internal.Validators;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 
 namespace MFlow.Core
 {
@@ -37,7 +36,7 @@ namespace MFlow.Core
             Type type = null;
             if (!typeof(TValidator).IsGenericType)
             {
-                type = _types.Where(t => typeof(TValidator).IsAssignableFrom(t) && t.IsClass).FirstOrDefault();
+                type = _types.FirstOrDefault(t => typeof(TValidator).IsAssignableFrom(t) && t.IsClass);
             }
             else
             {
