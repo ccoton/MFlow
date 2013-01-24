@@ -243,5 +243,25 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsEmail.validation.vml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
+        
+        [Test]
+        public void Test_Fluent_Validation_IsDate_False_Loaded_From_Vml()
+        {
+            var user = new User {
+                Username = "testing"
+            };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsDate.validation.vml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+
+        [Test]
+        public void Test_Fluent_Validation_IsDate_True_Loaded_From_Vml()
+        {
+            var user = new User {
+                Username = "01/01/2001"
+            };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsDate.validation.vml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
     }
 }

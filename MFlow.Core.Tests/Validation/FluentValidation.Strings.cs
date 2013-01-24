@@ -1,5 +1,6 @@
 ﻿using MFlow.Core.Tests.Supporting;
 using NUnit.Framework;
+using System.Linq;
 
 namespace MFlow.Core.Tests.Validation
 {
@@ -257,6 +258,40 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
                            .Check(u => u.Username).IsAlpha().Satisfied());
+        }
+        
+        [Test]
+        public void Test_Fluent_Validation_IsDate_Valid()
+        {
+            var user = new User {
+                Username = "01/01/2012"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsTrue(fluentValidation
+                          .Check(u => u.Username).IsDate().Satisfied());
+        }
+
+        [Test]
+        public void Test_Fluent_Validation_IsDate_InValid()
+        {
+            var user = new User {
+                Username = "1abcd"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                           .Check(u => u.Username).IsDate().Satisfied());
+        }
+        
+        [Test]
+        public void Test_Fluent_Validation_IsDate_InValid_Returns_Message()
+        {
+            var user = new User {
+                Username = "1abcd"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            var message = fluentValidation
+                .Check(u => u.Username).IsDate().Validate().First().Condition.Message;
+            Assert.AreEqual(message, "Username should be a valid date");
         }
         
         [Test]

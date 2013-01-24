@@ -90,6 +90,7 @@ namespace MFlow.Core.XmlConfiguration
             validator = ParseGreaterThanOrEqualTo(validator, document);
             validator = ParseRegEx(validator, document);
             validator = ParseIsEmail(validator, document);
+            validator = ParseIsDate(validator, document);
             validator = ParseContains(validator, document);
             validator = ParseEqualExpression(validator, document);
             validator = ParseNotEqualExpression(validator, document);
@@ -176,6 +177,12 @@ namespace MFlow.Core.XmlConfiguration
         {
             return CreateExpressions<T, string, int>(validator, document, "IsAlpha", (e, ev, m, v, h) => {
                 return validator.Check(e).IsAlpha().Message(m).Hint(h); });
+        }
+        
+        IFluentValidation<T> ParseIsDate<T>(IFluentValidation<T> validator, XDocument document)
+        {
+            return CreateExpressions<T, string, int>(validator, document, "IsDate", (e, ev, m, v, h) => {
+                return validator.Check(e).IsDate().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsLongerThan<T>(IFluentValidation<T> validator, XDocument document)

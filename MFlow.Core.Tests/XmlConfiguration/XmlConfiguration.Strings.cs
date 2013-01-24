@@ -91,6 +91,26 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsAlpha.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
+        
+        [Test]
+        public void Test_Fluent_Validation_IsDate_False_Loaded_From_Xml()
+        {
+            var user = new User {
+                Username = "123"
+            };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsDate.validation.xml");
+            Assert.IsFalse(fluentValidation.Satisfied());
+        }
+        
+        [Test]
+        public void Test_Fluent_Validation_IsDate_True_Loaded_From_Xml()
+        {
+            var user = new User {
+                Username = "01/01/2012"
+            };
+            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsDate.validation.xml");
+            Assert.IsTrue(fluentValidation.Satisfied());
+        }
 
         [Test]
         public void Test_Fluent_Validation_IsLongerThan_False_Loaded_From_Xml()

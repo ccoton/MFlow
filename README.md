@@ -147,6 +147,7 @@ The following validation checks are suported in the fluent interface/xml/vml con
 		IsZipCode,
 		IsNumeric,
 		IsAlpha,
+		IsDate,
 		Contains,
 		Mathes (a regex),
 	

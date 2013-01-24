@@ -10,6 +10,7 @@ namespace MFlow.Core.Validation
     /// </summary>
     public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>
     {
+        
         /// <summary>
         ///     Checks if the expressions evaluates to a string that is empty
         /// </summary>
@@ -164,6 +165,19 @@ namespace MFlow.Core.Validation
             Func<T, string> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => alphaValidator.Validate(compiled.Invoke(_target));
             If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsAlpha, string.Empty));
+            return this;
+        }
+        
+        /// <summary>
+        ///    Check if the expressions evaluates to a string that is a date
+        /// </summary>
+        public IFluentValidation<T> IsDate()
+        {
+			var dateValidator = _validatorFactory.GetValidator<string, IDateValidator>();
+            Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
+            Func<T, string> compiled = _expressionBuilder.Compile(expression);
+            Expression<Func<T, bool>> derived = f => dateValidator.Validate(compiled.Invoke(_target));
+            If(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsDate, string.Empty));
             return this;
         }
     }

@@ -109,6 +109,7 @@ namespace MFlow.Core.VmlConfiguration
             validator = ParseIsLength(validator, document);
             validator = ParseIsNumeric(validator, document);
             validator = ParseIsAlpha(validator, document);
+            validator = ParseIsDate(validator, document);
             validator = ParseIsLongerThan(validator, document);
             validator = ParseIsShorterThan(validator, document);
             validator = ParseIsCreditCard(validator, document);
@@ -181,6 +182,12 @@ namespace MFlow.Core.VmlConfiguration
         {
             return CreateExpressions<T, string, int>(validator, document, "[Is] NotAlpha", (e, ev, m, v, h) => {
                 return validator.Check(e).IsAlpha().Message(m).Hint(h); });
+        }
+        
+        IFluentValidation<T> ParseIsDate<T>(IFluentValidation<T> validator, string document)
+        {
+            return CreateExpressions<T, string, int>(validator, document, "[Is] NotADate", (e, ev, m, v, h) => {
+                return validator.Check(e).IsDate().Message(m).Hint(h); });
         }
 
         IFluentValidation<T> ParseIsLongerThan<T>(IFluentValidation<T> validator, string document)
