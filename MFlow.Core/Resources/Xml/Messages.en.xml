@@ -19,6 +19,7 @@
   <IsShorterThan>{0} should not be longer than {1} characters long</IsShorterThan>
   <IsCreditCard>{0} should be valid credit card number</IsCreditCard>
   <IsPostCode>{0} should be a valid post code</IsPostCode>
+  <IsZipCode>{0} should be a valid zip code</IsZipCode>
   <IsThisYear>{0} should be a date from this year</IsThisYear>
   <IsThisMonth>{0} should be a date from this month</IsThisMonth>
   <IsToday>{0} should be todays date</IsToday>
