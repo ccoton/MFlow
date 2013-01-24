@@ -15,13 +15,14 @@
   <On>{0} should be on {1}</On>
   <IsRequired>{0} is a required field</IsRequired>
   <IsLength>{0} should be {1} characters long</IsLength>
-  <IsLongerThan>{0} should be longer than {1} characters long</IsLongerThan>
-  <IsShorterThan>{0} should not be longer than {1} characters long</IsShorterThan>
-  <IsCreditCard>{0} should be valid credit card number</IsCreditCard>
+  <IsLongerThan>{0} should be longer than {1} characters</IsLongerThan>
+  <IsShorterThan>{0} should not be longer than {1} characters</IsShorterThan>
+  <IsCreditCard>{0} should be a valid credit card number</IsCreditCard>
   <IsPostCode>{0} should be a valid post code</IsPostCode>
   <IsZipCode>{0} should be a valid zip code</IsZipCode>
   <IsThisYear>{0} should be a date from this year</IsThisYear>
   <IsThisMonth>{0} should be a date from this month</IsThisMonth>
+  <IsThisWeek>{0} should be a date from this week</IsThisWeek>
   <IsToday>{0} should be todays date</IsToday>
   <IsNumeric>{0} should be a numeric value</IsNumeric>
   <IsAlpha>{0} should only contain letters</IsAlpha>

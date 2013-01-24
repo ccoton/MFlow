@@ -28,6 +28,19 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsFalse(fluentValidation
                            .Check(u => u.Username).IsLength(24).Satisfied());
         }
+        
+        
+        [Test]
+        public void Test_Fluent_Validation_IsLength_InValid_Returns_Message()
+        {
+            var user = new User {
+                Username = "aaa"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.AreEqual("Username should be 24 characters long", fluentValidation
+                           .Check(u => u.Username).IsLength(24)
+                           .Validate().First().Condition.Message);
+        }
 
         [Test]
         public void Test_Fluent_Validation_IsLength_When_Null()
@@ -50,7 +63,7 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsTrue(fluentValidation
                           .Check(u => u.Username).IsLongerThan(24).Satisfied());
         }
-
+        
         [Test]
         public void Test_Fluent_Validation_IsLongerThan_InValid()
         {
@@ -60,6 +73,18 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
                            .Check(u => u.Username).IsLongerThan(24).Satisfied());
+        }
+        
+        [Test]
+        public void Test_Fluent_Validation_IsLongerThan_InValid_Returns_Message()
+        {
+            var user = new User {
+                Username = "afu"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.AreEqual("Username should be longer than 24 characters", fluentValidation
+                           .Check(u => u.Username).IsLongerThan(24)
+                           .Validate().First().Condition.Message);
         }
 
         [Test]
@@ -96,6 +121,18 @@ namespace MFlow.Core.Tests.Validation
         }
 
         [Test]
+        public void Test_Fluent_Validation_IsShorterThan_InValid_Returns_Message()
+        {
+            var user = new User {
+                Username = "aaaaaaaaaaaaaaaafunnyusername@somedomain.com"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.AreEqual("Username should not be longer than 40 characters", fluentValidation
+                           .Check(u => u.Username).IsShorterThan(40)
+                           .Validate().First().Condition.Message);
+        }
+        
+        [Test]
         public void Test_Fluent_Validation_IsShorterThan_When_Null()
         {
             var user = new User {
@@ -126,6 +163,18 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
                            .Check(u => u.Username).IsCreditCard().Satisfied());
+        }
+        
+                [Test]
+        public void Test_Fluent_Validation_IsCeditCard_InValid_Returns_Message()
+        {
+            var user = new User {
+                Username = "5105"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.AreEqual("Username should be a valid credit card number", fluentValidation
+                           .Check(u => u.Username).IsCreditCard()
+                           .Validate().First().Condition.Message);
         }
 
         [Test]
@@ -160,6 +209,18 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsFalse(fluentValidation
                            .Check(u => u.Username).IsPostCode().Satisfied());
         }
+        
+        [Test]
+        public void Test_Fluent_Validation_IsPostCode_InValid_Returns_Message()
+        {
+            var user = new User {
+                Username = "test"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.AreEqual("Username should be a valid post code", fluentValidation
+                           .Check(u => u.Username).IsPostCode()
+                           .Validate().First().Condition.Message);
+        }
 
         [Test]
         public void Test_Fluent_Validation_IsPostCode_When_Null()
@@ -192,6 +253,18 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
                            .Check(u => u.Username).IsZipCode().Satisfied());
+        }
+        
+        [Test]
+        public void Test_Fluent_Validation_IsZipCode_InValid_Returns_Message()
+        {
+            var user = new User {
+                Username = "35801PPPPP"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.AreEqual("Username should be a valid zip code", fluentValidation
+                           .Check(u => u.Username).IsZipCode()
+                           .Validate().First().Condition.Message);
         }
 
         [Test]
@@ -228,6 +301,18 @@ namespace MFlow.Core.Tests.Validation
         }
         
         [Test]
+        public void Test_Fluent_Validation_IsNumeric_InValid_Returns_Message()
+        {
+            var user = new User {
+                Username = "35801A"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.AreEqual("Username should be a numeric value", fluentValidation
+                           .Check(u => u.Username).IsNumeric()
+                           .Validate().First().Condition.Message);
+        }
+        
+        [Test]
         public void Test_Fluent_Validation_IsNumeric_When_Null()
         {
             var user = new User {
@@ -254,6 +339,29 @@ namespace MFlow.Core.Tests.Validation
         {
             var user = new User {
                 Username = "1abcd"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.IsFalse(fluentValidation
+                           .Check(u => u.Username).IsAlpha().Satisfied());
+        }
+    
+        [Test]
+        public void Test_Fluent_Validation_IsAlpha_InValid_Returns_Message()
+        {
+            var user = new User {
+                Username = "1abcd"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.AreEqual("Username should only contain letters", fluentValidation
+                           .Check(u => u.Username).IsAlpha()
+                           .Validate().First().Condition.Message);
+        }
+   
+        [Test]
+        public void Test_Fluent_Validation_IsAlpha_When_Null()
+        {
+            var user = new User {
+                Username = null
             };
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
@@ -293,17 +401,6 @@ namespace MFlow.Core.Tests.Validation
                 .Check(u => u.Username).IsDate().Validate().First().Condition.Message;
             Assert.AreEqual(message, "Username should be a valid date");
         }
-        
-        [Test]
-        public void Test_Fluent_Validation_IsAlpha_When_Null()
-        {
-            var user = new User {
-                Username = null
-            };
-            var fluentValidation = _factory.GetFluentValidation<User>(user);
-            Assert.IsFalse(fluentValidation
-                           .Check(u => u.Username).IsAlpha().Satisfied());
-        }
 
         [Test]
         public void Test_Fluent_Validation_RegEx_Valid()
@@ -325,6 +422,19 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
                            .Check(u => u.Username).Matches(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*").Satisfied());
+        }
+    
+        [Test]
+        public void Test_Fluent_Validation_RegEx_InValid_Returns_Message()
+        {
+            var user = new User {
+                Username = "ausernamesomedomain.com"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.AreEqual(@"Username should validate expression \w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", fluentValidation
+                           .Check(u => u.Username)
+                           .Matches(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*")
+                           .Validate().First().Condition.Message);
         }
 
         [Test]
@@ -362,6 +472,20 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
                            .Check(u => u.Username).IsEmail().Satisfied());
+        }
+        
+        [Test]
+        public void Test_Fluent_Validation_IsEmail_With_InValid_Value_Returns_Message()
+        {
+            var user = new User {
+                Password = "password123",
+                Username = "ausername",
+                LoginCount = 12
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.AreEqual("Username should be an email", fluentValidation
+                           .Check(u => u.Username).IsEmail()
+                           .Validate().First().Condition.Message);
         }
 
         [Test]
@@ -401,6 +525,20 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = _factory.GetFluentValidation<User>(user);
             Assert.IsFalse(fluentValidation
                            .Check(u => u.Username).Contains("testing").Satisfied());
+        }
+        
+        [Test]
+        public void Test_Fluent_Validation_Contains_With_InValid_Value_Returns_Message()
+        {
+            var user = new User {
+                Password = "password123",
+                Username = "ausername",
+                LoginCount = 12
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.AreEqual("Username should contain testing", fluentValidation
+                           .Check(u => u.Username).Contains("testing")
+                           .Validate().First().Condition.Message);
         }
 
         [Test]

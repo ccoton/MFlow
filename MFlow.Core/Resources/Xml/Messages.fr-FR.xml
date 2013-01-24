@@ -22,6 +22,7 @@
   <IsZipCode>{0} doit être un code postal valide</IsZipCode>
   <IsThisYear>{0} doit être une date à partir de cette année</IsThisYear>
   <IsThisMonth>{0} doit être une date à partir de ce mois</IsThisMonth>
+  <IsThisWeek>{0} doit être une date à partir de cette semaine</IsThisWeek>
   <IsToday>{0} doit être la date d'aujourd'hui</IsToday>
   <IsNumeric>{0} doit être une valeur numérique</IsNumeric>
   <IsAlpha>{0} ne doit contenir que des lettres</IsAlpha>

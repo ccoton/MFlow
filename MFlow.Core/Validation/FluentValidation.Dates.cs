@@ -84,7 +84,7 @@ namespace MFlow.Core.Validation
             Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
             Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => thisWeekValidator.Validate(_expressionBuilder.Invoke(compiled, _target));
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisMonth, string.Empty));
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisWeek, string.Empty));
             return this;
         }
 
