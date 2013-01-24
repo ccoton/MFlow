@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using MFlow.Core.Conditions;
+using MFlow.Core.Internal.Validators;
 using MFlow.Core.Internal.Validators.Dates;
 
 namespace MFlow.Core.Validation
@@ -11,42 +12,27 @@ namespace MFlow.Core.Validation
     public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>
     {
         /// <summary>
-        ///     Checks if the expression evaluates to a date that is less that the value 
+        ///     Checks if the expression evaluates to a date that is less that the value
         /// </summary>
         public IFluentValidation<T> IsBefore(DateTime value)
         {
-            var beforeValidator = _validatorFactory.GetValidator<DateTime, DateTime, IBeforeValidator>();
-            Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
-            Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => beforeValidator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.Before, string.Empty));
-            return this;
+            return ApplyDateComparisonValidator(_validatorFactory.GetValidator<DateTime, DateTime, IBeforeValidator>(), Enums.ValidationType.Before, value);
         }
 
         /// <summary>
-        ///     Checks if the expression evaluates to a date that is greater than the value 
+        ///     Checks if the expression evaluates to a date that is greater than the value
         /// </summary>
         public IFluentValidation<T> IsAfter(DateTime value)
         {
-            var afterValidator = _validatorFactory.GetValidator<DateTime, DateTime, IAfterValidator>();
-            Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
-            Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => afterValidator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.After, string.Empty));
-            return this;
+            return ApplyDateComparisonValidator(_validatorFactory.GetValidator<DateTime, DateTime, IAfterValidator>(), Enums.ValidationType.After, value);
         }
 
         /// <summary>
-        ///     Checks if the expression evaluates to a date that is less than or equal to the value 
+        ///     Checks if the expression evaluates to a date that is less than or equal to the value
         /// </summary>
         public IFluentValidation<T> IsOn(DateTime value)
         {
-            var onValidator = _validatorFactory.GetValidator<DateTime, DateTime, IOnValidator>();
-            Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
-            Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => onValidator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, Enums.ValidationType.On, string.Empty));
-            return this;
+            return ApplyDateComparisonValidator(_validatorFactory.GetValidator<DateTime, DateTime, IOnValidator>(), Enums.ValidationType.On, value);
         }
 
         /// <summary>
@@ -54,12 +40,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsThisYear()
         {
-            var thisYearValidator = _validatorFactory.GetValidator<DateTime, IThisYearValidator>();
-            Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
-            Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => thisYearValidator.Validate(_expressionBuilder.Invoke(compiled, _target));
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisYear, string.Empty));
-            return this;
+            return ApplyDateValidator(_validatorFactory.GetValidator<DateTime, IThisYearValidator>(), Enums.ValidationType.IsThisYear);
         }
 
         /// <summary>
@@ -67,12 +48,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsThisMonth()
         {
-            var thisMonthValidator =  _validatorFactory.GetValidator<DateTime, IThisMonthValidator>();
-            Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
-            Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => thisMonthValidator.Validate(_expressionBuilder.Invoke(compiled, _target));
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisMonth, string.Empty));
-            return this;
+            return ApplyDateValidator(_validatorFactory.GetValidator<DateTime, IThisMonthValidator>(), Enums.ValidationType.IsThisMonth);
         }
 
         /// <summary>
@@ -80,12 +56,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsThisWeek()
         {
-            var thisWeekValidator = _validatorFactory.GetValidator<DateTime, IThisWeekValidator>();
-            Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
-            Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => thisWeekValidator.Validate(_expressionBuilder.Invoke(compiled, _target));
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsThisWeek, string.Empty));
-            return this;
+            return ApplyDateValidator(_validatorFactory.GetValidator<DateTime, IThisWeekValidator>(), Enums.ValidationType.IsThisWeek);
         }
 
         /// <summary>
@@ -93,11 +64,24 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsToday()
         {
-            var todayValidator = _validatorFactory.GetValidator<DateTime, ITodayValidator>();
+            return ApplyDateValidator(_validatorFactory.GetValidator<DateTime, ITodayValidator>(), Enums.ValidationType.IsToday);
+        }
+        
+        IFluentValidation<T> ApplyDateValidator(IValidator<DateTime> validator, Enums.ValidationType type)
+        {
             Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
             Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => todayValidator.Validate(_expressionBuilder.Invoke(compiled, _target));
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, Enums.ValidationType.IsToday, string.Empty));
+            Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target));
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, type, string.Empty));
+            return this;
+        }
+        
+        FluentValidation<T> ApplyDateComparisonValidator(IComparisonValidator<DateTime, DateTime> validator, Enums.ValidationType type, DateTime value)
+        {
+            Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
+            Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
+            Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
+            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
             return this;
         }
     }
