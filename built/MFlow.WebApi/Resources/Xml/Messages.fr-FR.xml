@@ -19,9 +19,12 @@
   <IsShorterThan> {0} ne doit pas être supérieure à {1} caractères </IsShorterThan>
   <IsCreditCard>{0} doit être valide numéro de carte de crédit</IsCreditCard>
   <IsPostCode>{0} doit être un code postal valide</IsPostCode>
+  <IsZipCode>{0} doit être un code postal valide</IsZipCode>
   <IsThisYear>{0} doit être une date à partir de cette année</IsThisYear>
   <IsThisMonth>{0} doit être une date à partir de ce mois</IsThisMonth>
+  <IsThisWeek>{0} doit être une date à partir de cette semaine</IsThisWeek>
   <IsToday>{0} doit être la date d'aujourd'hui</IsToday>
-  <IsNumeric> {0} doit être une valeur numérique </IsNumeric>
-  <IsAlpha> {0} ne doit contenir que des lettres </IsAlpha>
+  <IsNumeric>{0} doit être une valeur numérique</IsNumeric>
+  <IsAlpha>{0} ne doit contenir que des lettres</IsAlpha>
+  <IsDate>{0} doit être une date valide</IsDate>
 </Messages>

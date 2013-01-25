@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using MFlow.Core.Validation;
-using MFlow.Performance.Supporting; 
+using MFlow.Performance.Supporting;
+using MFlow.Core.Validation.Factories; 
 
 namespace MFlow.Performance
 {

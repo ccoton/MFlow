@@ -1,6 +1,7 @@
 ﻿using System;
 using MFlow.Core.Validation;
 using MFlow.Samples.Mvc.Models;
+using MFlow.Core.Validation.Factories;
 
 namespace MFlow.Samples.Mvc.CustomRules
 {

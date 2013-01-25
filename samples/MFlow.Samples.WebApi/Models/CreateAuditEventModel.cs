@@ -12,7 +12,7 @@ namespace MFlow.Samples.WebApi.Models
                 .Check(m => m.Description).IsNotEmpty().Message("Description cannot be empty")
                 .Check(m => m.Code).IsNotEmpty().Message("Code cannot be empty")
                 .Check(m => m.SecurityKey)
-                    .Mathes(@"^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$")
+                    .Matches(@"^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$")
                     .Message("Security Key is invalid");
         }
 

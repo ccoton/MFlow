@@ -540,6 +540,7 @@ namespace MFlow.Core.Tests.Validation
         [Test]
         public void Test_Chained_Fluent_Validation_On_Message_Lookup_Different_Culture()
         {
+            var defaultCulture =  Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr-FR");
 
             var user = new User {
@@ -553,6 +554,7 @@ namespace MFlow.Core.Tests.Validation
             var message = string.Format("LastLogin doit être mis sur {0}", DateTime.Parse("01/01/2012 00:00:00"));
 
             Assert.AreEqual(message, results.First().Condition.Message);
+            Thread.CurrentThread.CurrentUICulture = defaultCulture;
         }
 
         [Test]
