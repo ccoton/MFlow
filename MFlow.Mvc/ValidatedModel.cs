@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using MFlow.Core.Validation.Builder;
@@ -19,6 +20,8 @@ namespace MFlow.Mvc
         /// </summary>
         public void SetTarget(T target, bool loadRuleset = false, string rulesetFile = "")
         {
+            if(target == null)
+                throw new ArgumentNullException("target");
             _factory = new FluentValidationFactory();
             _validator = _factory.GetFluentValidation<T>(target, loadRuleset, rulesetFile);
         }
@@ -52,7 +55,6 @@ namespace MFlow.Mvc
             _validator.SetTarget((T)validationContext.ObjectInstance);
             var validate = _validator.Validate().ToList();
             return validate.Where(v => !string.IsNullOrEmpty(v.Condition.Hint)).Select(v => new ValidationResult(v.Condition.Hint, new[] { v.Condition.Key })); 
-
         }
 
     }

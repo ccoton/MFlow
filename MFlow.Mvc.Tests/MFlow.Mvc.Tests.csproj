@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Supporting\LoginViewModel.cs" />
+    <Compile Include="Supporting\NullModel.cs" />
     <Compile Include="ValidatedModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
