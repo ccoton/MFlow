@@ -74,7 +74,6 @@
     <Compile Include="Api\ValidationController.cs" />
     <Compile Include="Models\ModelToValidate.cs" />
     <Compile Include="Models\ModelValidationType.cs" />
-    <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Api\SuggestionController.cs" />
   </ItemGroup>

@@ -6,7 +6,7 @@ namespace MFlow.Mvc.Tests.Supporting
     {
         public NullModel()
         {
-            SetTarget(null);
+            GetValidator(null);
         }
     }
 }

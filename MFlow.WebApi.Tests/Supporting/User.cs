@@ -10,8 +10,8 @@ namespace MFlow.WebApi.Tests
 
         public User()
         {
-            SetTarget(this);
-            Validator.Check(m => m.Username).IsNotEmpty().Hint("Enter a username")
+            GetValidator(this)
+                .Check(m => m.Username).IsNotEmpty().Hint("Enter a username")
                 .Check(m => m.Password).IsNotEmpty();
         }
     }

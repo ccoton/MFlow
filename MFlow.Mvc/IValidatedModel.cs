@@ -12,12 +12,7 @@ namespace MFlow.Mvc
         /// <summary>
         ///     Sets the target for validation
         /// </summary>
-        void SetTarget(T target, bool loadRuleset = false, string rulesetFile = "");
-
-        /// <summary>
-        ///     The validation instance
-        /// </summary>
-        IFluentValidationBuilder<T> Validator { get; }
+        IFluentValidationBuilder<T> GetValidator(T target, bool loadRuleset = false, string rulesetFile = "");
 
         /// <summary>
         ///     Validates the current object instance against the validator

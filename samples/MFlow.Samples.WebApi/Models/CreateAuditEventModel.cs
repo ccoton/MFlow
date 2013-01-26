@@ -6,9 +6,7 @@ namespace MFlow.Samples.WebApi.Models
     {
         public CreateAuditEventModel()
         {
-            SetTarget(this);
-
-            Validator
+            GetValidator(this)
                 .Check(m => m.Description).IsNotEmpty().Message("Description cannot be empty")
                 .Check(m => m.Code).IsNotEmpty().Message("Code cannot be empty")
                 .Check(m => m.SecurityKey)

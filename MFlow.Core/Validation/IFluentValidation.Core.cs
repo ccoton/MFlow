@@ -13,7 +13,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Sets the target of this validation instance
         /// </summary>
-        void SetTarget(T target);
+        IFluentValidationBuilder<T> SetTarget(T target);
 
         /// <summary>
         ///     Gets the target of this validation instance

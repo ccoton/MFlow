@@ -15,11 +15,10 @@
 	
 	<UsingTask AssemblyFile="$(MSBuildExtensions)" TaskName="MSBuild.Community.Tasks.NUnit" Condition="'$(teamcity_version)' == ''" />
 	
-	<Target Name="default" DependsOnTargets="Compile; Test; Deploy" />
+	<Target Name="default" DependsOnTargets="Compile; Test; Deploy; CompileSamples;" />
  
  	<Target Name="Compile">
 		<MSBuild Projects="$(SolutionFile)" Properties="Configuration=$(Configuration)"  Targets="Rebuild" />
-		<MSBuild Projects="$(SamplesSolutionFile)" Properties="Configuration=$(Configuration)"  Targets="Rebuild" />
 	</Target>
 
 	<Target Name="Test">
@@ -40,5 +39,8 @@
 		<Copy SourceFiles="@(WebApiBinaries)" DestinationFolder="$(BaseDir)\built\MFlow.WebApi\%(RecursiveDir)"  />
 	</Target>
 	
+	<Target Name="CompileSamples">
+		<MSBuild Projects="$(SamplesSolutionFile)" Properties="Configuration=$(Configuration)"  Targets="Rebuild" />
+	</Target>
 	
 </Project>

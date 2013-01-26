@@ -10,7 +10,7 @@ namespace MFlow.Samples.Mvc.Models
         {
             // Use the base ValidatedModel class to define rules
             // Pass in true to load the validation rules from xml
-            SetTarget(this, loadRuleset:true, rulesetFile:"RegisterModel.validation.vml");
+            GetValidator(this, loadRuleset:true, rulesetFile:"RegisterModel.validation.vml");
         }
 
         [Display(Name = "Forenames")]
