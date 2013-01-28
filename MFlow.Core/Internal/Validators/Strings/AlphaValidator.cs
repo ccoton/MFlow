@@ -9,15 +9,11 @@ namespace MFlow.Core.Internal.Validators.Strings
     /// </summary>
     public class AlphaValidator : IAlphaValidator
     {
-        static IDictionary<string, bool> cache = new Dictionary<string, bool>();
-
         public bool Validate(string input)
         {
             if (input == null)
                 return false;
-            if (!cache.ContainsKey(input))
-                cache [input] = input.ToCharArray().All(c => Char.IsLetter(c));
-            return cache [input];
+            return input.ToCharArray().All(c => Char.IsLetter(c));
         }
     }
 }

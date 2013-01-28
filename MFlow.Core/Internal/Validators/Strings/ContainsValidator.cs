@@ -7,19 +7,13 @@ namespace MFlow.Core.Internal.Validators.Strings
     ///     Contains Validator
     /// </summary>
     class ContainsValidator : IContainsValidator
-    {
-        static IDictionary<string, bool> cache = new Dictionary<string, bool>();
-        
+    {       
         public bool Validate(string input, string value)
         {
             if (input == null || value == null)
                 return false;
         
-            var key = string.Format("{0} == {1}", input, value);
-        
-            if (!cache.ContainsKey(key))
-                cache [key] = input.Contains(value);
-            return cache [key];
+            return input.Contains(value);
         }
     }
 }

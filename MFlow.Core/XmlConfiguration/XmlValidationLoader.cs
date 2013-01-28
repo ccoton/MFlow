@@ -22,7 +22,7 @@ namespace MFlow.Core.XmlConfiguration
 
 
         /// <summary>
-        ///     Static constructor
+        ///     Static type initializer
         /// </summary>
         static XmlValidationLoader()
         {

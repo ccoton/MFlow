@@ -15,9 +15,9 @@ namespace MFlow.Core.Resources
     {
 
         static readonly Dictionary<string, Dictionary<string, string>> _resources;
-
+        
         /// <summary>
-        ///     Static constructor that loads the default and current culture resources
+        ///     Static type initializer that loads the default and current culture resources
         /// </summary>
         static ResourceLocator()
         {
@@ -25,7 +25,7 @@ namespace MFlow.Core.Resources
 
             LoadAndCache(string.Format("Messages.{0}.xml", Thread.CurrentThread.CurrentUICulture.Name));
             LoadAndCache("Messages.en.xml");
-        }
+        } 
 
         /// <summary>
         ///     Gets a resource by key for the loaded cultures, will try to load the current culture again if it hasnt 

@@ -9,18 +9,14 @@ namespace MFlow.Core.Internal.Validators.Strings
     /// </summary>
     public class NumericValidator : INumericValidator
     {
-        static IDictionary<string, bool> cache = new Dictionary<string, bool>();
-
         public bool Validate(string input)
         {
             if (input == null)
                 return false;
-            if (!cache.ContainsKey(input))
-            {
-                var number = 0;
-                cache [input] = int.TryParse(input, out number);
-            }
-            return cache [input];
+
+            var number = 0;
+            return int.TryParse(input, out number);
+
         }
     }
 }
