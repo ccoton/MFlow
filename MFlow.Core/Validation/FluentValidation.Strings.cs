@@ -13,7 +13,7 @@ namespace MFlow.Core.Validation
     {
         
         /// <summary>
-        ///     Checks if the expressions evaluates to a string that is empty
+        ///     Checks if the expression evaluates to a string that is empty
         /// </summary>
         public IFluentValidation<T> IsNotEmpty()
         {

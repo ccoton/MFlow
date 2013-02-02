@@ -7,7 +7,7 @@ using MFlow.Core.VmlConfiguration;
 namespace MFlow.Core.Validation.Factories
 {
     /// <summary>
-    ///     A factory to provide an fluentvalidation implementation
+    ///     A factory to provide a fluentvalidation implementation
     /// </summary>
     public class FluentValidationFactory : IFluentValidationFactory
     {
@@ -17,6 +17,9 @@ namespace MFlow.Core.Validation.Factories
         public IFluentValidationBuilder<T> GetFluentValidation<T>(T target, bool loadXmlRuleset = false, 
                                                                   string fileName = "")
         {
+            if (target == null)
+                throw new ArgumentNullException("target");
+
             if (!loadXmlRuleset)
             {
                 var resolver = new PropertyNameResolver();

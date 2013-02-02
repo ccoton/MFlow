@@ -67,7 +67,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "On.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
-        
+         
         [Test]
         public void Test_Fluent_Validation_IsThisYear_False_Loaded_From_Xml()
         {

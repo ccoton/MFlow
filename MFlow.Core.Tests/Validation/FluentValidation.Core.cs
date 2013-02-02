@@ -7,6 +7,7 @@ using System.Threading;
 using System.Globalization;
 using MFlow.Core.Conditions.Enums;
 using NUnit.Framework;
+using MFlow.Core.Validation.Builder;
 
 namespace MFlow.Core.Tests.Validation
 {
@@ -22,6 +23,44 @@ namespace MFlow.Core.Tests.Validation
         {
             var fluentValidation = _factory.GetFluentValidation<User>(null);
             fluentValidation.Validate();
+        }
+
+        [Test]
+        public void Test_Fluent_Validation_Get_And_Set_Target()
+        {
+            var user = new User();
+            var fluentValidation = _factory.GetFluentValidation(user);
+            fluentValidation.SetTarget(user);
+
+            var target = fluentValidation.GetTarget();
+            Assert.AreEqual(user, target);
+        }
+
+        [Test]
+        public void Test_Fluent_Validation_Get_And_Set_Target_After_Check()
+        {
+            var user = new User();
+            var fluentValidation = _factory.GetFluentValidation(user);
+            fluentValidation.Check(u=>u.Username).IsNotEmpty().SetTarget(user);
+
+            var target = fluentValidation.GetTarget();
+            Assert.AreEqual(user, target);
+        }
+
+
+        [Test]
+        public void Test_Fluent_Validation_Clears_Conditions()
+        {
+            var user = new User
+            {
+                Password = "password123",
+                Username = "testing"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            fluentValidation
+                .Check(u => u.Username).IsEqualTo("xxx").Clear();
+
+            Assert.IsTrue(fluentValidation.Satisfied());
         }
 
         [Test]
