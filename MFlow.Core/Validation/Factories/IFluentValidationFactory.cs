@@ -10,7 +10,11 @@ namespace MFlow.Core.Validation.Factories
         /// <summary>
         ///     Gets a fluent validation implementation
         /// </summary>
-        IFluentValidationBuilder<T> GetFluentValidation<T>(T target, bool loadXmlRuleset = false, 
-                                                           string fileName = "");
+        IFluentValidationBuilder<T> GetFluentValidation<T>(T target);
+
+        /// <summary>
+        ///     Gets a fluent validation implementation loaded from configuration
+        /// </summary>
+        IFluentValidationBuilder<T> GetFluentValidationFromConfig<T>(T target, string fileName);
     }
 }

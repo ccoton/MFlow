@@ -11,7 +11,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
         public void Test_Fluent_Validation_IsRequired_False_Loaded_From_Xml()
         {
             var user = new User();
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsRequired.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsRequired.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -21,7 +21,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "testing"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsRequired.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsRequired.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
         
@@ -31,7 +31,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "testing"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "Equal.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "Equal.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -42,7 +42,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
                 Password = "123",
                 ConfirmPassword = "456"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "EqualExpression.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "EqualExpression.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -53,7 +53,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
                 Password = "123",
                 ConfirmPassword = "123"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "EqualExpression.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "EqualExpression.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -64,7 +64,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
                 Password = "123",
                 ConfirmPassword = "123"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEqualExpression.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "NotEqualExpression.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -75,7 +75,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
                 Password = "123",
                 ConfirmPassword = "456"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEqualExpression.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "NotEqualExpression.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -85,7 +85,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "fred"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "Equal.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "Equal.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -95,7 +95,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "fred"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEqual.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "NotEqual.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -105,7 +105,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "testing"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEqual.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "NotEqual.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
     }

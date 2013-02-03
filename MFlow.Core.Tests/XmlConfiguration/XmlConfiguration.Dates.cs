@@ -14,7 +14,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Parse("01/02/2010")
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "After.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "After.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -24,7 +24,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Parse("01/02/2020")
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "After.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "After.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -34,7 +34,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Parse("01/02/2020")
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "Before.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "Before.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -44,7 +44,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Parse("01/02/2010")
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "Before.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "Before.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -54,7 +54,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Parse("01/02/2015")
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "On.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "On.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -64,7 +64,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Parse("01/01/2015")
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "On.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "On.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
          
@@ -74,7 +74,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Now.AddYears(1)
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsThisYear.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsThisYear.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -84,7 +84,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Now
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsThisYear.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsThisYear.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -94,7 +94,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Now.AddMonths(1)
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsThisMonth.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsThisMonth.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -104,7 +104,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Now
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsThisMonth.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsThisMonth.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -114,7 +114,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Now.AddMonths(1)
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsThisWeek.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsThisWeek.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -124,7 +124,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Now
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsThisWeek.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsThisWeek.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -134,7 +134,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Now.AddDays(1)
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsToday.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsToday.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -144,7 +144,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 LastLogin = DateTime.Now
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsToday.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsToday.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
     }

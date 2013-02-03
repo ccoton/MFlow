@@ -13,7 +13,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 LoginCount = 12
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "LessThan.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "LessThan.validation.vml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -23,7 +23,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 LoginCount = 9
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "LessThan.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "LessThan.validation.vml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -33,7 +33,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 LoginCount = 1
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "GreaterThan.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "GreaterThan.validation.vml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -43,7 +43,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 LoginCount = 15
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "GreaterThan.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "GreaterThan.validation.vml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -53,7 +53,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 LoginCount = 11
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "LessThanOrEqualTo.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "LessThanOrEqualTo.validation.vml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -63,7 +63,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 LoginCount = 10
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "LessThanOrEqualTo.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "LessThanOrEqualTo.validation.vml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -73,7 +73,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 LoginCount = 1
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "GreaterThanOrEqualTo.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "GreaterThanOrEqualTo.validation.vml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -83,7 +83,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 LoginCount = 10
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "GreaterThanOrEqualTo.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "GreaterThanOrEqualTo.validation.vml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
     }

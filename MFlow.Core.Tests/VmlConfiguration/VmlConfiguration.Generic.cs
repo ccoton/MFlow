@@ -12,7 +12,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
         public void Test_Fluent_Validation_IsRequired_False_Loaded_From_Vml()
         {
             var user = new User();
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsRequired.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsRequired.validation.vml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -22,7 +22,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 Username = "testing"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsRequired.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsRequired.validation.vml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -32,7 +32,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 Username = "testing"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "Equal.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "Equal.validation.vml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -43,7 +43,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
                 Password = "123",
                 ConfirmPassword = "456"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "EqualExpression.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "EqualExpression.validation.vml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -54,7 +54,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
                 Password = "123",
                 ConfirmPassword = "123"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "EqualExpression.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "EqualExpression.validation.vml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -65,7 +65,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
                 Password = "123",
                 ConfirmPassword = "123"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEqualExpression.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "NotEqualExpression.validation.vml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -76,7 +76,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
                 Password = "123",
                 ConfirmPassword = "456"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEqualExpression.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "NotEqualExpression.validation.vml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -86,7 +86,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 Username = "fred"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "Equal.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "Equal.validation.vml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -96,7 +96,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 Username = "fred"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEqual.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "NotEqual.validation.vml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -106,7 +106,7 @@ namespace MFlow.Core.Tests.VmlConfiguration
             var user = new User {
                 Username = "testing"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEqual.validation.vml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "NotEqual.validation.vml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
     }

@@ -14,7 +14,7 @@ namespace MFlow.Mvc
     {
         IFluentValidationBuilder<T> _validator;
         IFluentValidationFactory _factory;
-        
+
         public ValidatedModel()
         {
             _factory = new FluentValidationFactory();
@@ -25,11 +25,14 @@ namespace MFlow.Mvc
         /// </summary>
         public IFluentValidationBuilder<T> GetValidator(T target, bool loadRuleset = false, string rulesetFile = "")
         {
-            if(_validator == null)
-                _validator = _factory.GetFluentValidation<T>(target, loadRuleset, rulesetFile);
+            if (_validator == null)
+                if (!loadRuleset)
+                    _validator = _factory.GetFluentValidation<T>(target);
+                else
+                    _validator = _factory.GetFluentValidationFromConfig(target, rulesetFile);
             return _validator;
         }
-        
+
         /// <summary>
         ///     Validates the current object instance against the validator
         /// </summary>

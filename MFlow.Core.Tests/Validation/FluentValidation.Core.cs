@@ -620,7 +620,7 @@ namespace MFlow.Core.Tests.Validation
             var user = new User {
                 Username = "testing"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsEmail.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsEmail.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 

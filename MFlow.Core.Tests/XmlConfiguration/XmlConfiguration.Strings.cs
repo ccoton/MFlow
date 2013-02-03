@@ -12,7 +12,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
         public void Test_Fluent_Validation_NotEmpty_False_Loaded_From_Xml()
         {
             var user = new User();
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEmpty.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "NotEmpty.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -20,7 +20,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
         public void Test_Fluent_Validation_NotEmpty_False_Loaded_From_Xml_Gets_Hint()
         {
             var user = new User();
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEmpty.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "NotEmpty.validation.xml");
             Assert.IsTrue(fluentValidation.Validate().Any(v => v.Condition.Hint == "Enter a username"));
         }
 
@@ -30,7 +30,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "testing"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "NotEmpty.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "NotEmpty.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -38,7 +38,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
         public void Test_Fluent_Validation_IsLength_False_Loaded_From_Xml()
         {
             var user = new User();
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsLength.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsLength.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -48,7 +48,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "12345678901234567890"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsLength.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsLength.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -58,7 +58,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "abc"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsNumeric.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsNumeric.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
         
@@ -68,7 +68,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "123456789"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsNumeric.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsNumeric.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -78,7 +78,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "123"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsAlpha.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsAlpha.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
         
@@ -88,7 +88,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "abcdefg"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsAlpha.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsAlpha.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
         
@@ -98,7 +98,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "123"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsDate.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsDate.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
         
@@ -108,7 +108,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "01/01/2012"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsDate.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsDate.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -118,7 +118,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "123"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsLongerThan.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsLongerThan.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
         
@@ -128,7 +128,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "1234567890123456789012"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsLongerThan.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsLongerThan.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
         
@@ -138,7 +138,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "12321323132321321321321"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsShorterThan.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsShorterThan.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -148,7 +148,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "12321"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsShorterThan.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsShorterThan.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -156,7 +156,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
         public void Test_Fluent_Validation_IsCreditCard_False_Loaded_From_Xml()
         {
             var user = new User();
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsCreditCard.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsCreditCard.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -166,7 +166,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "5105 1051 0510 5100"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsCreditCard.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsCreditCard.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -174,7 +174,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
         public void Test_Fluent_Validation_IsPostCode_False_Loaded_From_Xml()
         {
             var user = new User();
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsPostCode.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsPostCode.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -184,7 +184,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "B69 1TE"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsPostCode.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsPostCode.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -192,7 +192,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
         public void Test_Fluent_Validation_IsZipCode_False_Loaded_From_Xml()
         {
             var user = new User();
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsZipCode.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsZipCode.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -202,7 +202,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "35801"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsZipCode.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsZipCode.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -210,7 +210,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
         public void Test_Fluent_Validation_Contains_False_Loaded_From_Xml()
         {
             var user = new User();
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "Contains.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "Contains.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -220,7 +220,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "test admin test"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "Contains.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "Contains.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -230,7 +230,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "testing"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "RegEx.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "RegEx.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -240,7 +240,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "user@somedomain.com"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "RegEx.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "RegEx.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
 
@@ -250,7 +250,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "testing"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsEmail.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsEmail.validation.xml");
             Assert.IsFalse(fluentValidation.Satisfied());
         }
 
@@ -260,7 +260,7 @@ namespace MFlow.Core.Tests.XmlConfiguration
             var user = new User {
                 Username = "user@somedomain.com"
             };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidation<User>(user, true, "IsEmail.validation.xml");
+            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsEmail.validation.xml");
             Assert.IsTrue(fluentValidation.Satisfied());
         }
     }
