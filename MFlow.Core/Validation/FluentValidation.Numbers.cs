@@ -48,7 +48,7 @@ namespace MFlow.Core.Validation
             Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
             Func<T, int> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            If(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
+            BuildIf(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
             return this;
         }
         

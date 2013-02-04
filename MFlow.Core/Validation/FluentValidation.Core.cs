@@ -47,7 +47,7 @@ namespace MFlow.Core.Validation
             base.Clear();
         }
 
-        IFluentValidation<T> If(Expression<Func<T, bool>> expression, string key, string message)
+        IFluentValidation<T> BuildIf(Expression<Func<T, bool>> expression, string key, string message)
         {
             if (_currentContext.ConditionType == ConditionType.And)
                 And(expression, key, message, "", _currentContext.ConditionOutput);

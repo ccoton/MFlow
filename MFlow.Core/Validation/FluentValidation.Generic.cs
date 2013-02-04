@@ -59,7 +59,7 @@ namespace MFlow.Core.Validation
             Expression<Func<T, C>> expression = _currentContext.GetExpression<C>();
             Func<T, C> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target));
-            If(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, type, string.Empty));
+            BuildIf(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, type, string.Empty));
             return this;
         }
         
@@ -68,7 +68,7 @@ namespace MFlow.Core.Validation
             Expression<Func<T, C>> expression = _currentContext.GetExpression<C>();
             Func<T, C> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            If(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
+            BuildIf(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
             return this;
         }
         
@@ -78,7 +78,7 @@ namespace MFlow.Core.Validation
             Func<T, C> compiled = _expressionBuilder.Compile(expression);
             Func<T, C> compiledValue = _expressionBuilder.Compile(value);
             Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), _expressionBuilder.Invoke(compiledValue, _target));
-            If(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
+            BuildIf(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
             return this;
         }
     }

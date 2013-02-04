@@ -72,7 +72,7 @@ namespace MFlow.Core.Validation
             Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
             Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target));
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, type, string.Empty));
+            BuildIf(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, type, string.Empty));
             return this;
         }
         
@@ -81,7 +81,7 @@ namespace MFlow.Core.Validation
             Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
             Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
             Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            If(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
+            BuildIf(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
             return this;
         }
     }
