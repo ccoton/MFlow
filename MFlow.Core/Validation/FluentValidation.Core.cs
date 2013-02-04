@@ -61,6 +61,8 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidationBuilder<T> SetTarget(T target)
         {
+            if (target == null)
+                throw new ArgumentNullException("target");
             _target = target;
             return this;
         }

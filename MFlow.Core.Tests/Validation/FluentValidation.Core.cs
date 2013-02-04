@@ -26,6 +26,41 @@ namespace MFlow.Core.Tests.Validation
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Test_Fluent_Validation_Set_Target_When_Null()
+        {
+            var user = new User();
+            var fluentValidation = _factory.GetFluentValidation(user);
+            fluentValidation.SetTarget(null);
+        }
+
+        [Test]
+        public void Test_Fluent_Validation_Set_Target_When_Not_Null()
+        {
+            var user = new User();
+            var fluentValidation = _factory.GetFluentValidation(user);
+            Assert.DoesNotThrow(() => { fluentValidation.SetTarget(user); });
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Test_Fluent_Validation_Set_Target_When_Null_After_Check()
+        {
+            var user = new User();
+            var fluentValidation = _factory.GetFluentValidation(user);
+            fluentValidation.Check(u=>u.Username).IsNotEmpty().SetTarget(null);
+        }
+
+        [Test]
+        public void Test_Fluent_Validation_Set_Target_When_Not_Null_After_Check()
+        {
+            var user = new User();
+            var fluentValidation = _factory.GetFluentValidation(user);
+            Assert.DoesNotThrow(() => { fluentValidation.Check(u => u.Username).IsNotEmpty().SetTarget(user); });
+        }
+
+
+        [Test]
         public void Test_Fluent_Validation_Get_And_Set_Target()
         {
             var user = new User();
@@ -43,7 +78,7 @@ namespace MFlow.Core.Tests.Validation
             var fluentValidation = _factory.GetFluentValidation(user);
             fluentValidation.Check(u=>u.Username).IsNotEmpty().SetTarget(user);
 
-            var target = fluentValidation.GetTarget();
+            var target = fluentValidation.Check(u=>u.Username).IsNotEmpty().GetTarget();
             Assert.AreEqual(user, target);
         }
 
