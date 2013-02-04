@@ -8,6 +8,6 @@
         /// <summary>
         ///     Load the configuration
         /// </summary>
-        IFluentValidation<T> Load<T>(T target, string fileName = "");
+        IFluentValidation<T> Load<T>(T target, string fileName = "") where T : class;
     }
 }

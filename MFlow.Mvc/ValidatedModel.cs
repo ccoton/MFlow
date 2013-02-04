@@ -10,7 +10,7 @@ namespace MFlow.Mvc
     /// <summary>
     ///     An base class that an MVC view model can inherit from
     /// </summary>
-    public class ValidatedModel<T> : IValidatedModel<T>, IValidatableObject, ISuggestableObject
+    public class ValidatedModel<T> : IValidatedModel<T>, IValidatableObject, ISuggestableObject where T : class
     {
         IFluentValidationBuilder<T> _validator;
         IFluentValidationFactory _factory;

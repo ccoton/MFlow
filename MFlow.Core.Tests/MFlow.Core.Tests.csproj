@@ -84,6 +84,7 @@
     <Compile Include="Validation\FluentValidation.Strings.cs" />
     <Compile Include="Validation\FluentValidation.Generic.cs" />
     <Compile Include="Validation\FluentValidation.Core.cs" />
+    <Compile Include="Validation\ValidationResult.cs" />
     <Compile Include="VmlConfiguration\VmlConfiguration.Strings.cs" />
     <Compile Include="VmlConfiguration\VmlConfiguration.Dates.cs" />
     <Compile Include="VmlConfiguration\VmlConfiguration.Numbers.cs" />

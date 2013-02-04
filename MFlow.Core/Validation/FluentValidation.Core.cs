@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using MFlow.Core.Conditions;
+﻿using MFlow.Core.Conditions;
 using MFlow.Core.Conditions.Enums;
 using MFlow.Core.Events;
 using MFlow.Core.Internal;
@@ -10,6 +6,10 @@ using MFlow.Core.Validation.Builder;
 using MFlow.Core.Validation.Checker;
 using MFlow.Core.Validation.Context;
 using MFlow.Core.Validation.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace MFlow.Core.Validation
 {

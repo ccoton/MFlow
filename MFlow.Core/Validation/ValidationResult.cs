@@ -1,4 +1,5 @@
 ﻿using MFlow.Core.Conditions;
+using System;
 
 namespace MFlow.Core.Validation
 {
@@ -7,11 +8,15 @@ namespace MFlow.Core.Validation
     /// </summary>
     public class ValidationResult<T> : IValidationResult<T>
     {
+        private ValidationResult() { }
+
         /// <summary>
         ///     Constructor
         /// </summary>
         public ValidationResult(IFluentCondition<T> condition)
         {
+            if (condition == null)
+                throw new ArgumentNullException("condition");
             Condition = condition;
         }
 

@@ -30,14 +30,14 @@ namespace MFlow.Core.VmlConfiguration
         /// <summary>
         ///     Load the configuration
         /// </summary>
-        public IFluentValidation<T> Load<T>(T target, string fileName = "")
+        public IFluentValidation<T> Load<T>(T target, string fileName = "") where T : class
         {
             var validator = LoadAndCache(target, fileName);
 
             return validator;
         }
 
-        IFluentValidation<T> LoadAndCache<T>(T target, string fileName = "")
+        IFluentValidation<T> LoadAndCache<T>(T target, string fileName = "") where T : class
         {
             var derivedName = string.IsNullOrEmpty(fileName) ? string.Format("{0}.validation.vml", typeof(T).Name) : fileName;
             IFluentValidation<T> validator = null;

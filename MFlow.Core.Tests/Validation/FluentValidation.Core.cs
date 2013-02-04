@@ -47,7 +47,6 @@ namespace MFlow.Core.Tests.Validation
             Assert.AreEqual(user, target);
         }
 
-
         [Test]
         public void Test_Fluent_Validation_Clears_Conditions()
         {

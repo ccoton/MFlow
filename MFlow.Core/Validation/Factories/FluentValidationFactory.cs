@@ -14,7 +14,7 @@ namespace MFlow.Core.Validation.Factories
         /// <summary>
         ///     Gets a fluent validation implementation
         /// </summary>
-        public IFluentValidationBuilder<T> GetFluentValidation<T>(T target)
+        public IFluentValidationBuilder<T> GetFluentValidation<T>(T target) where T : class
         {
             if (target == null)
                 throw new ArgumentNullException("target");
@@ -29,7 +29,7 @@ namespace MFlow.Core.Validation.Factories
         /// <summary>
         ///     Gets a fluent validation implementation loaded from configuration
         /// </summary>
-        public IFluentValidationBuilder<T> GetFluentValidationFromConfig<T>(T target, string fileName)
+        public IFluentValidationBuilder<T> GetFluentValidationFromConfig<T>(T target, string fileName) where T : class
         {
 
             if (target == null)
