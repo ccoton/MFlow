@@ -2,6 +2,7 @@
 using MFlow.Core.Conditions;
 using NUnit.Framework;
 using MFlow.Core.Conditions.Enums;
+using MFlow.Core.Tests.Supporting;
 
 namespace MFlow.Core.Tests.Conditions
 {
@@ -9,17 +10,33 @@ namespace MFlow.Core.Tests.Conditions
     public class FluentConditions
     {
         [Test]
-        public void Test_Simple_Fluent_Condition_Returns_True()
+        public void Test_Simple_Fluent_If_Condition_Returns_True()
         {
             IFluentConditions<object> fluentConditions = new FluentConditions<object>(new Object());
             Assert.IsTrue(fluentConditions.If(1 == 1).Satisfied());
         }
 
         [Test]
-        public void Test_Simple_Fluent_Condition_Returns_False()
+        public void Test_Simple_Fluent_If_Expression_Condition_Returns_True()
+        {
+            var theObject = new Object();
+            IFluentConditions<object> fluentConditions = new FluentConditions<object>(theObject);
+            Assert.IsTrue(fluentConditions.If(o=>o.Equals(theObject)).Satisfied());
+        }
+
+        [Test]
+        public void Test_Simple_Fluent_If_Condition_Returns_False()
         {
             IFluentConditions<object> fluentConditions = new FluentConditions<object>(new Object());
             Assert.IsFalse(fluentConditions.If(1 == 2).Satisfied());
+        }
+
+        [Test]
+        public void Test_Simple_Fluent_If_Expression_Condition_Returns_False()
+        {
+            var theObject = new User() { IsActive = false };
+            IFluentConditions<User> fluentConditions = new FluentConditions<User>(theObject);
+            Assert.IsFalse(fluentConditions.If(r => r.IsActive).Satisfied());
         }
 
         [Test]

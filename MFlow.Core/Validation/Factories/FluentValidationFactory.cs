@@ -31,7 +31,6 @@ namespace MFlow.Core.Validation.Factories
         /// </summary>
         public IFluentValidationBuilder<T> GetFluentValidationFromConfig<T>(T target, string fileName) where T : class
         {
-
             if (target == null)
                 throw new ArgumentNullException("target");
 
@@ -45,9 +44,6 @@ namespace MFlow.Core.Validation.Factories
                 loader = new XmlValidationLoader();
 
             return (IFluentValidationBuilder<T>)(loader.Load<T>(target, fileName));
-
         }
-
-
     }
 }

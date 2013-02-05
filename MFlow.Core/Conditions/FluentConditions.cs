@@ -35,7 +35,7 @@ namespace MFlow.Core.Conditions
             _expressionBuilder = new ExpressionBuilder<T>();
         }
 
-        /// <summary>z
+        /// <summary>
         ///     Takes a boolean IF condition and evaluates it
         /// </summary>
         public IFluentConditions<T> If(bool condition, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error)
