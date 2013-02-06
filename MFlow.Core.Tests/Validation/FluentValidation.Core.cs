@@ -123,6 +123,36 @@ namespace MFlow.Core.Tests.Validation
         }
 
         [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Test_Chained_Fluent_Validation_Throw_InValid()
+        {
+            var user = new User
+            {
+                Password = "password123",
+                Username = "xxx"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            fluentValidation
+                .Check(u => u.Username).IsEqualTo("xxx").Throw(new ArgumentException());
+        }
+
+        [Test]
+        public void Test_Chained_Fluent_Validation_Throw_Valid()
+        {
+            var user = new User
+            {
+                Password = "password123",
+                Username = "xxx"
+            };
+            var fluentValidation = _factory.GetFluentValidation<User>(user);
+            Assert.DoesNotThrow(() =>
+            {
+                fluentValidation
+                    .Check(u => u.Username).IsEqualTo("aaa").Throw(new ArgumentException());
+            });
+        }
+
+        [Test]
         public void Test_Chained_Fluent_Validation_With_InValid_Expression()
         {
             var user = new User {
