@@ -30,6 +30,7 @@
         IsNumeric = 24,
         IsAlpha = 25,
         IsDate = 26,
-        Any = 27
+        Any = 27,
+        None = 28
     }
 }

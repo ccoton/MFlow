@@ -82,6 +82,8 @@
     <Compile Include="Internal\IExpressionBuilder.cs" />
     <Compile Include="Internal\IMessageResolver.cs" />
     <Compile Include="Internal\Validators\Generic\AnyValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\NoneValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\INoneValidator.cs" />
     <Compile Include="Internal\Validators\Generic\IAnyValidator.cs" />
     <Compile Include="Internal\Validators\Dates\AfterValidator.cs" />
     <Compile Include="Internal\Validators\Dates\BeforeValidator.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="Validation\Checker\IFluentValidationChecker.Number.cs" />
     <Compile Include="Validation\Checker\IFluentValidationChecker.Strings.cs" />
     <Compile Include="Validation\Context\CurrentValidationContext.cs" />
+    <Compile Include="Validation\FluentValidation.Collections.cs" />
     <Compile Include="Validation\Enums\ValidationType.cs" />
     <Compile Include="Validation\Factories\FluentValidationFactory.cs" />
     <Compile Include="Validation\Factories\IFluentValidationFactory.cs" />

@@ -80,6 +80,7 @@
     <Compile Include="Supporting\User.cs" />
     <Compile Include="Validation\Factories\FluentValidationFactory.cs" />
     <Compile Include="Validation\FluentValidation.Dates.cs" />
+    <Compile Include="Validation\FluentValidation.Collections.cs" />
     <Compile Include="Validation\FluentValidation.Numbers.cs" />
     <Compile Include="Validation\FluentValidation.Strings.cs" />
     <Compile Include="Validation\FluentValidation.Generic.cs" />

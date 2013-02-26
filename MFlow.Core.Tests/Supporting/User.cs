@@ -9,6 +9,7 @@ namespace MFlow.Core.Tests.Supporting
         public User()
         {
             Tasks = new List<string>();
+            Users = new List<User>();
         }
 
         public string Username { get; set; }
@@ -19,6 +20,7 @@ namespace MFlow.Core.Tests.Supporting
         public bool IsActive { get; set; }
 
         public ICollection<string> Tasks { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 
     public class UserCreatedEvent : Event<User>

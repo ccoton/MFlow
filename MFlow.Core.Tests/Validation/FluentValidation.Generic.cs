@@ -224,48 +224,5 @@ namespace MFlow.Core.Tests.Validation
             Assert.IsFalse(fluentValidation
                            .Check(u => u.LoginCount).IsGreaterThan(11).DependsOn(dependency.If(false)).Satisfied());
         }
-
-        [Test]
-        public void Test_Fluent_Validation_Collection_Contains_When_Valid()
-        {
-            var user = new User
-            {
-                Username = "testing"
-            };
-
-            var myTask = "Test this";
-            user.Tasks.Add(myTask);
-
-            var fluentValidation = _factory.GetFluentValidation<User>(user);
-            Assert.IsTrue(fluentValidation
-                          .Check(u => u.Tasks).Any("Test this").Satisfied());
-        }
-
-        [Test]
-        public void Test_Fluent_Validation_Collection_Contains_When_InValid()
-        {
-            var user = new User
-            {
-                Username = "testing"
-            };
-
-            var fluentValidation = _factory.GetFluentValidation<User>(user);
-            Assert.IsFalse(fluentValidation
-                          .Check(u => u.Tasks).Any("Test this").Satisfied());
-        }
-
-        [Test]
-        public void Test_Fluent_Validation_Collection_Contains_When_InValid_Returns_Message()
-        {
-            var user = new User
-            {
-                Password = ""
-            };
-
-            var fluentValidation = _factory.GetFluentValidation<User>(user);
-            Assert.AreEqual("Tasks should contain the item specified", fluentValidation
-                           .Check(u => u.Tasks).Any("My Task")
-                           .Validate().First().Condition.Message);
-        }
     }
 }
