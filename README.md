@@ -134,7 +134,8 @@ The following validation checks are suported in the fluent interface/xml/vml con
 		IsEqual,
 		IsNotEqual,
 		IsRequired,
-        Any - Not supported in Xml/Vml
+        	Any - Not supported in Xml/Vml,
+		None - Not supported in Xml/Vml,
 	
 	Strings:
 	
