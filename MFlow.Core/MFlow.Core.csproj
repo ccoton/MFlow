@@ -81,6 +81,8 @@
     <Compile Include="Internal\ExpressionBuilder.cs" />
     <Compile Include="Internal\IExpressionBuilder.cs" />
     <Compile Include="Internal\IMessageResolver.cs" />
+    <Compile Include="Internal\Validators\Generic\AnyValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\IAnyValidator.cs" />
     <Compile Include="Internal\Validators\Dates\AfterValidator.cs" />
     <Compile Include="Internal\Validators\Dates\BeforeValidator.cs" />
     <Compile Include="Internal\Validators\Dates\OnValidator.cs" />
@@ -191,9 +193,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="Validation\Checker" />
-    <Folder Include="Validation\Builder" />
-    <Folder Include="Validation\Factories" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

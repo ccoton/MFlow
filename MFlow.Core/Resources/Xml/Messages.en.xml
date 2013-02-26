@@ -27,4 +27,5 @@
   <IsNumeric>{0} should be a numeric value</IsNumeric>
   <IsAlpha>{0} should only contain letters</IsAlpha>
   <IsDate>{0} should be a valid date</IsDate>
+  <Any>{0} should contain the item specified</Any>
 </Messages>

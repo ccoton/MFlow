@@ -29,6 +29,7 @@
         IsShorterThan = 23,
         IsNumeric = 24,
         IsAlpha = 25,
-        IsDate = 26
+        IsDate = 26,
+        Any = 27
     }
 }

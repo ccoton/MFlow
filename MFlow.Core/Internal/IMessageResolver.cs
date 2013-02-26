@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using MFlow.Core.Validation.Enums;
+using System.Collections.Generic;
 
 namespace MFlow.Core.Internal
 {
@@ -28,6 +29,11 @@ namespace MFlow.Core.Internal
         ///     Resolve a validation message using an expression
         /// </summary>
         string Resolve<T, O> (Expression<Func<T, O>> expression, O value, ValidationType type, string message);
+
+        /// <summary>
+        ///     Resolve a validation message using an expression
+        /// </summary>
+        string Resolve<T, O>(Expression<Func<T, ICollection<O>>> expression, O value, ValidationType type, string message);
 
         /// <summary>
         ///     Resolve a validation message using an expression

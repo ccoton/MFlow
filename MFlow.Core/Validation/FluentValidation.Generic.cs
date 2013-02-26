@@ -53,6 +53,14 @@ namespace MFlow.Core.Validation
         {
             return ApplyGenericValidator(_validatorFactory.GetValidator<C, IRequiredValidator<C>>(), Enums.ValidationType.IsRequired);
         }
+
+        /// <summary>
+        ///     Checks if the expression evaluates to a collection containing any item equal to the value
+        /// </summary>
+        public IFluentValidation<T> Any<C>(C value)
+        {
+            return ApplyGenericCollectionValidator(_validatorFactory.GetValidator<ICollection<C>, C, IAnyValidator<C>>(), Enums.ValidationType.Any, value);
+        }
         
         IFluentValidation<T> ApplyGenericValidator<C>(IValidator<C> validator, Enums.ValidationType type)
         {
@@ -62,8 +70,17 @@ namespace MFlow.Core.Validation
             BuildIf(derived, _resolver.Resolve<T, C>(expression), _messageResolver.Resolve(expression, type, string.Empty));
             return this;
         }
+
+        IFluentValidation<T> ApplyGenericCollectionValidator<C>(IComparisonValidator<ICollection<C>, C> validator, Enums.ValidationType type, C value)
+        {
+            Expression<Func<T, ICollection<C>>> expression = _currentContext.GetExpression<ICollection<C>>();
+            Func<T, ICollection<C>> compiled = _expressionBuilder.Compile(expression);
+            Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
+            BuildIf(derived, _resolver.Resolve<T, ICollection<C>>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
+            return this;
+        }
         
-        FluentValidation<T> ApplyGenericComparisonValidator<C>(IComparisonValidator<C, C> validator, Enums.ValidationType type, C value)
+        IFluentValidation<T> ApplyGenericComparisonValidator<C>(IComparisonValidator<C, C> validator, Enums.ValidationType type, C value)
         {
             Expression<Func<T, C>> expression = _currentContext.GetExpression<C>();
             Func<T, C> compiled = _expressionBuilder.Compile(expression);
@@ -72,7 +89,7 @@ namespace MFlow.Core.Validation
             return this;
         }
         
-        FluentValidation<T> ApplyGenericComparisonValidator<C>(IComparisonValidator<C, C> validator, Enums.ValidationType type, Expression<Func<T, C>> value)
+        IFluentValidation<T> ApplyGenericComparisonValidator<C>(IComparisonValidator<C, C> validator, Enums.ValidationType type, Expression<Func<T, C>> value)
         {
             Expression<Func<T, C>> expression = _currentContext.GetExpression<C>();
             Func<T, C> compiled = _expressionBuilder.Compile(expression);

@@ -119,6 +119,7 @@ namespace MFlow.Core.VmlConfiguration
             validator = ParseIsThisMonth(validator, document);
             validator = ParseIsThisWeek(validator, document);
             validator = ParseIsToday(validator, document);
+            validator = ParseHasNoItem(validator, document);
 
             return validator;
         }
@@ -158,6 +159,14 @@ namespace MFlow.Core.VmlConfiguration
             }
 
             return validator;
+        }
+
+        IFluentValidation<T> ParseHasNoItem<T>(IFluentValidation<T> validator, string document)
+        {
+            return CreateExpressions<T, ICollection<dynamic>, dynamic>(validator, document, "[HasNoItem] With", (e, ev, m, v, h) =>
+            {
+                return validator.Check(e).Any(v).Message(m).Hint(h);
+            });
         }
 
         IFluentValidation<T> ParseNotEmpty<T>(IFluentValidation<T> validator, string document)
@@ -354,7 +363,8 @@ namespace MFlow.Core.VmlConfiguration
                     "[Value]",
                     "[RegEx]",
                     "[Exp]",
-                    "[Hint]"
+                    "[Hint]",
+                    "[HasNoItem]"
                 }, StringSplitOptions.None).Where(s => !string.IsNullOrEmpty(s)).ToList();
 
                 var propertyName = keys.Skip(1).Take(1).Single().Trim();

@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using MFlow.Core.Resources;
 using MFlow.Core.Validation.Enums;
+using System.Collections.Generic;
 
 namespace MFlow.Core.Internal
 {
@@ -101,6 +102,26 @@ namespace MFlow.Core.Internal
                 var toPropertyName = _propertyNameResolver.Resolve (toExpression);
 
                 outMessage = string.Format(_resourceLocator.GetResource(key), propertyName, toPropertyName);
+
+                return outMessage;
+            }
+
+            return message;
+        }
+
+
+        public string Resolve<T, O>(Expression<Func<T, ICollection<O>>> expression, O value, ValidationType type, string message)
+        {
+            if (ShouldResolve(message))
+            {
+                var customMessage = message.StartsWith("$", StringComparison.Ordinal) && message.EndsWith("$", StringComparison.Ordinal);
+                message = PrepareForResolve(message);
+                var key = customMessage ? message : type.ToString();
+
+                string outMessage = string.Empty;
+                var propertyName = _propertyNameResolver.Resolve(expression);
+
+                outMessage = string.Format(_resourceLocator.GetResource(key), propertyName, value != null ? value.ToString() : "null");
 
                 return outMessage;
             }
