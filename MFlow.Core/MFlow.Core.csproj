@@ -119,6 +119,7 @@
     <Compile Include="Resources\ResourceLocator.cs" />
     <Compile Include="Conditions\Enums\ConditionOutput.cs" />
     <Compile Include="Validation\Builder\IFluentValidationBuilder.cs" />
+    <Compile Include="Validation\Checker\IFluentValidationChecker.Collections.cs" />
     <Compile Include="Validation\Checker\IFluentValidationChecker.Dates.cs" />
     <Compile Include="Validation\Checker\IFluentValidationChecker.Generic.cs" />
     <Compile Include="Validation\Checker\IFluentValidationChecker.Number.cs" />
