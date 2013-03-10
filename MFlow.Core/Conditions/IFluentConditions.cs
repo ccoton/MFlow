@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using MFlow.Core.Conditions.Enums;
+using System.Collections.Generic;
 
 namespace MFlow.Core.Conditions
 {
@@ -9,6 +10,11 @@ namespace MFlow.Core.Conditions
     /// </summary>
     public interface IFluentConditions<T>
     {
+        /// <summary>
+        ///     The list of conditions
+        /// </summary>
+        IList<IFluentCondition<T>> Conditions { get; }
+
         /// <summary>
         ///     Takes a boolean IF condition and evaluates it
         /// </summary>

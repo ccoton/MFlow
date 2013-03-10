@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FluentValidation>
+  <Validator>
+    <Rules>
+      <After property="LastLogin" value="01/01/2015" message="AfterValidatorMessage" />
+      <Before property="LastLogin" value="01/01/2015" message="BeforeValidatorMessage" />
+      <Contains property="Username" message="ContainsValidatorMessage" value="admin" />
+      <Equal property="Username" value="fred" message="EqualValidatorMessage" />
+      <EqualTo property="Password" toProperty="ConfirmPassword" message="EqualToValidatorMessage" />
+      <GreaterThan property="LoginCount" value="10" message="GreaterThanValidatorMessage" />
+      <GreaterThanOrEqualTo property="LoginCount" value="10" message="GreaterThanOrEqualToValidatorMessage" />
+      <IsAlpha property="Username" message="AlphaValidatorMessage" />
+      <IsCreditCard property="Username" message="CreditCardValidatorMessage" />
+      <IsDate property="Username" message="IsDateValidatorMessage" />
+      <IsEmail property="Username" message="IsEmailValidatorMessage" />
+      <IsLength property="Username" value="20" message="IsLengthValidatorMessage" />
+      <IsLongerThan property="Username" value="20" message="LongerThanValidatorMessage" />
+      <IsNumeric property="Username" message="IsNumericValidatorMessage" />
+      <IsPostCode property="Username" message="IsPostCodeValidatorMessage" />
+      <IsRequired property="Username" message="IsRequiredValidatorMessage" />
+      <IsShorterThan property="Username" value="20" message="IsShorterThanValidatorMessage" />
+      <IsThisMonth property="LastLogin" message="IsThisMonthValidatorMessage" />
+      <IsThisWeek property="LastLogin" message="IsThisWeekValidatorMessage" />
+      <IsThisYear property="LastLogin" message="IsThisYearValidatorMessage" />
+      <IsToday property="LastLogin" message="IsTodayValidatorMessage" />
+      <IsZipCode property="Username" message="IsZipCodeValidatorMessage" />
+      <LessThan property="LoginCount" value="10" message="LessThanValidatorMessage" />
+      <LessThanOrEqualTo property="LoginCount" value="10" message="LessThanOrEqualToValidatorMessage" />
+      <NotEmpty property="Username" message="NotEmptyValidatorMessage" hint="Enter a username" />
+      <NotEqual property="Username" value="fred" message="NotEqualValidatorMessage" />
+      <NotEqualTo property="Password" toProperty="ConfirmPassword" message="NotEqualToValidatorMessage" />
+      <On property="LastLogin" value="01/01/2015" message="OnValidatorMessage" />
+      <RegEx property="Username" value="\w+([-+.&#39;]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" message="RegExValidatorMessage" />
+      <Custom>
+        <CheckCustomCondition location="MFlow.Core.Tests" message="CustomValidatorMessage"/>
+      </Custom>
+    </Rules>
+  </Validator>
+</FluentValidation>

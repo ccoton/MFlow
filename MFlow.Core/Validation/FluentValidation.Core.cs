@@ -89,7 +89,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> Warn()
         {
-            _conditions.Last().SetConditionOutput(ConditionOutput.Warning);
+            Conditions.Last().SetConditionOutput(ConditionOutput.Warning);
             return this;
         }
 
@@ -192,9 +192,9 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> Message(string message)
         {
-            if (_conditions.Any())
+            if (Conditions.Any())
             {
-                var lastCondition = _conditions.Last();
+                var lastCondition = Conditions.Last();
                 message = _messageResolver.Resolve(lastCondition.Key, ValidationType.Unknown, message);
                 lastCondition.SetMessage(message);
             }
@@ -206,9 +206,9 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> Hint(string hint)
         {
-            if (_conditions.Any())
+            if (Conditions.Any())
             {
-                var lastCondition = _conditions.Last();
+                var lastCondition = Conditions.Last();
                 hint = _messageResolver.Resolve(lastCondition.Key, ValidationType.Unknown, hint);
                 lastCondition.SetHint(hint);
             }
@@ -220,8 +220,8 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> Key(string key)
         {
-            if (_conditions.Any())
-                _conditions.Last().SetKey(key);
+            if (Conditions.Any())
+                Conditions.Last().SetKey(key);
             return this;
         }
 
@@ -251,7 +251,7 @@ namespace MFlow.Core.Validation
         {
             var results = new List<IValidationResult<T>>();
 
-            foreach (var condition in base._conditions.ToList()
+            foreach (var condition in base.Conditions.ToList()
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
                 .Where(c => !c.Condition.Compile().Invoke(_target)))
                 results.Add(new ValidationResult<T>(condition));

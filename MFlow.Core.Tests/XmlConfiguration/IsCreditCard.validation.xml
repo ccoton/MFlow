@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<FluentValidation>
-  <Validator>
-    <Rules>
-      <IsCreditCard property="Username" message="Value should be a valid credit card number" />
-    </Rules>
-  </Validator>
-</FluentValidation>

@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<FluentValidation>
-  <Validator>
-    <Rules>
-      <LessThan property="LoginCount" value="10" message="Login count must be less than 10" />
-    </Rules>
-  </Validator>
-</FluentValidation>

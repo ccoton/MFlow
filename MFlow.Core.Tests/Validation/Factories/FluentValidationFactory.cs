@@ -27,26 +27,5 @@ namespace MFlow.Core.Tests.Validation.Factories
             var type = new MFlow.Core.Validation.Factories.FluentValidationFactory().GetFluentValidation(new User());
             Assert.IsInstanceOf<IFluentValidationBuilder<User>>(type);
         }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_Fluent_Validation_Factory_With_Null_Target_Throws_Exception_With_Config()
-        {
-            var type = new MFlow.Core.Validation.Factories.FluentValidationFactory().GetFluentValidationFromConfig<User>(null, "IsDate.validation.xml");
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Test_Fluent_Validation_Factory_With_Null_Target_Throws_Exception_With_Empty_Config()
-        {
-            var type = new MFlow.Core.Validation.Factories.FluentValidationFactory().GetFluentValidationFromConfig(new User(), string.Empty);
-        }
-
-        [Test]
-        public void Test_Fluent_Validation_Factory_With_Target_Returns_Correct_Type_With_Config()
-        {
-            var type = new MFlow.Core.Validation.Factories.FluentValidationFactory().GetFluentValidationFromConfig(new User(), "IsDate.validation.xml");
-            Assert.IsInstanceOf<IFluentValidationBuilder<User>>(type);
-        }
     }
 }

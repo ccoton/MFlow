@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<FluentValidation>
-  <Validator>
-    <Rules>
-      <IsNumeric property="Username" message="Username must be numeric" />
-    </Rules>
-  </Validator>
-</FluentValidation>

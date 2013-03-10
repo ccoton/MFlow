@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<FluentValidation>
-  <Validator>
-    <Rules>
-      <NotEqualTo property="Password" toProperty="ConfirmPassword" message="Passwords must not match" />
-    </Rules>
-  </Validator>
-</FluentValidation>

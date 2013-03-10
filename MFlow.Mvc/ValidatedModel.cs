@@ -23,13 +23,14 @@ namespace MFlow.Mvc
         /// <summary>
         ///     The validation instance
         /// </summary>
-        public IFluentValidationBuilder<T> GetValidator(T target, bool loadRuleset = false, string rulesetFile = "")
+        public IFluentValidationBuilder<T> GetValidator(T target, bool loadRuleset = false, string rulesetFile = "", Func<T, string, IFluentValidationBuilder<T>> loader = null)
         {
             if (_validator == null)
                 if (!loadRuleset)
                     _validator = _factory.GetFluentValidation<T>(target);
                 else
-                    _validator = _factory.GetFluentValidationFromConfig(target, rulesetFile);
+                    if (loader != null)
+                        _validator = loader(target, rulesetFile);
             return _validator;
         }
 

@@ -22,6 +22,8 @@
     <DelaySign>False</DelaySign>
     <RunCodeAnalysis>False</RunCodeAnalysis>
     <SourceAnalysisOverrideSettingsFile>C:\Users\Mark\AppData\Roaming\ICSharpCode/SharpDevelop5\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>Full</DebugType>
@@ -118,6 +120,7 @@
     <Compile Include="Resources\IResourceLocator.cs" />
     <Compile Include="Resources\ResourceLocator.cs" />
     <Compile Include="Conditions\Enums\ConditionOutput.cs" />
+    <Compile Include="ValidationLoader.cs" />
     <Compile Include="Validation\Builder\IFluentValidationBuilder.cs" />
     <Compile Include="Validation\Checker\IFluentValidationChecker.Collections.cs" />
     <Compile Include="Validation\Checker\IFluentValidationChecker.Dates.cs" />
@@ -150,7 +153,6 @@
     <Compile Include="Validation\IValidationResult.cs" />
     <Compile Include="Validation\ValidationResult.cs" />
     <Compile Include="Validation\IFluentValidationLoader.cs" />
-    <Compile Include="XmlConfiguration\XmlValidationLoader.cs" />
     <Compile Include="Internal\Validators\IComparisonValidator.cs" />
     <Compile Include="Internal\Validators\IValidatorFactory.cs" />
     <Compile Include="Internal\Validators\ValidatorFactory.cs" />
@@ -197,5 +199,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
 </Project>

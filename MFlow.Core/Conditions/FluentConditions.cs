@@ -13,9 +13,9 @@ namespace MFlow.Core.Conditions
     public class FluentConditions<T> : IFluentConditions<T>
     {
         /// <summary>
-        ///     The internal list of conditions
+        ///     The list of conditions
         /// </summary>
-        protected readonly IList<IFluentCondition<T>> _conditions;
+        public IList<IFluentCondition<T>> Conditions {get; private set;}
 
         /// <summary>
         ///     The target of this validation instance
@@ -31,7 +31,7 @@ namespace MFlow.Core.Conditions
             if (target == null)
                 throw new ArgumentNullException("target");
             _target = target;
-            _conditions = new List<IFluentCondition<T>>();
+            Conditions = new List<IFluentCondition<T>>();
             _expressionBuilder = new ExpressionBuilder<T>();
         }
 
@@ -59,7 +59,7 @@ namespace MFlow.Core.Conditions
         public IFluentConditions<T> And(bool condition, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error)
         {
             var fluentCondition = new FluentCondition<T>(c => condition, ConditionType.And, key, message, hint, output);
-            _conditions.Add(fluentCondition);
+            Conditions.Add(fluentCondition);
             return this;
         }
 
@@ -69,7 +69,7 @@ namespace MFlow.Core.Conditions
         public IFluentConditions<T> And(Expression<Func<T, bool>> expression, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error)
         {
             var fluentCondition = new FluentCondition<T>(expression, ConditionType.And, key, message, hint, output);
-            _conditions.Add(fluentCondition);
+            Conditions.Add(fluentCondition);
             return this;
         }
 
@@ -79,7 +79,7 @@ namespace MFlow.Core.Conditions
         public IFluentConditions<T> Or(bool condition, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error)
         {
             var fluentCondition = new FluentCondition<T>(c => condition, ConditionType.Or, key, message, hint, output);
-            _conditions.Add(fluentCondition);
+            Conditions.Add(fluentCondition);
             return this;
         }
 
@@ -89,7 +89,7 @@ namespace MFlow.Core.Conditions
         public IFluentConditions<T> Or(Expression<Func<T, bool>> expression, string key = "", string message = "", string hint = "", ConditionOutput output = ConditionOutput.Error)
         {
             var fluentCondition = new FluentCondition<T>(expression, ConditionType.Or, key, message, hint, output);
-            _conditions.Add(fluentCondition);
+            Conditions.Add(fluentCondition);
             return this;
         }
 
@@ -98,7 +98,7 @@ namespace MFlow.Core.Conditions
         /// </summary>
         public IFluentConditions<T> Clear()
         {
-            _conditions.Clear();
+            Conditions.Clear();
             return this;
         }
 
@@ -151,10 +151,10 @@ namespace MFlow.Core.Conditions
         /// </summary>
         public bool Satisfied(bool suppressWarnings = true)
         {
-            return _conditions
+            return Conditions
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
                 .All(c => _expressionBuilder.Compile(c.Condition).Invoke(_target) && c.Type == ConditionType.And) ||
-                _conditions
+                Conditions
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
                 .Any(c => _expressionBuilder.Compile(c.Condition).Invoke(_target) && c.Type == ConditionType.Or);
         }

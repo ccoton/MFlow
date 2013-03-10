@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<FluentValidation>
-  <Validator>
-    <Rules>
-      <IsPostCode property="Username" message="Value should be a valid post code" />
-    </Rules>
-  </Validator>
-</FluentValidation>

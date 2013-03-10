@@ -1,7 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-# SharpDevelop 5.0
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AFA51701-67ED-4749-BDB2-6CB05126A620}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -10,34 +9,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AFA517
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E6C1F78B-5228-4242-9CF4-7315DACBD453}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Core", "MFlow.Core\MFlow.Core.csproj", "{64DD43B3-3A13-4325-B074-E26FD285CC7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Core.Tests", "MFlow.Core.Tests\MFlow.Core.Tests.csproj", "{50E56BCB-0CBD-4330-8C55-541808529B8A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mvc", "Mvc", "{FFF831E7-93BA-4272-A07F-1237BCC6DDC3}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Mvc", "MFlow.Mvc\MFlow.Mvc.csproj", "{446759FA-5274-472A-87F2-1B1CCACB6919}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Mvc.Tests", "MFlow.Mvc.Tests\MFlow.Mvc.Tests.csproj", "{96AF68AD-FCF5-4492-B9BF-F2C113E0A1DF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{775009D4-2FEF-473A-8E00-38EA908F84F1}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.WebApi", "MFlow.WebApi\MFlow.WebApi.csproj", "{C2418C31-AC59-4F32-8250-9BE18E67873B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.WebApi.Tests", "MFlow.WebApi.Tests\MFlow.WebApi.Tests.csproj", "{7F35CCEB-D7FA-46BB-9649-6FF98C294AC2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{8E805B33-0EA6-4F52-88C3-9DF293CFC34B}"
-	ProjectSection(SolutionItems) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Client", "MFlow.Client\MFlow.Client.csproj", "{E1F9462C-8401-4E0A-9D86-8FDCF1AF251C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loaders", "Loaders", "{C2EE535B-264D-4859-976A-5076969199BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Loaders.Xml.Tests", "MFlow.Loaders.Xml.Tests\MFlow.Loaders.Xml.Tests.csproj", "{6899444C-ECE6-4948-AE1C-A57F185A49B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Loaders.Xml", "MFlow.Loaders.Xml\MFlow.Loaders.Xml.csproj", "{F2916810-7308-4873-8616-A4DB4EB983F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,22 +42,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{446759FA-5274-472A-87F2-1B1CCACB6919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{446759FA-5274-472A-87F2-1B1CCACB6919}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{446759FA-5274-472A-87F2-1B1CCACB6919}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{446759FA-5274-472A-87F2-1B1CCACB6919}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50E56BCB-0CBD-4330-8C55-541808529B8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50E56BCB-0CBD-4330-8C55-541808529B8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50E56BCB-0CBD-4330-8C55-541808529B8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50E56BCB-0CBD-4330-8C55-541808529B8A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{64DD43B3-3A13-4325-B074-E26FD285CC7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{64DD43B3-3A13-4325-B074-E26FD285CC7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64DD43B3-3A13-4325-B074-E26FD285CC7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64DD43B3-3A13-4325-B074-E26FD285CC7D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F35CCEB-D7FA-46BB-9649-6FF98C294AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F35CCEB-D7FA-46BB-9649-6FF98C294AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F35CCEB-D7FA-46BB-9649-6FF98C294AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F35CCEB-D7FA-46BB-9649-6FF98C294AC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50E56BCB-0CBD-4330-8C55-541808529B8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50E56BCB-0CBD-4330-8C55-541808529B8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50E56BCB-0CBD-4330-8C55-541808529B8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50E56BCB-0CBD-4330-8C55-541808529B8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{446759FA-5274-472A-87F2-1B1CCACB6919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{446759FA-5274-472A-87F2-1B1CCACB6919}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{446759FA-5274-472A-87F2-1B1CCACB6919}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{446759FA-5274-472A-87F2-1B1CCACB6919}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96AF68AD-FCF5-4492-B9BF-F2C113E0A1DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96AF68AD-FCF5-4492-B9BF-F2C113E0A1DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96AF68AD-FCF5-4492-B9BF-F2C113E0A1DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,10 +62,36 @@ Global
 		{C2418C31-AC59-4F32-8250-9BE18E67873B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2418C31-AC59-4F32-8250-9BE18E67873B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2418C31-AC59-4F32-8250-9BE18E67873B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F35CCEB-D7FA-46BB-9649-6FF98C294AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F35CCEB-D7FA-46BB-9649-6FF98C294AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F35CCEB-D7FA-46BB-9649-6FF98C294AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F35CCEB-D7FA-46BB-9649-6FF98C294AC2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E1F9462C-8401-4E0A-9D86-8FDCF1AF251C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E1F9462C-8401-4E0A-9D86-8FDCF1AF251C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1F9462C-8401-4E0A-9D86-8FDCF1AF251C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1F9462C-8401-4E0A-9D86-8FDCF1AF251C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6899444C-ECE6-4948-AE1C-A57F185A49B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6899444C-ECE6-4948-AE1C-A57F185A49B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6899444C-ECE6-4948-AE1C-A57F185A49B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6899444C-ECE6-4948-AE1C-A57F185A49B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2916810-7308-4873-8616-A4DB4EB983F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2916810-7308-4873-8616-A4DB4EB983F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2916810-7308-4873-8616-A4DB4EB983F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2916810-7308-4873-8616-A4DB4EB983F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{64DD43B3-3A13-4325-B074-E26FD285CC7D} = {E6C1F78B-5228-4242-9CF4-7315DACBD453}
+		{50E56BCB-0CBD-4330-8C55-541808529B8A} = {E6C1F78B-5228-4242-9CF4-7315DACBD453}
+		{446759FA-5274-472A-87F2-1B1CCACB6919} = {FFF831E7-93BA-4272-A07F-1237BCC6DDC3}
+		{96AF68AD-FCF5-4492-B9BF-F2C113E0A1DF} = {FFF831E7-93BA-4272-A07F-1237BCC6DDC3}
+		{C2418C31-AC59-4F32-8250-9BE18E67873B} = {775009D4-2FEF-473A-8E00-38EA908F84F1}
+		{7F35CCEB-D7FA-46BB-9649-6FF98C294AC2} = {775009D4-2FEF-473A-8E00-38EA908F84F1}
+		{E1F9462C-8401-4E0A-9D86-8FDCF1AF251C} = {8E805B33-0EA6-4F52-88C3-9DF293CFC34B}
+		{6899444C-ECE6-4948-AE1C-A57F185A49B3} = {C2EE535B-264D-4859-976A-5076969199BA}
+		{F2916810-7308-4873-8616-A4DB4EB983F3} = {C2EE535B-264D-4859-976A-5076969199BA}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MFlow.Performance\MFlow.Performance.csproj
@@ -104,17 +123,5 @@ Global
 		$2.inheritsSet = Mono
 		$2.inheritsScope = text/x-csharp
 		$2.scope = text/x-csharp
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{64DD43B3-3A13-4325-B074-E26FD285CC7D} = {E6C1F78B-5228-4242-9CF4-7315DACBD453}
-		{50E56BCB-0CBD-4330-8C55-541808529B8A} = {E6C1F78B-5228-4242-9CF4-7315DACBD453}
-		{446759FA-5274-472A-87F2-1B1CCACB6919} = {FFF831E7-93BA-4272-A07F-1237BCC6DDC3}
-		{96AF68AD-FCF5-4492-B9BF-F2C113E0A1DF} = {FFF831E7-93BA-4272-A07F-1237BCC6DDC3}
-		{C2418C31-AC59-4F32-8250-9BE18E67873B} = {775009D4-2FEF-473A-8E00-38EA908F84F1}
-		{7F35CCEB-D7FA-46BB-9649-6FF98C294AC2} = {775009D4-2FEF-473A-8E00-38EA908F84F1}
-		{E1F9462C-8401-4E0A-9D86-8FDCF1AF251C} = {8E805B33-0EA6-4F52-88C3-9DF293CFC34B}
 	EndGlobalSection
 EndGlobal

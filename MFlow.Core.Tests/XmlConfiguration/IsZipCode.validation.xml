@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<FluentValidation>
-  <Validator>
-    <Rules>
-      <IsZipCode property="Username" message="Value should be a valid zip code" />
-    </Rules>
-  </Validator>
-</FluentValidation>

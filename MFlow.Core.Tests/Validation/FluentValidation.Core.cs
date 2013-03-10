@@ -679,16 +679,6 @@ namespace MFlow.Core.Tests.Validation
         }
 
         [Test]
-        public void Test_Fluent_Validation_IsEmail_False_Loaded_From_Xml()
-        {
-            var user = new User {
-                Username = "testing"
-            };
-            var fluentValidation = new FluentValidationFactory().GetFluentValidationFromConfig<User>(user, "IsEmail.validation.xml");
-            Assert.IsFalse(fluentValidation.Satisfied());
-        }
-
-        [Test]
         public void Test_Chained_Fluent_Validation_Email_Fluent_Message()
         {
             var user = new User {

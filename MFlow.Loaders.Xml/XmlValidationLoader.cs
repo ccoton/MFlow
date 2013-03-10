@@ -8,12 +8,12 @@ using System.Xml.Linq;
 using MFlow.Core.Validation;
 using MFlow.Core.Validation.Factories;
 
-namespace MFlow.Core.XmlConfiguration
+namespace MFlow.Loaders.Xml
 {
     /// <summary>
     ///     Load a fluentvalidation configuration
     /// </summary>
-    class XmlValidationLoader : IFluentValidationLoader
+    public class XmlValidationLoader : IFluentValidationLoader
     {
         static IDictionary<string, object> _validators;
         static IFluentValidationFactory _validationFactory;
@@ -72,7 +72,7 @@ namespace MFlow.Core.XmlConfiguration
 
         XDocument LoadDocument(string fileName)
         {
-            var path = string.Format(@"{0}\XmlConfiguration\{1}", Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath), fileName);
+            var path = string.Format(@"{0}\{1}", Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath), fileName);
             var document = XDocument.Load(path);
             return document;
         }

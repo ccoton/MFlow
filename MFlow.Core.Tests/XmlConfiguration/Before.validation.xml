@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<FluentValidation>
-  <Validator>
-    <Rules>
-      <Before property="LastLogin" value="01/01/2015" message="Last login should be before 01/01/2015" />
-    </Rules>
-  </Validator>
-</FluentValidation>

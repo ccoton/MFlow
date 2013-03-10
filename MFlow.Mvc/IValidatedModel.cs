@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MFlow.Core.Validation.Builder;
+using System;
 
 namespace MFlow.Mvc
 {
@@ -12,7 +13,7 @@ namespace MFlow.Mvc
         /// <summary>
         ///     Sets the target for validation
         /// </summary>
-        IFluentValidationBuilder<T> GetValidator(T target, bool loadRuleset = false, string rulesetFile = "");
+        IFluentValidationBuilder<T> GetValidator(T target, bool loadRuleset = false, string rulesetFile = "", Func<T, string, IFluentValidationBuilder<T>> loader = null);
 
         /// <summary>
         ///     Validates the current object instance against the validator

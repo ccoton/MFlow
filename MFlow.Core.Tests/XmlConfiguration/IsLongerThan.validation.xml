@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<FluentValidation>
-  <Validator>
-    <Rules>
-      <IsLongerThan property="Username" value="20" message="Username must be longer than 20 characters in length" />
-    </Rules>
-  </Validator>
-</FluentValidation>
