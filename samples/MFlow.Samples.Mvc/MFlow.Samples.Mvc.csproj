@@ -62,6 +62,12 @@
     <Reference Include="MFlow.Core">
       <HintPath>..\..\built\MFlow.Core\MFlow.Core.dll</HintPath>
     </Reference>
+    <Reference Include="MFlow.Loaders.Vml">
+      <HintPath>..\..\built\MFlow.Loaders.Vml\MFlow.Loaders.Vml.dll</HintPath>
+    </Reference>
+    <Reference Include="MFlow.Loaders.Xml">
+      <HintPath>..\..\built\MFlow.Loaders.Xml\MFlow.Loaders.Xml.dll</HintPath>
+    </Reference>
     <Reference Include="MFlow.Mvc">
       <HintPath>..\..\built\MFlow.Mvc\MFlow.Mvc.dll</HintPath>
     </Reference>

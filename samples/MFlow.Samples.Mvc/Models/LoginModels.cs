@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MFlow.Mvc;
 using MFlow.Core;
-using MFlow.Core.VmlConfiguration;
+using MFlow.Loaders.Vml;
 
 namespace MFlow.Samples.Mvc.Models
 {
@@ -11,7 +11,8 @@ namespace MFlow.Samples.Mvc.Models
         {
             // Use the base ValidatedModel class to define rules
             // Pass in true to load the validation rules from xml
-            GetValidator(this, rulesetFile: "LoginModel.validation.vml", loader: () => { return new ValidationLoader().Create<VmlValidationLoader>(); });
+            GetValidator(this, rulesetFile: "VmlConfiguration/LoginModel.validation.vml", 
+                loader: () => { return new ValidationLoader().Create<VmlValidationLoader>(); });
 
             //Validator
             //    .NotEmpty(m => m.UserName, message: "Username cannot be empty")

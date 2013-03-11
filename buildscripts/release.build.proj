@@ -19,12 +19,21 @@
 	<UsingTask AssemblyFile="$(MSBuildExtensions)" TaskName="MSBuild.Community.Tasks.Zip" />
 	<UsingTask AssemblyFile="$(MSBuildExtensions)" TaskName="MSBuild.Community.Tasks.XmlUpdate" />
 	
-	<Target Name="default" DependsOnTargets="Compile; Test; Deploy; PackageZip; CreatePackages" />
+	<Target Name="default" DependsOnTargets="Compile; Test; RunSpecs; Deploy; PackageZip; CreatePackages" />
  
  	<Target Name="Compile">
 		<MSBuild Projects="$(SolutionFile)" Properties="Configuration=$(Configuration)"  Targets="Rebuild" />
 	</Target>
 
+	<Target Name="RunSpecs">
+		<PropertyGroup>
+		  <MSpecCommand>
+			$(BaseDir)\lib\mspec\mspec-x86-clr4.exe $(BaseDir)\MFlow.Core.Tests\bin\$(Configuration)\MFlow.Core.Tests.dll $(BaseDir)\MFlow.Loaders.Xml.Tests\bin\$(Configuration)\MFlow.Loaders.Xml.Tests.dll $(BaseDir)\MFlow.Loaders.Vml.Tests\bin\$(Configuration)\MFlow.Loaders.Vml.Tests.dll 
+		  </MSpecCommand>
+		</PropertyGroup>
+		<Exec Command="$(MSpecCommand)" />
+	</Target>
+	
 	<Target Name="Test">
 		<NUnit Assemblies="$(TestAssemblies)" ToolPath="$(BaseDir)\lib\nunit"  />
 	</Target>
@@ -38,6 +47,8 @@
 			<MvcBinaries Include="$(BaseDir)\MFlow.Mvc\bin\$(Configuration)$(PackageSuffix)\**\MFlow.Mvc.dll" />
 			<WebApiBinaries Include="$(BaseDir)\MFlow.WebApi\bin\$(Configuration)$(PackageSuffix)\**\MFlow.WebApi.dll" />
 			<Scripts Include="$(BaseDir)\MFlow.Client\bin\$(Configuration)$(PackageSuffix)\Scripts\**\*.*" />
+			<XmlLoaderBinaries Include="$(BaseDir)\MFlow.Loaders.Xml\bin\$(Configuration)$(PackageSuffix)\**\*.*" />
+			<VmlLoaderBinaries Include="$(BaseDir)\MFlow.Loaders.Vml\bin\$(Configuration)$(PackageSuffix)\**\*.*" />
 		</ItemGroup>
 
 		<!-- Copy to the output directory -->
@@ -47,6 +58,8 @@
 		<Copy SourceFiles="@(MvcBinaries)" DestinationFolder="$(OutputDir)\MFlow.Mvc\%(RecursiveDir)"  />
 		<Copy SourceFiles="@(WebApiBinaries)" DestinationFolder="$(OutputDir)\MFlow.WebApi\%(RecursiveDir)"  />
 		<Copy SourceFiles="@(Scripts)" DestinationFolder="$(OutputDir)\MFlow.Client\Content\Scripts\%(RecursiveDir)"  />
+		<Copy SourceFiles="@(XmlLoaderBinaries)" DestinationFolder="$(BaseDir)\built\MFlow.Loaders.Xml\%(RecursiveDir)"  />
+		<Copy SourceFiles="@(VmlLoaderBinaries)" DestinationFolder="$(BaseDir)\built\MFlow.Loaders.Vml\%(RecursiveDir)"  />
 	</Target>
 
 	<Target Name="PackageZip">
@@ -68,6 +81,11 @@
 		<Copy SourceFiles="@(MvcBinaries)" DestinationFolder="$(PackageDir)\temp\MFlow.Mvc$(PackageSuffix)\lib\Net40\%(RecursiveDir)" />
 		<Copy SourceFiles="@(WebApiBinaries)" DestinationFolder="$(PackageDir)\temp\MFlow.WebApi$(PackageSuffix)\lib\Net40\%(RecursiveDir)" />
 		<Copy SourceFiles="@(Scripts)" DestinationFolder="$(PackageDir)\temp\MFlow.Client$(PackageSuffix)\Content\Scripts\%(RecursiveDir)" />
+		<Copy SourceFiles="$(MSBuildProjectDirectory)\MFlow.Loaders.Xml$(PackageSuffix).nuspec" DestinationFolder="$(PackageDir)\temp\MFlow.Loaders.Xml$(PackageSuffix)" />
+		<Copy SourceFiles="$(MSBuildProjectDirectory)\MFlow.Loaders.Vml$(PackageSuffix).nuspec" DestinationFolder="$(PackageDir)\temp\MFlow.Loaders.Vml$(PackageSuffix)" />
+		<Copy SourceFiles="@(XmlLoaderBinaries)" DestinationFolder="$(PackageDir)\temp\MFlow.Loaders.Xml$(PackageSuffix)\lib\Net40\%(RecursiveDir)" />
+		<Copy SourceFiles="@(VmlLoaderBinaries)" DestinationFolder="$(PackageDir)\temp\MFlow.Loaders.Vml$(PackageSuffix)\lib\Net40\%(RecursiveDir)" />
+		
 		<!-- Get the version number of the main assembly to insert into the nuspec files -->
 		<GetAssemblyIdentity AssemblyFiles="$(OutputDir)\MFlow.Core\MFlow.Core.dll">
 			<Output TaskParameter="Assemblies" ItemName="AsmInfo" />
@@ -99,6 +117,19 @@
 			XPath="/package/metadata/version"
 			Value="%(AsmInfo.Version)" />
 
+		<!-- insert the version number into the nuspec files -->
+		<XmlUpdate
+		  Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
+			XmlFileName="$(PackageDir)\temp\MFlow.Loaders.Xml$(PackageSuffix)\MFlow.Loaders.Xml$(PackageSuffix).nuspec"
+			XPath="/package/metadata/version"
+			Value="%(AsmInfo.Version)" />
+			
+		<!-- insert the version number into the nuspec files -->
+		<XmlUpdate
+		  Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
+			XmlFileName="$(PackageDir)\temp\MFlow.Loaders.Vml$(PackageSuffix)\MFlow.Loaders.Vml$(PackageSuffix).nuspec"
+			XPath="/package/metadata/version"
+			Value="%(AsmInfo.Version)" />
 			
 		<!-- Get the version number of the main assembly to insert into the nuspec files -->
 		<GetAssemblyIdentity AssemblyFiles="$(OutputDir)\MFlow.WebApi\MFlow.WebApi.dll">
@@ -123,6 +154,12 @@
 				
 		<Exec WorkingDirectory="$(BuildDir)\Packages" 
 					Command="$(BaseDir)\.nuget\nuget.exe pack $(PackageDir)\temp\MFlow.WebApi$(PackageSuffix)\MFlow.WebApi$(PackageSuffix).nuspec" />
+				
+		<Exec WorkingDirectory="$(BuildDir)\Packages" 
+					Command="$(BaseDir)\.nuget\nuget.exe pack $(PackageDir)\temp\MFlow.Loaders.Xml$(PackageSuffix)\MFlow.Loaders.Xml$(PackageSuffix).nuspec" />
+				
+		<Exec WorkingDirectory="$(BuildDir)\Packages" 
+					Command="$(BaseDir)\.nuget\nuget.exe pack $(PackageDir)\temp\MFlow.Loaders.Vml$(PackageSuffix)\MFlow.Loaders.Vml$(PackageSuffix).nuspec" />
 				
 		<RemoveDir Directories="$(PackageDir)\temp" />
 	</Target>
