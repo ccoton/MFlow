@@ -109,7 +109,28 @@
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation_with_null.cs" />
     <Compile Include="for_FluentValidationFactory\given\a_fluent_validation_factory.cs" />
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_not_equal_to_with_an_expression_thats_not_equal.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_not_equal_to_with_a_value_thats_not_equal.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_not_equal_to_with_an_expression_that_is_equal.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_not_equal_to_with_a_value_that_is_equal.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_equal_to_with_an_expressions_that_is_equal.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_equal_to_with_an_expressions_thats_not_equal.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_equal_to_with_a_value_that_is_equal.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_equal_to_with_a_value_thats_not_equal.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_today_with_a_date_thats_not_today.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_this_month_with_a_date_that_is_this_month.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_this_week_with_a_date_that_is_this_week.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_this_year_with_a_date_that_is_this_year.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_this_month_with_a_date_thats_not_this_month.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_this_week_with_a_date_thats_not_this_week.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_this_year_with_a_date_thats_not_this_year.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_on_with_a_date_that_is_today.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_on_with_a_date_thats_not_today.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_after_with_a_date_after_today.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_after_with_a_date_before_today.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_before_with_a_date_after_today.cs" />
     <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_multiple_false_condition_and_warnings.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_before_with_a_date_before_today.cs" />
     <Compile Include="for_FluentValidation\when_calling_validate_with_warnings.cs" />
     <Compile Include="for_FluentValidation\when_calling_else_with_false_condition.cs" />
     <Compile Include="for_FluentValidation\when_calling_else_with_true_condition.cs" />
@@ -142,14 +163,13 @@
     <Compile Include="for_FluentValidation\when_raising_an_event.cs" />
     <Compile Include="for_ValidationLoader\given\a_validation_loader.cs" />
     <Compile Include="for_ValidationLoader\when_creating_an_xml_validation_loader.cs" />
+    <Compile Include="for_ValidationResult\when_creating_with_null_argument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Supporting\User.cs" />
-    <Compile Include="Validation\FluentValidation.Dates.cs" />
     <Compile Include="Validation\FluentValidation.Numbers.cs" />
     <Compile Include="Validation\FluentValidation.Strings.cs" />
     <Compile Include="Validation\FluentValidation.Generic.cs" />
     <Compile Include="Validation\FluentValidation.Core.cs" />
-    <Compile Include="Validation\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MFlow.Core\MFlow.Core.csproj">

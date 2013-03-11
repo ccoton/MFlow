@@ -11,13 +11,11 @@ namespace MFlow.Samples.Mvc.Models
         {
             // Use the base ValidatedModel class to define rules
             // Pass in true to load the validation rules from xml
-            GetValidator(this, rulesetFile: "VmlConfiguration/LoginModel.validation.vml", 
-                loader: () => { return new ValidationLoader().Create<VmlValidationLoader>(); });
+            //GetValidator(this, rulesetFile: "VmlConfiguration/LoginModel.validation.vml", 
+            //    loader: () => { return new ValidationLoader().Create<VmlValidationLoader>(); });
 
-            //Validator
-            //    .NotEmpty(m => m.UserName, message: "Username cannot be empty")
-            //    .NotEmpty(m => m.Password, message: "Password cannot be empty")
-            //    .IsEmail(m => m.UserName, message: "Username should be an email address");
+            GetValidator(this)
+                .Check(m => m.UserName).IsNotEmpty().Message("Username cannot be empty");
         }
 
         [Display(Name = "User name")]

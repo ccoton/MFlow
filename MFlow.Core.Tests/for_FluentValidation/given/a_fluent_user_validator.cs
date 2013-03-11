@@ -17,7 +17,8 @@ namespace MFlow.Core.Tests.for_FluentValidation.given
 
         Establish context = () =>
         {
-            validator = new FluentValidationFactory().GetFluentValidation<User>(new User());
+            user = new User();
+            validator = new FluentValidationFactory().GetFluentValidation<User>(user);
         };
     }
 }
