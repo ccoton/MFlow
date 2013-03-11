@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MFlow.Mvc;
 using MFlow.Core.Conditions.Enums;
+using MFlow.Core;
+using MFlow.Core.VmlConfiguration;
 
 namespace MFlow.Samples.Mvc.Models
 {
@@ -10,7 +12,7 @@ namespace MFlow.Samples.Mvc.Models
         {
             // Use the base ValidatedModel class to define rules
             // Pass in true to load the validation rules from xml
-            GetValidator(this, loadRuleset:true, rulesetFile:"RegisterModel.validation.vml");
+            GetValidator(this, rulesetFile: "RegisterModel.validation.vml", loader: () => { return new ValidationLoader().Create<VmlValidationLoader>(); });
         }
 
         [Display(Name = "Forenames")]

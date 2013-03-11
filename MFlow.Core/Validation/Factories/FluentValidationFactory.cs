@@ -1,7 +1,6 @@
 ﻿using System;
 using MFlow.Core.Validation.Builder;
 using MFlow.Core.Internal;
-using MFlow.Core.VmlConfiguration;
 
 namespace MFlow.Core.Validation.Factories
 {

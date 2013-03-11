@@ -134,7 +134,6 @@
     <Compile Include="Validation\Factories\IFluentValidationFactory.cs" />
     <Compile Include="Validation\FluentValidation.Dates.cs" />
     <Compile Include="Validation\Context\ICurrentValidationContext.cs" />
-    <Compile Include="VmlConfiguration\VmlValidationLoader.cs" />
     <Compile Include="Events\Event.cs" />
     <Compile Include="Events\Events.cs" />
     <Compile Include="Events\EventsFactory.cs" />

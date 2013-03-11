@@ -263,18 +263,7 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
-        ///     Validate this instance
-        /// </summary>
-        public IEnumerable<IValidationResult<T>> ValidateAndThrow<E>(bool suppressWarnings = true) where E : Exception, new()
-        {
-            var results = Validate(suppressWarnings);
-            if (results.Any())
-                throw new E();
-            return results;
-        }
-
-        /// <summary>
-        ///     Throws an exception
+        ///     Throws an exception when the validation instance is not satisfied
         /// </summary>
         public void Throw<E>(E exception) where E : Exception
         {

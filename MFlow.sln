@@ -36,6 +36,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Loaders.Xml.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Loaders.Xml", "MFlow.Loaders.Xml\MFlow.Loaders.Xml.csproj", "{F2916810-7308-4873-8616-A4DB4EB983F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Loaders.Vml", "MFlow.Loaders.Vml\MFlow.Loaders.Vml.csproj", "{A75EB267-119A-4900-AC85-ED8792B9330E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFlow.Loaders.Vml.Tests", "MFlow.Loaders.Vml.Tests\MFlow.Loaders.Vml.Tests.csproj", "{52AA7E1F-E6CE-49C5-9A49-367E510A049F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +82,14 @@ Global
 		{F2916810-7308-4873-8616-A4DB4EB983F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2916810-7308-4873-8616-A4DB4EB983F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2916810-7308-4873-8616-A4DB4EB983F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A75EB267-119A-4900-AC85-ED8792B9330E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A75EB267-119A-4900-AC85-ED8792B9330E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A75EB267-119A-4900-AC85-ED8792B9330E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A75EB267-119A-4900-AC85-ED8792B9330E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52AA7E1F-E6CE-49C5-9A49-367E510A049F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52AA7E1F-E6CE-49C5-9A49-367E510A049F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52AA7E1F-E6CE-49C5-9A49-367E510A049F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52AA7E1F-E6CE-49C5-9A49-367E510A049F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +104,8 @@ Global
 		{E1F9462C-8401-4E0A-9D86-8FDCF1AF251C} = {8E805B33-0EA6-4F52-88C3-9DF293CFC34B}
 		{6899444C-ECE6-4948-AE1C-A57F185A49B3} = {C2EE535B-264D-4859-976A-5076969199BA}
 		{F2916810-7308-4873-8616-A4DB4EB983F3} = {C2EE535B-264D-4859-976A-5076969199BA}
+		{A75EB267-119A-4900-AC85-ED8792B9330E} = {C2EE535B-264D-4859-976A-5076969199BA}
+		{52AA7E1F-E6CE-49C5-9A49-367E510A049F} = {C2EE535B-264D-4859-976A-5076969199BA}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MFlow.Performance\MFlow.Performance.csproj

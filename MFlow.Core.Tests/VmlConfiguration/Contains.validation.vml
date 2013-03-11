@@ -1,1 +1,0 @@
-﻿[Display] Username must contain admin [When] Username [Does] NotContain [Value] admin

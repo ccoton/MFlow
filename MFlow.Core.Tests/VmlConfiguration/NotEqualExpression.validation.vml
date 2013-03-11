@@ -1,1 +1,0 @@
-﻿[Display] Password must not be the same as confirm password [When] Password [Is] EqualToExpression [Exp] ConfirmPassword

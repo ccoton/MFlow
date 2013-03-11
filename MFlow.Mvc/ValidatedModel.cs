@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using MFlow.Core.Validation.Builder;
 using MFlow.Core.Validation.Factories;
+using MFlow.Core.Validation;
 
 namespace MFlow.Mvc
 {
@@ -23,14 +24,14 @@ namespace MFlow.Mvc
         /// <summary>
         ///     The validation instance
         /// </summary>
-        public IFluentValidationBuilder<T> GetValidator(T target, bool loadRuleset = false, string rulesetFile = "", Func<T, string, IFluentValidationBuilder<T>> loader = null)
+        public IFluentValidationBuilder<T> GetValidator(T target, string rulesetFile = "", Func<IFluentValidationLoader> loader = null)
         {
             if (_validator == null)
-                if (!loadRuleset)
+                if (loader == null)
                     _validator = _factory.GetFluentValidation<T>(target);
                 else
                     if (loader != null)
-                        _validator = loader(target, rulesetFile);
+                        _validator = (IFluentValidationBuilder<T>)loader().Load<T>(target, rulesetFile);
             return _validator;
         }
 
