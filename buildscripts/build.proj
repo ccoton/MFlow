@@ -24,7 +24,7 @@
 	<Target Name="RunSpecs">
 		<PropertyGroup>
 		  <MSpecCommand>
-			$(BaseDir)\lib\mspec\mspec-x86-clr4.exe $(BaseDir)\MFlow.Core.Tests\bin\$(Configuration)\MFlow.Core.Tests.dll $(BaseDir)\MFlow.Loaders.Xml.Tests\bin\$(Configuration)\MFlow.Loaders.Xml.Tests.dll $(BaseDir)\MFlow.Loaders.Vml.Tests\bin\$(Configuration)\MFlow.Loaders.Vml.Tests.dll 
+			$(BaseDir)\lib\mspec\mspec-x86-clr4.exe --html $(BaseDir)\Specs.html $(BaseDir)\MFlow.Core.Tests\bin\$(Configuration)\MFlow.Core.Tests.dll $(BaseDir)\MFlow.Loaders.Xml.Tests\bin\$(Configuration)\MFlow.Loaders.Xml.Tests.dll $(BaseDir)\MFlow.Loaders.Vml.Tests\bin\$(Configuration)\MFlow.Loaders.Vml.Tests.dll 
 		  </MSpecCommand>
 		</PropertyGroup>
 		<Exec Command="$(MSpecCommand)" />
