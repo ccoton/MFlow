@@ -7,6 +7,7 @@ using System.Text;
 
 namespace MFlow.Core.Tests.for_Conditions.given
 {
+    [Subject("for Conditions")]
     public class an_if_or_condition_evaluating_to_true
     {
         protected static IFluentConditions<object> fluent_conditions;

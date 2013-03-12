@@ -59,6 +59,12 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Machine.Specifications">
+      <HintPath>..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.dll</HintPath>
+    </Reference>
+    <Reference Include="Machine.Specifications.Clr4">
+      <HintPath>..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -72,9 +78,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="for_ValidatedModel\when_suggesting_for_a_model_without_errors.cs" />
+    <Compile Include="for_ValidatedModel\when_suggesting_for_a_model_with_errors.cs" />
+    <Compile Include="for_ValidatedModel\when_validating_a_model_without_errors.cs" />
+    <Compile Include="for_ValidatedModel\given\a_login_view_model_with_errors.cs" />
+    <Compile Include="for_ValidatedModel\given\a_login_view_model_without_errors.cs" />
+    <Compile Include="for_ValidatedModel\when_validating_a_model_with_errors.cs" />
     <Compile Include="Supporting\LoginViewModel.cs" />
     <Compile Include="Supporting\NullModel.cs" />
-    <Compile Include="ValidatedModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +101,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

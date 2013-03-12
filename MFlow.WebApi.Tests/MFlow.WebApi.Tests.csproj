@@ -61,6 +61,12 @@
     <Prefer32Bit>False</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Machine.Specifications">
+      <HintPath>..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.dll</HintPath>
+    </Reference>
+    <Reference Include="Machine.Specifications.Clr4">
+      <HintPath>..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="nunit.framework">
@@ -92,9 +98,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Api\ValidationController.cs" />
+    <Compile Include="for_ValidationController\given\a_validation_controller.cs" />
+    <Compile Include="for_ValidationController\given\a_validation_controller_and_an_invalid_model.cs" />
+    <Compile Include="for_SuggestionController\when_posting_invalid_model.cs" />
+    <Compile Include="for_SuggestionController\given\a_suggestion_controller_and_an_invalid_model.cs" />
+    <Compile Include="for_SuggestionController\when_posting_with_invalid_type.cs" />
+    <Compile Include="for_SuggestionController\when_posting_with_null_type.cs" />
+    <Compile Include="for_SuggestionController\when_posting_with_null_to_validate.cs" />
+    <Compile Include="for_SuggestionController\given\a_suggestion_controller.cs" />
+    <Compile Include="for_SuggestionController\when_posting_null.cs" />
+    <Compile Include="for_ValidationController\when_posting_invalid_model.cs" />
+    <Compile Include="for_ValidationController\when_posting_null.cs" />
+    <Compile Include="for_ValidationController\when_posting_with_invalid_type.cs" />
+    <Compile Include="for_ValidationController\when_posting_with_null_to_validate.cs" />
+    <Compile Include="for_ValidationController\when_posting_with_null_type.cs" />
     <Compile Include="Supporting\User.cs" />
-    <Compile Include="Api\SuggestionController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

@@ -7,6 +7,7 @@ using System.Text;
 
 namespace MFlow.Core.Tests.for_FluentValidationFactory.given
 {
+    [Subject("for Fluent Validation Factory")]
     public class a_fluent_validation_factory
     {
         protected static IFluentValidationFactory validation_factory;

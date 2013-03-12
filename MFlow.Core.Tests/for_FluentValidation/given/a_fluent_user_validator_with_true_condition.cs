@@ -11,6 +11,7 @@ using System.Text;
 
 namespace MFlow.Core.Tests.for_FluentValidation.given
 {
+    [Subject("for Fluent Validation")]
     public class a_fluent_user_validator_with_true_condition
     {
         protected static IFluentValidationBuilder<User> validator;

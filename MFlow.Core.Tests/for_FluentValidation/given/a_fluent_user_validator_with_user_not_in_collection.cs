@@ -10,6 +10,7 @@ using System.Text;
 
 namespace MFlow.Core.Tests.for_FluentValidation.given
 {
+    [Subject("for Fluent Validation")]
     public class a_fluent_user_validator_with_user_not_in_collection
     {
         protected static IFluentValidationBuilder<User> validator;

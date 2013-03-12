@@ -6,6 +6,7 @@ using System.Text;
 
 namespace MFlow.Core.Tests.for_ValidationLoader.given
 {
+    [Subject("for Validation Loader")]
     public class a_validation_loader
     {
         protected static ValidationLoader validation_loader;

@@ -7,6 +7,7 @@ using System.Text;
 
 namespace MFlow.Core.Tests.for_ValidationResult
 {
+    [Subject("for Validation Result")]
     public class when_creating_with_null_argument
     {
         static Exception exception = null;
