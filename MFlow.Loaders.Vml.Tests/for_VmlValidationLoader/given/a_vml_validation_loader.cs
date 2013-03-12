@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace MFlow.Loaders.Xml.Tests.for_VmlValidationLoader.given
 {
+    [Subject("for Vml Validation Loader")]
     public class a_vml_validation_loader
     {
         protected static IFluentValidationLoader validation_loader;

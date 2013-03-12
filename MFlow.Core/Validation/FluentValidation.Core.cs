@@ -16,7 +16,7 @@ namespace MFlow.Core.Validation
     /// <summary>
     ///     A fluent validation implementation
     /// </summary>
-    public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>, 
+    public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>,
         IFluentValidationBuilder<T>, IFluentValidationChecker<T>
     {
         ICurrentValidationContext<T> _currentContext;
@@ -80,7 +80,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidationChecker<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And)
         {
-            _currentContext = new CurrentValidationContext<T>(expression, conditionType, ConditionOutput.Error);
+            _currentContext = new CurrentValidationContext<T>(expression, conditionType, ConditionOutput.Error, (Nullable.GetUnderlyingType(typeof(O)) != null));
             return this;
         }
 
@@ -186,7 +186,7 @@ namespace MFlow.Core.Validation
             base.And(derived, message: string.Empty);
             return this;
         }
-        
+
         /// <summary>
         ///     Add a message to a validation expression
         /// </summary>

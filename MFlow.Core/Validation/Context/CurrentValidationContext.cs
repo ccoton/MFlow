@@ -11,11 +11,12 @@ namespace MFlow.Core.Validation.Context
     {
         readonly object _expression;
 
-        public CurrentValidationContext (object expression, ConditionType conditionType = ConditionType.And, ConditionOutput output = ConditionOutput.Error)
+        public CurrentValidationContext (object expression, ConditionType conditionType = ConditionType.And, ConditionOutput output = ConditionOutput.Error, bool isNullable = false)
         {
             _expression = expression;
             ConditionType = conditionType;
             ConditionOutput = output;
+            IsNullable = isNullable;
         }
 
         /// <summary>
@@ -35,5 +36,10 @@ namespace MFlow.Core.Validation.Context
         ///     Gets the current condition output
         /// </summary>
         public ConditionOutput ConditionOutput { get; private set; }
+
+        /// <summary>
+        ///     Does the last expression evaluate to a nullable
+        /// </summary>
+        public bool IsNullable { get; private set; }
     }
 }

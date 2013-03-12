@@ -12,6 +12,7 @@ namespace MFlow.Core.Tests.Supporting
             Users = new List<User>();
         }
 
+        public int? LockedOutCount { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }

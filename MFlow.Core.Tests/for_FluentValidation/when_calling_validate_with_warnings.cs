@@ -8,7 +8,7 @@ using System.Text;
 
 namespace MFlow.Core.Tests.for_FluentValidation
 {
-    public class when_calling_validate_with_warnigs : given.a_fluent_user_validator_with_multiple_false_conditions_and_warnings
+    public class when_calling_validate_with_warnings : given.a_fluent_user_validator_with_multiple_false_conditions_and_warnings
     {
 
         static ICollection<IValidationResult<User>> results;

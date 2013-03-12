@@ -109,6 +109,20 @@
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation_with_null.cs" />
     <Compile Include="for_FluentValidationFactory\given\a_fluent_validation_factory.cs" />
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_greater_than_or_equal_to_with_a_value_that_is_equal.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_greater_than_or_equal_to_with_a_value_that_is_greater_than.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_greater_than_or_equal_to_with_a_value_that_is_not_greater_than_or_equal.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_greater_than_or_equal_to_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_less_than_or_equal_to_with_a_value_that_is_equal.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_less_than_or_equal_to_with_a_value_that_is_less_than.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_less_than_or_equal_to_with_a_value_that_is_not_less_than_or_equal.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_less_than_or_equal_to_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_greater_than_with_a_value_that_is_greater_than.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_greater_than_with_a_value_that_is_not_greater_than.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_greater_than_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_less_than_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_less_than_with_a_value_that_is_less_than.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_less_than_with_a_value_that_is_not_less_than.cs" />
     <Compile Include="for_FluentValidation\when_calling_contains_with_a_value_that_does_not_contain.cs" />
     <Compile Include="for_FluentValidation\when_calling_contains_with_a_value_that_is_null.cs" />
     <Compile Include="for_FluentValidation\when_calling_contains_with_a_value_that_contains.cs" />
@@ -204,18 +218,22 @@
     <Compile Include="for_FluentValidation\when_calling_set_target_with_null.cs" />
     <Compile Include="for_FluentValidation\when_calling_validate.cs" />
     <Compile Include="for_FluentValidation\when_raising_an_event.cs" />
+    <Compile Include="for_ValidationLoader\when_creating_a_vml_validation_loader.cs" />
     <Compile Include="for_ValidationLoader\given\a_validation_loader.cs" />
     <Compile Include="for_ValidationLoader\when_creating_an_xml_validation_loader.cs" />
     <Compile Include="for_ValidationResult\when_creating_with_null_argument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Supporting\User.cs" />
-    <Compile Include="Validation\FluentValidation.Numbers.cs" />
     <Compile Include="Validation\FluentValidation.Core.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MFlow.Core\MFlow.Core.csproj">
       <Project>{64DD43B3-3A13-4325-B074-E26FD285CC7D}</Project>
       <Name>MFlow.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MFlow.Loaders.Vml\MFlow.Loaders.Vml.csproj">
+      <Project>{a75eb267-119a-4900-ac85-ed8792b9330e}</Project>
+      <Name>MFlow.Loaders.Vml</Name>
     </ProjectReference>
     <ProjectReference Include="..\MFlow.Loaders.Xml\MFlow.Loaders.Xml.csproj">
       <Project>{f2916810-7308-4873-8616-a4db4eb983f3}</Project>

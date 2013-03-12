@@ -23,5 +23,10 @@ namespace MFlow.Core.Validation.Context
         ///     Gets the current condition output
         /// </summary>
         ConditionOutput ConditionOutput { get; }
+
+        /// <summary>
+        ///     Does the last expression evaluate to a nullable
+        /// </summary>
+        bool IsNullable { get; }
     }
 }
