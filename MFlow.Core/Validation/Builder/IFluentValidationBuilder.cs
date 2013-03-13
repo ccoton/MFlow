@@ -20,9 +20,39 @@ namespace MFlow.Core.Validation.Builder
         T GetTarget();
 
         /// <summary>
-        ///     Sets up a condition
+        ///     Adds an expression to the chain 
         /// </summary>
-        IFluentValidationChecker<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And);
+        IFluentValidationGeneric<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidationString<T> Check(Expression<Func<T, string>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidationNumber<T> Check(Expression<Func<T, int>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidationNumber<T> Check(Expression<Func<T, int?>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidationDate<T> Check(Expression<Func<T, DateTime>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidationDate<T> Check(Expression<Func<T, DateTime?>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidationCollection<T> Check<O>(Expression<Func<T, ICollection<O>>> expression, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
         ///     Takes a boolean IF condition and evaluates it

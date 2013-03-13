@@ -3,13 +3,14 @@ using System.Linq.Expressions;
 using MFlow.Core.Conditions;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.Internal.Validators.Dates;
+using MFlow.Core.Validation.Checker;
 
 namespace MFlow.Core.Validation
 {
     /// <summary>
     ///     A fluent validation implementation
     /// </summary>
-    public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>
+    public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>, IFluentValidationDate<T>
     {
         /// <summary>
         ///     Checks if the expression evaluates to a date that is less that the value

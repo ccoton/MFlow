@@ -20,6 +20,8 @@ namespace MFlow.Core.Tests.Supporting
         public DateTime? LastLogin { get; set; }
         public bool IsActive { get; set; }
 
+        public User Manager { get; set; }
+
         public ICollection<string> Tasks { get; set; }
         public ICollection<User> Users { get; set; }
     }

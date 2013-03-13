@@ -130,11 +130,11 @@
     <Compile Include="Conditions\Enums\ConditionOutput.cs" />
     <Compile Include="ValidationLoader.cs" />
     <Compile Include="Validation\Builder\IFluentValidationBuilder.cs" />
-    <Compile Include="Validation\Checker\IFluentValidationChecker.Collections.cs" />
-    <Compile Include="Validation\Checker\IFluentValidationChecker.Dates.cs" />
-    <Compile Include="Validation\Checker\IFluentValidationChecker.Generic.cs" />
-    <Compile Include="Validation\Checker\IFluentValidationChecker.Number.cs" />
-    <Compile Include="Validation\Checker\IFluentValidationChecker.Strings.cs" />
+    <Compile Include="Validation\Checker\IFluentValidationCollection.cs" />
+    <Compile Include="Validation\Checker\IFluentValidationDate.cs" />
+    <Compile Include="Validation\Checker\IFluentValidationGeneric.cs" />
+    <Compile Include="Validation\Checker\IFluentValidationNumber.cs" />
+    <Compile Include="Validation\Checker\IFluentValidationString.cs" />
     <Compile Include="Validation\Context\CurrentValidationContext.cs" />
     <Compile Include="Validation\FluentValidation.Collections.cs" />
     <Compile Include="Validation\Enums\ValidationType.cs" />

@@ -24,7 +24,37 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Adds an expression to the chain 
         /// </summary>
-        IFluentValidationChecker<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And);
+        IFluentValidationGeneric<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidationString<T> Check(Expression<Func<T, string>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidationNumber<T> Check(Expression<Func<T, int>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidationNumber<T> Check(Expression<Func<T, int?>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidationDate<T> Check(Expression<Func<T, DateTime>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidationDate<T> Check(Expression<Func<T, DateTime?>> expression, ConditionType conditionType = ConditionType.And);
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        IFluentValidationCollection<T> Check<O>(Expression<Func<T, ICollection<O>>> expression, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
         ///     When applied to a Check make it behave as a warning, by default will not be raised when validation occurs

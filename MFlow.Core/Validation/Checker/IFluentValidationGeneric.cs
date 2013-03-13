@@ -6,7 +6,7 @@ namespace MFlow.Core.Validation.Checker
     /// <summary>
     ///     A fluent validation interface
     /// </summary>
-    public partial interface IFluentValidationChecker<T>
+    public interface IFluentValidationGeneric<T>
     {
         /// <summary>
         ///     Checks if the expression evaluates to an object that is equal to the value expression 

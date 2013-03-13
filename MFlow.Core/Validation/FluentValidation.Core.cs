@@ -18,7 +18,7 @@ namespace MFlow.Core.Validation
     ///     A fluent validation implementation
     /// </summary>
     public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>,
-        IFluentValidationBuilder<T>, IFluentValidationChecker<T>
+        IFluentValidationBuilder<T>
     {
         ICurrentValidationContext<T> _currentContext;
         readonly IPropertyNameResolver _resolver;
@@ -82,10 +82,58 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Adds an expression to the chain 
         /// </summary>
-        public IFluentValidationChecker<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And)
+        public IFluentValidationGeneric<T> Check<O>(Expression<Func<T, O>> expression, ConditionType conditionType = ConditionType.And)
         {
             _currentContext = new CurrentValidationContext<T>(expression, conditionType, ConditionOutput.Error, (Nullable.GetUnderlyingType(typeof(O)) != null));
             return this;
+        }
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        public IFluentValidationString<T> Check(Expression<Func<T, string>> expression, ConditionType conditionType = ConditionType.And)
+        {
+            return (IFluentValidationString<T>)Check<string>(expression, conditionType);
+        }
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        public IFluentValidationNumber<T> Check(Expression<Func<T, int>> expression, ConditionType conditionType = ConditionType.And)
+        {
+            return (IFluentValidationNumber<T>)Check<int>(expression, conditionType);
+        }
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        public IFluentValidationNumber<T> Check(Expression<Func<T, int?>> expression, ConditionType conditionType = ConditionType.And)
+        {
+            return (IFluentValidationNumber<T>)Check<int?>(expression, conditionType);
+        }
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        public IFluentValidationDate<T> Check(Expression<Func<T, DateTime>> expression, ConditionType conditionType = ConditionType.And)
+        {
+            return (IFluentValidationDate<T>)Check<DateTime>(expression, conditionType);
+        }
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        public IFluentValidationDate<T> Check(Expression<Func<T, DateTime?>> expression, ConditionType conditionType = ConditionType.And)
+        {
+            return (IFluentValidationDate<T>)Check<DateTime?>(expression, conditionType);
+        }
+
+        /// <summary>
+        ///     Adds an expression to the chain 
+        /// </summary>
+        public IFluentValidationCollection<T> Check<O>(Expression<Func<T, ICollection<O>>> expression, ConditionType conditionType = ConditionType.And)
+        {
+            return (IFluentValidationCollection<T>)Check<ICollection<O>>(expression, conditionType);
         }
 
         /// <summary>

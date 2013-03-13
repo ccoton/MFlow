@@ -3,7 +3,7 @@
     /// <summary>
     ///     A fluent validation interface
     /// </summary>
-    public partial interface IFluentValidationChecker<T>
+    public interface IFluentValidationString<T> : IFluentValidationGeneric<T>
     {
         /// <summary>
         ///     Checks if the expressions evaluates to a string that is empty

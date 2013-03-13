@@ -109,6 +109,7 @@
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation_with_null.cs" />
     <Compile Include="for_FluentValidationFactory\given\a_fluent_validation_factory.cs" />
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation.cs" />
+    <Compile Include="for_FluentValidation\when_calling_check_with_nullables.cs" />
     <Compile Include="for_FluentValidation\when_calling_is_greater_than_or_equal_to_with_a_value_that_is_equal.cs" />
     <Compile Include="for_FluentValidation\when_calling_is_greater_than_or_equal_to_with_a_value_that_is_greater_than.cs" />
     <Compile Include="for_FluentValidation\when_calling_is_greater_than_or_equal_to_with_a_value_that_is_not_greater_than_or_equal.cs" />
