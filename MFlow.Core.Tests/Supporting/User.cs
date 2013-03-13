@@ -17,7 +17,7 @@ namespace MFlow.Core.Tests.Supporting
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public int LoginCount { get; set; }
-        public DateTime LastLogin { get; set; }
+        public DateTime? LastLogin { get; set; }
         public bool IsActive { get; set; }
 
         public ICollection<string> Tasks { get; set; }

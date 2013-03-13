@@ -69,19 +69,26 @@ namespace MFlow.Core.Validation
         
         IFluentValidation<T> ApplyDateValidator(IValidator<DateTime> validator, Enums.ValidationType type)
         {
-            Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
-            Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target));
-            BuildIf(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, type, string.Empty));
+            var condition = _validatorToCondition.ForDateTime(_currentContext, validator, type);
+            BuildIf(condition.Condition, condition.Key, condition.Message); 
             return this;
         }
         
         FluentValidation<T> ApplyDateComparisonValidator(IComparisonValidator<DateTime, DateTime> validator, Enums.ValidationType type, DateTime value)
         {
-            Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
-            Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            BuildIf(derived, _resolver.Resolve<T, DateTime>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
+            IFluentCondition<T> condition;
+            if (_currentContext.IsNullable)
+            {
+                condition = new ApplyNullableDateValidator<T>(_target, _currentContext, _expressionBuilder,
+                    _resolver, _messageResolver).Apply(validator, type, value);
+            }
+            else
+            {
+                condition = new ApplyDateValidator<T>(_target, _currentContext, _expressionBuilder,
+                    _resolver, _messageResolver).Apply(validator, type, value);
+            }
+
+            BuildIf(condition.Condition, condition.Key, condition.Message);
             return this;
         }
     }

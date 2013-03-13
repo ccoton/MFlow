@@ -42,15 +42,13 @@ namespace MFlow.Core.Validation
         {
             return ApplyIntComparisonValidator(_validatorFactory.GetValidator<int, int, IGreaterThanOrEqualToValidator>(), Enums.ValidationType.GreaterThanOrEqualTo, value);
         }
-        
+
         FluentValidation<T> ApplyIntComparisonValidator(IComparisonValidator<int, int> validator, Enums.ValidationType type, int value)
         {
-            Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
-            Func<T, int> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            BuildIf(derived, _resolver.Resolve<T, int>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
+            var condition = _validatorToCondition.ForInt(_currentContext, validator, type, value);
+            BuildIf(condition.Condition, condition.Key, condition.Message);
             return this;
         }
-        
+
     }
 }

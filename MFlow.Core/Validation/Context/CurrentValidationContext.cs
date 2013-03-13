@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq.Expressions;
 using MFlow.Core.Conditions.Enums;
+using MFlow.Core.Conditions;
+using MFlow.Core.Internal.Validators;
 
 namespace MFlow.Core.Validation.Context
 {
@@ -25,6 +27,14 @@ namespace MFlow.Core.Validation.Context
         public Expression<Func<T, C>> GetExpression<C> ()
         {
             return (Expression<Func<T, C>>)_expression;
+        }
+
+        /// <summary>
+        ///     Gets the nullable expression
+        /// </summary>
+        public Expression<Func<T, Nullable<C>>> GetNullableExpression<C>() where C : struct
+        {
+            return (Expression<Func<T, Nullable<C>>>)_expression;
         }
 
         /// <summary>

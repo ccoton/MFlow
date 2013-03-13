@@ -2,6 +2,7 @@
 using MFlow.Core.Conditions.Enums;
 using MFlow.Core.Events;
 using MFlow.Core.Internal;
+using MFlow.Core.Internal.Validators;
 using MFlow.Core.Validation.Builder;
 using MFlow.Core.Validation.Checker;
 using MFlow.Core.Validation.Context;
@@ -24,13 +25,14 @@ namespace MFlow.Core.Validation
         readonly IMessageResolver _messageResolver;
         readonly IExpressionBuilder<T> _expressionBuilder;
         readonly IValidatorFactory _validatorFactory;
+        readonly IValidatorToCondition<T> _validatorToCondition;
 
         /// <summary>
         ///     Constructor
         /// </summary>
         internal FluentValidation(T validate, IPropertyNameResolver propertyNameResolver,
                                   IMessageResolver messageResolver, IExpressionBuilder<T> expressionBuilder,
-                                  IValidatorFactory validatorFactory)
+                                  IValidatorFactory validatorFactory, IValidatorToCondition<T> validatorToCondition)
             : base(validate)
         {
             If(validate == null).Throw(new ArgumentException("validate"));
@@ -38,11 +40,13 @@ namespace MFlow.Core.Validation
             If(messageResolver == null).Throw(new ArgumentException("messageResolver"));
             If(expressionBuilder == null).Throw(new ArgumentException("expressionBuilder"));
             If(validatorFactory == null).Throw(new ArgumentException("validatorFactory"));
+            If(validatorToCondition == null).Throw(new ArgumentException("validatorToCondition"));
 
             _resolver = propertyNameResolver;
             _messageResolver = messageResolver;
             _expressionBuilder = expressionBuilder;
             _validatorFactory = validatorFactory;
+            _validatorToCondition = validatorToCondition;
 
             base.Clear();
         }

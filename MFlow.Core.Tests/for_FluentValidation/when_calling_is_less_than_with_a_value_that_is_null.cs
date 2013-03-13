@@ -15,8 +15,6 @@ namespace MFlow.Core.Tests.for_FluentValidation
             validator.Check(u => u.LockedOutCount).IsLessThan(10);
         };
 
-        It should_not_be_satisfied = () => { validator.Satisfied().ShouldBeFalse(); };
-        It should_return_the_correct_validation_message = () => { validator.Validate().First().Condition.Message.ShouldEqual("LockedOutCount should be 10 characters long"); };
-
+        It should_be_satisfied_as_a_nullable_assumes_default_of_0 = () => { validator.Satisfied().ShouldBeTrue(); };
     }
 }
