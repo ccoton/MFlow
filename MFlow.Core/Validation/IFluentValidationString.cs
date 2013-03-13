@@ -1,4 +1,4 @@
-﻿namespace MFlow.Core.Validation.Checker
+﻿namespace MFlow.Core.Validation
 {
     /// <summary>
     ///     A fluent validation interface

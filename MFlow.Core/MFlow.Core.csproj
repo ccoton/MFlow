@@ -130,17 +130,17 @@
     <Compile Include="Conditions\Enums\ConditionOutput.cs" />
     <Compile Include="ValidationLoader.cs" />
     <Compile Include="Validation\Builder\IFluentValidationBuilder.cs" />
-    <Compile Include="Validation\Checker\IFluentValidationCollection.cs" />
-    <Compile Include="Validation\Checker\IFluentValidationDate.cs" />
-    <Compile Include="Validation\Checker\IFluentValidationGeneric.cs" />
-    <Compile Include="Validation\Checker\IFluentValidationNumber.cs" />
-    <Compile Include="Validation\Checker\IFluentValidationString.cs" />
+    <Compile Include="Validation\IFluentValidationCollection.cs" />
+    <Compile Include="Validation\IFluentValidationDate.cs" />
+    <Compile Include="Validation\IFluentValidationGeneric.cs" />
+    <Compile Include="Validation\IFluentValidationNumber.cs" />
+    <Compile Include="Validation\IFluentValidationString.cs" />
     <Compile Include="Validation\Context\CurrentValidationContext.cs" />
-    <Compile Include="Validation\FluentValidation.Collections.cs" />
+    <Compile Include="Validation\FluentValidationCollections.cs" />
     <Compile Include="Validation\Enums\ValidationType.cs" />
     <Compile Include="Validation\Factories\FluentValidationFactory.cs" />
     <Compile Include="Validation\Factories\IFluentValidationFactory.cs" />
-    <Compile Include="Validation\FluentValidation.Dates.cs" />
+    <Compile Include="Validation\FluentValidationDates.cs" />
     <Compile Include="Validation\Context\ICurrentValidationContext.cs" />
     <Compile Include="Events\Event.cs" />
     <Compile Include="Events\Events.cs" />
@@ -151,11 +151,11 @@
     <Compile Include="Internal\IPropertyNameResolver.cs" />
     <Compile Include="Internal\PropertyNameResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validation\FluentValidation.Numbers.cs" />
-    <Compile Include="Validation\FluentValidation.Generic.cs" />
-    <Compile Include="Validation\FluentValidation.Core.cs" />
-    <Compile Include="Validation\FluentValidation.Strings.cs" />
-    <Compile Include="Validation\IFluentValidation.Core.cs" />
+    <Compile Include="Validation\FluentValidationNumbers.cs" />
+    <Compile Include="Validation\FluentValidationGeneric.cs" />
+    <Compile Include="Validation\FluentValidation.cs" />
+    <Compile Include="Validation\FluentValidationStrings.cs" />
+    <Compile Include="Validation\IFluentValidation.cs" />
     <Compile Include="Validation\IFluentValidationCustomRule.cs" />
     <Compile Include="Validation\IValidationResult.cs" />
     <Compile Include="Validation\ValidationResult.cs" />
@@ -198,6 +198,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

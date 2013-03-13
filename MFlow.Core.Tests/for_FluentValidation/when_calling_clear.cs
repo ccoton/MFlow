@@ -3,7 +3,6 @@ using MFlow.Core.Conditions;
 using MFlow.Core.Tests.Supporting;
 using MFlow.Core.Validation;
 using MFlow.Core.Validation.Builder;
-using MFlow.Core.Validation.Checker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
