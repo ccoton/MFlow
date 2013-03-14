@@ -1,14 +1,14 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="default">	
 
 	<PropertyGroup>
-		<BaseDir>$(MSBuildProjectDirectory)\..</BaseDir>
+		<BaseDir>$(MSBuildProjectDirectory)\..\Src</BaseDir>
 		<Configuration Condition="'$(Configuration)'==''" >Release</Configuration>
-		<BuildDir>$(BaseDir)\.build</BuildDir>
+		<BuildDir>$(BaseDir)\..\.build</BuildDir>
 		<GitDir>C:\Program Files (x86)\Git\bin</GitDir>
 		<PackageDir>$(BuildDir)\Packages</PackageDir>
 		<PackageSuffix Condition="'$(PackageSuffix)'!=''"></PackageSuffix>
 		<OutputDir>$(BuildDir)\$(Configuration)$(PackageSuffix)</OutputDir>
-		<MSBuildExtensions>$(BaseDir)\lib\msbuild\msbuild.community.tasks.dll</MSBuildExtensions>
+		<MSBuildExtensions>$(BaseDir)\..\lib\msbuild\msbuild.community.tasks.dll</MSBuildExtensions>
 	</PropertyGroup>
 	
 	<Target Name="default">
