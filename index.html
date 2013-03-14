@@ -157,10 +157,11 @@ VML:<br /><br />
 [Display] $EmailAddressShouldBeValid$ [When] Email [Is] NotAnEmail
 </code></pre>
 When you reference the error message like this, the same process described above will happen and the validator will attempt to load a message for the current culture first and then fall back to the default.
-    <br />
+    <br /><br />
+	<h3>Validators</h3>
 The following validation checks are suported in the fluent interface/xml/vml config...
 <br />
-Generic:<br />
+<h4>Generic:</h4><br />
 <br />
 IsEqual - C# Api is generic but only supports string validation in Xml/Vml,<br />
 IsNotEqual - C# Api is generic but only supports string validation in Xml/Vml,<br />
@@ -169,7 +170,7 @@ IsNotNull - C# Api is generic but only supports string validation in Xml/Vml,<br
 Any - Not supported in Xml/Vml,<br />
 None - Not supported in Xml/Vml,<br />
 <br />
-Strings:<br />
+<h4>Strings:</h4><br />
 <br />
 IsNotEmpty,<br />
 IsEmail,<br />
@@ -185,14 +186,14 @@ IsDate,<br />
 Contains,<br />
 Mathes (a regex),<br />
 <br />
-Numbers:<br />
+<h4>Numbers:</h4><br />
 <br />
 IsLessThan,<br />
 IsGreaterThan,<br />
 IsLessThanOrEqualTo,<br />
 IsGreaterThanOrEqualTo,<br />
 <br />
-Dates:<br />
+<h4>Dates:</h4><br />
 <br />
 IsBefore,<br />
 IsAfter, <br />
