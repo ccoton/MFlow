@@ -45,10 +45,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MFlow.Core">
-      <HintPath>..\..\built\MFlow.Core\MFlow.Core.dll</HintPath>
+      <HintPath>..\..\Src\built\MFlow.Core\MFlow.Core.dll</HintPath>
     </Reference>
     <Reference Include="MFlow.Mvc">
-      <HintPath>..\..\built\MFlow.Mvc\MFlow.Mvc.dll</HintPath>
+      <HintPath>..\..\Src\built\MFlow.Mvc\MFlow.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />

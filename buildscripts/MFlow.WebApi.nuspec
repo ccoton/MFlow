@@ -11,6 +11,7 @@
     <description>A WebApi end point to validate using the MFlow.Mvc model</description>
     <summary>This provides an endpoint for the MFlow.Client to communicate with. This enpoint is used to validate view model from the client side</summary>    
 	<language>en-US</language>
+	<tags>FluentValidation, fluent, validation, MFlow</tags>
 	<dependencies>
       <dependency id="MFlow.Core" version="" />
 	  <dependency id="MFlow.Mvc" version="" />

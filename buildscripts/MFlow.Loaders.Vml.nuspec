@@ -11,6 +11,7 @@
     <description>A an entension to MFlow.Core to load in validation configurations from Vml.</description>
     <summary>A an entension to MFlow.Core to load in validation configurations from Vml.</summary>    
 	<language>en-US</language>
+	<tags>FluentValidation, fluent, validation, MFlow</tags>
 	<dependencies>
       <dependency id="MFlow.Core" version="" />
     </dependencies>

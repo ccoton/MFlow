@@ -11,6 +11,7 @@
     <description>A simple jQuery plugin for MFlow</description>
     <summary>A simple jQuery plugin that allows communication with the MFlow.WebApi validation controller in order to provide client side style validation</summary>    
 	<language>en-US</language>
+	<tags>FluentValidation, fluent, validation, MFlow</tags>
 	<dependencies>
 	  <dependency id="jQuery" version="" />
 	  <dependency id="MFlow.WebApi" version="" />

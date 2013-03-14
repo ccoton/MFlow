@@ -50,7 +50,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MFlow.Core">
-      <HintPath>..\..\built\MFlow.Core\MFlow.Core.dll</HintPath>
+      <HintPath>..\..\Src\built\MFlow.Core\MFlow.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

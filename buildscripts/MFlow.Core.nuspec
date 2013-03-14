@@ -10,6 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A simple .net validation framework.</description>
     <summary>A simple .net validation framework.</summary>    
+	<tags>FluentValidation, fluent, validation, MFlow</tags>
 	<language>en-US</language>
   </metadata>
 </package>
