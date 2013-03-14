@@ -41,17 +41,17 @@ MFlow is a simple conditional logic/validation framework for .NET.
 Install-Pacakge MFlow.Core 
 </code></pre>
 Or
-<br />
+<br /><br />
 <pre><code>
 Install-Package MFlow.Mvc
 </code></pre>
 Or
-<br />
+<br /><br />
 <pre><code>
 Install-Package MFlow.Client
 </code></pre>
 Installing the MFlow.Client packages also installs MFlow.Core & MFlow.Mvc and gives you the ability validate both server side and client side using a WebApi call. Like so:
-<br />
+<br /><br />
 <pre><code>
 $('#registerForm').MFlowClient('MFlow.Samples.Mvc, MFlow.Samples.Mvc.Models.RegisterModel', 
 	{ 
@@ -68,7 +68,7 @@ $('#registerForm').MFlowClient('MFlow.Samples.Mvc, MFlow.Samples.Mvc.Models.Regi
 	</code></pre>
 The idea is to improve and give a more fluent approach to conditional and validation checking. Similar to the way that the fluentvalidation framework for .NET works. 
 <br />
-Example:<br />
+Example:<br /><br />
 <pre><code>
 fluentValidation
 	.Check(u => u.Username).IsEqualTo("testing")
@@ -76,7 +76,7 @@ fluentValidation
 	.Check(u => u.Email).IsEmail()
 	.Satisfied();
 		</code></pre>		
-A simple example like the one above can also be configured using XML:<br />
+A simple example like the one above can also be configured using XML:<br /><br />
 <pre><code>
 &lt;FluentValidation&gt;
   &lt;Validator&gt;
@@ -115,7 +115,7 @@ The validator will look for a resource xml file for the current culture and deri
 &lt;/Messages>
 </code></pre>
 There is also, purely for example purposes a french resource file (Messages.fr-FR.xml) that looks like this:
-<br />
+<br /><br />
 <pre><code>
 &lt;Messages&gt;
   &lt;NotEmpty&gt;{0} ne doit pas être vide&lt;/NotEmpty&gt;
@@ -135,7 +135,7 @@ There is also, purely for example purposes a french resource file (Messages.fr-F
 </code></pre>
 You can see from the quick example how easy it can be to setup some conditions and display the default validation messages in the correct culture for the user. 
     
-The above resource files can also be extended. Creating a resource file called Custom.Messages.fr-FR for example like so:<br />
+The above resource files can also be extended. Creating a resource file called Custom.Messages.fr-FR for example like so:<br /><br />
 <pre><code>
 &lt;Messages&gt;
   &lt;EmailAddressShouldBeValid&gt;La valeur entrée doit être une adresse e-mail&lt;/EmailAddressShouldBeValid&gt;
@@ -143,16 +143,16 @@ The above resource files can also be extended. Creating a resource file called C
 </code></pre>
 You can then reference this custom error message in either the fluent interface, XML or VML like so:
 <br />
-Fluent Interface:<br />
+Fluent Interface:<br /><br />
 <pre><code>
 fluentValidation
 	.Check(u => u.Username).IsEmail().Message("$EmailAddressShouldBeValid$")
 </code></pre>
-XML:<br />
+XML:<br /><br />
 <pre><code>
 &lt;IsEmail property="Email" message="$EmailAddressShouldBeValid$" /&gt;
 </code></pre>
-VML:<br />
+VML:<br /><br />
 <pre><code>
 [Display] $EmailAddressShouldBeValid$ [When] Email [Is] NotAnEmail
 </code></pre>
