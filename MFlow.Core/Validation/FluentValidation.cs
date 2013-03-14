@@ -267,6 +267,22 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
+        ///     Takes the condition on the current context and reverses it
+        /// </summary>
+        public IFluentValidation<T> Reverse()
+        {
+            if (Conditions.Any())
+            {
+                var lastCondition = Conditions.Last();
+                Func<T, bool> compiled = _expressionBuilder.Compile(lastCondition.Condition);
+                Expression<Func<T, bool>> reversed = f => !compiled.Invoke(_target);
+                Conditions.Remove(lastCondition);
+                BuildIf(reversed, lastCondition.Key, lastCondition.Message);
+            }
+            return this;
+        }
+
+        /// <summary>
         ///     Add a key to a validation expression
         /// </summary>
         public IFluentValidation<T> Key(string key)

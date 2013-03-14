@@ -109,6 +109,8 @@
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation_with_null.cs" />
     <Compile Include="for_FluentValidationFactory\given\a_fluent_validation_factory.cs" />
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_multiple_false_reversed_conditions.cs" />
+    <Compile Include="for_FluentValidation\when_calling_validate_with_reversed_conditions.cs" />
     <Compile Include="for_FluentValidation\when_calling_is_not_null_with_a_value_that_is_null.cs" />
     <Compile Include="for_FluentValidation\when_calling_hint_with_a_custom_hint.cs" />
     <Compile Include="for_FluentValidation\when_calling_is_not_null_with_a_value_that_is_not_null.cs" />
@@ -208,7 +210,7 @@
     <Compile Include="for_FluentValidation\when_calling_satisfied_with_multiple_false_conditions.cs" />
     <Compile Include="for_FluentValidation\when_calling_satisfied_with_false_condition.cs" />
     <Compile Include="for_FluentValidation\when_calling_satisfied_with_multiple_true_conditions.cs" />
-    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_multiple_false_condition.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_multiple_false_conditions.cs" />
     <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_multiple_true_condition.cs" />
     <Compile Include="for_FluentValidation\when_calling_satisfied_with_true_condition.cs" />
     <Compile Include="for_FluentValidation\when_calling_then_with_false_condition.cs" />

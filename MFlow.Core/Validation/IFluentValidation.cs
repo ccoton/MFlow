@@ -106,6 +106,11 @@ namespace MFlow.Core.Validation
         IFluentValidation<T> Hint(string hint);
 
         /// <summary>
+        ///     Takes the condition on the current context and reverses it
+        /// </summary>
+        IFluentValidation<T> Reverse();
+
+        /// <summary>
         ///     Takes an action to execute if the validator is satisfied
         /// </summary>
         IFluentValidation<T> Then(Action execute, ExecuteThread options = ExecuteThread.Current);
