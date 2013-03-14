@@ -29,4 +29,5 @@
   <IsDate>{0} should be a valid date</IsDate>
   <Any>{0} should contain the item specified</Any>
   <None>{0} should not contain the item specified</None>
+  <IsNotNull>{0} should not be null</IsNotNull>
 </Messages>

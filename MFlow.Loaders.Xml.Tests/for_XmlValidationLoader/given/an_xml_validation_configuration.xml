@@ -31,6 +31,7 @@
       <NotEqualTo property="Password" toProperty="ConfirmPassword" message="NotEqualToValidatorMessage" />
       <On property="LastLogin" value="01/01/2015" message="OnValidatorMessage" />
       <RegEx property="Username" value="\w+([-+.&#39;]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" message="RegExValidatorMessage" />
+      <IsNotNull property="Username" message="IsNotNullValidatorMessage" />
       <Custom>
         <CheckCustomCondition location="MFlow.Core.Tests" message="CustomValidatorMessage"/>
       </Custom>

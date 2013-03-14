@@ -53,7 +53,15 @@ namespace MFlow.Core.Validation
         {
             return ApplyGenericValidator(_validatorFactory.GetValidator<C, IRequiredValidator<C>>(), Enums.ValidationType.IsRequired);
         }
-        
+
+        /// <summary>
+        ///     Checks to make sure the expression evaluates to a value that is not null
+        /// </summary>
+        public IFluentValidation<T> IsNotNull<C>()
+        {
+            return ApplyGenericValidator(_validatorFactory.GetValidator<C, INotNullValidator<C>>(), Enums.ValidationType.IsNotNull);
+        }
+
         IFluentValidation<T> ApplyGenericValidator<C>(IValidator<C> validator, Enums.ValidationType type)
         {
             Expression<Func<T, C>> expression = _currentContext.GetExpression<C>();

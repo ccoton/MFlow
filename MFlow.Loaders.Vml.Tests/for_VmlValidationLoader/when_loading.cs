@@ -47,5 +47,6 @@ namespace MFlow.Loaders.Xml.Tests.for_VmlValidationLoader
         It should_load_not_equal_to_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "NotEqualToValidatorMessage"); };
         It should_load_on_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "OnValidatorMessage"); };
         It should_load_regex_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "RegExValidatorMessage"); };
+        It should_load_is_not_null_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "IsNotNullValidatorMessage"); };
     }
 }

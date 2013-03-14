@@ -131,10 +131,11 @@ The following validation checks are suported in the fluent interface/xml/vml con
 
 	Generic:
 	
-		IsEqual,
-		IsNotEqual,
-		IsRequired,
-        	Any - Not supported in Xml/Vml,
+		IsEqual - C# Api is generic but only supports string validation in Xml/Vml,
+		IsNotEqual - C# Api is generic but only supports string validation in Xml/Vml,
+		IsRequired - C# Api is generic but only supports string validation in Xml/Vml,
+		IsNotNull - C# Api is generic but only supports string validation in Xml/Vml,
+        Any - Not supported in Xml/Vml,
 		None - Not supported in Xml/Vml,
 	
 	Strings:

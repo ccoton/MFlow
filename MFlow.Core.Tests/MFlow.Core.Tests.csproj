@@ -109,7 +109,9 @@
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation_with_null.cs" />
     <Compile Include="for_FluentValidationFactory\given\a_fluent_validation_factory.cs" />
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_not_null_with_a_value_that_is_null.cs" />
     <Compile Include="for_FluentValidation\when_calling_hint_with_a_custom_hint.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_not_null_with_a_value_that_is_not_null.cs" />
     <Compile Include="for_FluentValidation\when_calling_message_with_a_custom_message.cs" />
     <Compile Include="for_FluentValidation\when_calling_message_with_a_custom_message_key.cs" />
     <Compile Include="for_FluentValidation\when_calling_hint_with_a_custom_hint_key.cs" />
@@ -255,9 +257,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Validation\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

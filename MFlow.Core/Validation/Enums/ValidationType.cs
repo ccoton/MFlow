@@ -31,6 +31,7 @@
         IsAlpha = 25,
         IsDate = 26,
         Any = 27,
-        None = 28
+        None = 28,
+        IsNotNull = 29,
     }
 }

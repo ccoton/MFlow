@@ -28,4 +28,5 @@
   <IsAlpha>{0} ne doit contenir que des lettres</IsAlpha>
   <IsDate>{0} doit être une date valide</IsDate>
   <Any>{0} ne doit pas contenir l'élément spécifié</Any>
+  <IsNotNull>{0} ne peut être null</IsNotNull>
 </Messages>

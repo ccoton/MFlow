@@ -118,6 +118,7 @@ namespace MFlow.Loaders.Vml
             validator = ParseIsThisWeek(validator, document);
             validator = ParseIsToday(validator, document);
             validator = ParseHasNoItem(validator, document);
+            validator = ParseIsNotNull(validator, document);
 
             return validator;
         }
@@ -252,6 +253,14 @@ namespace MFlow.Loaders.Vml
             return CreateExpressions<T, string, string>(validator, document, "[Is] Required", (e, ev, m, v, h) =>
             {
                 return validator.Check(e).IsRequired<string>().Message(m).Hint(h);
+            });
+        }
+
+        IFluentValidation<T> ParseIsNotNull<T>(IFluentValidation<T> validator, string document)
+        {
+            return CreateExpressions<T, string, string>(validator, document, "[Is] Null", (e, ev, m, v, h) =>
+            {
+                return validator.Check(e).IsNotNull<string>().Message(m).Hint(h);
             });
         }
 

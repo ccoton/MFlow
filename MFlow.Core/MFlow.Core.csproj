@@ -87,6 +87,8 @@
     <Compile Include="Internal\Validators\Dates\ApplyNullableDateValidator.cs" />
     <Compile Include="Internal\Validators\Dates\IApplyDateValidator.cs" />
     <Compile Include="Internal\Validators\Generic\AnyValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\NotNullValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\INotNullValidator.cs" />
     <Compile Include="Internal\Validators\Generic\NoneValidator.cs" />
     <Compile Include="Internal\Validators\Generic\INoneValidator.cs" />
     <Compile Include="Internal\Validators\Generic\IAnyValidator.cs" />

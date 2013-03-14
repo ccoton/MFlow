@@ -32,5 +32,10 @@ namespace MFlow.Core.Validation
         ///     Is the item required
         /// </summary>
         IFluentValidation<T> IsRequired<C>();
+
+        /// <summary>
+        ///     Checks to make sure the expression evaluates to a value that is not null
+        /// </summary>
+        IFluentValidation<T> IsNotNull<C>();
     }
 }
