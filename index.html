@@ -51,7 +51,8 @@ Or
 Install-Package MFlow.Client
 </code></pre>
 Installing the MFlow.Client packages also installs MFlow.Core & MFlow.Mvc and gives you the ability validate both server side and client side using a WebApi call. Like so:
-<br /><br />
+<br />
+<h3>Using</h3>
 <pre><code>
 $('#registerForm').MFlowClient('MFlow.Samples.Mvc, MFlow.Samples.Mvc.Models.RegisterModel', 
 	{ 
@@ -75,7 +76,8 @@ fluentValidation
 	.Check(u => u.Password).IsEqualTo("password123")
 	.Check(u => u.Email).IsEmail()
 	.Satisfied();
-		</code></pre>		
+		</code></pre>	
+<h3>Configuring</h3>		
 A simple example like the one above can also be configured using XML:<br /><br />
 <pre><code>
 &lt;FluentValidation&gt;
@@ -160,18 +162,15 @@ When you reference the error message like this, the same process described above
     <br /><br />
 	<h3>Validators</h3>
 The following validation checks are suported in the fluent interface/xml/vml config...
-<br />
-<h4>Generic:</h4><br />
-<br />
+
+<h4>Generic:</h4>
 IsEqual - C# Api is generic but only supports string validation in Xml/Vml,<br />
 IsNotEqual - C# Api is generic but only supports string validation in Xml/Vml,<br />
 IsRequired - C# Api is generic but only supports string validation in Xml/Vml,<br />
 IsNotNull - C# Api is generic but only supports string validation in Xml/Vml,<br />
 Any - Not supported in Xml/Vml,<br />
 None - Not supported in Xml/Vml,<br />
-<br />
-<h4>Strings:</h4><br />
-<br />
+<h4>Strings:</h4>
 IsNotEmpty,<br />
 IsEmail,<br />
 IsLength,<br />
@@ -185,16 +184,13 @@ IsAlpha,<br />
 IsDate,<br />
 Contains,<br />
 Mathes (a regex),<br />
-<br />
-<h4>Numbers:</h4><br />
-<br />
+<h4>Numbers:</h4>
 IsLessThan,<br />
 IsGreaterThan,<br />
 IsLessThanOrEqualTo,<br />
 IsGreaterThanOrEqualTo,<br />
-<br />
-<h4>Dates:</h4><br />
-<br />
+
+<h4>Dates:</h4>
 IsBefore,<br />
 IsAfter, <br />
 IsOn,<br />
