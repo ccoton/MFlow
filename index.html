@@ -73,15 +73,15 @@ fluentValidation
 		</code></pre>		
 A simple example like the one above can also be configured using XML:
 <pre><code>
-<FluentValidation>
-  <Validator>
-	<Rules>
-	  <Equal property="Username" value="testing" />
-	  <Equal property="Password" value="password123" />
-	  <IsEmail property="Email" />
-	</Rules>
-  </Validator>
-</FluentValidation>
+&lt;FluentValidation&gt;
+  &lt;Validator&gt;
+	&lt;Rules&gt;
+	  &lt;Equal property="Username" value="testing" /&gt;
+	  &lt;Equal property="Password" value="password123" /&gt;
+	  &lt;IsEmail property="Email" /&gt;
+	&lt;/Rules&gt;
+  &lt;/Validator&gt;
+&lt;/FluentValidation&gt;
 </code></pre>         
 Or VML...
 <code><pre>
@@ -93,47 +93,47 @@ In all three of the above examples when an explicit error message is not defined
 
 The validator will look for a resource xml file for the current culture and derive a default message based on the condition applied. If a resource file does not exist for the current culture the default resource (Messages.en.xml) file will be used:
 <code><pre>
-<Messages>
-  <NotEmpty>{0} should not be empty</NotEmpty>
-  <Equal>{0} should be equal to {1}</Equal>
-  <NotEqual>{0} should not be equal to {1}</NotEqual>
-  <LessThan>{0} should be less than {1}</LessThan>
-  <LessThanOrEqualTo>{0} should be less than or equal to {1}</LessThanOrEqualTo>
-  <GreaterThan>{0} should be greater than {1}</GreaterThan>
-  <GreaterThanOrEqualTo>{0} should be greater than or equal to {1}</GreaterThanOrEqualTo>
-  <RegEx>{0} should validate expression {1}</RegEx>
-  <IsEmail>{0} should be an email</IsEmail>
-  <Contains>{0} should contain {1}</Contains>
-  <Before>{0} should be before {1}</Before>
-  <After>{0} should be after {1}</After>
-  <On>{0} should be on {1}</On>
-</Messages>
+&lt;Messages>
+  &lt;NotEmpty>{0} should not be empty&lt;/NotEmpty>
+  &lt;Equal>{0} should be equal to {1}&lt;/Equal>
+  &lt;NotEqual>{0} should not be equal to {1}&lt;/NotEqual>
+  &lt;LessThan>{0} should be less than {1}&lt;/LessThan>
+  &lt;LessThanOrEqualTo>{0} should be less than or equal to {1}&lt;/LessThanOrEqualTo>
+  &lt;GreaterThan>{0} should be greater than {1}&lt;/GreaterThan>
+  &lt;GreaterThanOrEqualTo>{0} should be greater than or equal to {1}&lt;/GreaterThanOrEqualTo>
+  &lt;RegEx>{0} should validate expression {1}&lt;/RegEx>
+  &lt;IsEmail>{0} should be an email&lt;/IsEmail>
+  &lt;Contains>{0} should contain {1}&lt;/Contains>
+  &lt;Before>{0} should be before {1}&lt;/Before>
+  &lt;After>{0} should be after {1}&lt;/After>
+  &lt;On>{0} should be on {1}&lt;/On>
+&lt;/Messages>
 </code></pre>
 There is also, purely for example purposes a french resource file (Messages.fr-FR.xml) that looks like this:
 <pre><code>
-<Messages>
-  <NotEmpty>{0} ne doit pas être vide</NotEmpty>
-  <Equal>{0} doit être égale à {1}</Equal>
-  <NotEqual>{0} ne doit pas être égal à {1}</NotEqual>
-  <LessThan>{0} doit être inférieure à {1}</LessThan>
-  <LessThanOrEqualTo>{0} doit être inférieure ou égale à {1}</LessThanOrEqualTo>
-  <GreaterThan>{0} doit être supérieure à {1}</GreaterThan>
-  <GreaterThanOrEqualTo>{0} doit être supérieure ou égale à {1}</GreaterThanOrEqualTo>
-  <RegEx>{0} devrait valider l'expression {1}</RegEx>
-  <IsEmail>{0} doit être un e-mail</IsEmail>
-  <Contains>{0} doit contenir {1}</Contains>
-  <Before>{0} doit être avant {1}</Before>
-  <After>{0} devrait être après {1}</After>
-  <On>{0} doit être mis sur {1}</On>
-</Messages>
+&lt;Messages&gt;
+  &lt;NotEmpty&gt;{0} ne doit pas être vide&lt;/NotEmpty&gt;
+  &lt;Equal&gt;{0} doit être égale à {1}&lt;/Equal&gt;
+  &lt;NotEqual&gt;{0} ne doit pas être égal à {1}&lt;/NotEqual&gt;
+  &lt;LessThan&gt;{0} doit être inférieure à {1}&lt;/LessThan&gt;
+  &lt;LessThanOrEqualTo&gt;{0} doit être inférieure ou égale à {1}&lt;/LessThanOrEqualTo&gt;
+  &lt;GreaterThan&gt;{0} doit être supérieure à {1}&lt;/GreaterThan&gt;
+  &lt;GreaterThanOrEqualTo&gt;{0} doit être supérieure ou égale à {1}&lt;/GreaterThanOrEqualTo&gt;
+  &lt;RegEx&gt;{0} devrait valider l'expression {1}&lt;/RegEx&gt;
+  &lt;IsEmail&gt;{0} doit être un e-mail&lt;/IsEmail&gt;
+  &lt;Contains&gt;{0} doit contenir {1}&lt;/Contains&gt;
+  &lt;Before&gt;{0} doit être avant {1}&lt;/Before&gt;
+  &lt;After&gt;{0} devrait être après {1}&lt;/After&gt;
+  &lt;On&gt;{0} doit être mis sur {1}&lt;/On&gt;
+&lt;/Messages&gt;
 </code></pre>
 You can see from the quick example how easy it can be to setup some conditions and display the default validation messages in the correct culture for the user. 
     
 The above resource files can also be extended. Creating a resource file called Custom.Messages.fr-FR for example like so:
 <pre><code>
-<Messages>
-  <EmailAddressShouldBeValid>La valeur entrée doit être une adresse e-mail</EmailAddressShouldBeValid>
-</Messages>
+&lt;Messages&gt;
+  &lt;EmailAddressShouldBeValid&gt;La valeur entrée doit être une adresse e-mail&lt;/EmailAddressShouldBeValid&gt;
+&lt;/Messages&gt;
 </code></pre>
 You can then reference this custom error message in either the fluent interface, XML or VML like so:
 
@@ -144,7 +144,7 @@ fluentValidation
 </code></pre>
 XML:
 <pre><code>
-<IsEmail property="Email" message="$EmailAddressShouldBeValid$" />
+&lt;IsEmail property="Email" message="$EmailAddressShouldBeValid$" /&gt;
 </code></pre>
 VML:
 <pre><code>
@@ -196,8 +196,6 @@ IsThisMonth,<br />
 IsThisWeek,<br />
 IsToday<br />
 
-
-<p><a href="http://github.com/markwoodhall" class="user-mention">@markwoodhall</a>
 
 
       </section>
