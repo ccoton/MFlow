@@ -48,9 +48,6 @@ Or
 	</code></pre>
 Installing the MFlow.Client packages also installs MFlow.Core & MFlow.Mvc and gives you the ability validate both server side and client side using a WebApi call. Like so:
 <pre><code>
-    <script type="text/javascript" src="~/Scripts/MFlowClient.js"></script>
-    <script type="text/javascript">
-
 		$('#registerForm').MFlowClient('MFlow.Samples.Mvc, MFlow.Samples.Mvc.Models.RegisterModel', 
 			{ 
 				// validate the item on blur
@@ -63,8 +60,6 @@ Installing the MFlow.Client packages also installs MFlow.Core & MFlow.Mvc and gi
 				validationUrl: '/api/Validation',
 				suggestionUrl: '/api/Suggestion'
 			});
-
-    </script>
 	</code></pre>
 The idea is to improve and give a more fluent approach to conditional and validation checking. Similar to the way that the fluentvalidation framework for .NET works. 
 
