@@ -25,19 +25,19 @@
 			<GitPushTagArgs>git push --tags</GitPushTagArgs>
 		</PropertyGroup>
 			
-		<Exec WorkingDirectory="$(BaseDir)" 
+		<Exec WorkingDirectory="$(BaseDir)\..\" 
 					Command="$(GitAddArgs)" />			
 			
-		<Exec WorkingDirectory="$(BaseDir)" 
+		<Exec WorkingDirectory="$(BaseDir)\..\" 
 					Command="$(GitCommitArgs)" />
 			
-		<Exec WorkingDirectory="$(BaseDir)" 
+		<Exec WorkingDirectory="$(BaseDir)\..\" 
 					Command="$(GitPushArgs)" />
 		
-		<Exec WorkingDirectory="$(BaseDir)" 
+		<Exec WorkingDirectory="$(BaseDir)\..\" 
 					Command="$(GitTagArgs)" />
 		
-		<Exec WorkingDirectory="$(BaseDir)" 
+		<Exec WorkingDirectory="$(BaseDir)\..\" 
 					Command="$(GitPushTagArgs)" />
 					
 	</Target>
