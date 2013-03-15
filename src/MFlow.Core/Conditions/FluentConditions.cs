@@ -163,7 +163,7 @@ namespace MFlow.Core.Conditions
         public bool Satisfied(string group = "", bool suppressWarnings = true)
         {
             return Conditions
-                .Where(c => c.GroupName.ToLower() == group.ToLower())
+                .Where(c => c.GroupName.ToLower() == group.ToLower() || string.IsNullOrEmpty(group))
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
                 .All(c => _expressionBuilder.Compile(c.Condition).Invoke(_target) && c.Type == ConditionType.And) ||
                 Conditions

@@ -331,7 +331,7 @@ namespace MFlow.Core.Validation
         {
             var results = new List<IValidationResult<T>>();
 
-            foreach (var condition in Conditions.Where(c => c.GroupName.ToLower() == group.ToLower()).ToList()
+            foreach (var condition in Conditions.Where(c => c.GroupName.ToLower() == group.ToLower() || string.IsNullOrEmpty(group)).ToList()
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
                 .Where(c => !c.Condition.Compile().Invoke(_target)))
                 results.Add(new ValidationResult<T>(condition));
