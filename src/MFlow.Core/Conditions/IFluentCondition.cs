@@ -42,6 +42,11 @@ namespace MFlow.Core.Conditions
         string Hint { get; }
 
         /// <summary>
+        ///     The group name of the current context
+        /// </summary>
+        string GroupName { get; }
+
+        /// <summary>
         ///     Sets the key.
         /// </summary>
         void SetKey(string key);
@@ -60,6 +65,11 @@ namespace MFlow.Core.Conditions
         ///     Sets the condition output type
         /// </summary>
         void SetConditionOutput(ConditionOutput output);
+
+        /// <summary>
+        ///     Sets the group name for this condition
+        /// </summary>
+        void SetGroup(string groupName);
 
     }
 }

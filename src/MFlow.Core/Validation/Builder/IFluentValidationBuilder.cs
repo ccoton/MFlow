@@ -54,6 +54,11 @@ namespace MFlow.Core.Validation.Builder
         IFluentValidationCollection<T> Check<O>(Expression<Func<T, ICollection<O>>> expression, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
+        ///     Group a set of validation checks into a set
+        /// </summary>
+        IFluentValidation<T> Group(string name);
+
+        /// <summary>
         ///     Takes a boolean IF condition and evaluates it
         /// </summary>
         IFluentValidation<T> If(bool condition);
@@ -71,11 +76,11 @@ namespace MFlow.Core.Validation.Builder
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        bool Satisfied(bool suppressWarnings = true);
+        bool Satisfied(string group = "", bool suppressWarnings = true);
 
         /// <summary>
         ///     Validate this instance
         /// </summary>
-        IEnumerable<IValidationResult<T>> Validate(bool suppressWarnings = true);
+        IEnumerable<IValidationResult<T>> Validate(string group = "", bool suppressWarnings = true);
     }
 }

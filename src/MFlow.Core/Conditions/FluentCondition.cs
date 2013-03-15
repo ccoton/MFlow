@@ -13,7 +13,7 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Constructor
         /// </summary>
-        public FluentCondition(Expression<Func<T, bool>> condition, ConditionType type, string key, string message, string hint, ConditionOutput output = ConditionOutput.Error)
+        public FluentCondition(Expression<Func<T, bool>> condition, ConditionType type, string key, string message, string hint, ConditionOutput output = ConditionOutput.Error, string groupName = "")
         {
             if (condition == null)
                 throw new ArgumentNullException("condition");
@@ -24,6 +24,7 @@ namespace MFlow.Core.Conditions
             Message = message;
             Hint = hint;
             Output = output;
+            GroupName = groupName;
         }
 
         /// <summary>
@@ -57,6 +58,11 @@ namespace MFlow.Core.Conditions
         public string Hint { get; private set; }
 
         /// <summary>
+        ///     The group name of the current context
+        /// </summary>
+        public string GroupName { get; private set; }
+
+        /// <summary>
         ///     Set the message
         /// </summary>
         public void SetMessage(string message)
@@ -86,6 +92,14 @@ namespace MFlow.Core.Conditions
         public void SetConditionOutput(ConditionOutput output)
         {
             Output = output;
+        }
+
+        /// <summary>
+        ///     Sets the group name for this condition
+        /// </summary>
+        public void SetGroup(string groupName)
+        {
+            GroupName = groupName;
         }
     }
 }

@@ -103,6 +103,17 @@ namespace MFlow.Core.Conditions
         }
 
         /// <summary>
+        ///     Groups any conditions created that havent already been grouped
+        /// </summary>
+        public void Group(string name)
+        {
+            Conditions.Where(c => String.IsNullOrEmpty(c.GroupName)).ToList().ForEach(c =>
+            {
+                c.SetGroup(name);
+            });
+        }
+
+        /// <summary>
         ///     Takes an action to execute if the validator is satisfied
         /// </summary>
         public IFluentConditions<T> Then(Action execute, ExecuteThread options = ExecuteThread.Current)
@@ -149,9 +160,10 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        public bool Satisfied(bool suppressWarnings = true)
+        public bool Satisfied(string group = "", bool suppressWarnings = true)
         {
             return Conditions
+                .Where(c => c.GroupName.ToLower() == group.ToLower())
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
                 .All(c => _expressionBuilder.Compile(c.Condition).Invoke(_target) && c.Type == ConditionType.And) ||
                 Conditions

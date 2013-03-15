@@ -56,6 +56,11 @@ namespace MFlow.Core.Validation
         IFluentValidationCollection<T> Check<O>(Expression<Func<T, ICollection<O>>> expression, ConditionType conditionType = ConditionType.And);
 
         /// <summary>
+        ///     Group a set of validation checks into a set
+        /// </summary>
+        IFluentValidation<T> Group(string name);
+
+        /// <summary>
         ///     When applied to a Check make it behave as a warning, by default will not be raised when validation occurs
         /// </summary>
         IFluentValidation<T> Warn();
@@ -144,7 +149,7 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Validate this instance
         /// </summary>
-        IEnumerable<IValidationResult<T>> Validate(bool suppressWarnings = true);
+        IEnumerable<IValidationResult<T>> Validate(string group = "", bool suppressWarnings = true);
 
         /// <summary>
         ///     Throws an exception when the validator is not satisfied
@@ -154,6 +159,6 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        bool Satisfied(bool suppressWarnings = true);
+        bool Satisfied(string group = "", bool suppressWarnings = true);
     }
 }

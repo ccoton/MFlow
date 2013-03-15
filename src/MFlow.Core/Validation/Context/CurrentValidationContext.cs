@@ -13,7 +13,8 @@ namespace MFlow.Core.Validation.Context
     {
         readonly object _expression;
 
-        public CurrentValidationContext (object expression, ConditionType conditionType = ConditionType.And, ConditionOutput output = ConditionOutput.Error, bool isNullable = false)
+        public CurrentValidationContext(object expression, ConditionType conditionType = ConditionType.And,
+            ConditionOutput output = ConditionOutput.Error, bool isNullable = false)
         {
             _expression = expression;
             ConditionType = conditionType;
@@ -24,7 +25,7 @@ namespace MFlow.Core.Validation.Context
         /// <summary>
         ///     Gets the current expression
         /// </summary>
-        public Expression<Func<T, C>> GetExpression<C> ()
+        public Expression<Func<T, C>> GetExpression<C>()
         {
             return (Expression<Func<T, C>>)_expression;
         }

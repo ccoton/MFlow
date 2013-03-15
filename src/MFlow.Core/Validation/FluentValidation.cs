@@ -136,6 +136,19 @@ namespace MFlow.Core.Validation
         }
 
         /// <summary>
+        ///     Group a set of validation checks into a set
+        /// </summary>
+        public new IFluentValidation<T> Group(string name)
+        {
+            if (_currentContext == null)
+                throw new ApplicationException("Calling Group on a validator is only valid once the validator has at least one context, i.e. Check has been called");
+
+            base.Group(name);
+
+            return this;
+        }
+
+        /// <summary>
         ///     When applied to a Check make it behave as a warning, by default will not be raised when validation occurs
         /// </summary>
         public IFluentValidation<T> Warn()
@@ -221,7 +234,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> DependsOn<D>(IFluentValidation<D> validator)
         {
-            Expression<Func<T, bool>> derived = f => validator.Satisfied(true);
+            Expression<Func<T, bool>> derived = f => validator.Satisfied(string.Empty, true);
             base.And(derived);
             return this;
         }
@@ -233,7 +246,7 @@ namespace MFlow.Core.Validation
         {
             Func<T, D> compiled = _expressionBuilder.Compile(validator);
             _dependencies.Add(() => compiled.Invoke(_target));
-            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Satisfied(true);
+            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Satisfied(string.Empty, true);
             base.And(derived, message: string.Empty);
             return this;
         }
@@ -314,11 +327,11 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Validate this instance
         /// </summary>
-        public IEnumerable<IValidationResult<T>> Validate(bool suppressWarnings = true)
+        public IEnumerable<IValidationResult<T>> Validate(string group = "", bool suppressWarnings = true)
         {
             var results = new List<IValidationResult<T>>();
 
-            foreach (var condition in base.Conditions.ToList()
+            foreach (var condition in Conditions.Where(c => c.GroupName.ToLower() == group.ToLower()).ToList()
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
                 .Where(c => !c.Condition.Compile().Invoke(_target)))
                 results.Add(new ValidationResult<T>(condition));
@@ -345,9 +358,9 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        public new bool Satisfied(bool suppressWarnings = true)
+        public new bool Satisfied(string group = "", bool suppressWarnings = true)
         {
-            return base.Satisfied(suppressWarnings);
+            return base.Satisfied(group, suppressWarnings);
         }
     }
 }

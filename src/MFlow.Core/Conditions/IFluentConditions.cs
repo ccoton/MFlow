@@ -51,6 +51,11 @@ namespace MFlow.Core.Conditions
         IFluentConditions<T> Clear();
 
         /// <summary>
+        ///     Groups any conditions created that havent already been grouped
+        /// </summary>
+        void Group(string name);
+
+        /// <summary>
         ///     Takes an action to execute if the validator is satisfied
         /// </summary>
         IFluentConditions<T> Then(Action execute, ExecuteThread options = ExecuteThread.Current);
@@ -63,6 +68,6 @@ namespace MFlow.Core.Conditions
         /// <summary>
         ///     Returns a boolean indicating if this validator is satisfied
         /// </summary>
-        bool Satisfied(bool suppressWarnings = true);
+        bool Satisfied(string group = "", bool suppressWarnings = true);
     }
 }
