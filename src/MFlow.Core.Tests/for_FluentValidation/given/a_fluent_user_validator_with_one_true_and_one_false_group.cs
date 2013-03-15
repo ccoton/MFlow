@@ -9,6 +9,7 @@ using System.Text;
 
 namespace MFlow.Core.Tests.for_FluentValidation.given
 {
+    [Subject("for Fluent Validation")]
     public class a_fluent_user_validator_with_one_true_and_one_false_group
     {
         protected static IFluentValidationBuilder<User> validator;
