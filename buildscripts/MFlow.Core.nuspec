@@ -12,5 +12,8 @@
     <summary>A simple .net validation framework.</summary>    
 	<tags>FluentValidation, fluent, validation, MFlow</tags>
 	<language>en-US</language>
+	<dependencies>
+      <dependency id="MEvents.Core" version="" />
+    </dependencies>
   </metadata>
 </package>

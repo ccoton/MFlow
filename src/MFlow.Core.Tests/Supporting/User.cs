@@ -1,6 +1,6 @@
 ﻿using System;
-using MFlow.Core.Events;
 using System.Collections.Generic;
+using MEvents.Core;
 
 namespace MFlow.Core.Tests.Supporting
 {
@@ -29,7 +29,7 @@ namespace MFlow.Core.Tests.Supporting
     public class UserCreatedEvent : Event<User>
     {
         public UserCreatedEvent(User source)
-            : base(source, true)
+            : base(source)
         {
         }
     }

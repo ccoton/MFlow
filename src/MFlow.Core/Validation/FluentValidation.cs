@@ -1,6 +1,6 @@
-﻿using MFlow.Core.Conditions;
+﻿using MEvents.Core;
+using MFlow.Core.Conditions;
 using MFlow.Core.Conditions.Enums;
-using MFlow.Core.Events;
 using MFlow.Core.Internal;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.Validation.Builder;
@@ -319,8 +319,8 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> Raise<E>(E eventToRaise) where E : IEvent<T>
         {
-            var events = new EventsFactory().GetEventStore();
-            events.Raise(eventToRaise);
+            var events = new EventsFactory().GetEventCoordinator();
+            events.Publish(eventToRaise);
             return this;
         }
 

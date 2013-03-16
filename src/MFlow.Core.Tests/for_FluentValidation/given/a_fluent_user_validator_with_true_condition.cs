@@ -1,5 +1,5 @@
 ﻿using Machine.Specifications;
-using MFlow.Core.Events;
+using MEvents.Core;
 using MFlow.Core.Tests.Supporting;
 using MFlow.Core.Validation;
 using MFlow.Core.Validation.Builder;
@@ -19,8 +19,8 @@ namespace MFlow.Core.Tests.for_FluentValidation.given
 
         Establish context = () =>
         {
-            var events = new EventsFactory().GetEventStore();
-            events.Register<UserCreatedEvent>(s =>
+            var events = new EventsFactory().GetEventCoordinator();
+            events.Subscribe<UserCreatedEvent>(s =>
             {
                 s.Source.Username = "raised event";
                 user = s.Source;

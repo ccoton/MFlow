@@ -65,6 +65,9 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MEvents.Core">
+      <HintPath>..\packages\MEvents.Core.1.1.0.0\lib\Net40\MEvents.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -144,12 +147,6 @@
     <Compile Include="Validation\Factories\IFluentValidationFactory.cs" />
     <Compile Include="Validation\FluentValidationDates.cs" />
     <Compile Include="Validation\Context\ICurrentValidationContext.cs" />
-    <Compile Include="Events\Event.cs" />
-    <Compile Include="Events\Events.cs" />
-    <Compile Include="Events\EventsFactory.cs" />
-    <Compile Include="Events\IEvent.cs" />
-    <Compile Include="Events\IEvents.cs" />
-    <Compile Include="Events\IEventsFactory.cs" />
     <Compile Include="Internal\IPropertyNameResolver.cs" />
     <Compile Include="Internal\PropertyNameResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -200,7 +197,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
