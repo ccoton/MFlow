@@ -133,6 +133,8 @@
     <Compile Include="Resources\IResourceLocator.cs" />
     <Compile Include="Resources\ResourceLocator.cs" />
     <Compile Include="Conditions\Enums\ConditionOutput.cs" />
+    <Compile Include="Events\ValidatedEvent.cs" />
+    <Compile Include="Events\ValidationFailedEvent.cs" />
     <Compile Include="ValidationLoader.cs" />
     <Compile Include="Validation\Builder\IFluentValidationBuilder.cs" />
     <Compile Include="Validation\IFluentValidationCollection.cs" />

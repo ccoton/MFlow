@@ -2,6 +2,7 @@
 using MFlow.Core.Validation.Builder;
 using MFlow.Core.Internal;
 using MFlow.Core.Internal.Validators;
+using MEvents.Core;
 
 namespace MFlow.Core.Validation.Factories
 {
@@ -23,7 +24,9 @@ namespace MFlow.Core.Validation.Factories
             var expressionBuilder = new ExpressionBuilder<T>();
             var validatorFactory = new ValidatorFactory();
             var validatorToCondition = new ValidatorToCondition<T>(target, expressionBuilder, resolver, messageResolver);
-            return new FluentValidation<T>(target, resolver, messageResolver, expressionBuilder, validatorFactory, validatorToCondition);
+            var eventCoordinator = new EventsFactory().GetEventCoordinator();
+            return new FluentValidation<T>(target, resolver, messageResolver, expressionBuilder, 
+                validatorFactory, validatorToCondition, eventCoordinator);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Machine.Specifications;
+using MEvents.Core;
 using MFlow.Core.Tests.Supporting;
 using MFlow.Core.Validation;
 using MFlow.Core.Validation.Builder;
@@ -14,7 +15,8 @@ namespace MFlow.Core.Tests.for_FluentValidation.given
     public class a_fluent_user_validator_with_multiple_false_conditions
     {
         protected static IFluentValidationBuilder<User> validator;
-        protected static User user; 
+        protected static User user;
+        protected static IEventCoordinator event_coordinator = new EventsFactory().GetEventCoordinator();
 
         Establish context = () =>
         {

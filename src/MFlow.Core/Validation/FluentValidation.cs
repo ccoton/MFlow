@@ -1,6 +1,7 @@
 ﻿using MEvents.Core;
 using MFlow.Core.Conditions;
 using MFlow.Core.Conditions.Enums;
+using MFlow.Core.Events;
 using MFlow.Core.Internal;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.Validation.Builder;
@@ -25,13 +26,15 @@ namespace MFlow.Core.Validation
         readonly IExpressionBuilder<T> _expressionBuilder;
         readonly IValidatorFactory _validatorFactory;
         readonly IValidatorToCondition<T> _validatorToCondition;
+        readonly IEventCoordinator _eventCoordinator;
 
         /// <summary>
         ///     Constructor
         /// </summary>
         internal FluentValidation(T validate, IPropertyNameResolver propertyNameResolver,
                                   IMessageResolver messageResolver, IExpressionBuilder<T> expressionBuilder,
-                                  IValidatorFactory validatorFactory, IValidatorToCondition<T> validatorToCondition)
+                                  IValidatorFactory validatorFactory, IValidatorToCondition<T> validatorToCondition,
+                                  IEventCoordinator eventCoordinator)
             : base(validate)
         {
             If(validate == null).Throw(new ArgumentException("validate"));
@@ -40,12 +43,14 @@ namespace MFlow.Core.Validation
             If(expressionBuilder == null).Throw(new ArgumentException("expressionBuilder"));
             If(validatorFactory == null).Throw(new ArgumentException("validatorFactory"));
             If(validatorToCondition == null).Throw(new ArgumentException("validatorToCondition"));
+            If(eventCoordinator == null).Throw(new ArgumentException("eventCoordinator"));
 
             _resolver = propertyNameResolver;
             _messageResolver = messageResolver;
             _expressionBuilder = expressionBuilder;
             _validatorFactory = validatorFactory;
             _validatorToCondition = validatorToCondition;
+            _eventCoordinator = eventCoordinator;
 
             base.Clear();
         }
@@ -338,6 +343,11 @@ namespace MFlow.Core.Validation
 
             foreach (var dependency in _dependencies)
                 results.AddRange(dependency.Invoke().Validate());
+
+            if (results.Any())
+                _eventCoordinator.Publish(new ValidationFailedEvent<T>(this));
+            else
+                _eventCoordinator.Publish(new ValidatedEvent<T>(this));
 
             return results;
         }
