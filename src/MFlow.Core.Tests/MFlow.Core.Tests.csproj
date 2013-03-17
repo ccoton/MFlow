@@ -112,6 +112,8 @@
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation_with_null.cs" />
     <Compile Include="for_FluentValidationFactory\given\a_fluent_validation_factory.cs" />
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_multiple_false_conditions_for_fr_FR_culture.cs" />
+    <Compile Include="for_FluentValidation\when_calling_validate_for_fr_FR_culture.cs" />
     <Compile Include="for_FluentValidation\when_calling_satisfied_without_specifying_group_with_one_true_and_one_false_group.cs" />
     <Compile Include="for_FluentValidation\when_calling_validate_without_specifying_group_with_one_true_and_one_false_group.cs" />
     <Compile Include="for_FluentValidation\when_calling_satisfied_with_one_true_and_one_false_group.cs" />

@@ -15,7 +15,7 @@ namespace MFlow.Core.Resources
     {
 
         static readonly Dictionary<string, Dictionary<string, string>> _resources;
-        
+
         /// <summary>
         ///     Static type initializer that loads the default and current culture resources
         /// </summary>
@@ -25,7 +25,7 @@ namespace MFlow.Core.Resources
 
             LoadAndCache(string.Format("Messages.{0}.xml", Thread.CurrentThread.CurrentUICulture.Name));
             LoadAndCache("Messages.en.xml");
-        } 
+        }
 
         /// <summary>
         ///     Gets a resource by key for the loaded cultures, will try to load the current culture again if it hasnt 
@@ -34,17 +34,25 @@ namespace MFlow.Core.Resources
         public string GetResource(string key)
         {
             var derivedName = string.Format("Messages.{0}.xml", Thread.CurrentThread.CurrentUICulture.Name);
-            var defaultName = string.Format("Messages.en.xml", Thread.CurrentThread.CurrentUICulture.Name);
+            var defaultName = "Messages.en.xml";
 
             if (!_resources.ContainsKey(derivedName))
-                LoadAndCache(string.Format("Messages.{0}.xml", Thread.CurrentThread.CurrentUICulture.Name));
+                LoadAndCache(derivedName);
 
-            Dictionary<string, string> defaultDictionary = _resources.Single(r => r.Key == defaultName).Value;
+            Dictionary<string, string> defaultDictionary = null;
+
+            if (_resources.ContainsKey(defaultName))
+                defaultDictionary = _resources.Single(r => r.Key == defaultName).Value;
+
             Dictionary<string, string> derivedDictionary = null;
+
             if (_resources.ContainsKey(derivedName))
                 derivedDictionary = _resources.Single(r => r.Key == derivedName).Value;
 
-            var resource = defaultDictionary.Single(i => i.Key == key).Value;
+            var resource = string.Empty;
+
+            if (defaultDictionary != null && defaultDictionary.Any(i => i.Key == key))
+                resource = defaultDictionary.Single(i => i.Key == key).Value;
 
             if (derivedDictionary != null && derivedDictionary.Any(i => i.Key == key))
                 resource = derivedDictionary.Single(i => i.Key == key).Value;
