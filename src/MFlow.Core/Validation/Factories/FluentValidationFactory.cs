@@ -18,14 +18,38 @@ namespace MFlow.Core.Validation.Factories
         {
             if (target == null)
                 throw new ArgumentNullException("target");
+            return GetFluentValidation<T>(target, null, null, null, null, null, null);
+        }
 
-            var resolver = new PropertyNameResolver();
-            var messageResolver = new MessageResolver();
-            var expressionBuilder = new ExpressionBuilder<T>();
-            var validatorFactory = new ValidatorFactory();
-            var validatorToCondition = new ValidatorToCondition<T>(target, expressionBuilder, resolver, messageResolver);
-            var eventCoordinator = new EventsFactory().GetEventCoordinator();
-            return new FluentValidation<T>(target, resolver, messageResolver, expressionBuilder, 
+        /// <summary>
+        ///     Gets a fluent validation implementation
+        /// </summary>
+        public IFluentValidationBuilder<T> GetFluentValidation<T>(T target, IPropertyNameResolver propertyNameResolver,
+            IMessageResolver messageResolver,  IExpressionBuilder<T> expressionBuilder, IValidatorFactory validatorFactory,
+            IValidatorToCondition<T> validatorToCondition, IEventCoordinator eventCoordinator) where T : class
+        {
+            if (target == null)
+                throw new ArgumentNullException("target");
+
+            if (propertyNameResolver == null)
+                propertyNameResolver = new PropertyNameResolver();
+
+            if (messageResolver == null)
+                messageResolver = new MessageResolver();
+
+            if (expressionBuilder == null)
+                expressionBuilder = new ExpressionBuilder<T>();
+
+            if (validatorFactory == null)
+                validatorFactory = new ValidatorFactory();
+
+            if (validatorToCondition == null)
+                validatorToCondition = new ValidatorToCondition<T>(target, expressionBuilder, propertyNameResolver, messageResolver);
+
+            if (eventCoordinator == null)
+                eventCoordinator = new EventsFactory().GetEventCoordinator();
+
+            return new FluentValidation<T>(target, propertyNameResolver, messageResolver, expressionBuilder,
                 validatorFactory, validatorToCondition, eventCoordinator);
         }
     }

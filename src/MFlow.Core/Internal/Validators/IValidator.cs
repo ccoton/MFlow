@@ -3,7 +3,7 @@
     /// <summary>
     ///     A validator
     /// </summary>
-    interface IValidator<TInput>
+    public interface IValidator<TInput>
     {
         /// <summary>
         ///     A validate method

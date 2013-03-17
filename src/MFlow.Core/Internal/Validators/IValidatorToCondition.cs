@@ -4,7 +4,7 @@ using MFlow.Core.Validation.Enums;
 using System;
 namespace MFlow.Core.Internal.Validators
 {
-    interface IValidatorToCondition<T>
+    public interface IValidatorToCondition<T>
     {
         IFluentCondition<T> ForDateTime(ICurrentValidationContext<T> currentContext, IValidator<DateTime> validator, ValidationType type);
         IFluentCondition<T> ForDateTime(ICurrentValidationContext<T> currentContext, IComparisonValidator<DateTime, DateTime> validator, ValidationType type, DateTime value);

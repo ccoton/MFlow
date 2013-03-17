@@ -7,7 +7,7 @@ namespace MFlow.Core.Internal
     /// <summary>
     ///     An expression builder interface
     /// </summary>
-    interface IExpressionBuilder<T>
+    public interface IExpressionBuilder<T>
     {
         /// <summary>
         ///     Compiles the expression

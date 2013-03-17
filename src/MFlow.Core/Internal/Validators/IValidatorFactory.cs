@@ -6,7 +6,7 @@ namespace MFlow.Core
     /// <summary>
     ///     An interface defining a factory that returns validators
     /// </summary>
-    interface IValidatorFactory
+    public interface IValidatorFactory
     {
         /// <summary>
         ///     Gets the validator.

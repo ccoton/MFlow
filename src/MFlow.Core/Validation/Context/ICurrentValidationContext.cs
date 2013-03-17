@@ -8,7 +8,7 @@ namespace MFlow.Core.Validation.Context
     /// <summary>
     ///     The context of the current validation
     /// </summary>
-    interface ICurrentValidationContext<T>
+    public interface ICurrentValidationContext<T>
     {
         /// <summary>
         ///     Gets the current expression

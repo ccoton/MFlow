@@ -8,7 +8,7 @@ namespace MFlow.Core.Internal
     /// <summary>
     ///     A interface for resolving messages using expressions
     /// </summary>
-    interface IMessageResolver
+    public interface IMessageResolver
     {
         /// <summary>
         ///     Resolve a validation message using an property name
