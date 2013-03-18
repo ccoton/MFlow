@@ -70,5 +70,9 @@
         /// </summary>
         IFluentValidation<T> IsDate();
 
+        /// <summary>
+        ///    Check if the expressions evaluates to a string that is a valid password
+        /// </summary>
+        IFluentValidation<T> IsPassword();
     }
 }

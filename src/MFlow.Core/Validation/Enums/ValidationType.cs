@@ -33,5 +33,6 @@
         Any = 27,
         None = 28,
         IsNotNull = 29,
+        IsPassword = 30
     }
 }

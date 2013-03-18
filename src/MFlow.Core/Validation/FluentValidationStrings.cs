@@ -141,7 +141,17 @@ namespace MFlow.Core.Validation
                 _validatorFactory.GetValidator<string, IDateValidator>(), Enums.ValidationType.IsDate
                );
         }
-        
+
+        /// <summary>
+        ///    Check if the expressions evaluates to a string that is a valid password
+        /// </summary>
+        public IFluentValidation<T> IsPassword()
+        {
+            return ApplyStringValidator(
+                _validatorFactory.GetValidator<string, IPasswordValidator>(), Enums.ValidationType.IsPassword
+               );
+        }
+
         IFluentValidation<T> ApplyStringValidator(IValidator<string> validator, Enums.ValidationType type)
         {
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
