@@ -10,6 +10,6 @@ namespace MFlow.Core.Validation.Configuration
     {
         CustomImplementationMode CustomImplementationMode { get; }
 
-        void WithCustomImplementationMode(CustomImplementationMode mode);
+        IConfigureFluentValidation WithCustomImplementationMode(CustomImplementationMode mode);
     }
 }

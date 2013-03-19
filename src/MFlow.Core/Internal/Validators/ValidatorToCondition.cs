@@ -2,6 +2,9 @@
 using MFlow.Core.Conditions.Enums;
 using MFlow.Core.Internal.Validators.Dates;
 using MFlow.Core.Internal.Validators.Numbers;
+using MFlow.Core.Internal.Validators.Strings;
+using MFlow.Core.Validation.Configuration;
+using MFlow.Core.Validation.Configuration.Enums;
 using MFlow.Core.Validation.Context;
 using MFlow.Core.Validation.Enums;
 using System;
@@ -18,16 +21,19 @@ namespace MFlow.Core.Internal.Validators
         readonly IExpressionBuilder<T> _expressionBuilder;
         readonly IPropertyNameResolver _propertyNameResolver;
         readonly IMessageResolver _messageResolver;
+        readonly IConfigureFluentValidation _configuration;
 
         public ValidatorToCondition(T target,
             IExpressionBuilder<T> expressionBuilder,
             IPropertyNameResolver propertyNameResolver,
-            IMessageResolver messageResolver)
+            IMessageResolver messageResolver, 
+            IConfigureFluentValidation configuration)
         {
             _target = target;
             _expressionBuilder = expressionBuilder;
             _propertyNameResolver = propertyNameResolver;
             _messageResolver = messageResolver;
+            _configuration = configuration;
         }
 
         public IFluentCondition<T> ForDateTime(ICurrentValidationContext<T> currentContext, IValidator<DateTime> validator, ValidationType type)
@@ -81,6 +87,31 @@ namespace MFlow.Core.Internal.Validators
             }
 
             return condition;
+        }
+
+        public ICollection<IFluentCondition<T>> ForString(ICurrentValidationContext<T> currentContext, ICollection<IValidator<string>> validators, ValidationType type)
+        {
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators)
+            {
+                var noExternals = validators.Count == 1;
+                var internalValidator = validator.GetType().Assembly == typeof(ValidatorToCondition<T>).Assembly;
+                var applyInternalValidator = (noExternals) || (internalValidator && _configuration.CustomImplementationMode != CustomImplementationMode.Replace);
+                var applyExternalValidator = !internalValidator && (_configuration.CustomImplementationMode == CustomImplementationMode.Combine || _configuration.CustomImplementationMode == CustomImplementationMode.Replace);
+
+                if (applyInternalValidator || applyExternalValidator)
+                {
+
+                    IFluentCondition<T> condition;
+                    condition = new ApplyStringValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(validator, type);
+
+                    conditions.Add(condition);
+                }
+            
+            }
+
+            return conditions;
         }
     }
 }

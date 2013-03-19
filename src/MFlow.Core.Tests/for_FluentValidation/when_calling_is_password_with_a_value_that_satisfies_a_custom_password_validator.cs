@@ -1,6 +1,4 @@
 ﻿using Machine.Specifications;
-using MFlow.Core.Validation.Configuration;
-using MFlow.Core.Validation.Configuration.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +6,12 @@ using System.Text;
 
 namespace MFlow.Core.Tests.for_FluentValidation
 {
-    public class when_calling_is_password_with_a_value_that_is_a_valid_password : given.a_fluent_user_validator
+    public class when_calling_is_password_with_a_value_that_satisfies_a_custom_password_validator : given.a_fluent_user_validator_with_custom_password_validator_and_custom_implementation_set_to_replace
     {
 
         Because of = () =>
         {
-            Configuration.Current.WithCustomImplementationMode(CustomImplementationMode.Ignore);
-            user.Password = "P8ssw0rd";
+            user.Password = "custompasswordpolicy";
             validator.Check(u => u.Password).IsPassword();
         };
 

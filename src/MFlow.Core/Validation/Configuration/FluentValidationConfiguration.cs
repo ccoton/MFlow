@@ -10,14 +10,15 @@ namespace MFlow.Core.Validation.Configuration
     {
         internal FluentValidationConfiguration()
         {
-            CustomImplementationMode = Enums.CustomImplementationMode.Combine;
+            CustomImplementationMode = Enums.CustomImplementationMode.Ignore;
         }
 
         public CustomImplementationMode CustomImplementationMode { get; private set; }
 
-        public void WithCustomImplementationMode(CustomImplementationMode mode)
+        public IConfigureFluentValidation WithCustomImplementationMode(CustomImplementationMode mode)
         {
             CustomImplementationMode = mode;
+            return this;
         }
     }
 }

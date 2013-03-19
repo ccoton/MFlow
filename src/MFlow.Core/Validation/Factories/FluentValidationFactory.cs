@@ -44,15 +44,14 @@ namespace MFlow.Core.Validation.Factories
             if (validatorFactory == null)
                 validatorFactory = new ValidatorFactory();
 
-            if (validatorToCondition == null)
-                validatorToCondition = new ValidatorToCondition<T>(target, expressionBuilder, propertyNameResolver, messageResolver);
-
-            if (eventCoordinator == null)
-                eventCoordinator = new EventsFactory().GetEventCoordinator();
-
             if (configuration == null)
                 configuration = Configuration.Configuration.Current;
 
+            if (validatorToCondition == null)
+                validatorToCondition = new ValidatorToCondition<T>(target, expressionBuilder, propertyNameResolver, messageResolver, configuration);
+
+            if (eventCoordinator == null)
+                eventCoordinator = new EventsFactory().GetEventCoordinator();
 
             return new FluentValidation<T>(target, propertyNameResolver, messageResolver, expressionBuilder,
                 validatorFactory, validatorToCondition, eventCoordinator, configuration);

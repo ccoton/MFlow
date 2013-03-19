@@ -5,6 +5,7 @@ using MFlow.Core.Internal.Validators;
 using MFlow.Core.Internal.Validators.Strings;
 using System.Collections.Generic;
 using System.Linq;
+using MFlow.Core.Validation.Configuration.Enums;
 
 namespace MFlow.Core.Validation
 {
@@ -19,7 +20,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsNotEmpty()
         {
-            return ApplyStringValidator(
+            return ApplyStringValidators(
                 _validatorFactory.GetValidator<string, INotEmptyValidator>(), Enums.ValidationType.NotEmpty
                );
         }
@@ -39,7 +40,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsEmail()
         {
-            return ApplyStringValidator(
+            return ApplyStringValidators(
                 _validatorFactory.GetValidator<string, IEmailValidator>(), Enums.ValidationType.IsEmail
                );
         }
@@ -89,7 +90,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsCreditCard()
         {
-            return ApplyStringValidator(
+            return ApplyStringValidators(
                 _validatorFactory.GetValidator<string, ICreditCardValidator>(), Enums.ValidationType.IsCreditCard
                );
         }
@@ -99,7 +100,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsPostCode()
         {
-            return ApplyStringValidator(
+            return ApplyStringValidators(
                 _validatorFactory.GetValidator<string, IPostCodeValidator>(), Enums.ValidationType.IsPostCode
                );
         }
@@ -109,7 +110,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsZipCode()
         {
-            return ApplyStringValidator(
+            return ApplyStringValidators(
                 _validatorFactory.GetValidator<string, IZipCodeValidator>(), Enums.ValidationType.IsZipCode
                );
         }
@@ -119,7 +120,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsNumeric()
         {
-            return ApplyStringValidator(
+            return ApplyStringValidators(
                 _validatorFactory.GetValidator<string, INumericValidator>(), Enums.ValidationType.IsNumeric
                );
         }
@@ -129,7 +130,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsAlpha()
         {
-            return ApplyStringValidator(
+            return ApplyStringValidators(
                 _validatorFactory.GetValidator<string, IAlphaValidator>(), Enums.ValidationType.IsAlpha
                );
         }
@@ -139,7 +140,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsDate()
         {
-            return ApplyStringValidator(
+            return ApplyStringValidators(
                 _validatorFactory.GetValidator<string, IDateValidator>(), Enums.ValidationType.IsDate
                );
         }
@@ -149,26 +150,17 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsPassword()
         {
-            return ApplyStringValidator(
+            return ApplyStringValidators(
                 _validatorFactory.GetValidator<string, IPasswordValidator>(), Enums.ValidationType.IsPassword
                );
         }
 
-        IFluentValidation<T> ApplyStringValidator(ICollection<IValidator<string>> validators, Enums.ValidationType type)
+        IFluentValidation<T> ApplyStringValidators(ICollection<IValidator<string>> validators, Enums.ValidationType type)
         {
-            foreach (var validator in validators)
-            {
-
-                if (validator.GetType().Assembly == typeof(IFluentValidationLoader).Assembly)
-                {
-
-                }
-
-                Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
-                Func<T, string> compiled = _expressionBuilder.Compile(expression);
-                Expression<Func<T, bool>> derived = f => validator.Validate(compiled.Invoke(_target));
-                BuildIf(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, type, string.Empty));
-            }
+            _validatorToCondition.ForString(_currentContext, validators, type)
+                .ToList()
+                .ForEach(c => BuildIf(c.Condition, c.Key, c.Message));
+                
             return this;
         }
 
