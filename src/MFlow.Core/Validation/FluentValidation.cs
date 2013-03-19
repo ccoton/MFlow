@@ -5,6 +5,7 @@ using MFlow.Core.Events;
 using MFlow.Core.Internal;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.Validation.Builder;
+using MFlow.Core.Validation.Configuration;
 using MFlow.Core.Validation.Context;
 using MFlow.Core.Validation.Enums;
 using System;
@@ -27,6 +28,7 @@ namespace MFlow.Core.Validation
         readonly IValidatorFactory _validatorFactory;
         readonly IValidatorToCondition<T> _validatorToCondition;
         readonly IEventCoordinator _eventCoordinator;
+        readonly IConfigureFluentValidation _configuration;
 
         /// <summary>
         ///     Constructor
@@ -34,7 +36,7 @@ namespace MFlow.Core.Validation
         internal FluentValidation(T validate, IPropertyNameResolver propertyNameResolver,
                                   IMessageResolver messageResolver, IExpressionBuilder<T> expressionBuilder,
                                   IValidatorFactory validatorFactory, IValidatorToCondition<T> validatorToCondition,
-                                  IEventCoordinator eventCoordinator)
+                                  IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration)
             : base(validate)
         {
             If(validate == null).Throw(new ArgumentException("validate"));
@@ -44,6 +46,7 @@ namespace MFlow.Core.Validation
             If(validatorFactory == null).Throw(new ArgumentException("validatorFactory"));
             If(validatorToCondition == null).Throw(new ArgumentException("validatorToCondition"));
             If(eventCoordinator == null).Throw(new ArgumentException("eventCoordinator"));
+            If(configuration == null).Throw(new ArgumentException("configuration"));
 
             _resolver = propertyNameResolver;
             _messageResolver = messageResolver;
@@ -51,6 +54,7 @@ namespace MFlow.Core.Validation
             _validatorFactory = validatorFactory;
             _validatorToCondition = validatorToCondition;
             _eventCoordinator = eventCoordinator;
+            _configuration = configuration;
 
             base.Clear();
         }

@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using MFlow.Core.Conditions;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.Internal.Validators.Numbers;
+using System.Collections.Generic;
 
 namespace MFlow.Core.Validation
 {
@@ -43,10 +44,13 @@ namespace MFlow.Core.Validation
             return ApplyIntComparisonValidator(_validatorFactory.GetValidator<int, int, IGreaterThanOrEqualToValidator>(), Enums.ValidationType.GreaterThanOrEqualTo, value);
         }
 
-        FluentValidation<T> ApplyIntComparisonValidator(IComparisonValidator<int, int> validator, Enums.ValidationType type, int value)
+        FluentValidation<T> ApplyIntComparisonValidator(ICollection<IComparisonValidator<int, int>> validators, Enums.ValidationType type, int value)
         {
-            var condition = _validatorToCondition.ForInt(_currentContext, validator, type, value);
-            BuildIf(condition.Condition, condition.Key, condition.Message);
+            foreach (var validator in validators)
+            {
+                var condition = _validatorToCondition.ForInt(_currentContext, validator, type, value);
+                BuildIf(condition.Condition, condition.Key, condition.Message);
+            }
             return this;
         }
 

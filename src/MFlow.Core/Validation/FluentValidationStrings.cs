@@ -3,6 +3,8 @@ using System.Linq.Expressions;
 using MFlow.Core.Conditions;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.Internal.Validators.Strings;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MFlow.Core.Validation
 {
@@ -11,7 +13,7 @@ namespace MFlow.Core.Validation
     /// </summary>
     public partial class FluentValidation<T> : FluentConditions<T>, IFluentValidation<T>, IFluentValidationString<T>
     {
-        
+
         /// <summary>
         ///     Checks if the expression evaluates to a string that is empty
         /// </summary>
@@ -61,7 +63,7 @@ namespace MFlow.Core.Validation
                 _validatorFactory.GetValidator<string, int, ILengthValidator>(), Enums.ValidationType.IsLength, length
                );
         }
-        
+
         /// <summary>
         ///     Checks if the expression evaluates to a string longer than length
         /// </summary>
@@ -71,7 +73,7 @@ namespace MFlow.Core.Validation
                 _validatorFactory.GetValidator<string, int, ILongerValidator>(), Enums.ValidationType.IsLongerThan, length
                );
         }
-        
+
         /// <summary>
         ///     Checks if the expression evaluates to a string shorter than length
         /// </summary>
@@ -131,7 +133,7 @@ namespace MFlow.Core.Validation
                 _validatorFactory.GetValidator<string, IAlphaValidator>(), Enums.ValidationType.IsAlpha
                );
         }
-        
+
         /// <summary>
         ///    Check if the expressions evaluates to a string that is a date
         /// </summary>
@@ -152,30 +154,45 @@ namespace MFlow.Core.Validation
                );
         }
 
-        IFluentValidation<T> ApplyStringValidator(IValidator<string> validator, Enums.ValidationType type)
+        IFluentValidation<T> ApplyStringValidator(ICollection<IValidator<string>> validators, Enums.ValidationType type)
         {
-            Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
-            Func<T, string> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => validator.Validate(compiled.Invoke(_target));
-            BuildIf(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, type, string.Empty));
+            foreach (var validator in validators)
+            {
+
+                if (validator.GetType().Assembly == typeof(IFluentValidationLoader).Assembly)
+                {
+
+                }
+
+                Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
+                Func<T, string> compiled = _expressionBuilder.Compile(expression);
+                Expression<Func<T, bool>> derived = f => validator.Validate(compiled.Invoke(_target));
+                BuildIf(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, type, string.Empty));
+            }
             return this;
         }
-        
-        FluentValidation<T> ApplyStringComparisonValidator(IComparisonValidator<string, string> validator, Enums.ValidationType type, string value)
+
+        FluentValidation<T> ApplyStringComparisonValidator(ICollection<IComparisonValidator<string, string>> validators, Enums.ValidationType type, string value)
         {
-            Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
-            Func<T, string> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => validator.Validate(compiled.Invoke(_target), value);
-            BuildIf(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
+            foreach (var validator in validators)
+            {
+                Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
+                Func<T, string> compiled = _expressionBuilder.Compile(expression);
+                Expression<Func<T, bool>> derived = f => validator.Validate(compiled.Invoke(_target), value);
+                BuildIf(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
+            }
             return this;
         }
-        
-        FluentValidation<T> ApplyStringIntComparisonValidator(IComparisonValidator<string, int> validator, Enums.ValidationType type, int value)
+
+        FluentValidation<T> ApplyStringIntComparisonValidator(ICollection<IComparisonValidator<string, int>> validators, Enums.ValidationType type, int value)
         {
-            Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
-            Func<T, string> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => validator.Validate(compiled.Invoke(_target), value);
-            BuildIf(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, value.ToString(), type, string.Empty));
+            foreach (var validator in validators)
+            {
+                Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
+                Func<T, string> compiled = _expressionBuilder.Compile(expression);
+                Expression<Func<T, bool>> derived = f => validator.Validate(compiled.Invoke(_target), value);
+                BuildIf(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, value.ToString(), type, string.Empty));
+            }
             return this;
         }
     }

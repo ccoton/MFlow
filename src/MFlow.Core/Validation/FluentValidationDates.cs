@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using MFlow.Core.Conditions;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.Internal.Validators.Dates;
+using System.Collections.Generic;
 
 namespace MFlow.Core.Validation
 {
@@ -66,29 +67,36 @@ namespace MFlow.Core.Validation
         {
             return ApplyDateValidator(_validatorFactory.GetValidator<DateTime, ITodayValidator>(), Enums.ValidationType.IsToday);
         }
-        
-        IFluentValidation<T> ApplyDateValidator(IValidator<DateTime> validator, Enums.ValidationType type)
+
+        IFluentValidation<T> ApplyDateValidator(ICollection<IValidator<DateTime>> validators, Enums.ValidationType type)
         {
-            var condition = _validatorToCondition.ForDateTime(_currentContext, validator, type);
-            BuildIf(condition.Condition, condition.Key, condition.Message); 
-            return this;
-        }
-        
-        FluentValidation<T> ApplyDateComparisonValidator(IComparisonValidator<DateTime, DateTime> validator, Enums.ValidationType type, DateTime value)
-        {
-            IFluentCondition<T> condition;
-            if (_currentContext.IsNullable)
+            foreach (var validator in validators)
             {
-                condition = new ApplyNullableDateValidator<T>(_target, _currentContext, _expressionBuilder,
-                    _resolver, _messageResolver).Apply(validator, type, value);
-            }
-            else
-            {
-                condition = new ApplyDateValidator<T>(_target, _currentContext, _expressionBuilder,
-                    _resolver, _messageResolver).Apply(validator, type, value);
+                var condition = _validatorToCondition.ForDateTime(_currentContext, validator, type);
+                BuildIf(condition.Condition, condition.Key, condition.Message);
             }
 
-            BuildIf(condition.Condition, condition.Key, condition.Message);
+            return this;
+        }
+
+        FluentValidation<T> ApplyDateComparisonValidator(ICollection<IComparisonValidator<DateTime, DateTime>> validators, Enums.ValidationType type, DateTime value)
+        {
+            foreach (var validator in validators)
+            {
+                IFluentCondition<T> condition;
+                if (_currentContext.IsNullable)
+                {
+                    condition = new ApplyNullableDateValidator<T>(_target, _currentContext, _expressionBuilder,
+                        _resolver, _messageResolver).Apply(validator, type, value);
+                }
+                else
+                {
+                    condition = new ApplyDateValidator<T>(_target, _currentContext, _expressionBuilder,
+                        _resolver, _messageResolver).Apply(validator, type, value);
+                }
+
+                BuildIf(condition.Condition, condition.Key, condition.Message);
+            }
             return this;
         }
     }

@@ -28,12 +28,15 @@ namespace MFlow.Core.Validation
             return ApplyGenericCollectionValidator(_validatorFactory.GetValidator<ICollection<C>, C, INoneValidator<C>>(), Enums.ValidationType.None, value);
         }
 
-        IFluentValidation<T> ApplyGenericCollectionValidator<C>(IComparisonValidator<ICollection<C>, C> validator, Enums.ValidationType type, C value)
+        IFluentValidation<T> ApplyGenericCollectionValidator<C>(ICollection<IComparisonValidator<ICollection<C>, C>> validators, Enums.ValidationType type, C value)
         {
-            Expression<Func<T, ICollection<C>>> expression = _currentContext.GetExpression<ICollection<C>>();
-            Func<T, ICollection<C>> compiled = _expressionBuilder.Compile(expression);
-            Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-            BuildIf(derived, _resolver.Resolve<T, ICollection<C>>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
+            foreach (var validator in validators)
+            {
+                Expression<Func<T, ICollection<C>>> expression = _currentContext.GetExpression<ICollection<C>>();
+                Func<T, ICollection<C>> compiled = _expressionBuilder.Compile(expression);
+                Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
+                BuildIf(derived, _resolver.Resolve<T, ICollection<C>>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
+            }
             return this;
         }
     }

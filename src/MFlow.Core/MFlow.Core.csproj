@@ -139,6 +139,10 @@
     <Compile Include="Events\ValidationFailedEvent.cs" />
     <Compile Include="ValidationLoader.cs" />
     <Compile Include="Validation\Builder\IFluentValidationBuilder.cs" />
+    <Compile Include="Validation\Configuration\Configuration.cs" />
+    <Compile Include="Validation\Configuration\Enums\CustomImplementationMode.cs" />
+    <Compile Include="Validation\Configuration\FluentValidationConfiguration.cs" />
+    <Compile Include="Validation\Configuration\IConfigureFluentValidation.cs" />
     <Compile Include="Validation\IFluentValidationCollection.cs" />
     <Compile Include="Validation\IFluentValidationDate.cs" />
     <Compile Include="Validation\IFluentValidationGeneric.cs" />

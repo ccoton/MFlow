@@ -2,7 +2,7 @@ using MFlow.Core.Internal.Validators;
 
 namespace MFlow.Core.Internal.Validators.Strings
 {
-    interface IPasswordValidator : IValidator<string>
+    public interface IPasswordValidator : IValidator<string>
     {
     }
 }

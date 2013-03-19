@@ -3,6 +3,7 @@ using MFlow.Core.Validation.Builder;
 using MFlow.Core.Internal;
 using MFlow.Core.Internal.Validators;
 using MEvents.Core;
+using MFlow.Core.Validation.Configuration;
 
 namespace MFlow.Core.Validation.Factories
 {
@@ -18,7 +19,7 @@ namespace MFlow.Core.Validation.Factories
         {
             if (target == null)
                 throw new ArgumentNullException("target");
-            return GetFluentValidation<T>(target, null, null, null, null, null, null);
+            return GetFluentValidation<T>(target, null, null, null, null, null, null, null);
         }
 
         /// <summary>
@@ -26,7 +27,7 @@ namespace MFlow.Core.Validation.Factories
         /// </summary>
         public IFluentValidationBuilder<T> GetFluentValidation<T>(T target, IPropertyNameResolver propertyNameResolver,
             IMessageResolver messageResolver,  IExpressionBuilder<T> expressionBuilder, IValidatorFactory validatorFactory,
-            IValidatorToCondition<T> validatorToCondition, IEventCoordinator eventCoordinator) where T : class
+            IValidatorToCondition<T> validatorToCondition, IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration) where T : class
         {
             if (target == null)
                 throw new ArgumentNullException("target");
@@ -49,8 +50,12 @@ namespace MFlow.Core.Validation.Factories
             if (eventCoordinator == null)
                 eventCoordinator = new EventsFactory().GetEventCoordinator();
 
+            if (configuration == null)
+                configuration = Configuration.Configuration.Current;
+
+
             return new FluentValidation<T>(target, propertyNameResolver, messageResolver, expressionBuilder,
-                validatorFactory, validatorToCondition, eventCoordinator);
+                validatorFactory, validatorToCondition, eventCoordinator, configuration);
         }
     }
 }
