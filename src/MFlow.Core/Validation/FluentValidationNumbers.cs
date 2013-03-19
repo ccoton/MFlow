@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq.Expressions;
-using MFlow.Core.Conditions;
+﻿using MFlow.Core.Conditions;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.Internal.Validators.Numbers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MFlow.Core.Validation
 {
@@ -46,11 +45,10 @@ namespace MFlow.Core.Validation
 
         FluentValidation<T> ApplyIntComparisonValidator(ICollection<IComparisonValidator<int, int>> validators, Enums.ValidationType type, int value)
         {
-            foreach (var validator in validators)
-            {
-                var condition = _validatorToCondition.ForInt(_currentContext, validator, type, value);
-                BuildIf(condition.Condition, condition.Key, condition.Message);
-            }
+            _validatorToCondition.ForInt(_currentContext, validators, type, value)
+                .ToList()
+                .ForEach(c => BuildIf(c.Condition, c.Key, c.Message));
+
             return this;
         }
 

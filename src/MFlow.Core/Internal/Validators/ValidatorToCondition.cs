@@ -69,21 +69,26 @@ namespace MFlow.Core.Internal.Validators
             return condition;
         }
 
-        public IFluentCondition<T> ForInt(ICurrentValidationContext<T> currentContext, IComparisonValidator<int, int> validator, ValidationType type, int value)
+        public ICollection<IFluentCondition<T>> ForInt(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<int, int>> validators, ValidationType type, int value)
         {
-            IFluentCondition<T> condition;
-            if (currentContext.IsNullable)
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators.ToApply(_configuration))
             {
-                condition = new ApplyNullableIntValidator<T>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type, value);
-            }
-            else
-            {
-                condition = new ApplyIntValidator<T>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type, value);
+                IFluentCondition<T> condition;
+                if (currentContext.IsNullable)
+                {
+                    condition = new ApplyNullableIntValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(validator, type, value);
+                }
+                else
+                {
+                    condition = new ApplyIntValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(validator, type, value);
+                }
+                conditions.Add(condition);
             }
 
-            return condition;
+            return conditions;
         }
 
         public ICollection<IFluentCondition<T>> ForString(ICurrentValidationContext<T> currentContext, ICollection<IValidator<string>> validators, ValidationType type)
