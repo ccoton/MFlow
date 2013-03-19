@@ -166,25 +166,19 @@ namespace MFlow.Core.Validation
 
         FluentValidation<T> ApplyStringComparisonValidator(ICollection<IComparisonValidator<string, string>> validators, Enums.ValidationType type, string value)
         {
-            foreach (var validator in validators)
-            {
-                Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
-                Func<T, string> compiled = _expressionBuilder.Compile(expression);
-                Expression<Func<T, bool>> derived = f => validator.Validate(compiled.Invoke(_target), value);
-                BuildIf(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
-            }
+            _validatorToCondition.ForString(_currentContext, validators, type, value)
+                .ToList()
+                .ForEach(c => BuildIf(c.Condition, c.Key, c.Message));
+
             return this;
         }
 
         FluentValidation<T> ApplyStringIntComparisonValidator(ICollection<IComparisonValidator<string, int>> validators, Enums.ValidationType type, int value)
         {
-            foreach (var validator in validators)
-            {
-                Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
-                Func<T, string> compiled = _expressionBuilder.Compile(expression);
-                Expression<Func<T, bool>> derived = f => validator.Validate(compiled.Invoke(_target), value);
-                BuildIf(derived, _resolver.Resolve<T, string>(expression), _messageResolver.Resolve(expression, value.ToString(), type, string.Empty));
-            }
+            _validatorToCondition.ForString(_currentContext, validators, type, value)
+                .ToList()
+                .ForEach(c => BuildIf(c.Condition, c.Key, c.Message));
+
             return this;
         }
     }

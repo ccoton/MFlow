@@ -26,6 +26,16 @@ namespace MFlow.Core.Internal.Validators.Strings
             _messageResolver = messageResolver;
         }
 
+        public IFluentCondition<T> Apply(IComparisonValidator<string, int> validator, Validation.Enums.ValidationType type, int value)
+        {
+            Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
+            Func<T, string> compiled = _expressionBuilder.Compile(expression);
+            Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
+            var propertyName = _propertyNameResolver.Resolve<T, string>(expression);
+            var message = _messageResolver.Resolve(expression, value.ToString(), type, string.Empty);
+            return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
+        }
+
         public IFluentCondition<T> Apply(IComparisonValidator<string, string> validator, Validation.Enums.ValidationType type, string value)
         {
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
