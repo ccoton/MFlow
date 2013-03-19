@@ -2,7 +2,7 @@
 
 namespace MFlow.Core.Internal.Validators.Strings
 {
-    interface IDateValidator : IValidator<String>
+    public interface IDateValidator : IValidator<String>
     {
     }
 }

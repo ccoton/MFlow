@@ -2,7 +2,7 @@ using MFlow.Core.Internal.Validators;
 
 namespace MFlow.Core.Internal.Validators.Strings
 {
-    interface IPostCodeValidator : IValidator<string>
+    public interface IPostCodeValidator : IValidator<string>
     {
     }
 }

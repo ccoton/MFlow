@@ -3,7 +3,7 @@ using MFlow.Core.Internal.Validators;
 
 namespace MFlow.Core.Internal.Validators.Dates
 {
-    interface IBeforeValidator : IComparisonValidator<DateTime, DateTime>
+    public interface IBeforeValidator : IComparisonValidator<DateTime, DateTime>
     {
     }
 }

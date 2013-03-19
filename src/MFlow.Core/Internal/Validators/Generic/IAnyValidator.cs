@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MFlow.Core.Internal.Validators.Generic
 {
-    interface IAnyValidator<T> : IComparisonValidator<ICollection<T>, T>
+    public interface IAnyValidator<T> : IComparisonValidator<ICollection<T>, T>
     {
     }
 }

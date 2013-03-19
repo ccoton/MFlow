@@ -2,7 +2,7 @@ using MFlow.Core.Internal.Validators;
 
 namespace MFlow.Core.Internal.Validators.Numbers
 {
-    interface ILessThanValidator : IComparisonValidator<int, int>
+    public interface ILessThanValidator : IComparisonValidator<int, int>
     {
     }
 }
