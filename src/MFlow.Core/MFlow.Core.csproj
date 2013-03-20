@@ -108,7 +108,7 @@
     <Compile Include="Internal\Validators\Generic\RequiredValidator.cs" />
     <Compile Include="Internal\Validators\IValidator.cs" />
     <Compile Include="Internal\MessageResolver.cs" />
-    <Compile Include="Internal\Validators\IValidatorToCondition.cs" />
+    <Compile Include="Internal\Validators\IConvertValidatorToCondition.cs" />
     <Compile Include="Internal\Validators\Numbers\ApplyIntValidator.cs" />
     <Compile Include="Internal\Validators\Numbers\ApplyNullableIntValidator.cs" />
     <Compile Include="Internal\Validators\Numbers\GreatherThanValidator.cs" />
@@ -134,7 +134,7 @@
     <Compile Include="Internal\Validators\Strings\PostCodeValidator.cs" />
     <Compile Include="Internal\Validators\Strings\ShorterValidator.cs" />
     <Compile Include="Internal\Validators\Strings\ZipCodeValidator.cs" />
-    <Compile Include="Internal\Validators\ValidatorToCondition.cs" />
+    <Compile Include="Internal\Validators\ConvertValidatorToCondition.cs" />
     <Compile Include="Resources\IResourceLocator.cs" />
     <Compile Include="Resources\ResourceLocator.cs" />
     <Compile Include="Conditions\Enums\ConditionOutput.cs" />

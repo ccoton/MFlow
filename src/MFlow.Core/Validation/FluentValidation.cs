@@ -26,7 +26,7 @@ namespace MFlow.Core.Validation
         readonly IMessageResolver _messageResolver;
         readonly IExpressionBuilder<T> _expressionBuilder;
         readonly IValidatorFactory _validatorFactory;
-        readonly IValidatorToCondition<T> _validatorToCondition;
+        readonly IConvertValidatorToCondition<T> _validatorToCondition;
         readonly IEventCoordinator _eventCoordinator;
         readonly IConfigureFluentValidation _configuration;
 
@@ -35,7 +35,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         internal FluentValidation(T validate, IPropertyNameResolver propertyNameResolver,
                                   IMessageResolver messageResolver, IExpressionBuilder<T> expressionBuilder,
-                                  IValidatorFactory validatorFactory, IValidatorToCondition<T> validatorToCondition,
+                                  IValidatorFactory validatorFactory, IConvertValidatorToCondition<T> validatorToCondition,
                                   IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration)
             : base(validate)
         {

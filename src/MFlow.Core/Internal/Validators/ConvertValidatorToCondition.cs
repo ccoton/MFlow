@@ -11,7 +11,7 @@ using MFlow.Core.Internal.Validators.Extension;
 
 namespace MFlow.Core.Internal.Validators
 {
-    class ValidatorToCondition<T> : MFlow.Core.Internal.Validators.IValidatorToCondition<T>
+    class ConvertValidatorToCondition<T> : MFlow.Core.Internal.Validators.IConvertValidatorToCondition<T>
     {
 
         readonly T _target;
@@ -20,7 +20,7 @@ namespace MFlow.Core.Internal.Validators
         readonly IMessageResolver _messageResolver;
         readonly IConfigureFluentValidation _configuration;
 
-        public ValidatorToCondition(T target,
+        public ConvertValidatorToCondition(T target,
             IExpressionBuilder<T> expressionBuilder,
             IPropertyNameResolver propertyNameResolver,
             IMessageResolver messageResolver,
@@ -33,40 +33,48 @@ namespace MFlow.Core.Internal.Validators
             _configuration = configuration;
         }
 
-        public IFluentCondition<T> ForDateTime(ICurrentValidationContext<T> currentContext, IValidator<DateTime> validator, ValidationType type)
+        public ICollection<IFluentCondition<T>> ForDateTime(ICurrentValidationContext<T> currentContext, ICollection<IValidator<DateTime>> validators, ValidationType type)
         {
-            IFluentCondition<T> condition;
-
-            if (currentContext.IsNullable)
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators.ToApply(_configuration))
             {
-                condition = new ApplyNullableDateValidator<T>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type);
-            }
-            else
-            {
-                condition = new ApplyDateValidator<T>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type);
-            }
+                IFluentCondition<T> condition;
 
-            return condition;
+                if (currentContext.IsNullable)
+                {
+                    condition = new ApplyNullableDateValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(validator, type);
+                }
+                else
+                {
+                    condition = new ApplyDateValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(validator, type);
+                }
+                conditions.Add(condition);
+            }
+            return conditions;
         }
 
-        public IFluentCondition<T> ForDateTime(ICurrentValidationContext<T> currentContext, IComparisonValidator<DateTime, DateTime> validator, ValidationType type, DateTime value)
+        public ICollection<IFluentCondition<T>> ForDateTime(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<DateTime, DateTime>> validators, ValidationType type, DateTime value)
         {
-            IFluentCondition<T> condition;
-
-            if (currentContext.IsNullable)
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators.ToApply(_configuration))
             {
-                condition = new ApplyNullableDateValidator<T>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type, value);
-            }
-            else
-            {
-                condition = new ApplyDateValidator<T>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type, value);
-            }
+                IFluentCondition<T> condition;
 
-            return condition;
+                if (currentContext.IsNullable)
+                {
+                    condition = new ApplyNullableDateValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(validator, type, value);
+                }
+                else
+                {
+                    condition = new ApplyDateValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(validator, type, value);
+                }
+                conditions.Add(condition);
+            }
+            return conditions;
         }
 
         public ICollection<IFluentCondition<T>> ForInt(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<int, int>> validators, ValidationType type, int value)
