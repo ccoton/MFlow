@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using MFlow.Core.Internal.Validators.Extension;
 using MFlow.Core.Internal.Validators.Collections;
+using System.Linq.Expressions;
+using MFlow.Core.Internal.Validators.Generic;
 
 namespace MFlow.Core.Internal.Validators
 {
@@ -152,6 +154,51 @@ namespace MFlow.Core.Internal.Validators
             {
                 IFluentCondition<T> condition;
                 condition = new ApplyCollectionValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
+                    _propertyNameResolver, _messageResolver).Apply(validator, type, value);
+
+                conditions.Add(condition);
+            }
+
+            return conditions;
+        }
+
+        public ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IValidator<TValidate>> validators, ValidationType type)
+        {
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators.ToApply(_configuration))
+            {
+                IFluentCondition<T> condition;
+                condition = new ApplyGenericValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
+                    _propertyNameResolver, _messageResolver).Apply(validator, type);
+
+                conditions.Add(condition);
+            }
+
+            return conditions;
+        }
+
+        public ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<TValidate, TValidate>> validators, ValidationType type, TValidate value)
+        {
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators.ToApply(_configuration))
+            {
+                IFluentCondition<T> condition;
+                condition = new ApplyGenericValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
+                    _propertyNameResolver, _messageResolver).Apply(validator, type, value);
+
+                conditions.Add(condition);
+            }
+
+            return conditions;
+        }
+
+        public ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<TValidate, TValidate>> validators, ValidationType type, Expression<Func<T, TValidate>> value)
+        {
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators.ToApply(_configuration))
+            {
+                IFluentCondition<T> condition;
+                condition = new ApplyGenericValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
                     _propertyNameResolver, _messageResolver).Apply(validator, type, value);
 
                 conditions.Add(condition);

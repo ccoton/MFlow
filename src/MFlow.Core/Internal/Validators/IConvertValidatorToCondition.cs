@@ -4,6 +4,7 @@ using MFlow.Core.Validation.Context;
 using MFlow.Core.Validation.Enums;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 namespace MFlow.Core.Internal.Validators
 {
     public interface IConvertValidatorToCondition<T>
@@ -15,5 +16,8 @@ namespace MFlow.Core.Internal.Validators
         ICollection<IFluentCondition<T>> ForString(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<string, string>> validators, ValidationType type, string value);
         ICollection<IFluentCondition<T>> ForString(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<string, int>> validators, ValidationType type, int value);
         ICollection<IFluentCondition<T>> ForCollectionOf<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<ICollection<TValidate>, TValidate>> validators, ValidationType type, TValidate value);
+        ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IValidator<TValidate>> validators, ValidationType type);
+        ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<TValidate, TValidate>> validators, ValidationType type, TValidate value);
+        ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<TValidate, TValidate>> validators, ValidationType type, Expression<Func<T, TValidate>> value);
     }
 }
