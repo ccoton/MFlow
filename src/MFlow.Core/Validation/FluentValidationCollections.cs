@@ -4,6 +4,8 @@ using System.Linq.Expressions;
 using MFlow.Core.Conditions;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.Internal.Validators.Generic;
+using MFlow.Core.Internal.Validators.Collections;
+using System.Linq;
 
 namespace MFlow.Core.Validation
 {
@@ -30,13 +32,10 @@ namespace MFlow.Core.Validation
 
         IFluentValidation<T> ApplyGenericCollectionValidator<C>(ICollection<IComparisonValidator<ICollection<C>, C>> validators, Enums.ValidationType type, C value)
         {
-            foreach (var validator in validators)
-            {
-                Expression<Func<T, ICollection<C>>> expression = _currentContext.GetExpression<ICollection<C>>();
-                Func<T, ICollection<C>> compiled = _expressionBuilder.Compile(expression);
-                Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), value);
-                BuildIf(derived, _resolver.Resolve<T, ICollection<C>>(expression), _messageResolver.Resolve(expression, value, type, string.Empty));
-            }
+            _validatorToCondition.ForCollectionOf<C>(_currentContext, validators, type, value)
+                .ToList()
+                .ForEach(c => BuildIf(c.Condition, c.Key, c.Message));
+
             return this;
         }
     }

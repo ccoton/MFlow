@@ -8,6 +8,7 @@ using MFlow.Core.Validation.Enums;
 using System;
 using System.Collections.Generic;
 using MFlow.Core.Internal.Validators.Extension;
+using MFlow.Core.Internal.Validators.Collections;
 
 namespace MFlow.Core.Internal.Validators
 {
@@ -136,6 +137,21 @@ namespace MFlow.Core.Internal.Validators
             {
                 IFluentCondition<T> condition;
                 condition = new ApplyStringValidator<T>(_target, currentContext, _expressionBuilder,
+                    _propertyNameResolver, _messageResolver).Apply(validator, type, value);
+
+                conditions.Add(condition);
+            }
+
+            return conditions;
+        }
+
+        public ICollection<IFluentCondition<T>> ForCollectionOf<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<ICollection<TValidate>, TValidate>> validators, ValidationType type, TValidate value)
+        {
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators.ToApply(_configuration))
+            {
+                IFluentCondition<T> condition;
+                condition = new ApplyCollectionValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
                     _propertyNameResolver, _messageResolver).Apply(validator, type, value);
 
                 conditions.Add(condition);

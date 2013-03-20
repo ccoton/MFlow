@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MFlow.Core.Internal.Validators.Generic
+namespace MFlow.Core.Internal.Validators.Collections
 {
     /// <summary>
     ///     Any Validator
