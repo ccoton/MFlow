@@ -6,12 +6,12 @@ using System.Text;
 
 namespace MFlow.Core.Tests.for_FluentValidation
 {
-    public class when_calling_is_password_with_a_value_that_does_not_satisfy_a_custom_password_validator : given.a_fluent_user_validator_with_custom_password_validator_and_custom_implementation_set_to_replace
+    public class when_calling_is_password_with_a_value_that_does_not_satisfy_a_custom_password_validator : given.a_fluent_user_validator_with_custom_implementation_set_to_replace
     {
 
         Because of = () =>
         {
-            user.Password = "doesnotmatchcustompasswordpolicy";
+            user.Password = "doesnotmatchcustompasswordvalidator";
             validator.Check(u => u.Password).IsPassword();
         };
 

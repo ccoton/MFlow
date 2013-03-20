@@ -14,7 +14,7 @@ using System.Text;
 namespace MFlow.Core.Tests.for_FluentValidation.given
 {
     [Subject("for Fluent Validation")]
-    public class a_fluent_user_validator_with_custom_password_validator_and_custom_implementation_set_to_replace
+    public class a_fluent_user_validator_with_custom_implementation_set_to_replace
     {
         protected static IFluentValidationBuilder<User> validator;
         protected static User user; 
@@ -26,13 +26,4 @@ namespace MFlow.Core.Tests.for_FluentValidation.given
             validator = new FluentValidationFactory().GetFluentValidation<User>(user);
         };
     }
-
-    public class CustomPasswordPolicy : IPasswordValidator
-    {
-        public bool Validate(string input)
-        {
-            return input == "custompasswordpolicy";
-        }
-    }
-
 }
