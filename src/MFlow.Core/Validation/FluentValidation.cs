@@ -22,7 +22,7 @@ namespace MFlow.Core.Validation
         IFluentValidationBuilder<T>
     {
         ICurrentValidationContext<T> _currentContext;
-        readonly IPropertyNameResolver _resolver;
+        readonly IPropertyNameResolver _propertyNameResolver;
         readonly IMessageResolver _messageResolver;
         readonly IExpressionBuilder<T> _expressionBuilder;
         readonly IValidatorFactory _validatorFactory;
@@ -48,7 +48,7 @@ namespace MFlow.Core.Validation
             If(eventCoordinator == null).Throw(new ArgumentException("eventCoordinator"));
             If(configuration == null).Throw(new ArgumentException("configuration"));
 
-            _resolver = propertyNameResolver;
+            _propertyNameResolver = propertyNameResolver;
             _messageResolver = messageResolver;
             _expressionBuilder = expressionBuilder;
             _validatorFactory = validatorFactory;
@@ -180,7 +180,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> If(Expression<Func<T, bool>> expression)
         {
-            If(expression, _resolver.Resolve<T, bool>(expression));
+            If(expression, _propertyNameResolver.Resolve<T, bool>(expression));
             return this;
         }
 
@@ -198,7 +198,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> And(Expression<Func<T, bool>> expression)
         {
-            And(expression, _resolver.Resolve<T, bool>(expression));
+            And(expression, _propertyNameResolver.Resolve<T, bool>(expression));
             return this;
         }
 
@@ -216,7 +216,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> Or(Expression<Func<T, bool>> expression)
         {
-            Or(expression, _resolver.Resolve<T, bool>(expression));
+            Or(expression, _propertyNameResolver.Resolve<T, bool>(expression));
             return this;
         }
 
