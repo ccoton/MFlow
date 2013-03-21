@@ -112,6 +112,9 @@
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation_with_null.cs" />
     <Compile Include="for_FluentValidationFactory\given\a_fluent_validation_factory.cs" />
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_longer_than_with_a_value_that_does_not_satisfy_a_custom_longer_than_validator.cs" />
+    <Compile Include="for_FluentValidation\when_calling_is_longer_than_with_a_value_that_satisfies_a_custom_longer_than_validator.cs" />
+    <Compile Include="for_FluentValidation\custom_validators\LongerThanValidator.cs" />
     <Compile Include="for_FluentValidation\when_calling_is_zip_code_with_a_value_that_does_not_satisfy_a_custom_zip_code_validator.cs" />
     <Compile Include="for_FluentValidation\when_calling_is_zip_code_with_a_value_that_satisfies_a_custom_zip_code_validator.cs" />
     <Compile Include="for_FluentValidation\custom_validators\ZipCodeValidator.cs" />
