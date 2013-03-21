@@ -10,7 +10,7 @@ namespace MFlow.Core.Internal
     /// </summary>
     class ExpressionBuilder<T> : IExpressionBuilder<T>
     {
-        static IDictionary<object, object> _expressions = new Dictionary<object, object>();
+        static readonly IDictionary<object, object> _expressions = new Dictionary<object, object>();
         object _expressionsLock = new object();
 
         /// <summary>

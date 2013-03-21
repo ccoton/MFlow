@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using MEvents.Core;
 using MFlow.Core.Conditions.Enums;
 using MFlow.Core.Validation.Builder;
-using MEvents.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace MFlow.Core.Validation
 {

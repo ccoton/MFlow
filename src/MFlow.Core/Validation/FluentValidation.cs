@@ -151,9 +151,7 @@ namespace MFlow.Core.Validation
         {
             if (_currentContext == null)
                 throw new ApplicationException("Calling Group on a validator is only valid once the validator has at least one context, i.e. Check has been called");
-
             base.Group(name);
-
             return this;
         }
 

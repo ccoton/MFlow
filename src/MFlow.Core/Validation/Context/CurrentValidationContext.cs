@@ -1,8 +1,6 @@
-﻿using System;
+﻿using MFlow.Core.Conditions.Enums;
+using System;
 using System.Linq.Expressions;
-using MFlow.Core.Conditions.Enums;
-using MFlow.Core.Conditions;
-using MFlow.Core.Internal.Validators;
 
 namespace MFlow.Core.Validation.Context
 {

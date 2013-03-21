@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MFlow.Core.Conditions.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using MFlow.Core.Conditions.Enums;
 
 namespace MFlow.Core.Validation.Builder
 {
