@@ -59,6 +59,9 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MEvents.Core">
+      <HintPath>..\..\packages\MEvents.Core.1.1.0.0\lib\Net40\MEvents.Core.dll</HintPath>
+    </Reference>
     <Reference Include="MFlow.Core">
       <HintPath>..\..\Src\built\MFlow.Core\MFlow.Core.dll</HintPath>
     </Reference>
