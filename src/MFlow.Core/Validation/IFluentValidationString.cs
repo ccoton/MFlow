@@ -74,5 +74,10 @@
         ///    Check if the expressions evaluates to a string that is a valid password
         /// </summary>
         IFluentValidation<T> IsPassword();
+
+        /// <summary>
+        ///    Check if the expressions evaluates to a string that is a valid username
+        /// </summary>
+        IFluentValidation<T> IsUsername();
     }
 }

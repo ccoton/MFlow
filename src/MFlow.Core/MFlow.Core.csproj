@@ -122,6 +122,8 @@
     <Compile Include="Internal\Validators\Numbers\LessThanValidator.cs" />
     <Compile Include="Internal\Validators\Strings\ApplyStringValidator.cs" />
     <Compile Include="Internal\Validators\Strings\ContainsValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IUsernameValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\UsernameValidator.cs" />
     <Compile Include="Internal\Validators\Strings\IApplyStringValidator.cs" />
     <Compile Include="Internal\Validators\Strings\PasswordValidator.cs" />
     <Compile Include="Internal\Validators\Strings\IPasswordValidator.cs" />

@@ -119,6 +119,12 @@
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation_with_null.cs" />
     <Compile Include="for_FluentValidationFactory\given\a_fluent_validation_factory.cs" />
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation.cs" />
+    <Compile Include="for_FluentValidation\username\UsernameValidator.cs" />
+    <Compile Include="for_FluentValidation\username\when_calling_is_username_with_a_value_that_does_not_satisfy_a_custom_username_validator.cs" />
+    <Compile Include="for_FluentValidation\username\when_calling_is_username_with_a_value_that_is_a_valid_username.cs" />
+    <Compile Include="for_FluentValidation\username\when_calling_is_username_with_a_value_that_is_not_a_valid_username.cs" />
+    <Compile Include="for_FluentValidation\username\when_calling_is_username_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\username\when_calling_is_username_with_a_value_that_satisfies_a_custom_username_validator.cs" />
     <Compile Include="for_FluentValidation\less_than_or_equal\when_calling_is_less_than_or_equal_with_a_value_that_does_not_satisfy_a_custom_less_than_or_equal_validator.cs" />
     <Compile Include="for_FluentValidation\less_than_or_equal\when_calling_is_less_than_or_equal_with_a_value_that_satisfies_a_custom_less_than_or_equal_validator.cs" />
     <Compile Include="for_FluentValidation\greater_than_or_equal\when_calling_is_greater_than_or_equal_with_a_value_that_does_not_satisfy_a_custom_greater_than_or_equal_validator.cs" />
@@ -350,9 +356,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="for_FluentValidation\custom_validators\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

@@ -28,3 +28,5 @@
 [Display] OnValidatorMessage [When] LastLogin [Is] Not On [Value] 01/01/2015
 [Display] RegExValidatorMessage [When] Username [Is] NotStringPattern [RegEx] \w+([-+.&#39;]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*
 [Display] IsNotNullValidatorMessage [When] Username [Is] Null
+[Display] IsPasswordValidatorMessage [When] Password [Is] NotPassword
+[Display] IsUsernameValidatorMessage [When] Username [Is] NotUsername

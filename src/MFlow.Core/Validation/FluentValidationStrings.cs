@@ -152,6 +152,16 @@ namespace MFlow.Core.Validation
                );
         }
 
+        /// <summary>
+        ///    Check if the expressions evaluates to a string that is a valid username
+        /// </summary>
+        public IFluentValidation<T> IsUsername()
+        {
+            return ApplyStringValidators(
+                _validatorFactory.GetValidators<string, IUsernameValidator>(), Enums.ValidationType.IsUsername
+               );
+        }
+
         IFluentValidation<T> ApplyStringValidators(ICollection<IValidator<string>> validators, Enums.ValidationType type)
         {
             _validatorToCondition.ForString(_currentContext, validators, type)

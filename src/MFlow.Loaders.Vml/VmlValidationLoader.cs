@@ -119,6 +119,8 @@ namespace MFlow.Loaders.Vml
             validator = ParseIsToday(validator, document);
             validator = ParseHasNoItem(validator, document);
             validator = ParseIsNotNull(validator, document);
+            validator = ParseIsUsername(validator, document);
+            validator = ParseIsPassword(validator, document);
 
             return validator;
         }
@@ -189,6 +191,22 @@ namespace MFlow.Loaders.Vml
             return CreateExpressions<T, string, int>(validator, document, "[Is] NotNumeric", (e, ev, m, v, h) =>
             {
                 return validator.Check(e).IsNumeric().Message(m).Hint(h);
+            });
+        }
+
+        IFluentValidation<T> ParseIsPassword<T>(IFluentValidation<T> validator, string document)
+        {
+            return CreateExpressions<T, string, string>(validator, document, "[Is] NotPassword", (e, ev, m, v, h) =>
+            {
+                return validator.Check(e).IsPassword().Message(m).Hint(h);
+            });
+        }
+
+        IFluentValidation<T> ParseIsUsername<T>(IFluentValidation<T> validator, string document)
+        {
+            return CreateExpressions<T, string, string>(validator, document, "[Is] NotUsername", (e, ev, m, v, h) =>
+            {
+                return validator.Check(e).IsUsername().Message(m).Hint(h);
             });
         }
 

@@ -111,6 +111,8 @@ namespace MFlow.Loaders.Xml
             validator = ParseIsThisWeek(validator, document);
             validator = ParseIsToday(validator, document);
             validator = ParseIsNotNull(validator, document);
+            validator = ParseIsPassword(validator, document);
+            validator = ParseIsUsername(validator, document);
 
             return validator;
         }
@@ -167,6 +169,22 @@ namespace MFlow.Loaders.Xml
             return CreateExpressions<T, string, string>(validator, document, "IsNotNull", (e, ev, m, v, h) =>
             {
                 return validator.Check(e).IsNotNull<string>().Message(m).Hint(h);
+            });
+        }
+
+        IFluentValidation<T> ParseIsPassword<T>(IFluentValidation<T> validator, XDocument document)
+        {
+            return CreateExpressions<T, string, string>(validator, document, "IsPassword", (e, ev, m, v, h) =>
+            {
+                return validator.Check(e).IsPassword().Message(m).Hint(h);
+            });
+        }
+
+        IFluentValidation<T> ParseIsUsername<T>(IFluentValidation<T> validator, XDocument document)
+        {
+            return CreateExpressions<T, string, string>(validator, document, "IsUsername", (e, ev, m, v, h) =>
+            {
+                return validator.Check(e).IsUsername().Message(m).Hint(h);
             });
         }
 

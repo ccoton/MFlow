@@ -48,5 +48,7 @@ namespace MFlow.Loaders.Xml.Tests.for_XmlValidationLoader
         It should_load_on_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "OnValidatorMessage"); };
         It should_load_regex_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "RegExValidatorMessage"); };
         It should_load_is_not_null_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "IsNotNullValidatorMessage"); };
+        It should_load_is_password_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "IsPasswordValidatorMessage"); };
+        It should_load_is_username_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "IsUsernameValidatorMessage"); };
     }
 }

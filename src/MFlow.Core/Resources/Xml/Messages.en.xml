@@ -31,4 +31,5 @@
   <None>{0} should not contain the item specified</None>
   <IsNotNull>{0} should not be null</IsNotNull>
   <IsPassword>{0} should be a valid password</IsPassword>
+  <IsUsername>{0} should be a valid username</IsUsername>
 </Messages>
