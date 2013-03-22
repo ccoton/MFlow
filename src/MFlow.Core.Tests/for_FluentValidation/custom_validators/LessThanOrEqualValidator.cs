@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MFlow.Core.Tests.for_FluentValidation.custom_validators
 {
-    public class GreaterThanValidator : IGreaterThanValidator
+    public class LessThanOrEqualValidator : ILessThanOrEqualToValidator
     {
         public bool Validate(int input, int value)
         {
