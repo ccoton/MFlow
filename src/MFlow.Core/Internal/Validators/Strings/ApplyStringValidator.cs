@@ -5,6 +5,9 @@ using System.Linq.Expressions;
 
 namespace MFlow.Core.Internal.Validators.Strings
 {
+    /// <summary>
+    ///    Applies a string based validator
+    /// </summary>
     class ApplyStringValidator<T> : IApplyStringValidator<T, string>
     {
         readonly T _target;
@@ -13,6 +16,9 @@ namespace MFlow.Core.Internal.Validators.Strings
         readonly IPropertyNameResolver _propertyNameResolver;
         readonly IMessageResolver _messageResolver;
 
+        /// <summary>
+        ///    Constructor
+        /// </summary>
         public ApplyStringValidator(T target,
             ICurrentValidationContext<T> context,
             IExpressionBuilder<T> expressionBuilder, 
@@ -26,6 +32,9 @@ namespace MFlow.Core.Internal.Validators.Strings
             _messageResolver = messageResolver;
         }
 
+        /// <summary>
+        ///    Apply a comparison validator
+        /// </summary>
         public IFluentCondition<T> Apply(IComparisonValidator<string, int> validator, Validation.Enums.ValidationType type, int value)
         {
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
@@ -36,6 +45,9 @@ namespace MFlow.Core.Internal.Validators.Strings
             return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
         }
 
+        /// <summary>
+        ///    Apply a comparison validator
+        /// </summary>
         public IFluentCondition<T> Apply(IComparisonValidator<string, string> validator, Validation.Enums.ValidationType type, string value)
         {
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();
@@ -46,6 +58,12 @@ namespace MFlow.Core.Internal.Validators.Strings
             return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
         }
 
+        /// <summary>
+        ///    Apply a validator
+        /// </summary>
+        /// <param name="validator"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public IFluentCondition<T> Apply(IValidator<string> validator, Validation.Enums.ValidationType type)
         {
             Expression<Func<T, string>> expression = _currentContext.GetExpression<string>();

@@ -109,6 +109,13 @@
     <Compile Include="for_Conditions\given\an_if_condition_evaluating_to_true.cs" />
     <Compile Include="for_Conditions\given\an_if_expression_evaluating_to_true.cs" />
     <Compile Include="for_Conditions\when_calling_satisfied_with_true_condition.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_without_statistics.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_with_statistics.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_with_defaults.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_with_custom_implementation_mode_ignore.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_with_custom_implementation_mode_combine.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_with_custom_implementation_mode_replace.cs" />
+    <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation_with_statistics_enabled.cs" />
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation_with_null.cs" />
     <Compile Include="for_FluentValidationFactory\given\a_fluent_validation_factory.cs" />
     <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation.cs" />

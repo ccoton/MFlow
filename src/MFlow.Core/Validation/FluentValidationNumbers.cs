@@ -16,7 +16,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsLessThan(int value)
         {
-            return ApplyIntComparisonValidator(_validatorFactory.GetValidator<int, int, ILessThanValidator>(), Enums.ValidationType.LessThan, value);
+            return ApplyIntComparisonValidator(_validatorFactory.GetValidators<int, int, ILessThanValidator>(), Enums.ValidationType.LessThan, value);
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsGreaterThan(int value)
         {
-            return ApplyIntComparisonValidator(_validatorFactory.GetValidator<int, int, IGreaterThanValidator>(), Enums.ValidationType.GreaterThan, value);
+            return ApplyIntComparisonValidator(_validatorFactory.GetValidators<int, int, IGreaterThanValidator>(), Enums.ValidationType.GreaterThan, value);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsLessThanOrEqualTo(int value)
         {
-            return ApplyIntComparisonValidator(_validatorFactory.GetValidator<int, int, ILessThanOrEqualToValidator>(), Enums.ValidationType.LessThanOrEqualTo, value);
+            return ApplyIntComparisonValidator(_validatorFactory.GetValidators<int, int, ILessThanOrEqualToValidator>(), Enums.ValidationType.LessThanOrEqualTo, value);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsGreaterThanOrEqualTo(int value)
         {
-            return ApplyIntComparisonValidator(_validatorFactory.GetValidator<int, int, IGreaterThanOrEqualToValidator>(), Enums.ValidationType.GreaterThanOrEqualTo, value);
+            return ApplyIntComparisonValidator(_validatorFactory.GetValidators<int, int, IGreaterThanOrEqualToValidator>(), Enums.ValidationType.GreaterThanOrEqualTo, value);
         }
 
         FluentValidation<T> ApplyIntComparisonValidator(ICollection<IComparisonValidator<int, int>> validators, Enums.ValidationType type, int value)

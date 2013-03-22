@@ -27,7 +27,7 @@ namespace MFlow.Core.Validation.Factories
         /// </summary>
         public IFluentValidationBuilder<T> GetFluentValidation<T>(T target, IPropertyNameResolver propertyNameResolver,
             IMessageResolver messageResolver,  IExpressionBuilder<T> expressionBuilder, IValidatorFactory validatorFactory,
-            IConvertValidatorToCondition<T> validatorToCondition, IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration) where T : class
+            IBuildConditions<T> validatorToCondition, IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration) where T : class
         {
             if (target == null)
                 throw new ArgumentNullException("target");
@@ -48,13 +48,18 @@ namespace MFlow.Core.Validation.Factories
                 configuration = Configuration.Configuration.Current;
 
             if (validatorToCondition == null)
-                validatorToCondition = new ConvertValidatorToCondition<T>(target, expressionBuilder, propertyNameResolver, messageResolver, configuration);
+                validatorToCondition = new ConditionBuilder<T>(target, expressionBuilder, propertyNameResolver, messageResolver, configuration);
 
             if (eventCoordinator == null)
                 eventCoordinator = new EventsFactory().GetEventCoordinator();
 
-            return new FluentValidation<T>(target, propertyNameResolver, messageResolver, expressionBuilder,
+            IFluentValidationBuilder<T> fluentValidation = new FluentValidation<T>(target, propertyNameResolver, messageResolver, expressionBuilder,
                 validatorFactory, validatorToCondition, eventCoordinator, configuration);
+
+            if (configuration.StatisticsEnabled)
+                fluentValidation = new FluentValidationWithStatistics<T>((IFluentValidation<T>)fluentValidation, configuration.StatisticsConfiguration.Recorder);
+
+            return fluentValidation;
         }
     }
 }

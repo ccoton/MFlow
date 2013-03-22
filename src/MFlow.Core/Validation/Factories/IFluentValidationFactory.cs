@@ -21,6 +21,6 @@ namespace MFlow.Core.Validation.Factories
         /// </summary>
         IFluentValidationBuilder<T> GetFluentValidation<T>(T target, IPropertyNameResolver propertyNameResolver,
            IMessageResolver messageResolver, IExpressionBuilder<T> expressionBuilder, IValidatorFactory validatorFactory,
-           IConvertValidatorToCondition<T> validatorToCondition, IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration) where T : class;
+           IBuildConditions<T> validatorToCondition, IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration) where T : class;
     }
 }

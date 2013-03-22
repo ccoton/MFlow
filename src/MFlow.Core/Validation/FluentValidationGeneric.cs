@@ -20,7 +20,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsEqualTo<C>(Expression<Func<T, C>> valueExpression)
         {
-            return ApplyGenericComparisonValidator(_validatorFactory.GetValidator<C, C, IEqualToValidator<C, C>>(), Enums.ValidationType.Equal, valueExpression);
+            return ApplyGenericComparisonValidator(_validatorFactory.GetValidators<C, C, IEqualToValidator<C, C>>(), Enums.ValidationType.Equal, valueExpression);
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsEqualTo<C>(C value)
         {
-            return ApplyGenericComparisonValidator(_validatorFactory.GetValidator<C, C, IEqualToValidator<C, C>>(), Enums.ValidationType.Equal, value);
+            return ApplyGenericComparisonValidator(_validatorFactory.GetValidators<C, C, IEqualToValidator<C, C>>(), Enums.ValidationType.Equal, value);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsNotEqualTo<C>(Expression<Func<T, C>> valueExpression)
         {
-            return ApplyGenericComparisonValidator(_validatorFactory.GetValidator<C, C, INotEqualToValidator<C, C>>(), Enums.ValidationType.NotEqual, valueExpression);
+            return ApplyGenericComparisonValidator(_validatorFactory.GetValidators<C, C, INotEqualToValidator<C, C>>(), Enums.ValidationType.NotEqual, valueExpression);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsNotEqualTo<C>(C value)
         {
-            return ApplyGenericComparisonValidator(_validatorFactory.GetValidator<C, C, INotEqualToValidator<C, C>>(), Enums.ValidationType.NotEqual, value);
+            return ApplyGenericComparisonValidator(_validatorFactory.GetValidators<C, C, INotEqualToValidator<C, C>>(), Enums.ValidationType.NotEqual, value);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsRequired<C>()
         {
-            return ApplyGenericValidator(_validatorFactory.GetValidator<C, IRequiredValidator<C>>(), Enums.ValidationType.IsRequired);
+            return ApplyGenericValidator(_validatorFactory.GetValidators<C, IRequiredValidator<C>>(), Enums.ValidationType.IsRequired);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsNotNull<C>()
         {
-            return ApplyGenericValidator(_validatorFactory.GetValidator<C, INotNullValidator<C>>(), Enums.ValidationType.IsNotNull);
+            return ApplyGenericValidator(_validatorFactory.GetValidators<C, INotNullValidator<C>>(), Enums.ValidationType.IsNotNull);
         }
 
         IFluentValidation<T> ApplyGenericValidator<C>(ICollection<IValidator<C>> validators, Enums.ValidationType type)

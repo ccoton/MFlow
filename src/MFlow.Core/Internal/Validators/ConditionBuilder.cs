@@ -14,16 +14,22 @@ using System.Linq.Expressions;
 
 namespace MFlow.Core.Internal.Validators
 {
-    class ConvertValidatorToCondition<T> : MFlow.Core.Internal.Validators.IConvertValidatorToCondition<T>
+    /// <summary>
+    ///     Builds conditions from validators
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    class ConditionBuilder<T> : MFlow.Core.Internal.Validators.IBuildConditions<T>
     {
-
         readonly T _target;
         readonly IExpressionBuilder<T> _expressionBuilder;
         readonly IPropertyNameResolver _propertyNameResolver;
         readonly IMessageResolver _messageResolver;
         readonly IConfigureFluentValidation _configuration;
 
-        public ConvertValidatorToCondition(T target,
+        /// <summary>
+        ///    Constructor
+        /// </summary>
+        public ConditionBuilder(T target,
             IExpressionBuilder<T> expressionBuilder,
             IPropertyNameResolver propertyNameResolver,
             IMessageResolver messageResolver,
@@ -36,6 +42,9 @@ namespace MFlow.Core.Internal.Validators
             _configuration = configuration;
         }
 
+        /// <summary>
+        ///     Build conditions for date time validators
+        /// </summary>
         public ICollection<IFluentCondition<T>> ForDateTime(ICurrentValidationContext<T> currentContext, ICollection<IValidator<DateTime>> validators, ValidationType type)
         {
             var conditions = new List<IFluentCondition<T>>();
@@ -58,6 +67,9 @@ namespace MFlow.Core.Internal.Validators
             return conditions;
         }
 
+        /// <summary>
+        ///     Build conditions for date time validators
+        /// </summary>
         public ICollection<IFluentCondition<T>> ForDateTime(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<DateTime, DateTime>> validators, ValidationType type, DateTime value)
         {
             var conditions = new List<IFluentCondition<T>>();
@@ -80,6 +92,9 @@ namespace MFlow.Core.Internal.Validators
             return conditions;
         }
 
+        /// <summary>
+        ///     Build conditions for int validators
+        /// </summary>
         public ICollection<IFluentCondition<T>> ForInt(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<int, int>> validators, ValidationType type, int value)
         {
             var conditions = new List<IFluentCondition<T>>();
@@ -102,6 +117,9 @@ namespace MFlow.Core.Internal.Validators
             return conditions;
         }
 
+        /// <summary>
+        ///     Build conditions for string validators
+        /// </summary>
         public ICollection<IFluentCondition<T>> ForString(ICurrentValidationContext<T> currentContext, ICollection<IValidator<string>> validators, ValidationType type)
         {
             var conditions = new List<IFluentCondition<T>>();
@@ -117,6 +135,9 @@ namespace MFlow.Core.Internal.Validators
             return conditions;
         }
 
+        /// <summary>
+        ///     Build conditions for string validators
+        /// </summary>
         public ICollection<IFluentCondition<T>> ForString(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<string, string>> validators, ValidationType type, string value)
         {
             var conditions = new List<IFluentCondition<T>>();
@@ -132,6 +153,9 @@ namespace MFlow.Core.Internal.Validators
             return conditions;
         }
 
+        /// <summary>
+        ///     Build conditions for string validators
+        /// </summary>
         public ICollection<IFluentCondition<T>> ForString(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<string, int>> validators, ValidationType type, int value)
         {
             var conditions = new List<IFluentCondition<T>>();
@@ -147,6 +171,9 @@ namespace MFlow.Core.Internal.Validators
             return conditions;
         }
 
+        /// <summary>
+        ///     Build conditions for collection validators
+        /// </summary>
         public ICollection<IFluentCondition<T>> ForCollectionOf<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<ICollection<TValidate>, TValidate>> validators, ValidationType type, TValidate value)
         {
             var conditions = new List<IFluentCondition<T>>();
@@ -162,6 +189,9 @@ namespace MFlow.Core.Internal.Validators
             return conditions;
         }
 
+        /// <summary>
+        ///     Build conditions for generic validators
+        /// </summary>
         public ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IValidator<TValidate>> validators, ValidationType type)
         {
             var conditions = new List<IFluentCondition<T>>();
@@ -177,6 +207,9 @@ namespace MFlow.Core.Internal.Validators
             return conditions;
         }
 
+        /// <summary>
+        ///     Build conditions for generic validators
+        /// </summary>
         public ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<TValidate, TValidate>> validators, ValidationType type, TValidate value)
         {
             var conditions = new List<IFluentCondition<T>>();
@@ -192,6 +225,9 @@ namespace MFlow.Core.Internal.Validators
             return conditions;
         }
 
+        /// <summary>
+        ///     Build conditions for generic validators
+        /// </summary>
         public ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<TValidate, TValidate>> validators, ValidationType type, Expression<Func<T, TValidate>> value)
         {
             var conditions = new List<IFluentCondition<T>>();

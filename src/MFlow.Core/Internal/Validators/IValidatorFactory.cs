@@ -12,12 +12,12 @@ namespace MFlow.Core
         /// <summary>
         ///     Gets the validator.
         /// </summary>
-        ICollection<IValidator<T>> GetValidator<T, ValidatorT>() where ValidatorT : IValidator<T>;
+        ICollection<IValidator<T>> GetValidators<T, ValidatorT>() where ValidatorT : IValidator<T>;
 
         /// <summary>
         ///     Gets the validator.
         /// </summary>
-        ICollection<IComparisonValidator<TInput, TCompare>> GetValidator<TInput, TCompare, ValidatorT>() where ValidatorT : IComparisonValidator<TInput, TCompare>;
+        ICollection<IComparisonValidator<TInput, TCompare>> GetValidators<TInput, TCompare, ValidatorT>() where ValidatorT : IComparisonValidator<TInput, TCompare>;
     }
 }
 

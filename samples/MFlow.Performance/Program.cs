@@ -2,7 +2,10 @@
 using System.Diagnostics;
 using MFlow.Core.Validation;
 using MFlow.Performance.Supporting;
-using MFlow.Core.Validation.Factories; 
+using MFlow.Core.Validation.Factories;
+using MFlow.Core.Validation.Configuration;
+using MFlow.Performance.Statistics;
+using MFlow.Core.Statistics; 
 
 namespace MFlow.Performance
 {
@@ -11,6 +14,8 @@ namespace MFlow.Performance
         public static void Main(string[] args)
         {
             var user = new User() { Forename = "test", Surname = "test", Email = "testing", LastLogin = DateTime.Now.AddDays(-100) };
+
+            Configuration.Current.WithStatistics(new StatisticsConfiguration(new PerformanceRecorder()));
             var validator = new FluentValidationFactory().GetFluentValidation(user);
 
             validator
@@ -28,8 +33,7 @@ namespace MFlow.Performance
 
             for (var i = 0; i < 100000; i++)
             {
-                validator
-                    .Satisfied();
+                validator.Validate();
             }
 
             stopwatch.Stop();

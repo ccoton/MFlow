@@ -17,7 +17,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsBefore(DateTime value)
         {
-            return ApplyDateComparisonValidator(_validatorFactory.GetValidator<DateTime, DateTime, IBeforeValidator>(), Enums.ValidationType.Before, value);
+            return ApplyDateComparisonValidator(_validatorFactory.GetValidators<DateTime, DateTime, IBeforeValidator>(), Enums.ValidationType.Before, value);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsAfter(DateTime value)
         {
-            return ApplyDateComparisonValidator(_validatorFactory.GetValidator<DateTime, DateTime, IAfterValidator>(), Enums.ValidationType.After, value);
+            return ApplyDateComparisonValidator(_validatorFactory.GetValidators<DateTime, DateTime, IAfterValidator>(), Enums.ValidationType.After, value);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsOn(DateTime value)
         {
-            return ApplyDateComparisonValidator(_validatorFactory.GetValidator<DateTime, DateTime, IOnValidator>(), Enums.ValidationType.On, value);
+            return ApplyDateComparisonValidator(_validatorFactory.GetValidators<DateTime, DateTime, IOnValidator>(), Enums.ValidationType.On, value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsThisYear()
         {
-            return ApplyDateValidator(_validatorFactory.GetValidator<DateTime, IThisYearValidator>(), Enums.ValidationType.IsThisYear);
+            return ApplyDateValidator(_validatorFactory.GetValidators<DateTime, IThisYearValidator>(), Enums.ValidationType.IsThisYear);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsThisMonth()
         {
-            return ApplyDateValidator(_validatorFactory.GetValidator<DateTime, IThisMonthValidator>(), Enums.ValidationType.IsThisMonth);
+            return ApplyDateValidator(_validatorFactory.GetValidators<DateTime, IThisMonthValidator>(), Enums.ValidationType.IsThisMonth);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsThisWeek()
         {
-            return ApplyDateValidator(_validatorFactory.GetValidator<DateTime, IThisWeekValidator>(), Enums.ValidationType.IsThisWeek);
+            return ApplyDateValidator(_validatorFactory.GetValidators<DateTime, IThisWeekValidator>(), Enums.ValidationType.IsThisWeek);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsToday()
         {
-            return ApplyDateValidator(_validatorFactory.GetValidator<DateTime, ITodayValidator>(), Enums.ValidationType.IsToday);
+            return ApplyDateValidator(_validatorFactory.GetValidators<DateTime, ITodayValidator>(), Enums.ValidationType.IsToday);
         }
 
         IFluentValidation<T> ApplyDateValidator(ICollection<IValidator<DateTime>> validators, Enums.ValidationType type)

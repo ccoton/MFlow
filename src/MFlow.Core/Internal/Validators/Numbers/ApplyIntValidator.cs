@@ -5,6 +5,9 @@ using System.Linq.Expressions;
 
 namespace MFlow.Core.Internal.Validators.Numbers
 {
+    /// <summary>
+    ///     Apply an int based validator
+    /// </summary>
     class ApplyIntValidator<T> : IApplyNumericValidator<T, int>
     {
         readonly T _target;
@@ -13,6 +16,9 @@ namespace MFlow.Core.Internal.Validators.Numbers
         readonly IPropertyNameResolver _propertyNameResolver;
         readonly IMessageResolver _messageResolver;
 
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public ApplyIntValidator(T target,
             ICurrentValidationContext<T> context,
             IExpressionBuilder<T> expressionBuilder, 
@@ -26,6 +32,9 @@ namespace MFlow.Core.Internal.Validators.Numbers
             _messageResolver = messageResolver;
         }
 
+        /// <summary>
+        ///     Apply a comparison validator
+        /// </summary>
         public IFluentCondition<T> Apply(IComparisonValidator<int, int> validator, Validation.Enums.ValidationType type, int value)
         {
             Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();

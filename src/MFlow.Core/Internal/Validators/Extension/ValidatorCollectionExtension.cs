@@ -7,8 +7,14 @@ using System.Text;
 
 namespace MFlow.Core.Internal.Validators.Extension
 {
+    /// <summary>
+    ///     Extension methods for a colection of validators
+    /// </summary>
     public static class ValidatorCollectionExtension
     {
+        /// <summary>
+        ///     Gets the validators that should be applied from a collection
+        /// </summary>
         public static IEnumerable<IValidator<T>> ToApply<T>(this ICollection<IValidator<T>> validators, IConfigureFluentValidation configuration)
         {
             foreach(var validator in validators)
@@ -25,6 +31,9 @@ namespace MFlow.Core.Internal.Validators.Extension
             }
         }
 
+        /// <summary>
+        ///     Gets the comparison validators that should be applied from a collection
+        /// </summary>
         public static IEnumerable<IComparisonValidator<TInput, TCompare>> ToApply<TInput, TCompare>(this ICollection<IComparisonValidator<TInput, TCompare>> validators, IConfigureFluentValidation configuration)
         {
             foreach (var validator in validators)

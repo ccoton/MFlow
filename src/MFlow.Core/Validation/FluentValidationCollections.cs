@@ -16,7 +16,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> Any<C>(C value)
         {
-            return ApplyGenericCollectionValidator(_validatorFactory.GetValidator<ICollection<C>, C, IAnyValidator<C>>(), Enums.ValidationType.Any, value);
+            return ApplyGenericCollectionValidator(_validatorFactory.GetValidators<ICollection<C>, C, IAnyValidator<C>>(), Enums.ValidationType.Any, value);
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> None<C>(C value)
         {
-            return ApplyGenericCollectionValidator(_validatorFactory.GetValidator<ICollection<C>, C, INoneValidator<C>>(), Enums.ValidationType.None, value);
+            return ApplyGenericCollectionValidator(_validatorFactory.GetValidators<ICollection<C>, C, INoneValidator<C>>(), Enums.ValidationType.None, value);
         }
 
         IFluentValidation<T> ApplyGenericCollectionValidator<C>(ICollection<IComparisonValidator<ICollection<C>, C>> validators, Enums.ValidationType type, C value)

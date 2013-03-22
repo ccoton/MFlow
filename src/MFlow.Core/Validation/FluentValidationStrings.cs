@@ -18,7 +18,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsNotEmpty()
         {
             return ApplyStringValidators(
-                _validatorFactory.GetValidator<string, INotEmptyValidator>(), Enums.ValidationType.NotEmpty
+                _validatorFactory.GetValidators<string, INotEmptyValidator>(), Enums.ValidationType.NotEmpty
                );
         }
 
@@ -28,7 +28,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> Matches(string regEx)
         {
             return ApplyStringComparisonValidator(
-                _validatorFactory.GetValidator<string, string, IMatchesValidator>(), Enums.ValidationType.RegEx, regEx
+                _validatorFactory.GetValidators<string, string, IMatchesValidator>(), Enums.ValidationType.RegEx, regEx
                );
         }
 
@@ -38,7 +38,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsEmail()
         {
             return ApplyStringValidators(
-                _validatorFactory.GetValidator<string, IEmailValidator>(), Enums.ValidationType.IsEmail
+                _validatorFactory.GetValidators<string, IEmailValidator>(), Enums.ValidationType.IsEmail
                );
         }
 
@@ -48,7 +48,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> Contains(string value)
         {
             return ApplyStringComparisonValidator(
-                _validatorFactory.GetValidator<string, string, IContainsValidator>(), Enums.ValidationType.Contains, value
+                _validatorFactory.GetValidators<string, string, IContainsValidator>(), Enums.ValidationType.Contains, value
                );
         }
 
@@ -58,7 +58,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsLength(int length)
         {
             return ApplyStringIntComparisonValidator(
-                _validatorFactory.GetValidator<string, int, ILengthValidator>(), Enums.ValidationType.IsLength, length
+                _validatorFactory.GetValidators<string, int, ILengthValidator>(), Enums.ValidationType.IsLength, length
                );
         }
 
@@ -68,7 +68,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsLongerThan(int length)
         {
             return ApplyStringIntComparisonValidator(
-                _validatorFactory.GetValidator<string, int, ILongerValidator>(), Enums.ValidationType.IsLongerThan, length
+                _validatorFactory.GetValidators<string, int, ILongerValidator>(), Enums.ValidationType.IsLongerThan, length
                );
         }
 
@@ -78,7 +78,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsShorterThan(int length)
         {
             return ApplyStringIntComparisonValidator(
-                _validatorFactory.GetValidator<string, int, IShorterValidator>(), Enums.ValidationType.IsShorterThan, length
+                _validatorFactory.GetValidators<string, int, IShorterValidator>(), Enums.ValidationType.IsShorterThan, length
                );
         }
 
@@ -88,7 +88,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsCreditCard()
         {
             return ApplyStringValidators(
-                _validatorFactory.GetValidator<string, ICreditCardValidator>(), Enums.ValidationType.IsCreditCard
+                _validatorFactory.GetValidators<string, ICreditCardValidator>(), Enums.ValidationType.IsCreditCard
                );
         }
 
@@ -98,7 +98,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsPostCode()
         {
             return ApplyStringValidators(
-                _validatorFactory.GetValidator<string, IPostCodeValidator>(), Enums.ValidationType.IsPostCode
+                _validatorFactory.GetValidators<string, IPostCodeValidator>(), Enums.ValidationType.IsPostCode
                );
         }
 
@@ -108,7 +108,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsZipCode()
         {
             return ApplyStringValidators(
-                _validatorFactory.GetValidator<string, IZipCodeValidator>(), Enums.ValidationType.IsZipCode
+                _validatorFactory.GetValidators<string, IZipCodeValidator>(), Enums.ValidationType.IsZipCode
                );
         }
 
@@ -118,7 +118,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsNumeric()
         {
             return ApplyStringValidators(
-                _validatorFactory.GetValidator<string, INumericValidator>(), Enums.ValidationType.IsNumeric
+                _validatorFactory.GetValidators<string, INumericValidator>(), Enums.ValidationType.IsNumeric
                );
         }
 
@@ -128,7 +128,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsAlpha()
         {
             return ApplyStringValidators(
-                _validatorFactory.GetValidator<string, IAlphaValidator>(), Enums.ValidationType.IsAlpha
+                _validatorFactory.GetValidators<string, IAlphaValidator>(), Enums.ValidationType.IsAlpha
                );
         }
 
@@ -138,7 +138,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsDate()
         {
             return ApplyStringValidators(
-                _validatorFactory.GetValidator<string, IDateValidator>(), Enums.ValidationType.IsDate
+                _validatorFactory.GetValidators<string, IDateValidator>(), Enums.ValidationType.IsDate
                );
         }
 
@@ -148,7 +148,7 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> IsPassword()
         {
             return ApplyStringValidators(
-                _validatorFactory.GetValidator<string, IPasswordValidator>(), Enums.ValidationType.IsPassword
+                _validatorFactory.GetValidators<string, IPasswordValidator>(), Enums.ValidationType.IsPassword
                );
         }
 

@@ -6,6 +6,9 @@ using System.Linq.Expressions;
 
 namespace MFlow.Core.Internal.Validators.Collections
 {
+    /// <summary>
+    ///     Applies a collection based validator
+    /// </summary>
     class ApplyCollectionValidator<T, TValidate> : IApplyCollectionValidator<T, TValidate>
     {
         readonly T _target;
@@ -14,6 +17,9 @@ namespace MFlow.Core.Internal.Validators.Collections
         readonly IPropertyNameResolver _propertyNameResolver;
         readonly IMessageResolver _messageResolver;
 
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public ApplyCollectionValidator(T target,
             ICurrentValidationContext<T> context,
             IExpressionBuilder<T> expressionBuilder, 
@@ -27,6 +33,9 @@ namespace MFlow.Core.Internal.Validators.Collections
             _messageResolver = messageResolver;
         }
 
+        /// <summary>
+        ///     Applies the collection based validator
+        /// </summary>
         public IFluentCondition<T> Apply(IComparisonValidator<ICollection<TValidate>, TValidate> validator, Validation.Enums.ValidationType type, TValidate value)
         {
             Expression<Func<T, ICollection<TValidate>>> expression = _currentContext.GetExpression<ICollection<TValidate>>();

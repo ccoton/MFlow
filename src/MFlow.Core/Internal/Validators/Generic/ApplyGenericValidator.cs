@@ -6,6 +6,9 @@ using System.Linq.Expressions;
 
 namespace MFlow.Core.Internal.Validators.Generic
 {
+    /// <summary>
+    ///     Applies a generic based validator
+    /// </summary>
     class ApplyGenericValidator<T, TValidate> : IApplyGenericValidator<T, TValidate>
     {
         readonly T _target;
@@ -14,6 +17,9 @@ namespace MFlow.Core.Internal.Validators.Generic
         readonly IPropertyNameResolver _propertyNameResolver;
         readonly IMessageResolver _messageResolver;
 
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public ApplyGenericValidator(T target,
             ICurrentValidationContext<T> context,
             IExpressionBuilder<T> expressionBuilder, 
@@ -27,6 +33,9 @@ namespace MFlow.Core.Internal.Validators.Generic
             _messageResolver = messageResolver;
         }
 
+        /// <summary>
+        ///     Apply the validator
+        /// </summary>
         public IFluentCondition<T> Apply(IValidator<TValidate> validator, Validation.Enums.ValidationType type)
         {
             Expression<Func<T, TValidate>> expression = _currentContext.GetExpression<TValidate>();
@@ -37,6 +46,9 @@ namespace MFlow.Core.Internal.Validators.Generic
             return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
         }
 
+        /// <summary>
+        ///     Apply the comparison validator
+        /// </summary>
         public IFluentCondition<T> Apply(IComparisonValidator<TValidate, TValidate> validator, Validation.Enums.ValidationType type, TValidate value)
         {
             Expression<Func<T, TValidate>> expression = _currentContext.GetExpression<TValidate>();
@@ -47,6 +59,9 @@ namespace MFlow.Core.Internal.Validators.Generic
             return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
         }
 
+        /// <summary>
+        ///     Apply the comparison validator
+        /// </summary>
         public IFluentCondition<T> Apply(IComparisonValidator<TValidate, TValidate> validator, Validation.Enums.ValidationType type, Expression<Func<T, TValidate>> value)
         {
             Expression<Func<T, TValidate>> expression = _currentContext.GetExpression<TValidate>();
