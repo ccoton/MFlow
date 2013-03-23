@@ -42,5 +42,10 @@ namespace MFlow.Core.Validation
         /// </summary>
         IFluentValidation<T> IsToday();
 
+        /// <summary>
+        ///     Checks if the expression evaluates to a date that is between earliest and latest
+        /// </summary>
+        IFluentValidation<T> IsBetween(DateTime earliest, DateTime latest);
+
     }
 }

@@ -68,6 +68,17 @@ namespace MFlow.Core.Validation
             return ApplyDateValidator(_validatorFactory.GetValidators<DateTime, ITodayValidator>(), Enums.ValidationType.IsToday);
         }
 
+        /// <summary>
+        ///     Checks if the expression evaluates to a date that is between earliest and latest
+        /// </summary>
+        public IFluentValidation<T> IsBetween(DateTime earliest, DateTime latest)
+        {
+            // Is between is not a real validator, its a shortcut for two validators
+            IsBefore(latest);
+            IsAfter(earliest);
+            return this;
+        }
+
         IFluentValidation<T> ApplyDateValidator(ICollection<IValidator<DateTime>> validators, Enums.ValidationType type)
         {
             _validatorToCondition.ForDateTime(_currentContext, validators, type)
