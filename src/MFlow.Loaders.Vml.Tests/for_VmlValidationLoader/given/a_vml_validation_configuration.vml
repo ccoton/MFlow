@@ -1,0 +1,33 @@
+﻿[Display] BeforeValidatorMessage [When] LastLogin [Is] Before [Value] 01/01/2015
+[Display] AfterValidatorMessage [When] LastLogin [Is] After [Value] 01/01/2015
+[Display] ContainsValidatorMessage [When] Username [Does] NotContain [Value] admin
+[Display] NotEqualValidatorMessage [When] Username [Is] NotEqual [To] fred
+[Display] NotEqualToValidatorMessage [When] Password [Is] NotEqualToExpression [Exp] ConfirmPassword
+[Display] LessThanOrEqualToValidatorMessage [When] LoginCount [Is] LessThanOrEqualTo [Value] 10
+[Display] LessThanValidatorMessage [When] LoginCount [Is] LessThan [Value] 10
+[Display] AlphaValidatorMessage [When] Username [Is] NotAlpha
+[Display] CreditCardValidatorMessage [When] Username [Is] NotCreditCard
+[Display] IsDateValidatorMessage [When] Username [Is] NotADate
+[Display] IsEmailValidatorMessage [When] Username [Is] NotAnEmail
+[Display] IsLengthValidatorMessage [When] Username [Is] NotLength [Value] 20
+[Display] LongerThanValidatorMessage [When] Username [Is] NotLongerThan [Value] 20
+[Display] IsNumericValidatorMessage [When] Username [Is] NotNumeric
+[Display] IsPostCodeValidatorMessage [When] Username [Is] NotPostCode
+[Display] IsRequiredValidatorMessage [When] Username [Is] Required
+[Display] IsShorterThanValidatorMessage [When] Username [Is] NotShorterThan [Value] 20
+[Display] IsThisMonthValidatorMessage [When] LastLogin [Is] NotThisMonth
+[Display] IsThisWeekValidatorMessage [When] LastLogin [Is] NotThisWeek
+[Display] IsThisYearValidatorMessage [When] LastLogin [Is] NotThisYear
+[Display] IsTodayValidatorMessage [When] LastLogin [Is] NotToday
+[Display] IsZipCodeValidatorMessage [When] Username [Is] NotZipCode
+[Display] GreaterThanOrEqualToValidatorMessage [When] LoginCount [Is] GreaterThanOrEqualTo [Value] 10
+[Display] GreaterThanValidatorMessage [When] LoginCount [Is] GreaterThan [Value] 10
+[Display] NotEmptyValidatorMessage [When] Username [Is] Empty [Hint] Enter a username
+[Display] EqualValidatorMessage [When] Username [Is] Equal [To] fred
+[Display] EqualToValidatorMessage [When] Password [Is] EqualToExpression [Exp] ConfirmPassword
+[Display] OnValidatorMessage [When] LastLogin [Is] Not On [Value] 01/01/2015
+[Display] RegExValidatorMessage [When] Username [Is] NotStringPattern [RegEx] \w+([-+.&#39;]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*
+[Display] IsNotNullValidatorMessage [When] Username [Is] Null
+[Display] IsPasswordValidatorMessage [When] Password [Is] NotPassword
+[Display] IsUsernameValidatorMessage [When] Username [Is] NotUsername
+[Display] IsUrlValidatorMessage [When] Username [Is] NotUrl

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>MFlow.Loaders.Xml</id>
+    <version></version>
+    <authors>Mark Woodhall</authors>
+    <licenseUrl>https://raw.github.com/markwoodhall/MFlow/master/license.txt</licenseUrl>
+    <projectUrl>https://github.com/markwoodhall/MFlow</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A an entension to MFlow.Core to load in validation configurations from Xml.</description>
+    <summary>A an entension to MFlow.Core to load in validation configurations from Xml.</summary>    
+	<language>en-US</language>
+	<tags>FluentValidation, fluent, validation, MFlow</tags>
+	<dependencies>
+      <dependency id="MFlow.Core" version="" />
+    </dependencies>
+  </metadata>
+</package>

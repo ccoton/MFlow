@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{50E56BCB-0CBD-4330-8C55-541808529B8A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MFlow.Core.Tests</RootNamespace>
+    <AssemblyName>MFlow.Core.Tests</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <BaseAddress>4194304</BaseAddress>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>False</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <BaseAddress>4194304</BaseAddress>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>False</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <Prefer32Bit>False</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Machine.Specifications">
+      <HintPath>..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.dll</HintPath>
+    </Reference>
+    <Reference Include="Machine.Specifications.Clr4">
+      <HintPath>..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
+    </Reference>
+    <Reference Include="MEvents.Core">
+      <HintPath>..\packages\MEvents.Core.1.1.0.0\lib\Net40\MEvents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\lib\nunit\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise />
+  </Choose>
+  <ItemGroup>
+    <Compile Include="for_Conditions\when_calling_satisfied_without_supressing_warnings_with_one_false_warning.cs" />
+    <Compile Include="for_Conditions\when_calling_satisfied_with_false_warning.cs" />
+    <Compile Include="for_Conditions\given\multiple_if_conditions_with_a_false_warning.cs" />
+    <Compile Include="for_Conditions\when_calling_clear.cs" />
+    <Compile Include="for_Conditions\when_calling_else_on_new_thread_with_false_conditions.cs" />
+    <Compile Include="for_Conditions\when_calling_else_with_false_conditions.cs" />
+    <Compile Include="for_Conditions\when_calling_then_with_false_conditions.cs" />
+    <Compile Include="for_Conditions\when_calling_then_on_new_thread_with_multiple_true_condition.cs" />
+    <Compile Include="for_Conditions\when_calling_then_with_true_conditions.cs" />
+    <Compile Include="for_Conditions\when_calling_satisfied_with_false_if_or_condition.cs" />
+    <Compile Include="for_Conditions\given\an_if_or_condition_evaluating_to_false.cs" />
+    <Compile Include="for_Conditions\when_calling_satisfied_with_true_if_and_false_or_condition.cs" />
+    <Compile Include="for_Conditions\given\an_if_or_condition_evaluating_to_true.cs" />
+    <Compile Include="for_Conditions\when_calling_satisfied_with_multiple_true_conditions.cs" />
+    <Compile Include="for_Conditions\given\multiple_if_conditions_evaluating_to_true.cs" />
+    <Compile Include="for_Conditions\when_calling_satisfied_with_multiple_false_conditions.cs" />
+    <Compile Include="for_Conditions\given\multiple_if_conditions_evaluating_to_false.cs" />
+    <Compile Include="for_Conditions\when_calling_satisfied_with_false_expression.cs" />
+    <Compile Include="for_Conditions\when_calling_satisfied_with_false_condition.cs" />
+    <Compile Include="for_Conditions\given\an_if_condition_evaluating_to_false.cs" />
+    <Compile Include="for_Conditions\given\an_if_expression_evaluating_to_false.cs" />
+    <Compile Include="for_Conditions\when_calling_satisfied_with_true_expression.cs" />
+    <Compile Include="CustomRules\CheckCustomCondition.cs" />
+    <Compile Include="for_Conditions\given\an_if_condition_evaluating_to_true.cs" />
+    <Compile Include="for_Conditions\given\an_if_expression_evaluating_to_true.cs" />
+    <Compile Include="for_Conditions\when_calling_satisfied_with_true_condition.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_without_statistics.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_with_statistics.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_with_defaults.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_with_custom_implementation_mode_ignore.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_with_custom_implementation_mode_combine.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_with_custom_implementation_mode_replace.cs" />
+    <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation_with_statistics_enabled.cs" />
+    <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation_with_null.cs" />
+    <Compile Include="for_FluentValidationFactory\given\a_fluent_validation_factory.cs" />
+    <Compile Include="for_FluentValidationFactory\when_calling_get_fluent_validation.cs" />
+    <Compile Include="for_FluentValidation\between\when_calling_is_between_with_a_value_that_is_between.cs" />
+    <Compile Include="for_FluentValidation\between\when_calling_is_between_with_a_value_that_is_not_between.cs" />
+    <Compile Include="for_FluentValidation\between\when_calling_is_between_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\url\UrlValidator.cs" />
+    <Compile Include="for_FluentValidation\url\when_calling_is_url_with_a_value_that_does_not_satisfy_a_custom_url_validator.cs" />
+    <Compile Include="for_FluentValidation\url\when_calling_is_url_with_a_value_that_is_a_valid_url.cs" />
+    <Compile Include="for_FluentValidation\url\when_calling_is_url_with_a_value_that_is_not_a_valid_url.cs" />
+    <Compile Include="for_FluentValidation\url\when_calling_is_url_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\url\when_calling_is_url_with_a_value_that_satisfies_a_custom_url_validator.cs" />
+    <Compile Include="for_FluentValidation\username\UsernameValidator.cs" />
+    <Compile Include="for_FluentValidation\username\when_calling_is_username_with_a_value_that_does_not_satisfy_a_custom_username_validator.cs" />
+    <Compile Include="for_FluentValidation\username\when_calling_is_username_with_a_value_that_is_a_valid_username.cs" />
+    <Compile Include="for_FluentValidation\username\when_calling_is_username_with_a_value_that_is_not_a_valid_username.cs" />
+    <Compile Include="for_FluentValidation\username\when_calling_is_username_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\username\when_calling_is_username_with_a_value_that_satisfies_a_custom_username_validator.cs" />
+    <Compile Include="for_FluentValidation\less_than_or_equal\when_calling_is_less_than_or_equal_with_a_value_that_does_not_satisfy_a_custom_less_than_or_equal_validator.cs" />
+    <Compile Include="for_FluentValidation\less_than_or_equal\when_calling_is_less_than_or_equal_with_a_value_that_satisfies_a_custom_less_than_or_equal_validator.cs" />
+    <Compile Include="for_FluentValidation\greater_than_or_equal\when_calling_is_greater_than_or_equal_with_a_value_that_does_not_satisfy_a_custom_greater_than_or_equal_validator.cs" />
+    <Compile Include="for_FluentValidation\greater_than_or_equal\when_calling_is_greater_than_or_equal_with_a_value_that_satisfies_a_custom_greater_than_or_equal_validator.cs" />
+    <Compile Include="for_FluentValidation\less_than_or_equal\LessThanOrEqualValidator.cs" />
+    <Compile Include="for_FluentValidation\greater_than_or_equal\GreaterThanOrEqualValidator.cs" />
+    <Compile Include="for_FluentValidation\greater_than\when_calling_is_greater_than_with_a_value_that_does_not_satisfy_a_custom_greater_than_validator.cs" />
+    <Compile Include="for_FluentValidation\greater_than\when_calling_is_greater_than_with_a_value_that_satisfies_a_custom_greater_than_validator.cs" />
+    <Compile Include="for_FluentValidation\greater_than\GreaterThanValidator.cs" />
+    <Compile Include="for_FluentValidation\less_than\when_calling_is_less_than_with_a_value_that_does_not_satisfy_a_custom_less_than_validator.cs" />
+    <Compile Include="for_FluentValidation\less_than\when_calling_is_less_than_with_a_value_that_satisfies_a_custom_less_than_validator.cs" />
+    <Compile Include="for_FluentValidation\less_than\LessThanValidator.cs" />
+    <Compile Include="for_FluentValidation\matches\when_calling_matches_with_a_value_that_does_not_satisfy_a_custom_matches_validator.cs" />
+    <Compile Include="for_FluentValidation\matches\when_calling_matches_with_a_value_that_satisfies_a_custom_matches_validator.cs" />
+    <Compile Include="for_FluentValidation\matches\MatchesValidator.cs" />
+    <Compile Include="for_FluentValidation\contains\when_calling_contains_with_a_value_that_does_not_satisfy_a_custom_contains_validator.cs" />
+    <Compile Include="for_FluentValidation\contains\when_calling_contains_with_a_value_that_satisfies_a_custom_contains_validator.cs" />
+    <Compile Include="for_FluentValidation\contains\ContainsValidator.cs" />
+    <Compile Include="for_FluentValidation\date\when_calling_is_date_with_a_value_that_does_not_satisfy_a_custom_date_validator.cs" />
+    <Compile Include="for_FluentValidation\date\when_calling_is_date_with_a_value_that_satisfies_a_custom_date_validator.cs" />
+    <Compile Include="for_FluentValidation\date\DateValidator.cs" />
+    <Compile Include="for_FluentValidation\alpha\when_calling_is_alpha_with_a_value_that_does_not_satisfy_a_custom_alpha_validator.cs" />
+    <Compile Include="for_FluentValidation\alpha\when_calling_is_alpha_with_a_value_that_satisfies_a_custom_alpha_validator.cs" />
+    <Compile Include="for_FluentValidation\alpha\AlphaValidator.cs" />
+    <Compile Include="for_FluentValidation\numeric\when_calling_is_numeric_with_a_value_that_does_not_satisfy_a_custom_numeric_validator.cs" />
+    <Compile Include="for_FluentValidation\numeric\when_calling_is_numeric_with_a_value_that_satisfies_a_custom_numeric_validator.cs" />
+    <Compile Include="for_FluentValidation\numeric\NumericValidator.cs" />
+    <Compile Include="for_FluentValidation\shorter_than\when_calling_is_shorter_than_with_a_value_that_does_not_satisfy_a_custom_shorter_than_validator.cs" />
+    <Compile Include="for_FluentValidation\shorter_than\when_calling_is_shorter_than_with_a_value_that_satisfies_a_custom_shorter_than_validator.cs" />
+    <Compile Include="for_FluentValidation\shorter_than\ShorterThanValidator.cs" />
+    <Compile Include="for_FluentValidation\longer_than\when_calling_is_longer_than_with_a_value_that_does_not_satisfy_a_custom_longer_than_validator.cs" />
+    <Compile Include="for_FluentValidation\longer_than\when_calling_is_longer_than_with_a_value_that_satisfies_a_custom_longer_than_validator.cs" />
+    <Compile Include="for_FluentValidation\longer_than\LongerThanValidator.cs" />
+    <Compile Include="for_FluentValidation\zip_code\when_calling_is_zip_code_with_a_value_that_does_not_satisfy_a_custom_zip_code_validator.cs" />
+    <Compile Include="for_FluentValidation\zip_code\when_calling_is_zip_code_with_a_value_that_satisfies_a_custom_zip_code_validator.cs" />
+    <Compile Include="for_FluentValidation\zip_code\ZipCodeValidator.cs" />
+    <Compile Include="for_FluentValidation\post_code\when_calling_is_post_code_with_a_value_that_does_not_satisfy_a_custom_post_code_validator.cs" />
+    <Compile Include="for_FluentValidation\post_code\when_calling_is_post_code_with_a_value_that_satisfies_a_custom_post_code_validator.cs" />
+    <Compile Include="for_FluentValidation\post_code\PostCodeValidator.cs" />
+    <Compile Include="for_FluentValidation\credit_card\when_calling_is_credit_card_with_a_value_that_does_not_satisfy_a_custom_credit_card_validator.cs" />
+    <Compile Include="for_FluentValidation\credit_card\when_calling_is_credit_card_with_a_value_that_satisfies_a_custom_credit_card_validator.cs" />
+    <Compile Include="for_FluentValidation\credit_card\CreditCardValidator.cs" />
+    <Compile Include="for_FluentValidation\this_year\when_calling_is_this_year_with_a_value_that_does_not_satisfy_a_custom_this_year_validator.cs" />
+    <Compile Include="for_FluentValidation\this_year\when_calling_is_this_year_with_a_value_that_satisfies_a_custom_this_year_validator.cs" />
+    <Compile Include="for_FluentValidation\this_year\ThisYearValidator.cs" />
+    <Compile Include="for_FluentValidation\this_month\when_calling_is_this_month_with_a_value_that_does_not_satisfy_a_custom_this_month_validator.cs" />
+    <Compile Include="for_FluentValidation\this_month\when_calling_is_this_month_with_a_value_that_satisfies_a_custom_this_month_validator.cs" />
+    <Compile Include="for_FluentValidation\this_month\ThisMonthValidator.cs" />
+    <Compile Include="for_FluentValidation\this_week\when_calling_is_this_week_with_a_value_that_does_not_satisfy_a_custom_this_week_validator.cs" />
+    <Compile Include="for_FluentValidation\this_week\when_calling_is_this_week_with_a_value_that_satisfies_a_custom_this_week_validator.cs" />
+    <Compile Include="for_FluentValidation\this_week\ThisWeekValidator.cs" />
+    <Compile Include="for_FluentValidation\today\when_calling_is_today_with_a_value_that_does_not_satisfy_a_custom_today_validator.cs" />
+    <Compile Include="for_FluentValidation\today\when_calling_is_today_with_a_value_that_satisfies_a_custom_today_validator.cs" />
+    <Compile Include="for_FluentValidation\today\TodayValidator.cs" />
+    <Compile Include="for_FluentValidation\required\when_calling_is_required_with_a_value_that_does_not_satisfy_a_custom_required_validator.cs" />
+    <Compile Include="for_FluentValidation\required\when_calling_is_required_with_a_value_that_satisfies_a_custom_required_validator.cs" />
+    <Compile Include="for_FluentValidation\required\RequiredValidator.cs" />
+    <Compile Include="for_FluentValidation\length\when_calling_is_length_with_a_value_that_does_not_satisfy_a_custom_length_validator.cs" />
+    <Compile Include="for_FluentValidation\length\when_calling_is_length_with_a_value_that_satisfies_a_custom_length_validator.cs" />
+    <Compile Include="for_FluentValidation\length\LengthValidator.cs" />
+    <Compile Include="for_FluentValidation\email\when_calling_is_email_with_a_value_that_does_not_satisfy_a_custom_email_validator.cs" />
+    <Compile Include="for_FluentValidation\email\when_calling_is_email_with_a_value_that_satisfies_a_custom_email_validator.cs" />
+    <Compile Include="for_FluentValidation\email\EmailValidator.cs" />
+    <Compile Include="for_FluentValidation\not_empty\when_calling_is_not_empty_with_a_value_that_does_not_satisfy_a_custom_not_empty_validator.cs" />
+    <Compile Include="for_FluentValidation\not_empty\when_calling_is_not_empty_with_a_value_that_satisfies_a_custom_not_empty_validator.cs" />
+    <Compile Include="for_FluentValidation\not_empty\NotEmptyValidator.cs" />
+    <Compile Include="for_FluentValidation\password\PasswordValidator.cs" />
+    <Compile Include="for_FluentValidation\password\when_calling_is_password_with_a_value_that_does_not_satisfy_a_custom_password_validator.cs" />
+    <Compile Include="for_FluentValidation\password\when_calling_is_password_with_a_value_that_satisfies_a_custom_password_validator.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_custom_implementation_set_to_replace.cs" />
+    <Compile Include="for_FluentValidation\password\when_calling_is_password_with_a_value_that_is_a_valid_password.cs" />
+    <Compile Include="for_FluentValidation\password\when_calling_is_password_with_a_value_that_is_not_a_valid_password.cs" />
+    <Compile Include="for_FluentValidation\password\when_calling_is_password_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_multiple_false_conditions_for_fr_FR_culture.cs" />
+    <Compile Include="for_FluentValidation\when_calling_validate_for_fr_FR_culture.cs" />
+    <Compile Include="for_FluentValidation\when_calling_satisfied_without_specifying_group_with_one_true_and_one_false_group.cs" />
+    <Compile Include="for_FluentValidation\when_calling_validate_without_specifying_group_with_one_true_and_one_false_group.cs" />
+    <Compile Include="for_FluentValidation\when_calling_satisfied_with_one_true_and_one_false_group.cs" />
+    <Compile Include="for_FluentValidation\when_calling_group_with_no_checks.cs" />
+    <Compile Include="for_FluentValidation\when_calling_validate_with_one_true_and_one_false_group.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_multiple_false_reversed_conditions.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_one_true_and_one_false_group.cs" />
+    <Compile Include="for_FluentValidation\when_calling_validate_with_reversed_conditions.cs" />
+    <Compile Include="for_FluentValidation\not_null\when_calling_is_not_null_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\when_calling_hint_with_a_custom_hint.cs" />
+    <Compile Include="for_FluentValidation\not_null\when_calling_is_not_null_with_a_value_that_is_not_null.cs" />
+    <Compile Include="for_FluentValidation\when_calling_message_with_a_custom_message.cs" />
+    <Compile Include="for_FluentValidation\when_calling_message_with_a_custom_message_key.cs" />
+    <Compile Include="for_FluentValidation\when_calling_hint_with_a_custom_hint_key.cs" />
+    <Compile Include="for_FluentValidation\not_empty\when_calling_is_not_empty_with_a_value_that_is_not_empty.cs" />
+    <Compile Include="for_FluentValidation\not_empty\when_calling_is_not_empty_with_a_value_that_is_empty.cs" />
+    <Compile Include="for_FluentValidation\not_empty\when_calling_is_not_empty_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\when_calling_check_with_nullables.cs" />
+    <Compile Include="for_FluentValidation\greater_than_or_equal\when_calling_is_greater_than_or_equal_to_with_a_value_that_is_equal.cs" />
+    <Compile Include="for_FluentValidation\greater_than_or_equal\when_calling_is_greater_than_or_equal_to_with_a_value_that_is_greater_than.cs" />
+    <Compile Include="for_FluentValidation\greater_than_or_equal\when_calling_is_greater_than_or_equal_to_with_a_value_that_is_not_greater_than_or_equal.cs" />
+    <Compile Include="for_FluentValidation\greater_than_or_equal\when_calling_is_greater_than_or_equal_to_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\less_than_or_equal\when_calling_is_less_than_or_equal_to_with_a_value_that_is_equal.cs" />
+    <Compile Include="for_FluentValidation\less_than_or_equal\when_calling_is_less_than_or_equal_to_with_a_value_that_is_less_than.cs" />
+    <Compile Include="for_FluentValidation\less_than_or_equal\when_calling_is_less_than_or_equal_to_with_a_value_that_is_not_less_than_or_equal.cs" />
+    <Compile Include="for_FluentValidation\less_than_or_equal\when_calling_is_less_than_or_equal_to_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\greater_than\when_calling_is_greater_than_with_a_value_that_is_greater_than.cs" />
+    <Compile Include="for_FluentValidation\greater_than\when_calling_is_greater_than_with_a_value_that_is_not_greater_than.cs" />
+    <Compile Include="for_FluentValidation\greater_than\when_calling_is_greater_than_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\less_than\when_calling_is_less_than_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\less_than\when_calling_is_less_than_with_a_value_that_is_less_than.cs" />
+    <Compile Include="for_FluentValidation\less_than\when_calling_is_less_than_with_a_value_that_is_not_less_than.cs" />
+    <Compile Include="for_FluentValidation\contains\when_calling_contains_with_a_value_that_does_not_contain.cs" />
+    <Compile Include="for_FluentValidation\contains\when_calling_contains_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\contains\when_calling_contains_with_a_value_that_contains.cs" />
+    <Compile Include="for_FluentValidation\email\when_calling_is_email_with_a_value_that_is_an_email.cs" />
+    <Compile Include="for_FluentValidation\email\when_calling_is_email_with_a_value_that_is_not_an_email.cs" />
+    <Compile Include="for_FluentValidation\email\when_calling_is_email_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\matches\when_calling_matches_with_a_value_that_matches.cs" />
+    <Compile Include="for_FluentValidation\matches\when_calling_matches_with_a_value_that_does_not_match.cs" />
+    <Compile Include="for_FluentValidation\matches\when_calling_matches_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\date\when_calling_is_date_with_a_value_that_is_a_date.cs" />
+    <Compile Include="for_FluentValidation\date\when_calling_is_date_with_a_value_that_is_not_a_date.cs" />
+    <Compile Include="for_FluentValidation\date\when_calling_is_date_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\alpha\when_calling_is_alpha_with_a_value_that_is_alpha.cs" />
+    <Compile Include="for_FluentValidation\alpha\when_calling_is_alpha_with_a_value_that_is_not_alpha.cs" />
+    <Compile Include="for_FluentValidation\alpha\when_calling_is_alpha_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\numeric\when_calling_is_numeric_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\numeric\when_calling_is_numeric_with_a_value_that_is_not_numeric.cs" />
+    <Compile Include="for_FluentValidation\numeric\when_calling_is_numeric_with_a_value_that_is_a_numeric.cs" />
+    <Compile Include="for_FluentValidation\zip_code\when_calling_is_zip_code_with_a_value_that_is_a_zip_code.cs" />
+    <Compile Include="for_FluentValidation\zip_code\when_calling_is_zip_code_with_a_value_that_is_not_a_zip_code.cs" />
+    <Compile Include="for_FluentValidation\zip_code\when_calling_is_zip_code_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\post_code\when_calling_is_post_code_with_a_value_that_is_a_post_code.cs" />
+    <Compile Include="for_FluentValidation\post_code\when_calling_is_post_code_with_a_value_that_is_not_a_post_code.cs" />
+    <Compile Include="for_FluentValidation\post_code\when_calling_is_post_code_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\credit_card\when_calling_is_credit_card_with_a_value_that_is_a_credit_card_number.cs" />
+    <Compile Include="for_FluentValidation\credit_card\when_calling_is_credit_card_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\credit_card\when_calling_is_credit_card_with_a_value_that_is_not_a_credit_card_number.cs" />
+    <Compile Include="for_FluentValidation\shorter_than\when_calling_is_shorter_than_with_a_value_that_is_shorter.cs" />
+    <Compile Include="for_FluentValidation\shorter_than\when_calling_is_shorter_than_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\shorter_than\when_calling_is_shorter_than_with_a_value_that_is_not_shorter.cs" />
+    <Compile Include="for_FluentValidation\longer_than\when_calling_is_longer_than_with_a_value_that_is_longer.cs" />
+    <Compile Include="for_FluentValidation\longer_than\when_calling_is_longer_than_with_a_value_that_is_not_longer.cs" />
+    <Compile Include="for_FluentValidation\longer_than\when_calling_is_longer_than_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\length\when_calling_is_length_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\length\when_calling_is_length_with_a_value_that_is_the_length.cs" />
+    <Compile Include="for_FluentValidation\length\when_calling_is_length_with_a_value_thats_not_the_length.cs" />
+    <Compile Include="for_FluentValidation\when_calling_depends_on_with_an_satified_dependency.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_and_satisfied_dependency.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_and_unsatisfied_dependency.cs" />
+    <Compile Include="for_FluentValidation\when_calling_depends_on_with_an_unsatified_dependency.cs" />
+    <Compile Include="for_FluentValidation\required\when_calling_is_required_with_a_value.cs" />
+    <Compile Include="for_FluentValidation\required\when_calling_is_required_with_a_default.cs" />
+    <Compile Include="for_FluentValidation\required\when_calling_is_required_with_a_null.cs" />
+    <Compile Include="for_FluentValidation\not_equal\when_calling_is_not_equal_to_with_an_expression_thats_not_equal.cs" />
+    <Compile Include="for_FluentValidation\not_equal\when_calling_is_not_equal_to_with_a_value_thats_not_equal.cs" />
+    <Compile Include="for_FluentValidation\not_equal\when_calling_is_not_equal_to_with_an_expression_that_is_equal.cs" />
+    <Compile Include="for_FluentValidation\not_equal\when_calling_is_not_equal_to_with_a_value_that_is_equal.cs" />
+    <Compile Include="for_FluentValidation\equal_to\when_calling_is_equal_to_with_an_expressions_that_is_equal.cs" />
+    <Compile Include="for_FluentValidation\equal_to\when_calling_is_equal_to_with_an_expressions_thats_not_equal.cs" />
+    <Compile Include="for_FluentValidation\equal_to\when_calling_is_equal_to_with_a_value_that_is_equal.cs" />
+    <Compile Include="for_FluentValidation\equal_to\when_calling_is_equal_to_with_a_value_thats_not_equal.cs" />
+    <Compile Include="for_FluentValidation\today\when_calling_is_today_with_a_date_thats_not_today.cs" />
+    <Compile Include="for_FluentValidation\this_month\when_calling_is_this_month_with_a_date_that_is_this_month.cs" />
+    <Compile Include="for_FluentValidation\this_week\when_calling_is_this_week_with_a_date_that_is_this_week.cs" />
+    <Compile Include="for_FluentValidation\this_year\when_calling_is_this_year_with_a_date_that_is_this_year.cs" />
+    <Compile Include="for_FluentValidation\this_month\when_calling_is_this_month_with_a_date_thats_not_this_month.cs" />
+    <Compile Include="for_FluentValidation\this_week\when_calling_is_this_week_with_a_date_thats_not_this_week.cs" />
+    <Compile Include="for_FluentValidation\this_year\when_calling_is_this_year_with_a_date_thats_not_this_year.cs" />
+    <Compile Include="for_FluentValidation\on\when_calling_is_on_with_a_date_that_is_today.cs" />
+    <Compile Include="for_FluentValidation\on\when_calling_is_on_with_a_date_thats_not_today.cs" />
+    <Compile Include="for_FluentValidation\after\when_calling_is_after_with_a_date_after_today.cs" />
+    <Compile Include="for_FluentValidation\after\when_calling_is_after_with_a_date_before_today.cs" />
+    <Compile Include="for_FluentValidation\before\when_calling_is_before_with_a_date_after_today.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_multiple_false_condition_and_warnings.cs" />
+    <Compile Include="for_FluentValidation\before\when_calling_is_before_with_a_date_before_today.cs" />
+    <Compile Include="for_FluentValidation\when_calling_validate_with_warnings.cs" />
+    <Compile Include="for_FluentValidation\when_calling_else_with_false_condition.cs" />
+    <Compile Include="for_FluentValidation\when_calling_else_with_true_condition.cs" />
+    <Compile Include="for_FluentValidation\when_calling_then_on_new_thread_with_true_condition.cs" />
+    <Compile Include="for_FluentValidation\when_calling_then_with_true_condition.cs" />
+    <Compile Include="for_FluentValidation\when_calling_satisfied_with_false_if_and_true_or_condition.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_false_if_and_true_or_conditions.cs" />
+    <Compile Include="for_FluentValidation\when_calling_satisfied_with_multiple_false_conditions.cs" />
+    <Compile Include="for_FluentValidation\when_calling_satisfied_with_false_condition.cs" />
+    <Compile Include="for_FluentValidation\when_calling_satisfied_with_multiple_true_conditions.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_multiple_false_conditions.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_multiple_true_condition.cs" />
+    <Compile Include="for_FluentValidation\when_calling_satisfied_with_true_condition.cs" />
+    <Compile Include="for_FluentValidation\when_calling_then_with_false_condition.cs" />
+    <Compile Include="for_FluentValidation\when_calling_throw_with_false_condition.cs" />
+    <Compile Include="for_FluentValidation\when_calling_throw.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_false_condition.cs" />
+    <Compile Include="for_FluentValidation\when_calling_clear.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_true_condition.cs" />
+    <Compile Include="for_FluentValidation\when_calling_set_target.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator.cs" />
+    <Compile Include="for_FluentValidation\none\when_calling_none_with_collection_not_containing_item.cs" />
+    <Compile Include="for_FluentValidation\none\when_calling_none_with_collection_containing_item.cs" />
+    <Compile Include="for_FluentValidation\any\when_calling_any_with_collection_not_containing_item.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_user_in_collection.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_user_not_in_collection.cs" />
+    <Compile Include="for_FluentValidation\any\when_calling_any_with_collection_containing_item.cs" />
+    <Compile Include="for_FluentValidation\when_calling_set_target_with_null.cs" />
+    <Compile Include="for_FluentValidation\when_calling_validate.cs" />
+    <Compile Include="for_FluentValidation\when_raising_an_event.cs" />
+    <Compile Include="for_ValidationLoader\when_creating_a_vml_validation_loader.cs" />
+    <Compile Include="for_ValidationLoader\given\a_validation_loader.cs" />
+    <Compile Include="for_ValidationLoader\when_creating_an_xml_validation_loader.cs" />
+    <Compile Include="for_ValidationResult\when_creating_with_null_argument.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Supporting\User.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MFlow.Core\MFlow.Core.csproj">
+      <Project>{64DD43B3-3A13-4325-B074-E26FD285CC7D}</Project>
+      <Name>MFlow.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MFlow.Loaders.Vml\MFlow.Loaders.Vml.csproj">
+      <Project>{a75eb267-119a-4900-ac85-ed8792b9330e}</Project>
+      <Name>MFlow.Loaders.Vml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MFlow.Loaders.Xml\MFlow.Loaders.Xml.csproj">
+      <Project>{f2916810-7308-4873-8616-a4db4eb983f3}</Project>
+      <Name>MFlow.Loaders.Xml</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Xml\Custom.Messages.en.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FluentValidation>
+  <Validator>
+    <Rules>
+      <NotEmpty property="Username" message="Username cannot be empty" />
+      <NotEmpty property="Password" message="Password cannot be empty" />
+    </Rules>
+  </Validator>
+</FluentValidation>

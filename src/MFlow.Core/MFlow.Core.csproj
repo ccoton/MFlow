@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{64DD43B3-3A13-4325-B074-E26FD285CC7D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MFlow.Core</RootNamespace>
+    <AssemblyName>MFlow.Core</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <RunCodeAnalysis>False</RunCodeAnalysis>
+    <SourceAnalysisOverrideSettingsFile>C:\Users\Mark\AppData\Roaming\ICSharpCode/SharpDevelop5\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>True</DebugSymbols>
+    <Prefer32Bit>False</Prefer32Bit>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <BaseAddress>4194304</BaseAddress>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <BaseAddress>4194304</BaseAddress>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MEvents.Core">
+      <HintPath>..\packages\MEvents.Core.1.1.0.0\lib\Net40\MEvents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Conditions\Enums\ConditionType.cs" />
+    <Compile Include="Conditions\Enums\ExecuteThread.cs" />
+    <Compile Include="Conditions\FluentCondition.cs" />
+    <Compile Include="Conditions\FluentConditions.cs" />
+    <Compile Include="Conditions\IFluentCondition.cs" />
+    <Compile Include="Conditions\IFluentConditions.cs" />
+    <Compile Include="Internal\ExpressionBuilder.cs" />
+    <Compile Include="Internal\IExpressionBuilder.cs" />
+    <Compile Include="Internal\IMessageResolver.cs" />
+    <Compile Include="Internal\Validators\Collections\ApplyCollectionValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\ApplyDateValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\ApplyNullableDateValidator.cs" />
+    <Compile Include="Internal\Validators\Collections\IApplyCollectionValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\IApplyDateValidator.cs" />
+    <Compile Include="Internal\Validators\Extension\ValidatorCollectionExtension.cs" />
+    <Compile Include="Internal\Validators\Collections\AnyValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\ApplyGenericValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\IApplyGenericValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\NotNullValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\INotNullValidator.cs" />
+    <Compile Include="Internal\Validators\Collections\NoneValidator.cs" />
+    <Compile Include="Internal\Validators\Collections\INoneValidator.cs" />
+    <Compile Include="Internal\Validators\Collections\IAnyValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\AfterValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\BeforeValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\OnValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\ThisMonthValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\ThisWeekValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\ThisYearValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\TodayValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\EqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\NotEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\RequiredValidator.cs" />
+    <Compile Include="Internal\Validators\IValidator.cs" />
+    <Compile Include="Internal\MessageResolver.cs" />
+    <Compile Include="Internal\Validators\IBuildConditions.cs" />
+    <Compile Include="Internal\Validators\Numbers\ApplyIntValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\ApplyNullableIntValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\GreatherThanValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\GreatherThanOrEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\IApplyNumericValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\LessThanOrEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\LessThanValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\ApplyStringValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\ContainsValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IUrlValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\UrlValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IUsernameValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\UsernameValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IApplyStringValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\PasswordValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IPasswordValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\CreditCardValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\DateValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\EmailValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\AlphaValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IDateValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\NumericValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\LengthValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\LongerValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\MatchesValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\NotEmptyValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\PostCodeValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\ShorterValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\ZipCodeValidator.cs" />
+    <Compile Include="Internal\Validators\ConditionBuilder.cs" />
+    <Compile Include="Resources\IResourceLocator.cs" />
+    <Compile Include="Resources\ResourceLocator.cs" />
+    <Compile Include="Conditions\Enums\ConditionOutput.cs" />
+    <Compile Include="Events\ValidatedEvent.cs" />
+    <Compile Include="Events\ValidationFailedEvent.cs" />
+    <Compile Include="Statistics\IConfigureValidationStatistics.cs" />
+    <Compile Include="Statistics\IRecordValidationStatistics.cs" />
+    <Compile Include="Statistics\NullValidationStatisticsRecorder.cs" />
+    <Compile Include="Statistics\StatisticsConfiguration.cs" />
+    <Compile Include="ValidationLoader.cs" />
+    <Compile Include="Validation\Builder\IFluentValidationBuilder.cs" />
+    <Compile Include="Validation\Configuration\Configuration.cs" />
+    <Compile Include="Validation\Configuration\Enums\CustomImplementationMode.cs" />
+    <Compile Include="Validation\Configuration\FluentValidationConfiguration.cs" />
+    <Compile Include="Validation\Configuration\IConfigureFluentValidation.cs" />
+    <Compile Include="Validation\FluentValidationWithStatistics.cs" />
+    <Compile Include="Validation\IFluentValidationCollection.cs" />
+    <Compile Include="Validation\IFluentValidationDate.cs" />
+    <Compile Include="Validation\IFluentValidationGeneric.cs" />
+    <Compile Include="Validation\IFluentValidationNumber.cs" />
+    <Compile Include="Validation\IFluentValidationString.cs" />
+    <Compile Include="Validation\Context\CurrentValidationContext.cs" />
+    <Compile Include="Validation\FluentValidationCollections.cs" />
+    <Compile Include="Validation\Enums\ValidationType.cs" />
+    <Compile Include="Validation\Factories\FluentValidationFactory.cs" />
+    <Compile Include="Validation\Factories\IFluentValidationFactory.cs" />
+    <Compile Include="Validation\FluentValidationDates.cs" />
+    <Compile Include="Validation\Context\ICurrentValidationContext.cs" />
+    <Compile Include="Internal\IPropertyNameResolver.cs" />
+    <Compile Include="Internal\PropertyNameResolver.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\FluentValidationNumbers.cs" />
+    <Compile Include="Validation\FluentValidationGeneric.cs" />
+    <Compile Include="Validation\FluentValidation.cs" />
+    <Compile Include="Validation\FluentValidationStrings.cs" />
+    <Compile Include="Validation\IFluentValidation.cs" />
+    <Compile Include="Validation\IFluentValidationCustomRule.cs" />
+    <Compile Include="Validation\IValidationResult.cs" />
+    <Compile Include="Validation\ValidationResult.cs" />
+    <Compile Include="Validation\IFluentValidationLoader.cs" />
+    <Compile Include="Internal\Validators\IComparisonValidator.cs" />
+    <Compile Include="Internal\Validators\IValidatorFactory.cs" />
+    <Compile Include="Internal\Validators\ValidatorFactory.cs" />
+    <Compile Include="Internal\Validators\Dates\IAfterValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\IBeforeValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\IOnValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\IThisMonthValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\IThisWeekValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\IThisYearValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\ITodayValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\IEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\INotEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Generic\IRequiredValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\IGreaterThanOrEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\ILessThanOrEqualToValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\IGreaterThanValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\ILessThanValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IAlphaValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IContainsValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\ICreditCardValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IEmailValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\ILengthValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\ILongerValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IMatchesValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\INotEmptyValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\INumericValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IPostCodeValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IShorterValidator.cs" />
+    <Compile Include="Internal\Validators\Strings\IZipCodeValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Xml\Messages.fr-FR.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Xml\Messages.en.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+</Project>

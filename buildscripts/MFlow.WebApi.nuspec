@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>MFlow.WebApi</id>
+    <version></version>
+    <authors>Mark Woodhall</authors>
+    <licenseUrl>https://raw.github.com/markwoodhall/MFlow/master/license.txt</licenseUrl>
+    <projectUrl>https://github.com/markwoodhall/MFlow</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A WebApi end point to validate using the MFlow.Mvc model</description>
+    <summary>This provides an endpoint for the MFlow.Client to communicate with. This enpoint is used to validate view model from the client side</summary>    
+	<language>en-US</language>
+	<tags>FluentValidation, fluent, validation, MFlow</tags>
+	<dependencies>
+      <dependency id="MFlow.Core" version="" />
+	  <dependency id="MFlow.Mvc" version="" />
+	  <dependency id="Newtonsoft.Json" version="" />
+	  <dependency id="jQuery" version="" />
+	  <dependency id="Microsoft.AspNet.WebApi" version="" />
+    </dependencies>
+  </metadata>
+</package>
