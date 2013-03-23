@@ -13,7 +13,8 @@ namespace MFlow.Core
     class ValidatorFactory : IValidatorFactory
     {
         readonly static ICollection<Assembly> _assemblies = AppDomain.CurrentDomain.GetAssemblies();
-        readonly static ICollection<Type> _types = _assemblies.SelectMany(a => a.GetTypes()).ToList();
+        readonly static ICollection<Type> _types =  _assemblies.SelectMany(a => a.GetTypes())
+                                                .Where(t => typeof( ICanValidate).IsAssignableFrom(t)).ToList();
 
         /// <summary>
         ///     Gets the validator.

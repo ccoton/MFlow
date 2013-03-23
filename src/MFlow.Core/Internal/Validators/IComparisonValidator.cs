@@ -3,7 +3,7 @@
     /// <summary>
     ///     A validator that compares values
     /// </summary>
-    public interface IComparisonValidator<TInput, TCompare>
+    public interface IComparisonValidator<TInput, TCompare> : ICanValidate
     {
         /// <summary>
         ///     A validate method

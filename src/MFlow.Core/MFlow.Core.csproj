@@ -110,6 +110,7 @@
     <Compile Include="Internal\Validators\Generic\EqualToValidator.cs" />
     <Compile Include="Internal\Validators\Generic\NotEqualToValidator.cs" />
     <Compile Include="Internal\Validators\Generic\RequiredValidator.cs" />
+    <Compile Include="Internal\Validators\ICanValidate.cs" />
     <Compile Include="Internal\Validators\IValidator.cs" />
     <Compile Include="Internal\MessageResolver.cs" />
     <Compile Include="Internal\Validators\IBuildConditions.cs" />

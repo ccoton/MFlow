@@ -20,6 +20,7 @@ namespace MFlow.Core.Tests.for_FluentValidation
         {
             event_coordinator.Subscribe<ValidationFailedEvent<User>>(e => { raised_validation_failed_event = true; });
             results = validator.Validate().ToList();
+            System.Threading.Thread.Sleep(500);
         };
 
         It should_contain_the_correct_number_of_validation_results = () => { results.Count.ShouldEqual(3); };
