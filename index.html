@@ -163,15 +163,19 @@ When you reference the error message like this, the same process described above
 The following validation checks are suported in the fluent interface/xml/vml config...
 
 <h4>Generic:</h4>
-IsEqual - C# Api is generic but only supports string validation in Xml/Vml,<br />
-IsNotEqual - C# Api is generic but only supports string validation in Xml/Vml,<br />
-IsRequired - C# Api is generic but only supports string validation in Xml/Vml,<br />
-IsNotNull - C# Api is generic but only supports string validation in Xml/Vml,<br />
+IsEqual - .net Api is generic but Xml/Vml config only support strings,<br />
+IsNotEqual - .net Api is generic but Xml/Vml config only support strings,<br />
+IsRequired - .net Api is generic but Xml/Vml config only support strings,<br />
+IsNotNull - .net Api is generic but Xml/Vml config only support strings,<br />
+<h4>Collections:</h4>
 Any - Not supported in Xml/Vml,<br />
 None - Not supported in Xml/Vml,<br />
 <h4>Strings:</h4>
 IsNotEmpty,<br />
 IsEmail,<br />
+IsUserName,<br />
+IsPassword,<br />
+IsUrl,<br />
 IsLength,<br />
 IsLongerThan,<br />
 IsShorterThan,<br />
@@ -188,7 +192,7 @@ IsLessThan,<br />
 IsGreaterThan,<br />
 IsLessThanOrEqualTo,<br />
 IsGreaterThanOrEqualTo,<br />
-
+IsBetween - Not supported in Xml/Vml - User IsGreaterThan / IsLessThan,<br />
 <h4>Dates:</h4>
 IsBefore,<br />
 IsAfter, <br />
