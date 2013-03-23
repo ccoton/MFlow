@@ -34,6 +34,7 @@
       <IsNotNull property="Username" message="IsNotNullValidatorMessage" />
       <IsPassword property="Password" message="IsPasswordValidatorMessage" />
       <IsUsername property="Username" message="IsUsernameValidatorMessage" />
+      <IsUrl property="Username" message="IsUrlValidatorMessage" />
       <Custom>
         <CheckCustomCondition location="MFlow.Core.Tests" message="CustomValidatorMessage"/>
       </Custom>

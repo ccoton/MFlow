@@ -32,4 +32,5 @@
   <IsNotNull>{0} should not be null</IsNotNull>
   <IsPassword>{0} should be a valid password</IsPassword>
   <IsUsername>{0} should be a valid username</IsUsername>
+  <IsUrl>{0} should be a valid url</IsUrl>
 </Messages>

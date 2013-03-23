@@ -121,6 +121,7 @@ namespace MFlow.Loaders.Vml
             validator = ParseIsNotNull(validator, document);
             validator = ParseIsUsername(validator, document);
             validator = ParseIsPassword(validator, document);
+            validator = ParseIsUrl(validator, document);
 
             return validator;
         }
@@ -207,6 +208,14 @@ namespace MFlow.Loaders.Vml
             return CreateExpressions<T, string, string>(validator, document, "[Is] NotUsername", (e, ev, m, v, h) =>
             {
                 return validator.Check(e).IsUsername().Message(m).Hint(h);
+            });
+        }
+
+        IFluentValidation<T> ParseIsUrl<T>(IFluentValidation<T> validator, string document)
+        {
+            return CreateExpressions<T, string, string>(validator, document, "[Is] NotUrl", (e, ev, m, v, h) =>
+            {
+                return validator.Check(e).IsUrl().Message(m).Hint(h);
             });
         }
 

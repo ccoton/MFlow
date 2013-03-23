@@ -34,6 +34,7 @@
         None = 28,
         IsNotNull = 29,
         IsPassword = 30,
-        IsUsername = 31
+        IsUsername = 31,
+        IsUrl = 32
     }
 }

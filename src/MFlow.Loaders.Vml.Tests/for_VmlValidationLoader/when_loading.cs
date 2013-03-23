@@ -50,6 +50,7 @@ namespace MFlow.Loaders.Xml.Tests.for_VmlValidationLoader
         It should_load_is_not_null_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "IsNotNullValidatorMessage"); };
         It should_load_is_password_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "IsPasswordValidatorMessage"); };
         It should_load_is_username_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "IsUsernameValidatorMessage"); };
+        It should_load_is_url_validator = () => { validation.Conditions.ShouldContain(c => c.Message == "IsUrlValidatorMessage"); };
    
     }
 }

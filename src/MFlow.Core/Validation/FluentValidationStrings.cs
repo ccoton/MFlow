@@ -162,6 +162,16 @@ namespace MFlow.Core.Validation
                );
         }
 
+        /// <summary>
+        ///    Check if the expressions evaluates to a string that is a valid url
+        /// </summary>
+        public IFluentValidation<T> IsUrl()
+        {
+            return ApplyStringValidators(
+                _validatorFactory.GetValidators<string, IUrlValidator>(), Enums.ValidationType.IsUrl
+               );
+        }
+
         IFluentValidation<T> ApplyStringValidators(ICollection<IValidator<string>> validators, Enums.ValidationType type)
         {
             _validatorToCondition.ForString(_currentContext, validators, type)

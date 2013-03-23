@@ -30,5 +30,5 @@
   <Any>{0} ne doit pas contenir l'élément spécifié</Any>
   <IsNotNull>{0} ne peut être null</IsNotNull>
   <IsPassword>{0} doit être un mot de passe valide</IsPassword>
-  <IsUsername>{0} doit être un nom d'utilisateur valide</IsUsername>
+  <IsUsername>{0} doit être une URL valide</IsUsername>
 </Messages>

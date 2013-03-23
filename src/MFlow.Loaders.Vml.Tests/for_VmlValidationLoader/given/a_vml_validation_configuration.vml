@@ -30,3 +30,4 @@
 [Display] IsNotNullValidatorMessage [When] Username [Is] Null
 [Display] IsPasswordValidatorMessage [When] Password [Is] NotPassword
 [Display] IsUsernameValidatorMessage [When] Username [Is] NotUsername
+[Display] IsUrlValidatorMessage [When] Username [Is] NotUrl

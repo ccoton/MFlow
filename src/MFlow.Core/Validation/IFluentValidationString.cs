@@ -79,5 +79,10 @@
         ///    Check if the expressions evaluates to a string that is a valid username
         /// </summary>
         IFluentValidation<T> IsUsername();
+
+        /// <summary>
+        ///    Check if the expressions evaluates to a string that is a valid url
+        /// </summary>
+        IFluentValidation<T> IsUrl();
     }
 }
