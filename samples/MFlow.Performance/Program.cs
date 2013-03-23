@@ -15,18 +15,21 @@ namespace MFlow.Performance
         {
             var user = new User() { Forename = "test", Surname = "test", Email = "testing", LastLogin = DateTime.Now.AddDays(-100) };
 
-            Configuration.Current.WithStatistics(new StatisticsConfiguration(new PerformanceRecorder()));
+            Configuration.Current.WithoutStatistics();
             var validator = new FluentValidationFactory().GetFluentValidation(user);
 
             validator
-                .Check(c => c.Forename).IsNotEqualTo("d")
-                .Check(c => c.Forename).IsNotEmpty()
-                .Check(c => c.Surname).IsNotEmpty()
-                .Check(c => c.Email).IsEmail()
-                .Check(c => c.LastLogin).IsThisYear()
-                .Check(c => c.LastLogin).IsThisMonth()
-                .Check(c => c.LastLogin).IsThisWeek()
-                .Check(c => c.LastLogin).IsToday();
+                //.Check(c => c.Forename).IsNotEqualTo("d")
+                //.Check(c => c.Forename).IsNotEmpty()
+                //.Check(c => c.Surname).IsNotEmpty()
+                .Check(c => c.Email).IsEmail();
+                //.Check(c => c.LastLogin).IsThisYear()
+                //.Check(c => c.LastLogin).IsThisMonth()
+                //.Check(c => c.LastLogin).IsThisWeek()
+                //.Check(c => c.LastLogin).IsToday();
+
+            // Validate once to ignore inital load
+            validator.Validate();
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();

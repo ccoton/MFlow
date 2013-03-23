@@ -337,11 +337,18 @@ namespace MFlow.Core.Validation
         public IEnumerable<IValidationResult<T>> Validate(string group = "", bool suppressWarnings = true)
         {
             var results = new List<IValidationResult<T>>();
+            IEnumerable<IFluentCondition<T>> groupConditions = Conditions;
 
-            foreach (var condition in Conditions.Where(c => c.GroupName.ToLower() == group.ToLower() || string.IsNullOrEmpty(group)).ToList()
+            if (!string.IsNullOrEmpty(group))
+                groupConditions = Conditions.Where(c => c.GroupName.ToLower() == group.ToLower());
+
+            groupConditions
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
-                .Where(c => !c.Condition.Compile().Invoke(_target)))
-                results.Add(new ValidationResult<T>(condition));
+                .Where(c => !_expressionBuilder.Compile(c.Condition).Invoke(_target))
+                .ToList()
+                .ForEach(r => {
+                    results.Add(new ValidationResult<T>(r));
+                });
 
             foreach (var dependency in _dependencies)
                 results.AddRange(dependency.Invoke().Validate());
