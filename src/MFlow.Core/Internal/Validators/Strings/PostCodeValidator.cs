@@ -12,7 +12,7 @@ namespace MFlow.Core.Internal.Validators.Strings
         {
             if (string.IsNullOrEmpty(input))
                 return false;
-            return reg.IsMatch(input.ToLower());
+            return reg.IsMatch(input.ToUpper());
         }
     }
 }
