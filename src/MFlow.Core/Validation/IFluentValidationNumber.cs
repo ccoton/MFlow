@@ -24,5 +24,10 @@
         ///     Checks if the expression evaluates to an int that is greater than or equal to the value 
         /// </summary>
         IFluentValidation<T> IsGreaterThanOrEqualTo(int value);
+
+        /// <summary>
+        ///     Checks if the expression evaluates to an int that is between the lower and upper 
+        /// </summary>
+        IFluentValidation<T> IsBetween(int lower, int upper);
     }
 }

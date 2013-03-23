@@ -43,6 +43,17 @@ namespace MFlow.Core.Validation
             return ApplyIntComparisonValidator(_validatorFactory.GetValidators<int, int, IGreaterThanOrEqualToValidator>(), Enums.ValidationType.GreaterThanOrEqualTo, value);
         }
 
+        /// <summary>
+        ///     Checks if the expression evaluates to an int that is between the lower and upper 
+        /// </summary>
+        public IFluentValidation<T> IsBetween(int lower, int upper)
+        {
+            // Is between is not a real validator, its a shortcut for two validators
+            IsGreaterThan(lower);
+            IsLessThan(upper);
+            return this; 
+        }
+
         FluentValidation<T> ApplyIntComparisonValidator(ICollection<IComparisonValidator<int, int>> validators, Enums.ValidationType type, int value)
         {
             _validatorToCondition.ForInt(_currentContext, validators, type, value)
