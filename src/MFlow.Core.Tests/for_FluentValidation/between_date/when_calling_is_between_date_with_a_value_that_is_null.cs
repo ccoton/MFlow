@@ -18,6 +18,6 @@ namespace MFlow.Core.Tests.for_FluentValidation
 
         It should_not_be_satisfied = () => { validator.Satisfied().ShouldBeFalse(); };
 
-        It should_return_the_correct_validation_message = () => { validator.Validate().First().Condition.Message.ShouldEqual("LastLogin should be after 01/01/2000 00:00:00"); };
+        It should_return_the_correct_validation_message = () => { validator.Validate().First().Condition.Message.ShouldEqual("LastLogin should be between 01/01/2000 00:00:00 and 06/01/2000 00:00:00"); };
     }
 }

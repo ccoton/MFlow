@@ -86,10 +86,13 @@
     <Compile Include="Internal\ExpressionBuilder.cs" />
     <Compile Include="Internal\IExpressionBuilder.cs" />
     <Compile Include="Internal\IMessageResolver.cs" />
+    <Compile Include="Internal\Validators\Between.cs" />
     <Compile Include="Internal\Validators\Collections\ApplyCollectionValidator.cs" />
     <Compile Include="Internal\Validators\Dates\ApplyDateValidator.cs" />
     <Compile Include="Internal\Validators\Dates\ApplyNullableDateValidator.cs" />
     <Compile Include="Internal\Validators\Collections\IApplyCollectionValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\BetweenValidator.cs" />
+    <Compile Include="Internal\Validators\Dates\IBetweenValidator.cs" />
     <Compile Include="Internal\Validators\Dates\IApplyDateValidator.cs" />
     <Compile Include="Internal\Validators\Extension\ValidatorCollectionExtension.cs" />
     <Compile Include="Internal\Validators\Collections\AnyValidator.cs" />

@@ -36,6 +36,16 @@ namespace MFlow.Core.Internal.Validators.Dates
             return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
         }
 
+        public IFluentCondition<T> Apply(IComparisonValidator<DateTime, Between<DateTime>> validator, Validation.Enums.ValidationType type, DateTime lower, DateTime upper)
+        {
+            Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();
+            Func<T, DateTime> compiled = _expressionBuilder.Compile(expression);
+            Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), new Between<DateTime>() { Lower = lower, Upper = upper });
+            var propertyName = _propertyNameResolver.Resolve<T, DateTime>(expression);
+            var message = _messageResolver.Resolve(expression, lower, type, string.Empty);
+            return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
+        }
+
         public IFluentCondition<T> Apply(IValidator<DateTime> validator, Validation.Enums.ValidationType type)
         {
             Expression<Func<T, DateTime>> expression = _currentContext.GetExpression<DateTime>();

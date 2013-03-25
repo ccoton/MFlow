@@ -93,6 +93,31 @@ namespace MFlow.Core.Internal.Validators
         }
 
         /// <summary>
+        ///     Build conditions for date time validators
+        /// </summary>
+        public ICollection<IFluentCondition<T>> ForDateTime(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<DateTime, Between<DateTime>>> validators, ValidationType type, DateTime lower, DateTime upper)
+        {
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators.ToApply(_configuration))
+            {
+                IFluentCondition<T> condition;
+
+                if (currentContext.IsNullable)
+                {
+                    condition = new ApplyNullableDateValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(validator, type, lower, upper);
+                }
+                else
+                {
+                    condition = new ApplyDateValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(validator, type, lower, upper);
+                }
+                conditions.Add(condition);
+            }
+            return conditions;
+        }
+
+        /// <summary>
         ///     Build conditions for int validators
         /// </summary>
         public ICollection<IFluentCondition<T>> ForInt(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<int, int>> validators, ValidationType type, int value)

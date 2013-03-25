@@ -18,6 +18,6 @@ namespace MFlow.Core
         ///     Gets the validator.
         /// </summary>
         ICollection<IComparisonValidator<TInput, TCompare>> GetValidators<TInput, TCompare, ValidatorT>() where ValidatorT : IComparisonValidator<TInput, TCompare>;
-    }
+     }
 }
 

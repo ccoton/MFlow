@@ -73,15 +73,21 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsBetween(DateTime earliest, DateTime latest)
         {
-            // Is between is not a real validator, its a shortcut for two validators
-            IsBefore(latest);
-            IsAfter(earliest);
-            return this;
+            return ApplyDateBetweenValidator(_validatorFactory.GetValidators<DateTime, Between<DateTime>, IBetweenValidator>(), Enums.ValidationType.IsBetweenDate, earliest, latest);
         }
 
         IFluentValidation<T> ApplyDateValidator(ICollection<IValidator<DateTime>> validators, Enums.ValidationType type)
         {
             _validatorToCondition.ForDateTime(_currentContext, validators, type)
+                .ToList()
+                .ForEach(c => BuildIf(c.Condition, c.Key, c.Message));
+
+            return this;
+        }
+
+        FluentValidation<T> ApplyDateBetweenValidator(ICollection<IComparisonValidator<DateTime, Between<DateTime>>> validators, Enums.ValidationType type, DateTime lower, DateTime upper)
+        {
+            _validatorToCondition.ForDateTime(_currentContext, validators, type, lower, upper)
                 .ToList()
                 .ForEach(c => BuildIf(c.Condition, c.Key, c.Message));
 
