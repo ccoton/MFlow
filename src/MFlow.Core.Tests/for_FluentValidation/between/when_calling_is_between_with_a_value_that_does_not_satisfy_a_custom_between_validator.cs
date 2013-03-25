@@ -11,12 +11,12 @@ namespace MFlow.Core.Tests.for_FluentValidation
 
         Because of = () =>
         {
-            user.LastLogin = DateTime.Parse("01-01-2001");
-            validator.Check(u => u.LastLogin).IsBetween(user.LastLogin.Value, user.LastLogin.Value);
+            user.LoginCount = 1;
+            validator.Check(u => u.LoginCount).IsBetween(5, 10);
         };
 
         It should_not_be_satisfied = () => { validator.Satisfied().ShouldBeFalse(); };
-        It should_return_the_correct_validation_message = () => { validator.Validate().First().Condition.Message.ShouldEqual("LastLogin should be between 01/01/2001 00:00:00 and 01/01/2001 00:00:00"); };
+        It should_return_the_correct_validation_message = () => { validator.Validate().First().Condition.Message.ShouldEqual("LoginCount should be between 5 and 10"); };
 
     }
 }

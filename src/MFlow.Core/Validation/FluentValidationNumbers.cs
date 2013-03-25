@@ -48,15 +48,21 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsBetween(int lower, int upper)
         {
-            // Is between is not a real validator, its a shortcut for two validators
-            IsGreaterThan(lower);
-            IsLessThan(upper);
-            return this; 
+            return ApplyIntBetweenValidator(_validatorFactory.GetValidators<int, Between<int>, IBetweenValidator>(), Enums.ValidationType.IsBetween, lower, upper);
         }
 
         FluentValidation<T> ApplyIntComparisonValidator(ICollection<IComparisonValidator<int, int>> validators, Enums.ValidationType type, int value)
         {
             _validatorToCondition.ForInt(_currentContext, validators, type, value)
+                .ToList()
+                .ForEach(c => BuildIf(c.Condition, c.Key, c.Message));
+
+            return this;
+        }
+
+        FluentValidation<T> ApplyIntBetweenValidator(ICollection<IComparisonValidator<int, Between<int>>> validators, Enums.ValidationType type, int lower, int upper)
+        {
+            _validatorToCondition.ForInt(_currentContext, validators, type, lower, upper)
                 .ToList()
                 .ForEach(c => BuildIf(c.Condition, c.Key, c.Message));
 

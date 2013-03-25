@@ -73,7 +73,7 @@ namespace MFlow.Core.Validation
         /// </summary>
         public IFluentValidation<T> IsBetween(DateTime earliest, DateTime latest)
         {
-            return ApplyDateBetweenValidator(_validatorFactory.GetValidators<DateTime, Between<DateTime>, IBetweenValidator>(), Enums.ValidationType.IsBetweenDate, earliest, latest);
+            return ApplyDateBetweenValidator(_validatorFactory.GetValidators<DateTime, Between<DateTime>, IBetweenValidator>(), Enums.ValidationType.IsBetween, earliest, latest);
         }
 
         IFluentValidation<T> ApplyDateValidator(ICollection<IValidator<DateTime>> validators, Enums.ValidationType type)

@@ -44,5 +44,18 @@ namespace MFlow.Core.Internal.Validators.Numbers
             var message = _messageResolver.Resolve(expression, value, type, string.Empty);
             return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
         }
+
+        /// <summary>
+        ///     Apply a comparison validator
+        /// </summary>
+        public IFluentCondition<T> Apply(IComparisonValidator<int, Between<int>> validator, Validation.Enums.ValidationType type, int lower, int upper)
+        {
+            Expression<Func<T, int>> expression = _currentContext.GetExpression<int>();
+            Func<T, int> compiled = _expressionBuilder.Compile(expression);
+            Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), new Between<int> { Lower = lower, Upper = upper });
+            var propertyName = _propertyNameResolver.Resolve<T, int>(expression);
+            var message = _messageResolver.Resolve(expression, lower, upper, type, string.Empty);
+            return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
+        }
     }
 }

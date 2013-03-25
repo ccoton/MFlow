@@ -36,6 +36,6 @@
         IsPassword = 30,
         IsUsername = 31,
         IsUrl = 32,
-        IsBetweenDate = 33
+        IsBetween = 33
     }
 }

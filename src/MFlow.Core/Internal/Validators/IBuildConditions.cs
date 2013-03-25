@@ -26,6 +26,11 @@ namespace MFlow.Core.Internal.Validators
         ///     Build conditions for date time validators
         /// </summary>
         ICollection<IFluentCondition<T>> ForDateTime(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<DateTime, Between<DateTime>>> validators, ValidationType type, DateTime lower, DateTime upper);
+        
+        /// <summary>
+        ///     Build conditions for int validators
+        /// </summary>
+        ICollection<IFluentCondition<T>> ForInt(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<int, Between<int>>> validators, ValidationType type, int lower, int upper);
 
         /// <summary>
         ///     Build conditions for int validators

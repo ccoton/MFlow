@@ -119,9 +119,11 @@
     <Compile Include="Internal\Validators\IBuildConditions.cs" />
     <Compile Include="Internal\Validators\Numbers\ApplyIntValidator.cs" />
     <Compile Include="Internal\Validators\Numbers\ApplyNullableIntValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\BetweenValidator.cs" />
     <Compile Include="Internal\Validators\Numbers\GreatherThanValidator.cs" />
     <Compile Include="Internal\Validators\Numbers\GreatherThanOrEqualToValidator.cs" />
     <Compile Include="Internal\Validators\Numbers\IApplyNumericValidator.cs" />
+    <Compile Include="Internal\Validators\Numbers\IBetweenValidator.cs" />
     <Compile Include="Internal\Validators\Numbers\LessThanOrEqualToValidator.cs" />
     <Compile Include="Internal\Validators\Numbers\LessThanValidator.cs" />
     <Compile Include="Internal\Validators\Strings\ApplyStringValidator.cs" />
