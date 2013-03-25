@@ -149,6 +149,9 @@
     <Compile Include="for_FluentValidation\not_equal\NotEqualValidator.cs" />
     <Compile Include="for_FluentValidation\not_equal\when_calling_is_not_equal_to_with_a_value_that_does_not_satisfy_a_custom_not_equal_validator.cs" />
     <Compile Include="for_FluentValidation\not_equal\when_calling_is_not_equal_to_with_a_value_that_satisfies_a_custom_not_equal_validator.cs" />
+    <Compile Include="for_FluentValidation\not_null\NotNullValidator.cs" />
+    <Compile Include="for_FluentValidation\not_null\when_calling_is_not_null_with_a_value_that_does_not_satisfy_a_custom_not_null_validator.cs" />
+    <Compile Include="for_FluentValidation\not_null\when_calling_is_not_null_with_a_value_that_satisfies_a_custom_not_null_validator.cs" />
     <Compile Include="for_FluentValidation\on\OnValidator.cs" />
     <Compile Include="for_FluentValidation\on\when_calling_is_on_with_a_value_that_does_not_satisfy_a_custom_on_validator.cs" />
     <Compile Include="for_FluentValidation\on\when_calling_is_on_with_a_value_that_satisfies_a_custom_on_validator.cs" />
