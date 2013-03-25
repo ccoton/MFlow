@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MFlow.Core.Internal.Validators
 {
-    public class Between<T>
+    public struct Between<T>
     {
         public T Upper { get; set; }
         public T Lower { get; set; }
