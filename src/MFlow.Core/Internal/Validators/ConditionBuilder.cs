@@ -47,24 +47,15 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> ForDateTime(ICurrentValidationContext<T> currentContext, ICollection<IValidator<DateTime>> validators, ValidationType type)
         {
-            var conditions = new List<IFluentCondition<T>>();
-            foreach (var validator in validators.ToApply(_configuration))
-            {
-                IFluentCondition<T> condition;
-
-                if (currentContext.IsNullable)
+            return BuildConditions(currentContext,
+                validators, type, (a, b) =>
                 {
-                    condition = new ApplyNullableDateValidator<T>(_target, currentContext, _expressionBuilder,
-                        _propertyNameResolver, _messageResolver).Apply(validator, type);
-                }
-                else
-                {
-                    condition = new ApplyDateValidator<T>(_target, currentContext, _expressionBuilder,
-                        _propertyNameResolver, _messageResolver).Apply(validator, type);
-                }
-                conditions.Add(condition);
-            }
-            return conditions;
+                    return currentContext.IsNullable ?
+                    new ApplyNullableDateValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b) :
+                    new ApplyDateValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b);
+                });
         }
 
         /// <summary>
@@ -72,24 +63,15 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> ForDateTime(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<DateTime, DateTime>> validators, ValidationType type, DateTime value)
         {
-            var conditions = new List<IFluentCondition<T>>();
-            foreach (var validator in validators.ToApply(_configuration))
-            {
-                IFluentCondition<T> condition;
-
-                if (currentContext.IsNullable)
+            return BuildConditions(currentContext,
+                validators, type, value, (a, b, c) =>
                 {
-                    condition = new ApplyNullableDateValidator<T>(_target, currentContext, _expressionBuilder,
-                        _propertyNameResolver, _messageResolver).Apply(validator, type, value);
-                }
-                else
-                {
-                    condition = new ApplyDateValidator<T>(_target, currentContext, _expressionBuilder,
-                        _propertyNameResolver, _messageResolver).Apply(validator, type, value);
-                }
-                conditions.Add(condition);
-            }
-            return conditions;
+                    return currentContext.IsNullable ?
+                    new ApplyNullableDateValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c) :
+                    new ApplyDateValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c);
+                });
         }
 
         /// <summary>
@@ -97,24 +79,15 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> ForDateTime(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<DateTime, Between<DateTime>>> validators, ValidationType type, DateTime lower, DateTime upper)
         {
-            var conditions = new List<IFluentCondition<T>>();
-            foreach (var validator in validators.ToApply(_configuration))
-            {
-                IFluentCondition<T> condition;
-
-                if (currentContext.IsNullable)
+            return BuildConditions(currentContext,
+                validators, type, lower, upper, (a, b, c, d) =>
                 {
-                    condition = new ApplyNullableDateValidator<T>(_target, currentContext, _expressionBuilder,
-                        _propertyNameResolver, _messageResolver).Apply(validator, type, lower, upper);
-                }
-                else
-                {
-                    condition = new ApplyDateValidator<T>(_target, currentContext, _expressionBuilder,
-                        _propertyNameResolver, _messageResolver).Apply(validator, type, lower, upper);
-                }
-                conditions.Add(condition);
-            }
-            return conditions;
+                    return currentContext.IsNullable ?
+                    new ApplyNullableDateValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c, d) :
+                    new ApplyDateValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c, d);
+                });
         }
 
         /// <summary>
@@ -122,24 +95,15 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> ForInt(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<int, Between<int>>> validators, ValidationType type, int lower, int upper)
         {
-            var conditions = new List<IFluentCondition<T>>();
-            foreach (var validator in validators.ToApply(_configuration))
-            {
-                IFluentCondition<T> condition;
-                if (currentContext.IsNullable)
+            return BuildConditions(currentContext,
+                validators, type, lower, upper, (a, b, c, d) =>
                 {
-                    condition = new ApplyNullableIntValidator<T>(_target, currentContext, _expressionBuilder,
-                        _propertyNameResolver, _messageResolver).Apply(validator, type, lower, upper);
-                }
-                else
-                {
-                    condition = new ApplyIntValidator<T>(_target, currentContext, _expressionBuilder,
-                        _propertyNameResolver, _messageResolver).Apply(validator, type, lower, upper);
-                }
-                conditions.Add(condition);
-            }
-
-            return conditions;
+                    return currentContext.IsNullable ?
+                    new ApplyNullableIntValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c, d) :
+                    new ApplyIntValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c, d);
+                });
         }
 
         /// <summary>
@@ -147,24 +111,15 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> ForInt(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<int, int>> validators, ValidationType type, int value)
         {
-            var conditions = new List<IFluentCondition<T>>();
-            foreach (var validator in validators.ToApply(_configuration))
-            {
-                IFluentCondition<T> condition;
-                if (currentContext.IsNullable)
+            return BuildConditions(currentContext,
+                validators, type, value, (a, b, c) =>
                 {
-                    condition = new ApplyNullableIntValidator<T>(_target, currentContext, _expressionBuilder,
-                        _propertyNameResolver, _messageResolver).Apply(validator, type, value);
-                }
-                else
-                {
-                    condition = new ApplyIntValidator<T>(_target, currentContext, _expressionBuilder,
-                        _propertyNameResolver, _messageResolver).Apply(validator, type, value);
-                }
-                conditions.Add(condition);
-            }
-
-            return conditions;
+                    return currentContext.IsNullable ?
+                    new ApplyNullableIntValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c) :
+                    new ApplyIntValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c);
+                });
         }
 
         /// <summary>
@@ -172,17 +127,12 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> ForString(ICurrentValidationContext<T> currentContext, ICollection<IValidator<string>> validators, ValidationType type)
         {
-            var conditions = new List<IFluentCondition<T>>();
-            foreach (var validator in validators.ToApply(_configuration))
-            {
-                IFluentCondition<T> condition;
-                condition = new ApplyStringValidator<T>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type);
-
-                conditions.Add(condition);
-            }
-
-            return conditions;
+            return BuildConditions(currentContext,
+                validators, type, (a, b) =>
+                {
+                    return new ApplyStringValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b);
+                });
         }
 
         /// <summary>
@@ -190,17 +140,12 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> ForString(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<string, string>> validators, ValidationType type, string value)
         {
-            var conditions = new List<IFluentCondition<T>>();
-            foreach (var validator in validators.ToApply(_configuration))
-            {
-                IFluentCondition<T> condition;
-                condition = new ApplyStringValidator<T>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type, value);
-
-                conditions.Add(condition);
-            }
-
-            return conditions;
+            return BuildConditions(currentContext,
+                validators, type, value, (a, b, c) =>
+                {
+                    return new ApplyStringValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c);
+                });
         }
 
         /// <summary>
@@ -208,17 +153,12 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> ForString(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<string, int>> validators, ValidationType type, int value)
         {
-            var conditions = new List<IFluentCondition<T>>();
-            foreach (var validator in validators.ToApply(_configuration))
-            {
-                IFluentCondition<T> condition;
-                condition = new ApplyStringValidator<T>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type, value);
-
-                conditions.Add(condition);
-            }
-
-            return conditions;
+            return BuildConditions(currentContext,
+                validators, type, value, (a, b, c) =>
+                {
+                    return new ApplyStringValidator<T>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c);
+                });
         }
 
         /// <summary>
@@ -226,17 +166,12 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> ForCollectionOf<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<ICollection<TValidate>, TValidate>> validators, ValidationType type, TValidate value)
         {
-            var conditions = new List<IFluentCondition<T>>();
-            foreach (var validator in validators.ToApply(_configuration))
-            {
-                IFluentCondition<T> condition;
-                condition = new ApplyCollectionValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type, value);
-
-                conditions.Add(condition);
-            }
-
-            return conditions;
+            return BuildConditions(currentContext,
+                validators, type, value, (a, b, c) =>
+                {
+                    return new ApplyCollectionValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c);
+                });
         }
 
         /// <summary>
@@ -244,17 +179,12 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> ForCollectionOf<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<ICollection<TValidate>, ICollection<TValidate>>> validators, ValidationType type, ICollection<TValidate> values)
         {
-            var conditions = new List<IFluentCondition<T>>();
-            foreach (var validator in validators.ToApply(_configuration))
-            {
-                IFluentCondition<T> condition;
-                condition = new ApplyCollectionValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type, values);
-
-                conditions.Add(condition);
-            }
-
-            return conditions;
+            return BuildConditions(currentContext,
+                validators, type, values, (a, b, c) =>
+                {
+                    return new ApplyCollectionValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c);
+                });
         }
 
         /// <summary>
@@ -262,17 +192,12 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IValidator<TValidate>> validators, ValidationType type)
         {
-            var conditions = new List<IFluentCondition<T>>();
-            foreach (var validator in validators.ToApply(_configuration))
-            {
-                IFluentCondition<T> condition;
-                condition = new ApplyGenericValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type);
-
-                conditions.Add(condition);
-            }
-
-            return conditions;
+            return BuildConditions(currentContext,
+                validators, type, (a, b) =>
+                {
+                    return new ApplyGenericValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b);
+                });
         }
 
         /// <summary>
@@ -280,17 +205,12 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<TValidate, TValidate>> validators, ValidationType type, TValidate value)
         {
-            var conditions = new List<IFluentCondition<T>>();
-            foreach (var validator in validators.ToApply(_configuration))
-            {
-                IFluentCondition<T> condition;
-                condition = new ApplyGenericValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type, value);
-
-                conditions.Add(condition);
-            }
-
-            return conditions;
+            return BuildConditions(currentContext,
+                validators, type, value, (a, b, c) =>
+                {
+                    return new ApplyGenericValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c);
+                });
         }
 
         /// <summary>
@@ -298,13 +218,91 @@ namespace MFlow.Core.Internal.Validators
         /// </summary>
         public ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<TValidate, TValidate>> validators, ValidationType type, Expression<Func<T, TValidate>> value)
         {
+            return BuildConditions(currentContext,
+                validators, type, value, (a, b, c) => {
+                    return new ApplyGenericValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
+                        _propertyNameResolver, _messageResolver).Apply(a, b, c);
+                });
+        }
+
+        /// <summary>
+        ///     Build conditions validators
+        /// </summary>
+        ICollection<IFluentCondition<T>> BuildConditions<TValidate, TCompare>(
+            ICurrentValidationContext<T> currentContext,
+            ICollection<IComparisonValidator<TValidate, Between<TCompare>>> validators,
+            ValidationType type,
+            TCompare lower,
+            TCompare upper,
+            Func<IComparisonValidator<TValidate, Between<TCompare>>, ValidationType, TCompare, TCompare, IFluentCondition<T>> builder)
+        {
             var conditions = new List<IFluentCondition<T>>();
             foreach (var validator in validators.ToApply(_configuration))
             {
                 IFluentCondition<T> condition;
-                condition = new ApplyGenericValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
-                    _propertyNameResolver, _messageResolver).Apply(validator, type, value);
+                condition = builder(validator, type, lower, upper);
+                conditions.Add(condition);
+            }
 
+            return conditions;
+        }
+
+        /// <summary>
+        ///     Build conditions validators
+        /// </summary>
+        ICollection<IFluentCondition<T>> BuildConditions<TValidate, TCompare>(
+            ICurrentValidationContext<T> currentContext, 
+            ICollection<IComparisonValidator<TValidate, TCompare>> validators, 
+            ValidationType type, 
+            TCompare value,
+            Func<IComparisonValidator<TValidate, TCompare>, ValidationType, TCompare, IFluentCondition<T>> builder)
+        {
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators.ToApply(_configuration))
+            {
+                IFluentCondition<T> condition;
+                condition = builder(validator, type, value);
+                conditions.Add(condition);
+            }
+
+            return conditions;
+        }
+
+        /// <summary>
+        ///     Build conditions validators
+        /// </summary>
+        ICollection<IFluentCondition<T>> BuildConditions<TValidate, TCompare>(
+            ICurrentValidationContext<T> currentContext,
+            ICollection<IComparisonValidator<TValidate, TCompare>> validators,
+            ValidationType type,
+            Expression<Func<T, TValidate>> value,
+            Func<IComparisonValidator<TValidate, TCompare>, ValidationType, Expression<Func<T, TValidate>>, IFluentCondition<T>> builder)
+        {
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators.ToApply(_configuration))
+            {
+                IFluentCondition<T> condition;
+                condition = builder(validator, type, value);
+                conditions.Add(condition);
+            }
+
+            return conditions;
+        }
+
+        /// <summary>
+        ///     Build conditions validators
+        /// </summary>
+        ICollection<IFluentCondition<T>> BuildConditions<TValidate>(
+            ICurrentValidationContext<T> currentContext,
+            ICollection<IValidator<TValidate>> validators,
+            ValidationType type,
+            Func<IValidator<TValidate>, ValidationType, IFluentCondition<T>> builder)
+        {
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators.ToApply(_configuration))
+            {
+                IFluentCondition<T> condition;
+                condition = builder(validator, type);
                 conditions.Add(condition);
             }
 

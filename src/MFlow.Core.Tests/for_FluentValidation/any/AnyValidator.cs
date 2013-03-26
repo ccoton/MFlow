@@ -12,7 +12,7 @@ namespace MFlow.Core.Tests.for_FluentValidation
     {
         public bool Validate(ICollection<T> input, T value)
         {
-            if (input.Count == 0)
+            if (input == null || input.Count == 0)
                 return false;
 
             return input.First().GetType() == typeof(User);
