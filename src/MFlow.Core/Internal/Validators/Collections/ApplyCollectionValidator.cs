@@ -45,5 +45,18 @@ namespace MFlow.Core.Internal.Validators.Collections
             var message = _messageResolver.Resolve(expression, value, type, string.Empty);
             return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
         }
+
+        /// <summary>
+        ///     Applies the collection based validator
+        /// </summary>
+        public IFluentCondition<T> Apply(IComparisonValidator<ICollection<TValidate>, ICollection<TValidate>> validator, Validation.Enums.ValidationType type, ICollection<TValidate> values)
+        {
+            Expression<Func<T, ICollection<TValidate>>> expression = _currentContext.GetExpression<ICollection<TValidate>>();
+            Func<T, ICollection<TValidate>> compiled = _expressionBuilder.Compile(expression);
+            Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), values);
+            var propertyName = _propertyNameResolver.Resolve<T, ICollection<TValidate>>(expression);
+            var message = _messageResolver.Resolve(expression, values, type, string.Empty);
+            return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
+        }
     }
 }

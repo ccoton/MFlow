@@ -34,4 +34,5 @@
   <IsUsername>{0} should be a valid username</IsUsername>
   <IsUrl>{0} should be a valid url</IsUrl>
   <IsBetween>{0} should be between {1} and {2}</IsBetween>
+  <All>{0} should contain all the items specified</All>
 </Messages>

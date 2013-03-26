@@ -58,6 +58,11 @@ namespace MFlow.Core.Internal.Validators
         ICollection<IFluentCondition<T>> ForCollectionOf<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<ICollection<TValidate>, TValidate>> validators, ValidationType type, TValidate value);
 
         /// <summary>
+        ///     Build conditions for collection validators
+        /// </summary>
+        ICollection<IFluentCondition<T>> ForCollectionOf<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<ICollection<TValidate>, ICollection<TValidate>>> validators, ValidationType type, ICollection<TValidate> values);
+
+        /// <summary>
         ///     Build conditions for generic validators
         /// </summary>
         ICollection<IFluentCondition<T>> For<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IValidator<TValidate>> validators, ValidationType type);

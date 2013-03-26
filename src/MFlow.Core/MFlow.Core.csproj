@@ -87,7 +87,9 @@
     <Compile Include="Internal\IExpressionBuilder.cs" />
     <Compile Include="Internal\IMessageResolver.cs" />
     <Compile Include="Internal\Validators\Between.cs" />
+    <Compile Include="Internal\Validators\Collections\AllValidator.cs" />
     <Compile Include="Internal\Validators\Collections\ApplyCollectionValidator.cs" />
+    <Compile Include="Internal\Validators\Collections\IAllValidator.cs" />
     <Compile Include="Internal\Validators\Dates\ApplyDateValidator.cs" />
     <Compile Include="Internal\Validators\Dates\ApplyNullableDateValidator.cs" />
     <Compile Include="Internal\Validators\Collections\IApplyCollectionValidator.cs" />

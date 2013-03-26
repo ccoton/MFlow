@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace MFlow.Core.Validation
@@ -17,5 +18,10 @@ namespace MFlow.Core.Validation
         ///     Checks if the expression evaluates to a collection not containing any item equal to the value
         /// </summary>
         IFluentValidation<T> None<C>(C value);
+
+        /// <summary>
+        ///     Checks if the expression evaluates to a collection containing all items in the values collection
+        /// </summary>
+        IFluentValidation<T> All<C>(ICollection<C> values);
     }
 }

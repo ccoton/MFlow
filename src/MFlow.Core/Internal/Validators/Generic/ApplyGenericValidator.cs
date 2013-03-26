@@ -3,6 +3,7 @@ using MFlow.Core.Validation.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using MFlow.Core.Validation.Enums;
 
 namespace MFlow.Core.Internal.Validators.Generic
 {

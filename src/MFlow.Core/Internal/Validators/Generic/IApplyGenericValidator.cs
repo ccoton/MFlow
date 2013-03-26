@@ -10,6 +10,5 @@ namespace MFlow.Core.Internal.Validators.Generic
         IFluentCondition<T> Apply(IComparisonValidator<TValidate, TValidate> validator, Validation.Enums.ValidationType type, TValidate value);
         IFluentCondition<T> Apply(IComparisonValidator<TValidate, TValidate> validator, Validation.Enums.ValidationType type, Expression<Func<T, TValidate>> value);
         IFluentCondition<T> Apply(IValidator<TValidate> validator, Validation.Enums.ValidationType type);
- 
     }
 }
