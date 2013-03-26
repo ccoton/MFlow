@@ -12,8 +12,7 @@ namespace MFlow.Core.Internal.Validators.Collections
         {
             if (input == null || value == null)
                 return false;
-            var foo = input.Any(u => u.Equals(value));
-            return foo;
+            return input.Intersect(value).Count() == input.Count;
         }
     }
 }

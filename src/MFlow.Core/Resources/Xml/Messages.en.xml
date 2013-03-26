@@ -33,4 +33,5 @@
   <IsPassword>{0} should be a valid password</IsPassword>
   <IsUsername>{0} should be a valid username</IsUsername>
   <IsUrl>{0} should be a valid url</IsUrl>
+  <All>{0} should contain all the items specified</All>
 </Messages>

@@ -17,7 +17,7 @@ namespace MFlow.Core.Tests.for_FluentValidation
             };
 
         It should_be_not_be_satisfied_because_the_collection_does_not_contain_the_item = () => { validator.Satisfied().ShouldBeFalse(); };
-        It should_return_the_correct_validation_message = () => { validator.Validate().First().Condition.Message.ShouldEqual("Users should contain the item specified"); };
+        It should_return_the_correct_validation_message = () => { validator.Validate().First().Condition.Message.ShouldEqual("Users should contain all the items specified"); };
 
     }
 }
