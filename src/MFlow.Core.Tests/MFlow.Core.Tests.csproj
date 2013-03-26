@@ -125,6 +125,10 @@
     <Compile Include="for_FluentValidation\between_date\when_calling_is_between_date_with_a_value_that_is_between_date.cs" />
     <Compile Include="for_FluentValidation\between_date\when_calling_is_between_date_with_a_value_that_is_not_between_date.cs" />
     <Compile Include="for_FluentValidation\between_date\when_calling_is_between_date_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\all\when_calling_all_with_collection_containing_all_items.cs" />
+    <Compile Include="for_FluentValidation\all\when_calling_all_with_collection_not_containing_all_items.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_all_users_in_collection.cs" />
+    <Compile Include="for_FluentValidation\given\a_fluent_user_validator_with_all_users_not_in_collection.cs" />
     <Compile Include="for_FluentValidation\url\UrlValidator.cs" />
     <Compile Include="for_FluentValidation\url\when_calling_is_url_with_a_value_that_does_not_satisfy_a_custom_url_validator.cs" />
     <Compile Include="for_FluentValidation\url\when_calling_is_url_with_a_value_that_is_a_valid_url.cs" />

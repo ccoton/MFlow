@@ -49,5 +49,24 @@ namespace MFlow.Core.Internal.Validators.Extension
                 }
             }
         }
+
+        /// <summary>
+        ///     Gets the comparison validators that should be applied from a collection
+        /// </summary>
+        public static IEnumerable<IComparisonValidator<ICollection<TInput>, ICollection<TCompare>>> ToApply<TInput, TCompare>(this ICollection<IComparisonValidator<ICollection<TInput>, ICollection<TCompare>>> validators, IConfigureFluentValidation configuration)
+        {
+            foreach (var validator in validators)
+            {
+                var noExternals = validators.Count == 1;
+                var internalValidator = validator.GetType().Assembly == typeof(ValidatorCollectionExtension).Assembly;
+                var applyInternalValidator = (noExternals) || (internalValidator && configuration.CustomImplementationMode != CustomImplementationMode.Replace);
+                var applyExternalValidator = !internalValidator && (configuration.CustomImplementationMode == CustomImplementationMode.Combine || configuration.CustomImplementationMode == CustomImplementationMode.Replace);
+
+                if (applyInternalValidator || applyExternalValidator)
+                {
+                    yield return validator;
+                }
+            }
+        }
     }
 }

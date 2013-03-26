@@ -189,6 +189,21 @@ namespace MFlow.Core.Internal.Validators
             return conditions;
         }
 
+        public ICollection<IFluentCondition<T>> ForCollectionOf<TValidate>(ICurrentValidationContext<T> currentContext, ICollection<IComparisonValidator<ICollection<TValidate>, ICollection<TValidate>>> validators, ValidationType type, ICollection<TValidate> values)
+        {
+            var conditions = new List<IFluentCondition<T>>();
+            foreach (var validator in validators.ToApply(_configuration))
+            {
+                IFluentCondition<T> condition;
+                condition = new ApplyGenericValidator<T, TValidate>(_target, currentContext, _expressionBuilder,
+                    _propertyNameResolver, _messageResolver).Apply(validator, type, values);
+
+                conditions.Add(condition);
+            }
+
+            return conditions;
+        }
+
         /// <summary>
         ///     Build conditions for generic validators
         /// </summary>

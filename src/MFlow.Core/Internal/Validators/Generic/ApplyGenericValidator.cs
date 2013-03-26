@@ -3,6 +3,7 @@ using MFlow.Core.Validation.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using MFlow.Core.Validation.Enums;
 
 namespace MFlow.Core.Internal.Validators.Generic
 {
@@ -44,6 +45,17 @@ namespace MFlow.Core.Internal.Validators.Generic
             var propertyName = _propertyNameResolver.Resolve<T, TValidate>(expression);
             var message = _messageResolver.Resolve(expression, type, string.Empty);
             return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
+        }
+
+        public IFluentCondition<T> Apply(IComparisonValidator<ICollection<TValidate>, ICollection<TValidate>> validator, ValidationType type, ICollection<TValidate> values)
+        {
+            Expression<Func<T, ICollection<TValidate>>> expression = _currentContext.GetExpression<ICollection<TValidate>>();
+            Func<T, ICollection<TValidate>> compiled = _expressionBuilder.Compile(expression);
+            Expression<Func<T, bool>> derived = f => validator.Validate(_expressionBuilder.Invoke(compiled, _target), values);
+            var propertyName = _propertyNameResolver.Resolve<T, ICollection<TValidate>>(expression);
+            var message = _messageResolver.Resolve(expression, values, type, string.Empty);
+            return new FluentCondition<T>(derived, _currentContext.ConditionType, propertyName, message, string.Empty, _currentContext.ConditionOutput);
+
         }
 
         /// <summary>
