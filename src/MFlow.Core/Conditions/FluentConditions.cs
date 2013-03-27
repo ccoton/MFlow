@@ -170,10 +170,10 @@ namespace MFlow.Core.Conditions
             return Conditions
                 .Where(c => c.GroupName.ToLower() == group.ToLower() || string.IsNullOrEmpty(group))
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
-                .All(c => _expressionBuilder.Compile(c.Condition).Invoke(_target) && c.Type == ConditionType.And) ||
+                .All(c => _expressionBuilder.Invoke(_expressionBuilder.Compile(c.Condition), _target) && c.Type == ConditionType.And) ||
                 Conditions
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
-                .Any(c => _expressionBuilder.Compile(c.Condition).Invoke(_target) && c.Type == ConditionType.Or);
+                .Any(c => _expressionBuilder.Invoke(_expressionBuilder.Compile(c.Condition), _target) && c.Type == ConditionType.Or);
         }
     }
 }

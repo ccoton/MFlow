@@ -251,8 +251,8 @@ namespace MFlow.Core.Validation
         public IFluentValidation<T> DependsOn<D>(Expression<Func<T, D>> validator) where D : IFluentValidation<T>
         {
             Func<T, D> compiled = _expressionBuilder.Compile(validator);
-            _dependencies.Add(() => compiled.Invoke(_target));
-            Expression<Func<T, bool>> derived = f => compiled.Invoke(_target).Satisfied(string.Empty, true);
+            _dependencies.Add(() => _expressionBuilder.Invoke(compiled, _target));
+            Expression<Func<T, bool>> derived = f => _expressionBuilder.Invoke(compiled, _target).Satisfied(string.Empty, true);
             base.And(derived, message: string.Empty);
             return this;
         }
@@ -294,7 +294,7 @@ namespace MFlow.Core.Validation
             {
                 var lastCondition = Conditions.Last();
                 Func<T, bool> compiled = _expressionBuilder.Compile(lastCondition.Condition);
-                Expression<Func<T, bool>> reversed = f => !compiled.Invoke(_target);
+                Expression<Func<T, bool>> reversed = f => !_expressionBuilder.Invoke(compiled, _target);
                 Conditions.Remove(lastCondition);
                 BuildIf(reversed, lastCondition.Key, lastCondition.Message);
             }
@@ -343,7 +343,7 @@ namespace MFlow.Core.Validation
 
             groupConditions
                 .Where(c => (c.Output == ConditionOutput.Error) || (c.Output == ConditionOutput.Warning && !suppressWarnings))
-                .Where(c => !_expressionBuilder.Compile(c.Condition).Invoke(_target))
+                .Where(c => !_expressionBuilder.Invoke(_expressionBuilder.Compile(c.Condition), _target))
                 .ToList()
                 .ForEach(r => {
                     results.Add(new ValidationResult<T>(r));
