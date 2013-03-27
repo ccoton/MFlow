@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using MFlow.Core.Conditions.Enums;
 using MFlow.Core.Internal;
+using MFlow.Core.ExpressionBuilder;
 
 namespace MFlow.Core.Conditions
 {
@@ -21,18 +22,22 @@ namespace MFlow.Core.Conditions
         ///     The target of this validation instance
         /// </summary>
         protected T _target;
-        IExpressionBuilder<T> _expressionBuilder; 
+        IBuildExpressions _expressionBuilder; 
 
         /// <summary>
         ///     Constructor
         /// </summary>      
-        public FluentConditions(T target)
+        public FluentConditions(T target, IBuildExpressions expressionBuilder)
         {
             if (target == null)
                 throw new ArgumentNullException("target");
+
+            if (expressionBuilder == null)
+                throw new ArgumentNullException("expressionBuilder");
+
             _target = target;
             Conditions = new List<IFluentCondition<T>>();
-            _expressionBuilder = new ExpressionBuilder<T>();
+            _expressionBuilder = expressionBuilder;
         }
 
         /// <summary>

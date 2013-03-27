@@ -1,5 +1,6 @@
 ﻿using Machine.Specifications;
 using MFlow.Core.Conditions;
+using MFlow.Core.Validation.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,9 @@ namespace MFlow.Core.Tests.for_Conditions.given
 
         Establish context = () =>
         {
+            var expressionBuilder = Configuration.Current.ExpressionBuilderConfiguration.Builder;
             var test_object = new object();
-            fluent_conditions = new FluentConditions<object>(test_object);
+            fluent_conditions = new FluentConditions<object>(test_object, expressionBuilder);
             fluent_conditions.If(o => o.Equals(test_object));
         };
     }

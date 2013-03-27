@@ -83,8 +83,10 @@
     <Compile Include="Conditions\FluentConditions.cs" />
     <Compile Include="Conditions\IFluentCondition.cs" />
     <Compile Include="Conditions\IFluentConditions.cs" />
-    <Compile Include="Internal\ExpressionBuilder.cs" />
-    <Compile Include="Internal\IExpressionBuilder.cs" />
+    <Compile Include="ExpressionBuilder\ExpressionBuilder.cs" />
+    <Compile Include="ExpressionBuilder\IConfigureExpressionBuilder.cs" />
+    <Compile Include="ExpressionBuilder\IExpressionBuilder.cs" />
+    <Compile Include="ExpressionBuilder\ExpressionBuilderConfiguration.cs" />
     <Compile Include="MessageResolver\IResolveValidationMessages.cs" />
     <Compile Include="Internal\Validators\Between.cs" />
     <Compile Include="Internal\Validators\Collections\AllValidator.cs" />

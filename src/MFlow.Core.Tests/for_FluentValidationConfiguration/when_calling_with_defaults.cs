@@ -1,4 +1,5 @@
 ﻿using Machine.Specifications;
+using MFlow.Core.ExpressionBuilder;
 using MFlow.Core.MessageResolver;
 using MFlow.Core.Validation.Configuration;
 using MFlow.Core.Validation.Configuration.Enums;
@@ -27,6 +28,11 @@ namespace MFlow.Core.Tests.for_FluentValidationConfiguration
         It should_have_a_message_resolver = () =>
         {
             Configuration.Current.MessageResolverConfiguration.Resolver.ShouldBeOfType<IResolveValidationMessages>();
+        };
+
+        It should_have_an_message_resolver = () =>
+        {
+            Configuration.Current.ExpressionBuilderConfiguration.Builder.ShouldBeOfType<IBuildExpressions>();
         };
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MFlow.Core.Conditions;
+using MFlow.Core.ExpressionBuilder;
 using MFlow.Core.Internal.Validators.Collections;
 using MFlow.Core.Internal.Validators.Dates;
 using MFlow.Core.Internal.Validators.Extension;
@@ -22,7 +23,7 @@ namespace MFlow.Core.Internal.Validators
     class ConditionBuilder<T> : MFlow.Core.Internal.Validators.IBuildConditions<T>
     {
         readonly T _target;
-        readonly IExpressionBuilder<T> _expressionBuilder;
+        readonly IBuildExpressions _expressionBuilder;
         readonly IPropertyNameResolver _propertyNameResolver;
         readonly IResolveValidationMessages _messageResolver;
         readonly IConfigureFluentValidation _configuration;
@@ -31,7 +32,7 @@ namespace MFlow.Core.Internal.Validators
         ///    Constructor
         /// </summary>
         public ConditionBuilder(T target,
-            IExpressionBuilder<T> expressionBuilder,
+            IBuildExpressions expressionBuilder,
             IPropertyNameResolver propertyNameResolver,
             IResolveValidationMessages messageResolver,
             IConfigureFluentValidation configuration)

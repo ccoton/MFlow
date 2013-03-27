@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using MFlow.Core.Validation.Enums;
 using MFlow.Core.MessageResolver;
+using MFlow.Core.ExpressionBuilder;
 
 namespace MFlow.Core.Internal.Validators.Generic
 {
@@ -15,7 +16,7 @@ namespace MFlow.Core.Internal.Validators.Generic
     {
         readonly T _target;
         readonly ICurrentValidationContext<T> _currentContext;
-        readonly IExpressionBuilder<T> _expressionBuilder;
+        readonly IBuildExpressions _expressionBuilder;
         readonly IPropertyNameResolver _propertyNameResolver;
         readonly IResolveValidationMessages _messageResolver;
 
@@ -24,7 +25,7 @@ namespace MFlow.Core.Internal.Validators.Generic
         /// </summary>
         public ApplyGenericValidator(T target,
             ICurrentValidationContext<T> context,
-            IExpressionBuilder<T> expressionBuilder, 
+            IBuildExpressions expressionBuilder, 
             IPropertyNameResolver propertyNameResolver,
             IResolveValidationMessages messageResolver)
         {

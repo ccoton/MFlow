@@ -1,4 +1,5 @@
 ﻿using MFlow.Core.Conditions;
+using MFlow.Core.ExpressionBuilder;
 using MFlow.Core.MessageResolver;
 using MFlow.Core.Validation.Context;
 using System;
@@ -13,7 +14,7 @@ namespace MFlow.Core.Internal.Validators.Strings
     {
         readonly T _target;
         readonly ICurrentValidationContext<T> _currentContext;
-        readonly IExpressionBuilder<T> _expressionBuilder;
+        readonly IBuildExpressions _expressionBuilder;
         readonly IPropertyNameResolver _propertyNameResolver;
         readonly IResolveValidationMessages _messageResolver;
 
@@ -22,7 +23,7 @@ namespace MFlow.Core.Internal.Validators.Strings
         /// </summary>
         public ApplyStringValidator(T target,
             ICurrentValidationContext<T> context,
-            IExpressionBuilder<T> expressionBuilder, 
+            IBuildExpressions expressionBuilder, 
             IPropertyNameResolver propertyNameResolver,
             IResolveValidationMessages messageResolver)
         {

@@ -2,6 +2,7 @@
 using MFlow.Core.Conditions;
 using MFlow.Core.Conditions.Enums;
 using MFlow.Core.Events;
+using MFlow.Core.ExpressionBuilder;
 using MFlow.Core.Internal;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.Statistics;
@@ -28,7 +29,8 @@ namespace MFlow.Core.Validation
         /// <summary>
         ///     Constructor
         /// </summary>
-        internal FluentValidationWithStatistics(IFluentValidation<T> fluentValidation, IRecordValidationStatistics statistics) : base(fluentValidation.GetTarget())
+        internal FluentValidationWithStatistics(IFluentValidation<T> fluentValidation, IRecordValidationStatistics statistics, IBuildExpressions expressionBuilder) : 
+            base(fluentValidation.GetTarget(), expressionBuilder)
         {
             if (fluentValidation == null)
                 throw new ArgumentNullException("fluentValidation");

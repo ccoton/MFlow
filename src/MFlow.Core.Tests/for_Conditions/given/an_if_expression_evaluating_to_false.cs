@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MFlow.Core.Validation.Configuration;
 
 namespace MFlow.Core.Tests.for_Conditions.given
 {
@@ -15,8 +16,9 @@ namespace MFlow.Core.Tests.for_Conditions.given
 
         Establish context = () =>
         {
+            var expressionBuilder = Configuration.Current.ExpressionBuilderConfiguration.Builder;
             var test_object = new User() { IsActive = false };
-            fluent_conditions = new FluentConditions<User>(test_object);
+            fluent_conditions = new FluentConditions<User>(test_object, expressionBuilder);
             fluent_conditions.If(r => r.IsActive);
         };
     }

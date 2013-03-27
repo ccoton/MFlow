@@ -1,4 +1,5 @@
 ﻿using MEvents.Core;
+using MFlow.Core.ExpressionBuilder;
 using MFlow.Core.Internal;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.MessageResolver;
@@ -21,7 +22,7 @@ namespace MFlow.Core.Validation.Factories
         ///     Gets a fluent validation implementation
         /// </summary>
         IFluentValidationBuilder<T> GetFluentValidation<T>(T target, IPropertyNameResolver propertyNameResolver,
-           IResolveValidationMessages messageResolver, IExpressionBuilder<T> expressionBuilder, IValidatorFactory validatorFactory,
+           IResolveValidationMessages messageResolver, IBuildExpressions expressionBuilder, IValidatorFactory validatorFactory,
            IBuildConditions<T> validatorToCondition, IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration) where T : class;
     }
 }

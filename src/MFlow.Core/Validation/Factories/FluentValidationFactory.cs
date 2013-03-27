@@ -1,4 +1,5 @@
 ﻿using MEvents.Core;
+using MFlow.Core.ExpressionBuilder;
 using MFlow.Core.Internal;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.MessageResolver;
@@ -27,16 +28,16 @@ namespace MFlow.Core.Validation.Factories
         ///     Gets a fluent validation implementation
         /// </summary>
         public IFluentValidationBuilder<T> GetFluentValidation<T>(T target, IPropertyNameResolver propertyNameResolver,
-            IResolveValidationMessages messageResolver, IExpressionBuilder<T> expressionBuilder, IValidatorFactory validatorFactory,
+            IResolveValidationMessages messageResolver, IBuildExpressions expressionBuilder, IValidatorFactory validatorFactory,
             IBuildConditions<T> conditionBuilder, IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration) where T : class
         {
             if (target == null)
                 throw new ArgumentNullException("target");
 
             propertyNameResolver = propertyNameResolver ?? new PropertyNameResolver();
-            expressionBuilder = expressionBuilder ?? new ExpressionBuilder<T>();
             validatorFactory = validatorFactory ??  new ValidatorFactory();
             configuration = configuration ?? Configuration.Configuration.Current;
+            expressionBuilder = expressionBuilder ?? configuration.ExpressionBuilderConfiguration.Builder;
             messageResolver = messageResolver ?? configuration.MessageResolverConfiguration.Resolver;
             conditionBuilder = conditionBuilder ?? new ConditionBuilder<T>(target, expressionBuilder, propertyNameResolver, messageResolver, configuration);
             eventCoordinator = eventCoordinator ?? new EventsFactory().GetEventCoordinator();
@@ -45,7 +46,8 @@ namespace MFlow.Core.Validation.Factories
                 validatorFactory, conditionBuilder, eventCoordinator);
 
             if (configuration.StatisticsEnabled)
-                fluentValidation = new FluentValidationWithStatistics<T>((IFluentValidation<T>)fluentValidation, configuration.StatisticsConfiguration.Recorder);
+                fluentValidation = new FluentValidationWithStatistics<T>((IFluentValidation<T>)fluentValidation, 
+                    configuration.StatisticsConfiguration.Recorder, expressionBuilder);
 
             return fluentValidation;
         }

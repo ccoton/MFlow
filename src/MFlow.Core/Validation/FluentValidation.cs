@@ -2,6 +2,7 @@
 using MFlow.Core.Conditions;
 using MFlow.Core.Conditions.Enums;
 using MFlow.Core.Events;
+using MFlow.Core.ExpressionBuilder;
 using MFlow.Core.Internal;
 using MFlow.Core.Internal.Validators;
 using MFlow.Core.MessageResolver;
@@ -25,7 +26,7 @@ namespace MFlow.Core.Validation
         ICurrentValidationContext<T> _currentContext;
         readonly IPropertyNameResolver _propertyNameResolver;
         readonly IResolveValidationMessages _messageResolver;
-        readonly IExpressionBuilder<T> _expressionBuilder;
+        readonly IBuildExpressions _expressionBuilder;
         readonly IValidatorFactory _validatorFactory;
         readonly IBuildConditions<T> _validatorToCondition;
         readonly IEventCoordinator _eventCoordinator;
@@ -34,10 +35,10 @@ namespace MFlow.Core.Validation
         ///     Constructor
         /// </summary>
         internal FluentValidation(T validate, IPropertyNameResolver propertyNameResolver,
-                                  IResolveValidationMessages messageResolver, IExpressionBuilder<T> expressionBuilder,
+                                  IResolveValidationMessages messageResolver, IBuildExpressions expressionBuilder,
                                   IValidatorFactory validatorFactory, IBuildConditions<T> validatorToCondition,
                                   IEventCoordinator eventCoordinator)
-            : base(validate)
+            : base(validate, expressionBuilder)
         {
             If(validate == null).Throw(new ArgumentException("validate"));
             If(propertyNameResolver == null).Throw(new ArgumentException("propertyNameResolver"));
