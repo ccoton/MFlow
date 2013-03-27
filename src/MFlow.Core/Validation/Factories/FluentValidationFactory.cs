@@ -27,35 +27,22 @@ namespace MFlow.Core.Validation.Factories
         ///     Gets a fluent validation implementation
         /// </summary>
         public IFluentValidationBuilder<T> GetFluentValidation<T>(T target, IPropertyNameResolver propertyNameResolver,
-            IResolveValidationMessages messageResolver,  IExpressionBuilder<T> expressionBuilder, IValidatorFactory validatorFactory,
-            IBuildConditions<T> validatorToCondition, IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration) where T : class
+            IResolveValidationMessages messageResolver, IExpressionBuilder<T> expressionBuilder, IValidatorFactory validatorFactory,
+            IBuildConditions<T> conditionBuilder, IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration) where T : class
         {
             if (target == null)
                 throw new ArgumentNullException("target");
 
-            if (propertyNameResolver == null)
-                propertyNameResolver = new PropertyNameResolver();
-
-            if (expressionBuilder == null)
-                expressionBuilder = new ExpressionBuilder<T>();
-
-            if (validatorFactory == null)
-                validatorFactory = new ValidatorFactory();
-
-            if (configuration == null)
-                configuration = Configuration.Configuration.Current;
-
-            if (messageResolver == null)
-                messageResolver = Configuration.Configuration.Current.MessageResolverConfiguration.Resolver;
-
-            if (validatorToCondition == null)
-                validatorToCondition = new ConditionBuilder<T>(target, expressionBuilder, propertyNameResolver, messageResolver, configuration);
-
-            if (eventCoordinator == null)
-                eventCoordinator = new EventsFactory().GetEventCoordinator();
+            propertyNameResolver = propertyNameResolver ?? new PropertyNameResolver();
+            expressionBuilder = expressionBuilder ?? new ExpressionBuilder<T>();
+            validatorFactory = validatorFactory ??  new ValidatorFactory();
+            configuration = configuration ?? Configuration.Configuration.Current;
+            messageResolver = messageResolver ?? configuration.MessageResolverConfiguration.Resolver;
+            conditionBuilder = conditionBuilder ?? new ConditionBuilder<T>(target, expressionBuilder, propertyNameResolver, messageResolver, configuration);
+            eventCoordinator = eventCoordinator ?? new EventsFactory().GetEventCoordinator();
 
             IFluentValidationBuilder<T> fluentValidation = new FluentValidation<T>(target, propertyNameResolver, messageResolver, expressionBuilder,
-                validatorFactory, validatorToCondition, eventCoordinator, configuration);
+                validatorFactory, conditionBuilder, eventCoordinator);
 
             if (configuration.StatisticsEnabled)
                 fluentValidation = new FluentValidationWithStatistics<T>((IFluentValidation<T>)fluentValidation, configuration.StatisticsConfiguration.Recorder);

@@ -29,7 +29,6 @@ namespace MFlow.Core.Validation
         readonly IValidatorFactory _validatorFactory;
         readonly IBuildConditions<T> _validatorToCondition;
         readonly IEventCoordinator _eventCoordinator;
-        readonly IConfigureFluentValidation _configuration;
 
         /// <summary>
         ///     Constructor
@@ -37,7 +36,7 @@ namespace MFlow.Core.Validation
         internal FluentValidation(T validate, IPropertyNameResolver propertyNameResolver,
                                   IResolveValidationMessages messageResolver, IExpressionBuilder<T> expressionBuilder,
                                   IValidatorFactory validatorFactory, IBuildConditions<T> validatorToCondition,
-                                  IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration)
+                                  IEventCoordinator eventCoordinator)
             : base(validate)
         {
             If(validate == null).Throw(new ArgumentException("validate"));
@@ -47,7 +46,6 @@ namespace MFlow.Core.Validation
             If(validatorFactory == null).Throw(new ArgumentException("validatorFactory"));
             If(validatorToCondition == null).Throw(new ArgumentException("validatorToCondition"));
             If(eventCoordinator == null).Throw(new ArgumentException("eventCoordinator"));
-            If(configuration == null).Throw(new ArgumentException("configuration"));
 
             _propertyNameResolver = propertyNameResolver;
             _messageResolver = messageResolver;
@@ -55,7 +53,6 @@ namespace MFlow.Core.Validation
             _validatorFactory = validatorFactory;
             _validatorToCondition = validatorToCondition;
             _eventCoordinator = eventCoordinator;
-            _configuration = configuration;
 
             base.Clear();
         }
