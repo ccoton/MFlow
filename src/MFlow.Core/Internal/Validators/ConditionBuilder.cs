@@ -5,6 +5,7 @@ using MFlow.Core.Internal.Validators.Extension;
 using MFlow.Core.Internal.Validators.Generic;
 using MFlow.Core.Internal.Validators.Numbers;
 using MFlow.Core.Internal.Validators.Strings;
+using MFlow.Core.MessageResolver;
 using MFlow.Core.Validation.Configuration;
 using MFlow.Core.Validation.Context;
 using MFlow.Core.Validation.Enums;
@@ -23,7 +24,7 @@ namespace MFlow.Core.Internal.Validators
         readonly T _target;
         readonly IExpressionBuilder<T> _expressionBuilder;
         readonly IPropertyNameResolver _propertyNameResolver;
-        readonly IMessageResolver _messageResolver;
+        readonly IResolveValidationMessages _messageResolver;
         readonly IConfigureFluentValidation _configuration;
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace MFlow.Core.Internal.Validators
         public ConditionBuilder(T target,
             IExpressionBuilder<T> expressionBuilder,
             IPropertyNameResolver propertyNameResolver,
-            IMessageResolver messageResolver,
+            IResolveValidationMessages messageResolver,
             IConfigureFluentValidation configuration)
         {
             _target = target;

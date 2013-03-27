@@ -1,4 +1,5 @@
-﻿using MFlow.Core.Statistics;
+﻿using MFlow.Core.MessageResolver;
+using MFlow.Core.Statistics;
 using MFlow.Core.Validation.Configuration.Enums;
 
 namespace MFlow.Core.Validation.Configuration
@@ -11,6 +12,7 @@ namespace MFlow.Core.Validation.Configuration
         }
 
         public IConfigureValidationStatistics StatisticsConfiguration { get; private set; }
+        public IConfigureMessageResolver MessageResolverConfiguration { get; private set; }
         public CustomImplementationMode CustomImplementationMode { get; private set; }
         public bool StatisticsEnabled { get; private set; }
 
@@ -37,7 +39,14 @@ namespace MFlow.Core.Validation.Configuration
         {
             CustomImplementationMode = Enums.CustomImplementationMode.Ignore;
             StatisticsConfiguration = new StatisticsConfiguration(new NullValidationStatisticsRecorder());
+            MessageResolverConfiguration = new MessageResolverConfiguration(new MessageResolver.MessageResolver());
             StatisticsEnabled = true;
+            return this;
+        }
+
+        public IConfigureFluentValidation WithMessageResolver(IConfigureMessageResolver messageResolverConfiguration)
+        {
+            MessageResolverConfiguration = messageResolverConfiguration;
             return this;
         }
     }

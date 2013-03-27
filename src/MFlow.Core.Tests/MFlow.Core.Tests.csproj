@@ -109,6 +109,8 @@
     <Compile Include="for_Conditions\given\an_if_condition_evaluating_to_true.cs" />
     <Compile Include="for_Conditions\given\an_if_expression_evaluating_to_true.cs" />
     <Compile Include="for_Conditions\when_calling_satisfied_with_true_condition.cs" />
+    <Compile Include="for_FluentValidationConfiguration\CustomMessageResolver.cs" />
+    <Compile Include="for_FluentValidationConfiguration\when_calling_with_message_resolver.cs" />
     <Compile Include="for_FluentValidationConfiguration\when_calling_without_statistics.cs" />
     <Compile Include="for_FluentValidationConfiguration\when_calling_with_statistics.cs" />
     <Compile Include="for_FluentValidationConfiguration\when_calling_with_defaults.cs" />

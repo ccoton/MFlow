@@ -1,4 +1,5 @@
 ﻿using Machine.Specifications;
+using MFlow.Core.MessageResolver;
 using MFlow.Core.Validation.Configuration;
 using MFlow.Core.Validation.Configuration.Enums;
 using System;
@@ -23,5 +24,9 @@ namespace MFlow.Core.Tests.for_FluentValidationConfiguration
             Configuration.Current.StatisticsEnabled.ShouldEqual(true);
         };
 
+        It should_have_a_message_resolver = () =>
+        {
+            Configuration.Current.MessageResolverConfiguration.Resolver.ShouldBeOfType<IResolveValidationMessages>();
+        };
     }
 }

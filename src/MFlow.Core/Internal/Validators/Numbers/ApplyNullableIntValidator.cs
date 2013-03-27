@@ -1,4 +1,5 @@
 ﻿using MFlow.Core.Conditions;
+using MFlow.Core.MessageResolver;
 using MFlow.Core.Validation.Context;
 using System;
 using System.Linq.Expressions;
@@ -15,7 +16,7 @@ namespace MFlow.Core.Internal.Validators.Numbers
         readonly ICurrentValidationContext<T> _currentContext;
         readonly IExpressionBuilder<T> _expressionBuilder;
         readonly IPropertyNameResolver _propertyNameResolver;
-        readonly IMessageResolver _messageResolver;
+        readonly IResolveValidationMessages _messageResolver;
 
         /// <summary>
         ///     Constructor
@@ -24,7 +25,7 @@ namespace MFlow.Core.Internal.Validators.Numbers
             ICurrentValidationContext<T> context,
             IExpressionBuilder<T> expressionBuilder, 
             IPropertyNameResolver propertyNameResolver,
-            IMessageResolver messageResolver)
+            IResolveValidationMessages messageResolver)
         {
             _target = target;
             _currentContext = context;

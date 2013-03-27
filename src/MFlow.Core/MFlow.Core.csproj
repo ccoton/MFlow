@@ -85,7 +85,7 @@
     <Compile Include="Conditions\IFluentConditions.cs" />
     <Compile Include="Internal\ExpressionBuilder.cs" />
     <Compile Include="Internal\IExpressionBuilder.cs" />
-    <Compile Include="Internal\IMessageResolver.cs" />
+    <Compile Include="MessageResolver\IResolveValidationMessages.cs" />
     <Compile Include="Internal\Validators\Between.cs" />
     <Compile Include="Internal\Validators\Collections\AllValidator.cs" />
     <Compile Include="Internal\Validators\Collections\ApplyCollectionValidator.cs" />
@@ -117,7 +117,7 @@
     <Compile Include="Internal\Validators\Generic\RequiredValidator.cs" />
     <Compile Include="Internal\Validators\ICanValidate.cs" />
     <Compile Include="Internal\Validators\IValidator.cs" />
-    <Compile Include="Internal\MessageResolver.cs" />
+    <Compile Include="MessageResolver\MessageResolver.cs" />
     <Compile Include="Internal\Validators\IBuildConditions.cs" />
     <Compile Include="Internal\Validators\Numbers\ApplyIntValidator.cs" />
     <Compile Include="Internal\Validators\Numbers\ApplyNullableIntValidator.cs" />
@@ -151,6 +151,8 @@
     <Compile Include="Internal\Validators\Strings\ShorterValidator.cs" />
     <Compile Include="Internal\Validators\Strings\ZipCodeValidator.cs" />
     <Compile Include="Internal\Validators\ConditionBuilder.cs" />
+    <Compile Include="MessageResolver\IConfigureMessageResolver.cs" />
+    <Compile Include="MessageResolver\MessageResolverConfiguration.cs" />
     <Compile Include="Resources\IResourceLocator.cs" />
     <Compile Include="Resources\ResourceLocator.cs" />
     <Compile Include="Conditions\Enums\ConditionOutput.cs" />
@@ -232,6 +234,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,7 @@
 ﻿using MEvents.Core;
 using MFlow.Core.Internal;
 using MFlow.Core.Internal.Validators;
+using MFlow.Core.MessageResolver;
 using MFlow.Core.Validation.Builder;
 using MFlow.Core.Validation.Configuration;
 using System;
@@ -26,7 +27,7 @@ namespace MFlow.Core.Validation.Factories
         ///     Gets a fluent validation implementation
         /// </summary>
         public IFluentValidationBuilder<T> GetFluentValidation<T>(T target, IPropertyNameResolver propertyNameResolver,
-            IMessageResolver messageResolver,  IExpressionBuilder<T> expressionBuilder, IValidatorFactory validatorFactory,
+            IResolveValidationMessages messageResolver,  IExpressionBuilder<T> expressionBuilder, IValidatorFactory validatorFactory,
             IBuildConditions<T> validatorToCondition, IEventCoordinator eventCoordinator, IConfigureFluentValidation configuration) where T : class
         {
             if (target == null)
@@ -34,9 +35,6 @@ namespace MFlow.Core.Validation.Factories
 
             if (propertyNameResolver == null)
                 propertyNameResolver = new PropertyNameResolver();
-
-            if (messageResolver == null)
-                messageResolver = new MessageResolver();
 
             if (expressionBuilder == null)
                 expressionBuilder = new ExpressionBuilder<T>();
@@ -46,6 +44,9 @@ namespace MFlow.Core.Validation.Factories
 
             if (configuration == null)
                 configuration = Configuration.Configuration.Current;
+
+            if (messageResolver == null)
+                messageResolver = Configuration.Configuration.Current.MessageResolverConfiguration.Resolver;
 
             if (validatorToCondition == null)
                 validatorToCondition = new ConditionBuilder<T>(target, expressionBuilder, propertyNameResolver, messageResolver, configuration);
