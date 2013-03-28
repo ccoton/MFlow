@@ -1,4 +1,5 @@
 ﻿
+using MFlow.Core.Validation.Validators.Strings;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;

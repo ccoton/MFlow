@@ -1,4 +1,5 @@
-﻿namespace MFlow.Core.Internal.Validators.Strings
+﻿using MFlow.Core.Validation.Validators.Strings;
+namespace MFlow.Core.Internal.Validators.Strings
 {
     class CreditCardValidator : ICreditCardValidator
     {

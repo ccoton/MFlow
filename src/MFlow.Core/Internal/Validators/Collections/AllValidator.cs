@@ -1,7 +1,8 @@
+using MFlow.Core.Validation.Validators.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MFlow.Core.Internal.Validators.Collections
+namespace MFlow.Core.Validation.Validators.Collections
 {
     /// <summary>
     ///     Any Validator

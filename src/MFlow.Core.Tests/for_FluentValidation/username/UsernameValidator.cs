@@ -1,4 +1,5 @@
 ﻿using MFlow.Core.Internal.Validators.Strings;
+using MFlow.Core.Validation.Validators.Strings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,8 @@ namespace MFlow.Core.Tests.for_FluentValidation
 {
     public class UsernameValidator : IUsernameValidator
     {
-        public bool Validate(string input)
-        {
+        public bool Validate(string input)  
+        {           
             return input == "customusernamevalidator";
         }
     }

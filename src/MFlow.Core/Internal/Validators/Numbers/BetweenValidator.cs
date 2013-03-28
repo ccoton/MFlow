@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MFlow.Core.Validation.Validators.Numbers;
+using System;
 
 namespace MFlow.Core.Internal.Validators.Numbers
 {

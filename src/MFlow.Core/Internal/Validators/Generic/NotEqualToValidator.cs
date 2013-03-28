@@ -1,4 +1,5 @@
-﻿namespace MFlow.Core.Internal.Validators.Generic
+﻿using MFlow.Core.Validation.Validators.Generic;
+namespace MFlow.Core.Internal.Validators.Generic
 {
     /// <summary>
     ///     NotEqualTo Validator

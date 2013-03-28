@@ -1,4 +1,5 @@
 ﻿using MFlow.Core.Internal.Validators.Numbers;
+using MFlow.Core.Validation.Validators.Numbers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

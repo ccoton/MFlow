@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MFlow.Core.Validation.Validators.Strings;
+using System.Collections.Generic;
 
 namespace MFlow.Core.Internal.Validators.Strings
 {

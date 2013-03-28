@@ -1,4 +1,5 @@
-﻿namespace MFlow.Core.Internal.Validators.Numbers
+﻿using MFlow.Core.Validation.Validators.Numbers;
+namespace MFlow.Core.Internal.Validators.Numbers
 {
     /// <summary>
     ///     GreaterThan Validator

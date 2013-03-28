@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System;
+using MFlow.Core.Validation.Validators.Strings;
 
 namespace MFlow.Core.Internal.Validators.Strings
 {
