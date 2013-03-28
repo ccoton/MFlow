@@ -8,6 +8,7 @@ namespace MFlow.Core.Statistics
     public class StatisticsConfiguration : IConfigureValidationStatistics
     {
         readonly IRecordValidationStatistics _recorder;
+        bool _enabled; 
 
         /// <summary>
         ///     Constructor
@@ -16,7 +17,7 @@ namespace MFlow.Core.Statistics
         {
             if (recorder == null)
                 throw new ArgumentNullException("recorder");
-
+            _enabled = false;
             _recorder = recorder;
         }
 
@@ -26,6 +27,29 @@ namespace MFlow.Core.Statistics
         public IRecordValidationStatistics Recorder
         {
             get { return _recorder; }
+        }
+
+        /// <summary>
+        ///     Is statistics enabled
+        /// </summary>
+        public bool Enabled { get { return _enabled; } }
+
+        /// <summary>
+        ///     Enable statistics
+        /// </summary>
+        public IConfigureValidationStatistics Enable()
+        {
+            _enabled = true;
+            return this;
+        }
+
+        /// <summary>
+        ///     Disable statistics
+        /// </summary>
+        public IConfigureValidationStatistics Disable()
+        {
+            _enabled = false;
+            return this;
         }
     }
 }

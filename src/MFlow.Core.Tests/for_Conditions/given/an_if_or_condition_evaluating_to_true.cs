@@ -1,10 +1,5 @@
 ﻿using Machine.Specifications;
 using MFlow.Core.Conditions;
-using MFlow.Core.Validation.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MFlow.Core.Tests.for_Conditions.given
 {
@@ -15,7 +10,7 @@ namespace MFlow.Core.Tests.for_Conditions.given
 
         Establish context = () =>
         {
-            var expressionBuilder = Configuration.Current.ExpressionBuilderConfiguration.Builder;
+            var expressionBuilder = MFlowConfiguration.Current.ExpressionBuilder.Builder;
             fluent_conditions = new FluentConditions<object>(new object(), expressionBuilder);
             fluent_conditions.If(1 == 2).Or(1 ==1);
         };

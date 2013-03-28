@@ -1,10 +1,5 @@
 ﻿using Machine.Specifications;
-using MFlow.Core.Validation.Configuration;
-using MFlow.Core.Validation.Configuration.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using MFlow.Core.Configuration.Enums;
 
 namespace MFlow.Core.Tests.for_FluentValidation
 {
@@ -13,7 +8,7 @@ namespace MFlow.Core.Tests.for_FluentValidation
 
         Because of = () =>
         {
-            Configuration.Current.WithCustomImplementationMode(CustomImplementationMode.Ignore);
+            MFlowConfiguration.Current.WithCustomImplementationMode(CustomImplementationMode.Ignore);
             user.Username = "http://www.google.com";
             validator.Check(u => u.Username).IsUrl();
         };

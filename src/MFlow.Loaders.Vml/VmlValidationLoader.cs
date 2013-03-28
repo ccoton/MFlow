@@ -49,7 +49,7 @@ namespace MFlow.Loaders.Vml
             {
                 // Call if(true) just to return the actual Validator
                 // instead of the builder
-                validator = _validationFactory.GetFluentValidation(target).If(true);
+                validator = _validationFactory.CreateFor(target).If(true);
                 validator = ParseVml(validator, derivedName);
                 validator = ParseCustomRules(validator, derivedName);
 

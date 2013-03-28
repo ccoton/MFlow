@@ -1,5 +1,5 @@
 ﻿
-namespace MFlow.Core.Validation.Configuration.Enums
+namespace MFlow.Core.Configuration.Enums
 {
     public enum CustomImplementationMode
     {

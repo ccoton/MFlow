@@ -83,9 +83,10 @@
     <Compile Include="Conditions\FluentConditions.cs" />
     <Compile Include="Conditions\IFluentCondition.cs" />
     <Compile Include="Conditions\IFluentConditions.cs" />
+    <Compile Include="ExpressionBuilder\CachingExpressionBuilder.cs" />
     <Compile Include="ExpressionBuilder\ExpressionBuilder.cs" />
     <Compile Include="ExpressionBuilder\IConfigureExpressionBuilder.cs" />
-    <Compile Include="ExpressionBuilder\IExpressionBuilder.cs" />
+    <Compile Include="ExpressionBuilder\IBuildExpressions.cs" />
     <Compile Include="ExpressionBuilder\ExpressionBuilderConfiguration.cs" />
     <Compile Include="MessageResolver\IResolveValidationMessages.cs" />
     <Compile Include="Internal\Validators\Between.cs" />
@@ -166,10 +167,10 @@
     <Compile Include="Statistics\StatisticsConfiguration.cs" />
     <Compile Include="ValidationLoader.cs" />
     <Compile Include="Validation\Builder\IFluentValidationBuilder.cs" />
-    <Compile Include="Validation\Configuration\Configuration.cs" />
-    <Compile Include="Validation\Configuration\Enums\CustomImplementationMode.cs" />
-    <Compile Include="Validation\Configuration\FluentValidationConfiguration.cs" />
-    <Compile Include="Validation\Configuration\IConfigureFluentValidation.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Configuration\Enums\CustomImplementationMode.cs" />
+    <Compile Include="Configuration\FluentValidationConfiguration.cs" />
+    <Compile Include="Configuration\IConfigureFluentValidation.cs" />
     <Compile Include="Validation\FluentValidationWithStatistics.cs" />
     <Compile Include="Validation\IFluentValidationCollection.cs" />
     <Compile Include="Validation\IFluentValidationDate.cs" />

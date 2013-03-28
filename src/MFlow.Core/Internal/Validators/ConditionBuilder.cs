@@ -7,12 +7,12 @@ using MFlow.Core.Internal.Validators.Generic;
 using MFlow.Core.Internal.Validators.Numbers;
 using MFlow.Core.Internal.Validators.Strings;
 using MFlow.Core.MessageResolver;
-using MFlow.Core.Validation.Configuration;
 using MFlow.Core.Validation.Context;
 using MFlow.Core.Validation.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using MFlow.Core.Configuration;
 
 namespace MFlow.Core.Internal.Validators
 {

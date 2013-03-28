@@ -19,7 +19,7 @@ namespace MFlow.Core.Tests.for_FluentValidation.given
         Establish context = () =>
         {
             user = new User();
-            validator = new FluentValidationFactory().GetFluentValidation<User>(user);
+            validator = new FluentValidationFactory().CreateFor<User>(user);
             user.Password = "testing";
             user.ConfirmPassword = "testing";
             validator.Check(u => u.Password).IsEqualTo("testing").Check(u=>u.ConfirmPassword).IsEqualTo("testing");

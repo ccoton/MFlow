@@ -17,7 +17,7 @@ namespace MFlow.Core.Tests.CustomRules
         {
             var target = targetFunc();
             var someCrazyCustomConditional = target.LoginCount == 999;
-            return _factory.GetFluentValidation<User>(target)
+            return _factory.CreateFor<User>(target)
                 .If(someCrazyCustomConditional).Key("UserName").Message("The crazy conditional");
         }
     }

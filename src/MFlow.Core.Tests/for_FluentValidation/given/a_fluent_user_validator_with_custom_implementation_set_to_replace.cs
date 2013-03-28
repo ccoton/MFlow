@@ -1,15 +1,8 @@
 ﻿using Machine.Specifications;
-using MFlow.Core.Internal.Validators.Strings;
+using MFlow.Core.Configuration.Enums;
 using MFlow.Core.Tests.Supporting;
-using MFlow.Core.Validation;
 using MFlow.Core.Validation.Builder;
-using MFlow.Core.Validation.Configuration;
-using MFlow.Core.Validation.Configuration.Enums;
 using MFlow.Core.Validation.Factories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MFlow.Core.Tests.for_FluentValidation.given
 {
@@ -21,9 +14,9 @@ namespace MFlow.Core.Tests.for_FluentValidation.given
 
         Establish context = () =>
         {
-            Configuration.Current.WithCustomImplementationMode(CustomImplementationMode.Replace);
+            MFlowConfiguration.Current.WithCustomImplementationMode(CustomImplementationMode.Replace);
             user = new User();
-            validator = new FluentValidationFactory().GetFluentValidation<User>(user);
+            validator = new FluentValidationFactory().CreateFor<User>(user);
         };
     }
 }

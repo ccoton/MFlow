@@ -1,6 +1,5 @@
 ﻿using Machine.Specifications;
-using MFlow.Core.Validation.Configuration;
-using MFlow.Core.Validation.Configuration.Enums;
+using MFlow.Core.Configuration.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace MFlow.Core.Tests.for_FluentValidation
 
         Because of = () =>
         {
-            Configuration.Current.WithCustomImplementationMode(CustomImplementationMode.Ignore);
+            MFlowConfiguration.Current.WithCustomImplementationMode(CustomImplementationMode.Ignore);
             user.Username = "mark-woodhall";
             validator.Check(u => u.Username).IsUsername();
         };

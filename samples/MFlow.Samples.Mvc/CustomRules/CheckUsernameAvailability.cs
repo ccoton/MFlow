@@ -17,7 +17,7 @@ namespace MFlow.Samples.Mvc.CustomRules
         public IFluentValidation<RegisterModel> Execute(Func<RegisterModel> targetFunc)
         {
             var target = targetFunc();
-            return _factory.GetFluentValidation<RegisterModel>(target)
+            return _factory.CreateFor(target)
                 .If(UsernameService.UsernameAvailable(target.UserName)) 
                     .Key("UserName")
                     .Message(string.Format("Try {0}", UsernameService.SuggestedUsername(target.UserName)));

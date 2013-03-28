@@ -20,8 +20,8 @@ namespace MFlow.Core.Tests.for_FluentValidation.given
         Establish context = () =>
         {
             user = new User();
-            validator = new FluentValidationFactory().GetFluentValidation<User>(user);
-            unsatisfied_dependency = (IFluentValidationBuilder<User>)new FluentValidationFactory().GetFluentValidation<User>(user).If(false);
+            validator = new FluentValidationFactory().CreateFor<User>(user);
+            unsatisfied_dependency = (IFluentValidationBuilder<User>)new FluentValidationFactory().CreateFor<User>(user).If(false);
         };
     }
 }

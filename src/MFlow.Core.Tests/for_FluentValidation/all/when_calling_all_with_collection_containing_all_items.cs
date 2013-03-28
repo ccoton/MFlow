@@ -1,6 +1,4 @@
-﻿using MFlow.Core.Validation.Configuration;
-using MFlow.Core.Validation.Configuration.Enums;
-using Machine.Specifications;
+﻿using Machine.Specifications;
 using MFlow.Core.Tests.Supporting;
 using MFlow.Core.Validation;
 using System;

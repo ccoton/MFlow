@@ -24,7 +24,7 @@ namespace MFlow.Core.Tests.for_FluentValidation.given
             };
 
             user.Users.Add(user);
-            validator = new FluentValidationFactory().GetFluentValidation<User>(user);
+            validator = new FluentValidationFactory().CreateFor<User>(user);
         };
     }
 }

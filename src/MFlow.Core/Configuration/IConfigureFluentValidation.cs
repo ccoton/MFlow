@@ -1,17 +1,16 @@
 ﻿using MFlow.Core.ExpressionBuilder;
 using MFlow.Core.MessageResolver;
 using MFlow.Core.Statistics;
-using MFlow.Core.Validation.Configuration.Enums;
+using MFlow.Core.Configuration.Enums;
 
-namespace MFlow.Core.Validation.Configuration
+namespace MFlow.Core.Configuration
 {
     public interface IConfigureFluentValidation
     {
         CustomImplementationMode CustomImplementationMode { get; }
-        bool StatisticsEnabled { get; }
-        IConfigureValidationStatistics StatisticsConfiguration { get;}
-        IConfigureMessageResolver MessageResolverConfiguration { get; }
-        IConfigureExpressionBuilder ExpressionBuilderConfiguration { get; }
+        IConfigureValidationStatistics Statistics { get;}
+        IConfigureMessageResolver MessageResolver { get; }
+        IConfigureExpressionBuilder ExpressionBuilder { get; }
 
         IConfigureFluentValidation WithDefaults();
         IConfigureFluentValidation WithCustomImplementationMode(CustomImplementationMode mode);

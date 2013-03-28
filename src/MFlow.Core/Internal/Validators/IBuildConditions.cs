@@ -1,5 +1,4 @@
 ﻿using MFlow.Core.Conditions;
-using MFlow.Core.Validation.Configuration;
 using MFlow.Core.Validation.Context;
 using MFlow.Core.Validation.Enums;
 using System;

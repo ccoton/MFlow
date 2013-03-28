@@ -28,7 +28,7 @@ namespace MFlow.Mvc
         {
             if (_validator == null)
                 if (loader == null)
-                    _validator = _factory.GetFluentValidation<T>(target);
+                    _validator = _factory.CreateFor<T>(target);
                 else
                     if (loader != null)
                         _validator = (IFluentValidationBuilder<T>)loader().Load<T>(target, rulesetFile);
