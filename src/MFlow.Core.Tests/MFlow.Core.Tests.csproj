@@ -126,6 +126,8 @@
     <Compile Include="for_FluentValidation\after\AfterValidator.cs" />
     <Compile Include="for_FluentValidation\after\when_calling_is_after_with_a_value_that_does_not_satisfy_a_custom_after_validator.cs" />
     <Compile Include="for_FluentValidation\after\when_calling_is_after_with_a_value_that_satisfies_a_custom_after_validator.cs" />
+    <Compile Include="for_FluentValidation\all\when_calling_all_with_a_value_that_satisfies_a_custom_all_validator.cs" />
+    <Compile Include="for_FluentValidation\all\when_calling_all_with_collection_that_is_null.cs" />
     <Compile Include="for_FluentValidation\any\AnyValidator.cs" />
     <Compile Include="for_FluentValidation\any\when_calling_any_with_collection_that_is_null.cs" />
     <Compile Include="for_FluentValidation\any\when_calling_any_with_a_value_that_does_not_satisfy_a_custom_any_validator.cs" />
@@ -145,6 +147,10 @@
     <Compile Include="for_FluentValidation\between_date\when_calling_is_between_date_with_a_value_that_is_between_date.cs" />
     <Compile Include="for_FluentValidation\between_date\when_calling_is_between_date_with_a_value_that_is_not_between_date.cs" />
     <Compile Include="for_FluentValidation\between_date\when_calling_is_between_date_with_a_value_that_is_null.cs" />
+    <Compile Include="for_FluentValidation\is_same\when_calling_is_same_with_identical_collection.cs" />
+    <Compile Include="for_FluentValidation\is_same\when_calling_is_same_with_collection_not_containing_all_items.cs" />
+    <Compile Include="for_FluentValidation\is_same\when_calling_is_same_with_a_value_that_satisfies_a_custom_is_same_validator.cs" />
+    <Compile Include="for_FluentValidation\is_same\when_calling_is_same_with_collection_that_is_null.cs" />
     <Compile Include="for_FluentValidation\equal_to\EqualValidator.cs" />
     <Compile Include="for_FluentValidation\equal_to\when_calling_is_equal_to_with_a_value_that_does_not_satisfy_a_custom_equal_validator.cs" />
     <Compile Include="for_FluentValidation\equal_to\when_calling_is_equal_to_with_a_value_that_satisfies_a_custom_equal_validator.cs" />

@@ -23,5 +23,10 @@ namespace MFlow.Core.Validation
         ///     Checks if the expression evaluates to a collection containing all items in the values collection
         /// </summary>
         IFluentValidation<T> All<C>(ICollection<C> values);
+
+        /// <summary>
+        ///     Checks if the expression evaluates to a collection containing an identicalset of items as the values collection
+        /// </summary>
+        IFluentValidation<T> IsSame<C>(ICollection<C> values);
     }
 }

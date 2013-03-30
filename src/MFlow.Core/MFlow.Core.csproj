@@ -88,10 +88,12 @@
     <Compile Include="ExpressionBuilder\IConfigureExpressionBuilder.cs" />
     <Compile Include="ExpressionBuilder\IBuildExpressions.cs" />
     <Compile Include="ExpressionBuilder\ExpressionBuilderConfiguration.cs" />
+    <Compile Include="Internal\Validators\Collections\IsSameValidator.cs" />
     <Compile Include="MessageResolver\IResolveValidationMessages.cs" />
     <Compile Include="Internal\Validators\Between.cs" />
     <Compile Include="Internal\Validators\Collections\AllValidator.cs" />
     <Compile Include="Internal\Validators\Collections\ApplyCollectionValidator.cs" />
+    <Compile Include="Validation\IIsSameValidator.cs" />
     <Compile Include="Validation\Validators\Collections\IAllValidator.cs" />
     <Compile Include="Internal\Validators\Dates\ApplyDateValidator.cs" />
     <Compile Include="Internal\Validators\Dates\ApplyNullableDateValidator.cs" />

@@ -37,6 +37,7 @@
         IsUsername = 31,
         IsUrl = 32,
         IsBetween = 33,
-        All = 34
+        All = 34,
+        IsSame = 35
     }
 }

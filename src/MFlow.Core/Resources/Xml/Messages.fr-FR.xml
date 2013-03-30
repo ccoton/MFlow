@@ -33,4 +33,5 @@
   <IsUsername>{0} doit être une URL valide</IsUsername>
   <IsBetween>{0} doit être comprise entre {1} et {2}</IsBetween>
   <All>{0} doivent contenir tous les éléments spécifiés</All>
+  <IsSame>{0} doivent contenir les mêmes éléments que ceux spécifiés</IsSame>
 </Messages>

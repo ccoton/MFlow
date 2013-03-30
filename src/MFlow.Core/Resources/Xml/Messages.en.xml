@@ -35,4 +35,5 @@
   <IsUrl>{0} should be a valid url</IsUrl>
   <IsBetween>{0} should be between {1} and {2}</IsBetween>
   <All>{0} should contain all the items specified</All>
+  <IsSame>{0} should contain the same items as those specified</IsSame>
 </Messages>

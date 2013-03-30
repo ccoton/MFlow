@@ -34,6 +34,11 @@ namespace MFlow.Core.Validation
             return ApplyGenericCollectionValidator(_validatorFactory.GetValidators<ICollection<C>, ICollection<C>, IAllValidator<C>>(), Enums.ValidationType.All, value);
         }
 
+        public IFluentValidation<T> IsSame<C>(ICollection<C> value)
+        {
+            return ApplyGenericCollectionValidator(_validatorFactory.GetValidators<ICollection<C>, ICollection<C>, IIsSameValidator<C>>(), Enums.ValidationType.IsSame, value);
+        }
+
         IFluentValidation<T> ApplyGenericCollectionValidator<C>(ICollection<IComparisonValidator<ICollection<C>, C>> validators, Enums.ValidationType type, C value)
         {
             _validatorToCondition.ForCollectionOf<C>(_currentContext, validators, type, value)
